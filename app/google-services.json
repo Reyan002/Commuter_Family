@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "14752304409",
+    "firebase_url": "https://commuter-family.firebaseio.com",
+    "project_id": "commuter-family",
+    "storage_bucket": "commuter-family.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:14752304409:android:7f4f3fc36d04fbbf2cc988",
+        "android_client_info": {
+          "package_name": "com.example.commuterfamily"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "14752304409-98tutqnj9gmiv3degnb4csncg0gvfb1r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.commuterfamily",
+            "certificate_hash": "d94bf7f8740fd9dd5142ef803da33b751d52c5a2"
+          }
+        },
+        {
+          "client_id": "14752304409-lg9239c91q8rl9je4iil2metf43ct6v1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBka3wqPlRSQlMIE2Nmv8J9jNXNC7njMwI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "14752304409-lg9239c91q8rl9je4iil2metf43ct6v1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
