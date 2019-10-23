@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(MainActivity.this, LoginSignupOptionActivity.class));
+                startActivity(new Intent(MainActivity.this, SplashScreenActivity.class));
 
             }
         },2000);

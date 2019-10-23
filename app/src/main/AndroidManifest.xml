@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.CFSignUp"></activity>
+         <activity android:name=".Activities.CFSignUp"></activity>
         <activity android:name=".Activities.CFLoginActivity" />
-        <activity
+
+        <activity android:name=".SplashScreenActivity"></activity>
+         <activity
             android:name=".Activities.LoginSignupOptionActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
