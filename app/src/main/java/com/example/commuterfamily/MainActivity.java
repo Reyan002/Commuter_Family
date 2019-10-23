@@ -9,7 +9,8 @@ import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.TextView;
+
+import com.example.commuterfamily.Activities.LoginSignupOptionActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(MainActivity.this,LoginSignupOptionActivity.class));
+                startActivity(new Intent(MainActivity.this, LoginSignupOptionActivity.class));
 
             }
         },2000);

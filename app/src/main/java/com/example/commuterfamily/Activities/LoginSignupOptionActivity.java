@@ -1,4 +1,4 @@
-package com.example.commuterfamily;
+package com.example.commuterfamily.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.commuterfamily.R;
 
 public class LoginSignupOptionActivity extends AppCompatActivity {
 
@@ -19,13 +21,13 @@ public class LoginSignupOptionActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginSignupOptionActivity.this,CFLoginActivity.class));
+                startActivity(new Intent(LoginSignupOptionActivity.this, CFLoginActivity.class));
             }
         });
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginSignupOptionActivity.this,CFSignUp.class));
+                startActivity(new Intent(LoginSignupOptionActivity.this, CFSignUp.class));
             }
         });
     }

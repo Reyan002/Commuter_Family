@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".CFLoginActivity">
+    tools:context=".Activities.CFLoginActivity">
 
     <androidx.cardview.widget.CardView
         android:background="@android:color/white"
@@ -34,11 +34,11 @@
                 android:layout_height="wrap_content">
                 <EditText
 
-                    android:inputType="number"
-                    android:id="@+id/userPhone"
+                    android:inputType="textEmailAddress"
+                    android:id="@+id/userName"
                     android:fontFamily="sans-serif-thin"
                     android:layout_margin="10dp"
-                    android:hint="User Phone"
+                    android:hint="User Name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -87,6 +87,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center|bottom"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
