@@ -21,82 +21,30 @@ import com.google.firebase.auth.FirebaseAuth;
 public class CFLoginActivity extends AppCompatActivity {
 
 
-    private EditText user,pass;
-    private Button login_btn;
-    private ProgressBar progressBar;
-    private FirebaseAuth auth;
+    private EditText editTextMobile;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cflogin);
+        editTextMobile = findViewById(R.id.phone_number);
 
-        auth = FirebaseAuth.getInstance();
-
-      //  btnSignIn = (Button) findViewById(R.id.sign_in_button);
-        login_btn = (Button) findViewById(R.id.login);
-        user = (EditText) findViewById(R.id.userName);
-        pass = (EditText) findViewById(R.id.userPassword);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
-//        btnResetPassword = (Button) findViewById(R.id.btn_reset_password);
-
-//        btnResetPassword.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(SignupActivity.this, ResetPasswordActivity.class));
-//            }
-//        });
-
-//        btnSignIn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                finish();
-//            }
-//        });
-
-        login_btn.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.next).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String email = user.getText().toString().trim();
-                String password = pass.getText().toString().trim();
+                String mobile = editTextMobile.getText().toString().trim();
 
-                if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                if(mobile.isEmpty() || mobile.length() < 10){
+                    editTextMobile.setError("Enter a valid mobile");
+                    editTextMobile.requestFocus();
                     return;
                 }
 
-                if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (password.length() < 6) {
-                    Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                progressBar.setVisibility(View.VISIBLE);
-                //create user
-                auth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(CFLoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                Toast.makeText(CFLoginActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
-                                progressBar.setVisibility(View.GONE);
-                                // If sign in fails, display a message to the user. If sign in succeeds
-                                // the auth state listener will be notified and logic to handle the
-                                // signed in user can be handled in the listener.
-                                if (!task.isSuccessful()) {
-                                    Toast.makeText(CFLoginActivity.this, "Authentication failed." + task.getException(),
-                                            Toast.LENGTH_SHORT).show();
-                                } else {
-                                    startActivity(new Intent(CFLoginActivity.this, CFSignUp.class));
-                                    finish();
-                                }
-                            }
-                        });
-
+                Intent intent = new Intent(CFLoginActivity.this, LoginSignupOptionActivity.class);
+                intent.putExtra("mobile", mobile);
+                startActivity(intent);
             }
         });
 
@@ -104,6 +52,5 @@ public class CFLoginActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        progressBar.setVisibility(View.GONE);
-    }
+     }
 }
