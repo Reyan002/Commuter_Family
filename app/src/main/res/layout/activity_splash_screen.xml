@@ -8,23 +8,37 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:src="@drawable/logo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginTop="40dp"
+        android:textAllCaps="false"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="@string/commuters_family"
+        android:textAllCaps="true"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
         />
 
     <Button
 
         android:id="@+id/btn_signup"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_below="@id/logo"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_above="@id/btn_login"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
         android:background="@drawable/dark_btn_bg"
+        android:textAllCaps="false"
         android:text="@string/sign_up"
         android:textColor="#fff"
         android:textSize="22sp"
@@ -32,11 +46,13 @@
 
     <Button
         android:id="@+id/btn_login"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_below="@id/btn_signup"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
         android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/light_btn_bg"
+        android:textAllCaps="false"
         android:text="@string/log_in"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="22sp"
