@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".CFLoginActivity">
+    tools:context=".Activities.CFLoginActivity">
 
     <androidx.cardview.widget.CardView
         android:background="@android:color/white"

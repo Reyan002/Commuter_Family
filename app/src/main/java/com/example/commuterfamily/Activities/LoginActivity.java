@@ -1,14 +1,16 @@
-package com.example.commuterfamily;
+package com.example.commuterfamily.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class CFSignUp extends AppCompatActivity {
+import com.example.commuterfamily.R;
+
+public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cfsign_up);
+        setContentView(R.layout.activity_login);
     }
 }
