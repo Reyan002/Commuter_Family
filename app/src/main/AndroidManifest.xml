@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CFSignUp"></activity>
+        <activity android:name=".SplashScreenActivity"></activity>
+        <activity android:name=".CFSignUp" />
         <activity android:name=".CFLoginActivity" />
         <activity
             android:name=".LoginSignupOptionActivity"
