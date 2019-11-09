@@ -6,12 +6,11 @@ import android.os.Bundle;
 
 import com.example.commuterfamily.R;
 
-public class CFSignUp extends AppCompatActivity {
+public class DriveActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cfsign_up);
+        setContentView(R.layout.activity_drive);
     }
-
 }

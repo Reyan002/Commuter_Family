@@ -1,0 +1,282 @@
+package com.example.commuterfamily.Fragments.SignUp;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.fragment.app.Fragment;
+
+import com.example.commuterfamily.Activities.LoginActivity;
+import com.example.commuterfamily.Activities.SignUpActivity;
+import com.example.commuterfamily.Classes.DemoClass;
+import com.example.commuterfamily.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskExecutors;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
+
+import java.util.concurrent.TimeUnit;
+
+
+public class Code_login extends Fragment {
+    private String mVerificationId;
+    private EditText editText,editText1, editText2, editText3, editText4,editText5,editText6;
+    private EditText[] editTexts;
+    private AppCompatButton btn_next;
+    private ImageView btn_back;
+    private FirebaseAuth mAuth;
+    public Code_login() {
+        // Required empty public constructor
+    }
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.login_cod_fragment, container, false);
+        mAuth = FirebaseAuth.getInstance();
+
+        editText=view.findViewById(R.id.cod_login);
+        editText1 = view.findViewById(R.id.otpEdit7);
+        editText2 = view.findViewById(R.id.otpEdit8);
+        editText3 = view.findViewById(R.id.otpEdit9);
+        editText4 = view.findViewById(R.id.otpEdit10);
+        editText5 = view.findViewById(R.id.otpEdit11);
+        editText6 = view.findViewById(R.id.otpEdit12);
+
+        editTexts = new EditText[]{editText1, editText2, editText3, editText4,editText5,editText6};
+
+        editText1.addTextChangedListener(new PinTextWatcher(0));
+        editText2.addTextChangedListener(new PinTextWatcher(1));
+        editText3.addTextChangedListener(new PinTextWatcher(2));
+        editText4.addTextChangedListener(new PinTextWatcher(3));
+        editText5.addTextChangedListener(new PinTextWatcher(4));
+        editText6.addTextChangedListener(new PinTextWatcher(5));
+
+        editText1.setOnKeyListener(new PinOnKeyListener(0));
+        editText2.setOnKeyListener(new PinOnKeyListener(1));
+        editText3.setOnKeyListener(new PinOnKeyListener(2));
+        editText4.setOnKeyListener(new PinOnKeyListener(3));
+        editText5.setOnKeyListener(new PinOnKeyListener(4));
+        editText6.setOnKeyListener(new PinOnKeyListener(5));
+        btn_next = view.findViewById(R.id.btn_next_4);
+        btn_back = view.findViewById(R.id.btn_back_4);
+         sendVerificationCode(DemoClass.number);
+
+        btn_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//               verifyVerificationCode(editTexts.toString());
+                String code = editText.getText().toString().trim();
+                if (code.isEmpty() || code.length() < 6) {
+                    editText.setError("Enter valid code");
+                    editText.requestFocus();
+                    return;
+                }
+
+                //verifying the code entered manually
+                verifyVerificationCode(code);
+
+
+            }
+        });
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SignUpActivity.fragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, new PhoneNumber(), null)
+                        .commit();
+            }
+        });
+
+        return view;
+
+    }
+    private void verifyVerificationCode(String code) {
+        //creating the credential
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
+
+        //signing the user
+        signInWithPhoneAuthCredential(credential);
+    }
+
+    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener((Activity) getContext(), new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            LoginActivity.fragmentManagerLogin.beginTransaction()
+                                    .replace(R.id.fragment_container_login, new Paswoord(), null)
+                                    .commit();
+
+                        } else {
+
+                            //verification unsuccessful.. display an error message
+
+                            String message = "Somthing is wrong, we will fix it soon...";
+
+                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                                message = "Invalid code entered...";
+                            }
+
+                            Snackbar snackbar = Snackbar.make( getView(), message, Snackbar.LENGTH_LONG);
+                            snackbar.setAction("Dismiss", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                }
+                            });
+                            snackbar.show();
+                        }
+                    }
+                });
+    }
+    private void sendVerificationCode(String mobile) {
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                "+92" + mobile,
+                60,
+                TimeUnit.SECONDS,
+                TaskExecutors.MAIN_THREAD,
+                mCallbacks);
+    }
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+        @Override
+        public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
+
+            //Getting the code sent by SMS
+            String code = phoneAuthCredential.getSmsCode();
+
+            //sometime the code is not detected automatically
+            //in this case the code will be null
+            //so user has to manually enter the code
+
+            verifyVerificationCode(code);
+
+
+        }
+
+        @Override
+        public void onVerificationFailed(FirebaseException e) {
+            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+            super.onCodeSent(s, forceResendingToken);
+
+            //storing the verification id that is sent to the user
+            mVerificationId = s;
+        }
+    };
+
+    public class PinTextWatcher implements TextWatcher {
+
+        private int currentIndex;
+        private boolean isFirst = false, isLast = false;
+        private String newTypedString = "";
+
+        PinTextWatcher(int currentIndex) {
+            this.currentIndex = currentIndex;
+
+            if (currentIndex == 0)
+                this.isFirst = true;
+            else if (currentIndex == editTexts.length - 1)
+                this.isLast = true;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            newTypedString = s.subSequence(start, start + count).toString().trim();
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            String text = newTypedString;
+
+            /* Detect paste event and set first char */
+            if (text.length() > 1)
+                text = String.valueOf(text.charAt(0)); // TODO: We can fill out other EditTexts
+
+            editTexts[currentIndex].removeTextChangedListener(this);
+            editTexts[currentIndex].setText(text);
+            editTexts[currentIndex].setSelection(text.length());
+            editTexts[currentIndex].addTextChangedListener(this);
+
+            if (text.length() == 1)
+                moveToNext();
+            else if (text.length() == 0)
+                moveToPrevious();
+        }
+
+
+        private void moveToNext() {
+            if (!isLast)
+                editTexts[currentIndex + 1].requestFocus();
+
+            if (isAllEditTextsFilled() && isLast) { // isLast is optional
+                editTexts[currentIndex].clearFocus();
+                //hideKeyboard();
+            }
+        }
+
+        private void moveToPrevious() {
+            if (!isFirst)
+                editTexts[currentIndex - 1].requestFocus();
+        }
+
+        private boolean isAllEditTextsFilled() {
+            for (EditText editText : editTexts)
+                if (editText.getText().toString().trim().length() == 0)
+                    return false;
+            return true;
+        }
+//
+//        private void hideKeyboard() {
+//            if (getCurrentFocus() != null) {
+//                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+//                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+//            }
+//        }
+
+    }
+
+    public class PinOnKeyListener implements View.OnKeyListener {
+
+        private int currentIndex;
+
+        PinOnKeyListener(int currentIndex) {
+            this.currentIndex = currentIndex;
+        }
+
+
+        @Override
+        public boolean onKey(View v, int keyCode, KeyEvent event) {
+            if (keyCode == KeyEvent.KEYCODE_DEL && event.getAction() == KeyEvent.ACTION_DOWN) {
+                if (editTexts[currentIndex].getText().toString().isEmpty() && currentIndex != 0)
+                    editTexts[currentIndex - 1].requestFocus();
+            }
+            return false;        }
+    }
+}

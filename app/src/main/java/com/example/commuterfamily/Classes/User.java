@@ -1,62 +1,31 @@
 package com.example.commuterfamily.Classes;
 
 public class User {
-    private String f_name;
-    private String l_name;
-    private String email;
-    private String password;
-    private String mobile_number;
+    private String Name;
+    private String Email;
+    private String Password;
+    private String Phone;
     private String CNIC;
-    private String gender;
-    private enum type{DRIVE,CUSTOMER};
+    private String Gender;
 
-    public void setF_name(String f_name) {
-        this.f_name = f_name;
-    }
-
-    public void setL_name(String l_name) {
-        this.l_name = l_name;
+    public void setName(String name) {
+        Name = name;
     }
 
     public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setMobile_number(String mobile_number) {
-        this.mobile_number = mobile_number;
-    }
-
-    public void setCNIC(String CNIC) {
-        this.CNIC = CNIC;
+        Email = email;
     }
 
     public void setGender(String gender) {
-        this.gender = gender;
+        Gender = gender;
     }
 
-
-    public String getF_name() {
-        return f_name;
-    }
-
-    public String getL_name() {
-        return l_name;
+    public String getName() {
+        return Name;
     }
 
     public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getMobile_number() {
-        return mobile_number;
+        return Email;
     }
 
     public String getCNIC() {
@@ -64,7 +33,33 @@ public class User {
     }
 
     public String getGender() {
-        return gender;
+        return Gender;
     }
+
+    public void setPhone(String phone) {
+        Phone = phone;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public String getPhone() {
+        return Phone;
+    }
+
+
+
+    public void setCNIC(String CNIC) {
+        this.CNIC = CNIC;
+    }
+
+
+
+
 
 }
