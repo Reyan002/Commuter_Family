@@ -176,7 +176,14 @@ public class CodeFragment extends Fragment {
                 60,
                 TimeUnit.SECONDS,
                 TaskExecutors.MAIN_THREAD,
-                mCallbacks);
+                mCallbacks
+        );
+//        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+//                "+92" + mobile,
+//                60,
+//                TimeUnit.SECONDS,
+//                TaskExecutors.MAIN_THREAD,
+//                mCallbacks);
     }
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override

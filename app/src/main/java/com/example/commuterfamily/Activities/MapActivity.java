@@ -21,7 +21,7 @@ public class MapActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
-        String key="AIzaSyBrm3VpQ0S7i5A824GquqrLhPzKv2NHOng";
+        String key="AIzaSyACpTBAMgwdaOUjCrd6umwbLUfXFnMLjA0";
         if(!Places.isInitialized()){
             Places.initialize(this,key);
         }
