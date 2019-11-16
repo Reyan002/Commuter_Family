@@ -5,172 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activities.RideActivity">
-    <androidx.cardview.widget.CardView
-        android:layout_centerInParent="true"
-        android:layout_margin="5dp"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:gravity="center"
-            android:layout_margin="10dp"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:text="Select Day of Trip*"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <Spinner
+        android:layout_height="wrap_content" >
 
-                android:id="@+id/ride_days"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:text="Select Shift of Trip*"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <RadioGroup
 
-                android:padding="10dp"
-                android:background="@drawable/strokes"
-                android:layout_margin="10dp"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
-                <RadioButton
-                    android:text="Morning"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"/>
-                <RadioButton
-                    android:text="Evening"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"/>
-            </RadioGroup>
-            <TextView
-                android:text="Give your Start and End location of your Trip *"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <LinearLayout
-                android:layout_margin="10dp"
-                android:background="@drawable/strokes"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
-                <TextView
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:text="From"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"/>
+   <Button
+       android:layout_margin="5dp"
 
-                <TextView
-
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:text="To"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:visibility="gone"
-                    android:id="@+id/evening_times"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_gravity="center"
-                        android:text="Give your Time Range of your Trip *"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <LinearLayout
-                        android:layout_margin="10dp"
-                        android:background="@drawable/strokes"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="75dp">
-                        <TextView
-                            android:gravity="center"
-                            android:layout_gravity="center"
-                            android:text="From"
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"/>
-
-                        <TextView
-
-                            android:gravity="center"
-                            android:layout_gravity="center"
-                            android:text="To"
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/morning_times"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_gravity="center"
-                        android:text="Give your Time Range of your Trip *"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <LinearLayout
-
-                        android:layout_margin="10dp"
-                        android:background="@drawable/strokes"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp">
-                        <TextView
-                            android:gravity="center"
-                            android:layout_gravity="center"
-                            android:text="From"
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"/>
-
-                        <TextView
-
-                            android:gravity="center"
-                            android:layout_gravity="center"
-                            android:text="To"
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
-            </RelativeLayout>
-
-            <TextView
-                android:layout_gravity="center"
-                android:text="Give your Favourite location where you pass Every Day*"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:textAlignment="center"
-                android:gravity="center"
-                android:text="LOCATION"
-                android:layout_margin="10dp"
-                android:background="@drawable/strokes"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"/>
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:layout_width="wrap_content"
-
-                android:tooltipText="GO"
-                android:src="@drawable/arrow_right_white"
-                android:background="@drawable/arrow_right_white"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
+       android:background="@drawable/strokes"
+       android:textColor="@color/colorPrimary"
+       android:text="Add Car"
+       android:id="@+id/car"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"/>
+    <Button
+        android:layout_margin="5dp"
+        android:background="@drawable/strokes"
+        android:textColor="@color/colorPrimary"
+        android:text="Add Route"
+        android:id="@+id/route"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    </LinearLayout>
 </RelativeLayout>

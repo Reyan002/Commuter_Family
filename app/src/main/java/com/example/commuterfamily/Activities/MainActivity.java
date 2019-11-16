@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
          findViewById(R.id.Ride).setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                 startActivity(new Intent(MainActivity.this,RideActivity.class));
+                 startActivity(new Intent(MainActivity.this,RiderRouteActivity.class));
                  overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
 
              }

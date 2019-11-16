@@ -4,18 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.commuterfamily.Classes.DemoClass;
+import com.example.commuterfamily.Classes.LatLongClass;
 import com.example.commuterfamily.MapsCredentials.GPSTracker;
 import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
@@ -33,31 +34,45 @@ import java.util.List;
 
 public class RideActivity extends AppCompatActivity  {
 
-    private TextView locationFrom,locationTo, Favourite;
-    private String txtDay,txtShift,txtLocFrom,txtLocTo,txtMTimeFrom,txtMTimeTo,txtETimeFrom,txtEtimeTo,txtFavLoc ;
+    private TextView locationFrom;
+    private String txtDay,txtShift,txtMTimeFrom,txtMTimeTo,txtETimeFrom,txtEtimeTo ;
      private Spinner spinner,spinnerTimeMornigFrom,spinnerTimeMornigTo,spinnerTimeEveFrom,spinnerEveMornigTo ;
     private GPSTracker gps;
     private LinearLayout morning,evening;
     private   RadioGroup radioGroup;
     private FloatingActionButton next;
+    private LatLongClass latLongFrom,latLongTo;
+    String randomKey;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ride);
-        Initialize();
+         Initialize();
         spinnerDay();
         setSpinnerTimeMornigFrom();
         setSpinnerTimeEveFrom();
         setSpinnerTimeMornigTo();
         setSpinnerTimeEveTo();
-        spinnerTimeMornigFrom.setEnabled(false);
+        latLongFrom=new LatLongClass();
+        latLongTo=new LatLongClass();
+         spinnerTimeMornigFrom.setEnabled(false);
                 spinnerTimeMornigTo.setEnabled(false);
         // Spinner click listener
 
 next.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        addRiderIntoDataBase();
+        if(!txtDay.equals("")&&!txtShift.equals("")&&
+                ((!txtMTimeFrom.equals("")&&!txtMTimeTo.equals(""))||
+                         (!txtETimeFrom.equals("")&&!txtEtimeTo.equals("") ) )
+        &&!DemoClass.latLongFrom.equals("")&&!DemoClass.latLongTo.equals("") )  {
+            addRiderIntoDataBase();
+        }
+      else{
+            Toast.makeText(RideActivity.this, "Please Fill All the Require Fields to Add the Route", Toast.LENGTH_SHORT).show();
+        }
+
     }
 });
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -66,12 +81,16 @@ next.setOnClickListener(new View.OnClickListener() {
                 switch (checkedId) {
                     case R.id.morning:
 
+                        RadioButton radioButton=findViewById(radioGroup.getCheckedRadioButtonId());
+                        txtShift=radioButton.getText().toString();
                         spinnerTimeMornigFrom.setEnabled(true);
                         spinnerTimeMornigTo.setEnabled(true);
                         evening.setVisibility(View.GONE);
                         morning.setVisibility(View.VISIBLE);
                          break;
                     case R.id.evening:
+                        RadioButton radioButton1=findViewById(radioGroup.getCheckedRadioButtonId());
+                        txtShift=radioButton1.getText().toString();
                         morning.setVisibility(View.GONE);
                         evening.setVisibility(View.VISIBLE);
                           break;
@@ -90,7 +109,7 @@ next.setOnClickListener(new View.OnClickListener() {
 //                        startActivity(mapIntent);
 //                    }
 //                }, 1000);
-                startActivity(new Intent( RideActivity.this,MapActivity.class));
+                startActivity(new Intent( RideActivity.this, MapsActivity.class));
             }
         });
 
@@ -140,6 +159,7 @@ next.setOnClickListener(new View.OnClickListener() {
 
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
+        categories.add("");
         categories.add("Monday");
         categories.add("Tuesday");
         categories.add("Wednesday");
@@ -174,6 +194,7 @@ next.setOnClickListener(new View.OnClickListener() {
 
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
+        categories.add("");
         categories.add("7:30 am");
         categories.add("7:45 am");
         categories.add("8:00 am");
@@ -212,6 +233,7 @@ next.setOnClickListener(new View.OnClickListener() {
 
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
+        categories.add("");
         categories.add("4:30 pm");
         categories.add("4:45 pm");
         categories.add("5:00 pm");
@@ -250,7 +272,7 @@ next.setOnClickListener(new View.OnClickListener() {
 
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
-
+        categories.add("");
         categories.add("7:45 am");
         categories.add("8:00 am");
         categories.add("8:15 am");
@@ -288,7 +310,7 @@ next.setOnClickListener(new View.OnClickListener() {
 
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
-
+        categories.add("");
         categories.add("4:45 pm");
         categories.add("5:00 pm");
         categories.add("5:15 pm");
@@ -315,12 +337,12 @@ public void Initialize(){
     spinner =  findViewById(R.id.ride_days);
  evening=findViewById(R.id.evening_times);
     locationFrom=findViewById(R.id.locFrom);
-    locationTo=findViewById(R.id.locTo);
+
     spinnerTimeMornigFrom=findViewById(R.id.morning_timeFrom);
     spinnerTimeMornigTo=findViewById(R.id.morning_timeTO);
     spinnerTimeEveFrom=findViewById(R.id.timeFrom);
     spinnerEveMornigTo=findViewById(R.id.TimeTo);
-    Favourite=findViewById(R.id.fav);
+
     radioGroup = (RadioGroup) findViewById(R.id.shift);
 
 }
@@ -340,17 +362,20 @@ public void Initialize(){
 
         final HashMap<String,Object> cartMap =new HashMap<>();
 //        cartMap.put("cid","");
-        cartMap.put("Day","Monday") ;
-        cartMap.put("Shift","Morning");
+        randomKey=saveCurrentDate+saveCurrentime;
+        cartMap.put("RouteID",randomKey) ;
+        cartMap.put("Day",txtDay) ;
+        cartMap.put("Shift",txtShift);
         cartMap.put("Date",saveCurrentDate);
         cartMap.put("Time",saveCurrentime);
-        cartMap.put("MTImeFrom","8:00 am");
-        cartMap.put("MTimeTo","8:15 am");
-        cartMap.put("ETImeFrom","");
-        cartMap.put("ETimeTo","");
-        cartMap.put("LocFrom","24.1234");
-        cartMap.put("locTo","24.1234");
-        cartMap.put("FvouriteLoc","24.1234,24.1234");
+        cartMap.put("MTimeFrom",txtMTimeFrom);
+        cartMap.put("MTimeTo",txtMTimeTo);
+        cartMap.put("ETimeFrom",txtETimeFrom);
+        cartMap.put("ETimeTo",txtEtimeTo);
+        cartMap.put("AdressFrom",DemoClass.AdressFrom);
+        cartMap.put("AdressTo",DemoClass.AdressTo);
+        cartMap.put("LocFrom",  DemoClass.latLongFrom );
+        cartMap.put("LocTo", DemoClass.latLongTo );
 
         cartListRef.child("Rider").child(Prevalent.currentOnlineUser.getPhone())
                 .child("Ride").child(saveCurrentDate+saveCurrentime).updateChildren(cartMap).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -359,7 +384,7 @@ public void Initialize(){
                 if(task.isSuccessful()){
 
                             Toast.makeText(RideActivity.this,"Wellcome Commuter",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(RideActivity.this, MapActivity.class));
+                            startActivity(new Intent(RideActivity.this, RiderRouteActivity.class));
 
                 }
             }

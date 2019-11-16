@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:name="com.google.android.gms.maps.SupportMapFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.MapsActivity" >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:elevation="10dp"
+        android:background="@drawable/white_border"
+        android:id="@+id/relLayout1">
+
+
+
+<TextView
+    android:text="Select your Favorite location here"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
+        <fragment android:id="@+id/autocomplete_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+            />
+        <TextView
+        android:text="Select your Destination here"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+        <fragment android:id="@+id/autocomplete_fragment_to"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+            />
+    </LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+
+        android:layout_margin="30dp"
+        android:layout_centerInParent="true"
+android:layout_alignParentBottom="true"
+        android:id="@+id/goBack"
+        android:tooltipText="GO"
+        android:src="@drawable/arrow_right_white"
+        android:background="@drawable/arrow_right_white"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

@@ -196,7 +196,7 @@ public class InfoFragment extends Fragment {
 
                                         Toast.makeText(getContext(),"Congratulations! your Account has Created succesfully",Toast.LENGTH_SHORT).show();
                                         loadingBar.dismiss();
-                                        sessionManager.createLoginSession(name,phone);
+                                        sessionManager.createLoginSession(phone,pass);
                                         startActivity(new Intent(getContext(), MainActivity.class));
                                     }
                                     else {
