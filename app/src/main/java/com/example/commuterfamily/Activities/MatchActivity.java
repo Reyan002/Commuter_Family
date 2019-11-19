@@ -62,6 +62,7 @@ public class MatchActivity extends AppCompatActivity {
         FirebaseRecyclerAdapter<Routes, MatchViewHolder> adapter=new FirebaseRecyclerAdapter<Routes, MatchViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull MatchViewHolder holder, int i, @NonNull final Routes model ) {
+
 //                if (model.getMTimeFrom().equals(getIntent().getStringExtra("morningTimeFrom"))
 //                        && model.getMTimeTo().equals(getIntent().getStringExtra("morningTimeTo"))
 //                        && model.getETimeFrom().equals(getIntent().getStringExtra("eveningTimeFrom"))
