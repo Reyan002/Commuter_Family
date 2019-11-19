@@ -1,19 +1,43 @@
 package com.example.commuterfamily.AddCar;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.example.commuterfamily.Activities.DriveActivity;
+import com.example.commuterfamily.Classes.DemoClass;
+import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
+import com.example.commuterfamily.SessionManager.SessionManager;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -22,102 +46,171 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+
+import static android.app.Activity.RESULT_OK;
 
 public class DriverCnic extends Fragment  {
     private ImageView imageview,imageviewLicense;
     private Button btnSelectImage,btnSelectImageLicense;
+    private FloatingActionButton next;
     private Bitmap bitmap;
     private File destination = null;
     private InputStream inputStreamImg;
     private String imgPath = null;
     private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
+    private StorageReference productImageReference;
+    private DatabaseReference productRef;
+    private ProgressDialog loadingBar;
+    private String saveCurrentDate,saveCurrentTime,productRandomkey,downloadImageUri;
+    private SessionManager sessionManager;
 
-    private void selectImage() {
+    private Uri ImageUri;
+    private static final int galleryPic=1;
 
+    public DriverCnic() {
+    }
 
-        final CharSequence[] options = {"Take Photo", "Choose From Gallery","Cancel"};
-        AlertDialog.Builder builder = new  AlertDialog.Builder(getContext());
-        builder.setTitle("Select Option");
-        builder.setItems(options, new DialogInterface.OnClickListener() {
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view=inflater.inflate(R.layout.driver_cnic,container,false);
+        imageview=view.findViewById(R.id.cnic);
+        sessionManager=new SessionManager(getContext());
+        btnSelectImage=view.findViewById(R.id.add_cnic);
+        next=view.findViewById(R.id.nextDriverCNIC);
+        loadingBar=new
+                ProgressDialog(getContext());
+        productImageReference= FirebaseStorage.getInstance().getReference().child("CNIC");
+        productRef= FirebaseDatabase.getInstance().getReference().child("Commuters");
+        btnSelectImage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int item) {
-                if (options[item].equals("Take Photo")) {
-                    dialog.dismiss();
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(intent, PICK_IMAGE_CAMERA);
-                } else if (options[item].equals("Choose From Gallery")) {
-                    dialog.dismiss();
-                    Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(pickPhoto, PICK_IMAGE_GALLERY);
-                } else if (options[item].equals("Cancel")) {
-                    dialog.dismiss();
-                }
+            public void onClick(View v) {
+                openGallery();
             }
         });
-        builder.show();
 
 
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                storeProductInformation();
+            }
+        });
+
+        return view;
+    }
+
+    private void storeProductInformation() {
+        loadingBar.setTitle("Adding your Vehicle");
+        loadingBar.setMessage("Dear User, Please wait while we are adding new Vehicle");
+        loadingBar.setCanceledOnTouchOutside(false);
+        loadingBar.show();
+
+        Calendar calendar=Calendar.getInstance();
+
+        SimpleDateFormat currentDate=new SimpleDateFormat("MMM dd, YYYY");
+        saveCurrentDate=currentDate.format(calendar.getTime());
+
+        SimpleDateFormat currentTIme=new SimpleDateFormat("HH:mm:ss a");
+        saveCurrentTime=currentTIme.format(calendar.getTime());
+
+        productRandomkey=saveCurrentDate + saveCurrentTime;
+
+        final StorageReference filePath=productImageReference.child(ImageUri.getLastPathSegment()+productRandomkey+".jpg");
+
+        final UploadTask uploadTask=filePath.putFile(ImageUri);
+
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                String message=e.toString();
+
+                Toast.makeText(getContext(),"Error: "+message,Toast.LENGTH_SHORT).show();
+                loadingBar.dismiss();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Toast.makeText(getContext(),"Product Image uploaded Succesfully..",Toast.LENGTH_SHORT).show();
+                Task<Uri> uriTask=uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                    @Override
+                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                        if(!task.isSuccessful()){
+                            throw task.getException();
+                        }
+                        downloadImageUri=filePath.getDownloadUrl().toString();
+                        return filePath.getDownloadUrl();
+                    }
+                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if(task.isSuccessful()){
+                            downloadImageUri=task.getResult().toString();
+
+                            Toast.makeText(getContext(),"got product URL Succesfully..",Toast.LENGTH_SHORT).show();
+
+                            saveProductInfoToDatabase();
+                        }
+                    }
+                });
+            }
+        });
+
+    }
+
+
+    private void saveProductInfoToDatabase() {
+        HashMap<String,Object> productMap=new HashMap<>();
+
+        productMap.put("vid", productRandomkey);
+        productMap.put("date",saveCurrentDate);
+        productMap.put("time",saveCurrentTime);
+        productMap.put("VehicleDocuments", DemoClass.docsURI);
+        productMap.put("DriverCnic",downloadImageUri);
+        productMap.put("DriverLicence",DemoClass.Dlicence);
+        productMap.put("VehicleNumber",DemoClass.vnum);
+        productMap.put("VehicleType",DemoClass.vtype);
+
+        productRef.child("Driver").child(Prevalent.currentOnlineUser.getPhone()).child("Car").updateChildren(productMap)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+
+                            loadingBar.dismiss();
+                            Toast.makeText(getContext(),"Product is Added Succesfully..",Toast.LENGTH_SHORT).show();
+
+
+                            sessionManager.createSessionOfKey(productRandomkey);
+                            DemoClass.CarKey=productRandomkey;
+                            startActivity(new Intent(getContext(),DriveActivity.class));
+                        }
+                        else {
+                            loadingBar.dismiss();
+                            final String messege=task.getException().toString();
+                            Toast.makeText(getContext(),"Error: "+messege,Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
+    }
+    private void openGallery() {
+        Intent galleryInten=new Intent();
+        galleryInten.setAction(Intent.ACTION_GET_CONTENT);
+        galleryInten.setType("image/*");
+        startActivityForResult(galleryInten,galleryPic);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        inputStreamImg = null;
-        if (requestCode == PICK_IMAGE_CAMERA) {
-            try {
-                Uri selectedImage = data.getData();
-                bitmap = (Bitmap) data.getExtras().get("data");
-                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 50, bytes);
-
-                Log.e("Activity", "Pick from Camera::>>> ");
-
-                String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
-                destination = new File(Environment.getExternalStorageDirectory() + "/" +
-                        getString(R.string.app_name), "IMG_" + timeStamp + ".jpg");
-                FileOutputStream fo;
-                try {
-                    destination.createNewFile();
-                    fo = new FileOutputStream(destination);
-                    fo.write(bytes.toByteArray());
-                    fo.close();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                imgPath = destination.getAbsolutePath();
-                imageview.setImageBitmap(bitmap);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else if (requestCode == PICK_IMAGE_GALLERY) {
-            Uri selectedImage = data.getData();
-            try {
-                bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), selectedImage);
-                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 50, bytes);
-                Log.e("Activity", "Pick from Gallery::>>> ");
-
-//                imgPath = getRealPathFromURI(selectedImage);
-                destination = new File(imgPath.toString());
-                imageview.setImageBitmap(bitmap);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        super.onActivityResult(requestCode , resultCode , data);
+        if(requestCode==galleryPic&&resultCode==RESULT_OK&&data!=null){
+            ImageUri=data.getData();
+            imageview.setImageURI(ImageUri);
         }
     }
-//
-//    public String getRealPathFromURI(Uri contentUri) {
-//        String[] proj = {MediaStore.Audio.Media.DATA};
-//        Cursor cursor = managedQuery(contentUri, proj, null, null, null);
-//        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA);
-//        cursor.moveToFirst();
-//        return cursor.getString(column_index);
-//    }
 }

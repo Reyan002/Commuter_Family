@@ -10,20 +10,20 @@ import com.example.commuterfamily.AddCar.VehicleType;
 import com.example.commuterfamily.R;
 
 public class AddCarActivity extends AppCompatActivity {
-    public static FragmentManager fragmentManager;
+    public static FragmentManager fragmentManagerAddCar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_car);
 
-        fragmentManager = getSupportFragmentManager();
+        fragmentManagerAddCar = getSupportFragmentManager();
 
         if(findViewById(R.id.fragment_container_add_car) != null) {
             if(savedInstanceState != null) {
                 return;
             }
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            FragmentTransaction fragmentTransaction = fragmentManagerAddCar.beginTransaction();
             VehicleType vehivalType = new VehicleType();
             fragmentTransaction.add(R.id.fragment_container_add_car, vehivalType, null);
             fragmentTransaction.commit();

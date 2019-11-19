@@ -10,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.example.commuterfamily.Classes.DemoClass;
 import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
 import com.example.commuterfamily.SessionManager.SessionManager;
@@ -48,6 +49,8 @@ public class Splash extends AppCompatActivity {
                 @Override
                 public void run() {
                     Prevalent.currentOnlineUser.setPhone(sessionManager.getUserDetails()) ;
+                    if(sessionManager.isKey()){ DemoClass.CarKey=sessionManager.getIsKey();}
+
                     startActivity(new Intent(Splash.this,MainActivity.class));
 
 
