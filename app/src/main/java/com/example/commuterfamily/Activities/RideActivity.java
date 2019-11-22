@@ -22,10 +22,14 @@ import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
 import com.example.commuterfamily.TutorialFragment.Ride;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -388,6 +392,9 @@ public void Initialize(){
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
 
+                        // Access a Cloud Firestore instance from your Activity
+
+
                         DatabaseReference reference=FirebaseDatabase.getInstance().getReference().child("Riders");
                         reference.child(saveCurrentDate + saveCurrentime).updateChildren(cartMap);
                         Toast.makeText(RideActivity.this, "Wellcome Commuter", Toast.LENGTH_SHORT).show();
@@ -419,6 +426,7 @@ public void Initialize(){
                 cartMap.put("Day",txtDay) ;
                 cartMap.put("Shift",txtShift);
                 cartMap.put("Date",saveCurrentDate);
+
                 cartMap.put("Time",saveCurrentime);
                 cartMap.put("MTimeFrom",txtMTimeFrom);
                 cartMap.put("MTimeTo",txtMTimeTo);
