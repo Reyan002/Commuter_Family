@@ -29,12 +29,14 @@ public class SessionManager {
 
     // All Shared Preferences Keys
     private static final String IS_LOGIN = "IsLoggedIn";
+    private static final String IS_KEY = "IsKey";
 
     // User name (make variable public to access from outside)
     public static final String KEY_NAME = "name";
 
     // Email address (make variable public to access from outside)
     public static final String KEY_PHONE = "phone";
+    public static final String KEY_CAR = "key";
 
     // Constructor
     public SessionManager(Context context){
@@ -57,6 +59,11 @@ public class SessionManager {
         editor.putString(KEY_PHONE, phone);
 
         // commit changes
+        editor.commit();
+    }
+    public void createSessionOfKey(String key){
+        editor.putBoolean(IS_KEY, true);
+        editor.putString(KEY_CAR,key);
         editor.commit();
     }
 
@@ -119,7 +126,18 @@ public class SessionManager {
         // Staring Login Activity
         _context.startActivity(i);
     }
+    public String getIsKey(){
+//        HashMap<String, String> user = new HashMap<String, String>();
+        // user name
+//        user.put(KEY_NAME, pref.getString(KEY_NAME, null));
 
+        String user=pref.getString(KEY_CAR, null) ;;
+        // user email id
+
+
+        // return user
+        return user;
+    }
     /**
      * Quick check for login
      * **/
@@ -127,4 +145,8 @@ public class SessionManager {
     public boolean isLoggedIn(){
         return pref.getBoolean(IS_LOGIN, false);
     }
+    public boolean isKey(){
+        return pref.getBoolean(IS_KEY, false);
+    }
+
 }

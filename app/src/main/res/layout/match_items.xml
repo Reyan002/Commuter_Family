@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:elevation="15dp"
+    android:layout_margin="10dp"
+    >
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/strokes"
+   >
+
+        <TextView
+            android:drawableLeft="@drawable/ic_keyboard_arrow_right_black_24dp"
+            android:id="@+id/cart_product_price_m"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Trip Day:"
+             android:textSize="14dp"
+
+            />
+        <TextView
+            android:drawableLeft="@drawable/ic_keyboard_arrow_right_black_24dp"
+
+            android:id="@+id/cart_product_name_m"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Trip Shift:"
+             android:textSize="14dp"
+            />
+
+        <TextView
+            android:drawableLeft="@drawable/ic_keyboard_arrow_right_black_24dp"
+
+            android:id="@+id/cart_product_quantity_m"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Trip Starts From:"
+             android:textSize="14dp"
+            />
+
+        <TextView
+            android:drawableLeft="@drawable/ic_keyboard_arrow_right_black_24dp"
+
+            android:id="@+id/location_to_m"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Trip Ends On:"
+             android:textSize="14dp"
+
+            />
+        <TextView
+            android:drawableLeft="@drawable/ic_keyboard_arrow_right_black_24dp"
+
+            android:id="@+id/from_time_m"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Trip Time:"
+             android:textSize="14dp"
+
+            />
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

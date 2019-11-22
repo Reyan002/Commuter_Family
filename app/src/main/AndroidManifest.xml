@@ -14,14 +14,12 @@
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality.
-    -->
-    <uses-feature
-        android:name="android.hardware.camera.any"
-        android:required="true" />
+    -->   <uses-feature
+    android:name="android.hardware.camera.any"
+    android:required="true" />
     <uses-feature
         android:name="android.hardware.camera.autofocus"
         android:required="false" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -33,8 +31,7 @@
         android:roundIcon="@mipmap/icon_image_new"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.MatchesActivity"></activity>
-        <activity android:name=".Activities.AddCarActivity" />
+        <activity android:name=".Activities.AddCarActivity"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

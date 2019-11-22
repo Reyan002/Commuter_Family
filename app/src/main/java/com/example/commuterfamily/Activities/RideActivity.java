@@ -20,11 +20,16 @@ import com.example.commuterfamily.Classes.LatLongClass;
 import com.example.commuterfamily.MapsCredentials.GPSTracker;
 import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
+import com.example.commuterfamily.TutorialFragment.Ride;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -349,7 +354,7 @@ public void Initialize(){
 
     public void addRiderIntoDataBase(){
 
-        String saveCurrentDate,saveCurrentime;
+        final String saveCurrentDate,saveCurrentime;
 
         Calendar calForDate= Calendar.getInstance();
         SimpleDateFormat currentDate=new SimpleDateFormat("MMM dd,YYY");
@@ -358,37 +363,114 @@ public void Initialize(){
         SimpleDateFormat currentTime=new SimpleDateFormat("HH:mm:ss a");
         saveCurrentime=currentTime.format(calForDate.getTime());
 
-        final DatabaseReference cartListRef= FirebaseDatabase.getInstance().getReference().child("Commuters");
 
-        final HashMap<String,Object> cartMap =new HashMap<>();
+
+        if(DemoClass.RouteFor=="Rider") {
+            final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Commuters");
+
+            final HashMap<String, Object> cartMap = new HashMap<>();
 //        cartMap.put("cid","");
-        randomKey=saveCurrentDate+saveCurrentime;
-        cartMap.put("RouteID",randomKey) ;
-        cartMap.put("Day",txtDay) ;
-        cartMap.put("Shift",txtShift);
-        cartMap.put("Date",saveCurrentDate);
-        cartMap.put("Time",saveCurrentime);
-        cartMap.put("MTimeFrom",txtMTimeFrom);
-        cartMap.put("MTimeTo",txtMTimeTo);
-        cartMap.put("ETimeFrom",txtETimeFrom);
-        cartMap.put("ETimeTo",txtEtimeTo);
-        cartMap.put("AdressFrom",DemoClass.AdressFrom);
-        cartMap.put("AdressTo",DemoClass.AdressTo);
-        cartMap.put("LocFrom",  DemoClass.latLongFrom );
-        cartMap.put("LocTo", DemoClass.latLongTo );
+            randomKey = saveCurrentDate + saveCurrentime;
+            cartMap.put("RouteID", randomKey);
+            cartMap.put("Day", txtDay);
+            cartMap.put("Shift", txtShift);
+            cartMap.put("Date", saveCurrentDate);
+            cartMap.put("Time", saveCurrentime);
+            cartMap.put("MTimeFrom", txtMTimeFrom);
+            cartMap.put("MTimeTo", txtMTimeTo);
+            cartMap.put("ETimeFrom", txtETimeFrom);
+            cartMap.put("ETimeTo", txtEtimeTo);
+            cartMap.put("AdressFrom", DemoClass.AdressFrom);
+            cartMap.put("AdressTo", DemoClass.AdressTo);
+            cartMap.put("LocFrom", DemoClass.latLongFrom);
+            cartMap.put("LocTo", DemoClass.latLongTo);
 
-        cartListRef.child("Rider").child(Prevalent.currentOnlineUser.getPhone())
-                .child("Ride").child(saveCurrentDate+saveCurrentime).updateChildren(cartMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
 
-                            Toast.makeText(RideActivity.this,"Wellcome Commuter",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(RideActivity.this, RiderRouteActivity.class));
+            cartListRef.child(DemoClass.RouteFor).child(Prevalent.currentOnlineUser.getPhone())
+                    .child("Ride").child(saveCurrentDate + saveCurrentime).updateChildren(cartMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
 
+                        // Access a Cloud Firestore instance from your Activity
+
+
+                        DatabaseReference reference=FirebaseDatabase.getInstance().getReference().child("Riders");
+                        reference.child(saveCurrentDate + saveCurrentime).updateChildren(cartMap);
+                        Toast.makeText(RideActivity.this, "Wellcome Commuter", Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(RideActivity.this,RiderRouteActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        finish();
+
+                    }
                 }
-            }
-        });
+            });
 
+        }
+        if(DemoClass.RouteFor=="Driver"){
+            if(DemoClass.CarKey==""){
+                Toast.makeText(RideActivity.this, "Add Car firstly", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(RideActivity.this,DriveActivity.class));
+                finish();
+
+        }
+        else{
+                final DatabaseReference cartListRef= FirebaseDatabase.getInstance().getReference().child("Commuters");
+
+                final HashMap<String,Object> cartMap =new HashMap<>();
+//        cartMap.put("cid","");
+                randomKey=saveCurrentDate+saveCurrentime;
+                cartMap.put("CarKey",DemoClass.CarKey);
+                cartMap.put("RouteID",randomKey) ;
+                cartMap.put("Day",txtDay) ;
+                cartMap.put("Shift",txtShift);
+                cartMap.put("Date",saveCurrentDate);
+
+                cartMap.put("Time",saveCurrentime);
+                cartMap.put("MTimeFrom",txtMTimeFrom);
+                cartMap.put("MTimeTo",txtMTimeTo);
+                cartMap.put("ETimeFrom",txtETimeFrom);
+                cartMap.put("ETimeTo",txtEtimeTo);
+                cartMap.put("AdressFrom",DemoClass.AdressFrom);
+                cartMap.put("AdressTo",DemoClass.AdressTo);
+                cartMap.put("LocFrom",  DemoClass.latLongFrom );
+                cartMap.put("LocTo", DemoClass.latLongTo );
+
+
+                cartListRef.child(DemoClass.RouteFor).child(Prevalent.currentOnlineUser.getPhone())
+                        .child("Ride").child(saveCurrentDate+saveCurrentime).updateChildren(cartMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+
+                            DatabaseReference reference=FirebaseDatabase.getInstance().getReference().child("Drivers");
+                            reference.child(saveCurrentDate+saveCurrentime).updateChildren(cartMap);
+                            Toast.makeText(RideActivity.this,"Wellcome Commuter",Toast.LENGTH_SHORT).show();
+                            Intent intent=new Intent(RideActivity.this,DriveActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                            finish();
+
+                        }
+                    }
+                });
+
+
+            }
+        }
+
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(RideActivity.this,MainActivity.class));
     }
 }

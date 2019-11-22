@@ -36,6 +36,7 @@ import java.util.concurrent.TimeUnit;
 
 
 public class Code_login extends Fragment {
+
     private String mVerificationId;
     private EditText editText,editText1, editText2, editText3, editText4,editText5,editText6;
     private EditText[] editTexts;

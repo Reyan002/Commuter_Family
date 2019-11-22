@@ -7,23 +7,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:layout_gravity="center"
-            android:id="@+id/v_license"
+            android:id="@+id/v_docs"
             android:layout_width="200dp"
             android:layout_height="200dp"/>
         <Button
             android:textColor="@android:color/white"
 
             android:background="@drawable/fullcolor"
-            android:text="Upload Driving Licence"
-            android:id="@+id/v_license_add"
+            android:text="Upload Vehicle Documents"
+            android:id="@+id/v_docs_add"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
 
         android:layout_margin="10dp"
-        android:id="@+id/nextLicense"
+        android:id="@+id/addCarNext"
         android:src="@drawable/arrow_right_white"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
