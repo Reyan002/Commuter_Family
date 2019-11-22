@@ -85,12 +85,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         AutocompleteSupportFragment autocompleteFragmentTO = (AutocompleteSupportFragment)
                 getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment_to);
 
-// Specify the types of place data to return.
-        autocompleteFragmentTO.setPlaceF
+// Specify the types of place data to return
+        autocompleteFragmentTO.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME,Place.Field.LAT_LNG,Place.Field.ADDRESS));
 
-    ields(Arrays.asList(Place.Field.ID, Place.Field.NAME,Place.Field.LAT_LNG,Place.Field.ADDRESS));
-
-// Set up a PlaceSelectionListener to handle the response.
+// Set up a PlaceSelectionListener to handle the response
         autocompleteFragmentTO.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
