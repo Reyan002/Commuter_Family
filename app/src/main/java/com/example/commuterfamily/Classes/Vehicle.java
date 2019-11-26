@@ -1,30 +1,30 @@
 package com.example.commuterfamily.Classes;
 
 public class Vehicle {
-    private String type;
-    private String number;
+    private String vehicleType;
+    private String vehicleNumber;
 
     public Vehicle() {
     }
 
-    public Vehicle(String type, String number) {
-        this.type = type;
-        this.number = number;
+    public Vehicle(String vehicleType, String vehicleNumber) {
+        this.vehicleType = vehicleType;
+        this.vehicleNumber = vehicleNumber;
     }
 
-    public String getType() {
-        return type;
+    public void setVehicleType(String vehicleType) {
+        this.vehicleType = vehicleType;
     }
 
-    public String getNumber() {
-        return number;
+    public void setVehicleNumber(String vehicleNumber) {
+        this.vehicleNumber = vehicleNumber;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public String getVehicleType() {
+        return vehicleType;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public String getVehicleNumber() {
+        return vehicleNumber;
     }
 }

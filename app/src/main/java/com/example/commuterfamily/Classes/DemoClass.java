@@ -7,7 +7,7 @@ public class DemoClass {
     public static String P_number;
     public static String AdressFrom;
     public static String AdressTo;
-    public static String RouteFor;
+    public static String RouteFor="";
     public static String docsURI;
     public static String vtype;
     public static String vnum;

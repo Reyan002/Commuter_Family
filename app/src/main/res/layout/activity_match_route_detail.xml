@@ -11,14 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textViewMR_RD"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="Route Detail"
-            android:textSize="20dp"
-            android:textAlignment="center"
-            android:textStyle="bold"/>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewMd1"
@@ -28,7 +20,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:layout_below="@id/textViewMR_RD">
+         >
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -38,7 +30,7 @@
                     android:id="@+id/textViewMR_SD"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
-                    android:text="Shift Detail"
+                    android:text="Route Detail"
                     android:textSize="16dp"
                     android:textAlignment="center"
                     android:textStyle="bold"/>
@@ -119,24 +111,7 @@
                     android:layout_height="20dp"
                     android:layout_below="@id/textViewMR_VD1"
                     android:text="Day"/>
-                <TextView
-                    android:id="@+id/textViewMR_VD3"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:layout_below="@id/textViewMR_VD2"
-                    android:text="Time"/>
-                <TextView
-                    android:id="@+id/textViewMR_VD4"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:layout_below="@id/textViewMR_VD3"
-                    android:text="Start"/>
-                <TextView
-                    android:id="@+id/textViewMR_VD5"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:layout_below="@id/textViewMR_VD4"
-                    android:text="End"/>
+
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
@@ -182,24 +157,7 @@
                     android:layout_height="20dp"
                     android:layout_below="@id/textViewMR_CD1"
                     android:text="Day"/>
-                <TextView
-                    android:id="@+id/textViewMR_CD3"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:layout_below="@id/textViewMR_CD2"
-                    android:text="Time"/>
-                <TextView
-                    android:id="@+id/textViewMR_CD4"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:layout_below="@id/textViewMR_CD3"
-                    android:text="Start"/>
-                <TextView
-                    android:id="@+id/textViewMR_CD5"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:layout_below="@id/textViewMR_CD4"
-                    android:text="End"/>
+
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
