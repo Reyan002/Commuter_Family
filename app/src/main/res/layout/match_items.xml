@@ -3,13 +3,15 @@
     android:layout_width="match_parent" android:layout_height="wrap_content"
     android:elevation="15dp"
     android:layout_margin="10dp"
+    android:background="@drawable/strokes"
+    android:id="@+id/caardviewmatch"
+
     >
     <LinearLayout
         android:orientation="vertical"
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/strokes"
    >
 
         <TextView

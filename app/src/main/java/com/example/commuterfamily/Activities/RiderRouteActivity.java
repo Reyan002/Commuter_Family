@@ -101,12 +101,13 @@ public class RiderRouteActivity extends AppCompatActivity {
                                 if(which==0){DemoClass.commuterMatch= "Drivers";
                                     Intent intent=new Intent(RiderRouteActivity.this,MatchActivity.class);
                                     intent.putExtra("morningTimeFrom",model.getMTimeFrom());
-                                    intent.putExtra("morningTimeTo",model.getMTimeTo());
+                                     intent.putExtra("morningTimeTo",model.getMTimeTo());
                                     intent.putExtra("eveningTimeFrom",model.getETimeFrom());
                                     intent.putExtra("eveningTimeTo",model.getETimeTo());
                                     intent.putExtra("shift",model.getShift());
                                     intent.putExtra("day",model.getDay());
-                                    intent.putExtra( "adressTo",model.getAdressFrom());
+                                    intent.putExtra( "adressTo",model.getAdressTo());
+                                    intent.putExtra( "adressFrom",model.getAdressFrom());
                                     intent.putExtra("locLongFrom",String.valueOf(model.getLocFrom().getLong()));
                                     intent.putExtra("locLatTo",String.valueOf(model.getLocTo().getLat()));
                                     intent.putExtra("locLongTo",String.valueOf(model.getLocTo().getLong()));

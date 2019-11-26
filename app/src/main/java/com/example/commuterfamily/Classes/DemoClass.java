@@ -4,6 +4,7 @@ import android.net.Uri;
 
 public class DemoClass {
     public static String number;
+    public static String P_number;
     public static String AdressFrom;
     public static String AdressTo;
     public static String RouteFor;

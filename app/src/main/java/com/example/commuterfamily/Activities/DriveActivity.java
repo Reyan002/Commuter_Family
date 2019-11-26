@@ -107,10 +107,23 @@ public class DriveActivity extends AppCompatActivity {
                         builder.setItems(options , new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog , int which) {
-                                if(which==0){
-                                    DemoClass.commuterMatch="Riders";
-                                    startActivity(new Intent(DriveActivity.this,MatchActivity.class));}
-                                if(which==1){
+                                if(which==0) {
+                                    DemoClass.commuterMatch = "Riders";
+                                    Intent intent = new Intent(DriveActivity.this, MatchActivity.class);
+                                    intent.putExtra("morningTimeFrom", model.getMTimeFrom());
+                                    intent.putExtra("morningTimeTo", model.getMTimeTo());
+                                    intent.putExtra("eveningTimeFrom", model.getETimeFrom());
+                                    intent.putExtra("eveningTimeTo", model.getETimeTo());
+                                    intent.putExtra("shift", model.getShift());
+                                    intent.putExtra("day", model.getDay());
+                                    intent.putExtra("adressTo", model.getAdressTo());
+                                    intent.putExtra("adressFrom", model.getAdressFrom());
+                                    intent.putExtra("locLongFrom", String.valueOf(model.getLocFrom().getLong()));
+                                    intent.putExtra("locLatTo", String.valueOf(model.getLocTo().getLat()));
+                                    intent.putExtra("locLongTo", String.valueOf(model.getLocTo().getLong()));
+                                    startActivity(intent);
+                                }
+                                    if(which==1){
                                     Intent intent=new Intent(DriveActivity.this,RiderRouteMapActivity.class);
                                     intent.putExtra("pid",model.getRouteID());
                                     intent.putExtra("latFrom",String.valueOf( model.getLocFrom().getLat()));

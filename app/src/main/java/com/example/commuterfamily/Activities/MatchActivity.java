@@ -41,7 +41,7 @@ public class MatchActivity extends AppCompatActivity {
     private LinearLayoutManager layoutManager;
     private RecyclerView recyclerView;
     private MatchAdapter matchAdapter;
-    private ArrayList<Routes> routes=new ArrayList<>();
+
 
     private DatabaseReference databaseReference;
     @Override
@@ -66,18 +66,27 @@ public class MatchActivity extends AppCompatActivity {
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child(DemoClass.commuterMatch);
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    if( dataSnapshot1.child("AdressFrom").getValue().toString().equals(getIntent().getStringExtra("adressTo"))
-
-
-                    )
+                  ArrayList<Routes> routes=new ArrayList<>();
+                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    if( dataSnapshot1.child("AdressFrom").getValue().toString().equalsIgnoreCase(getIntent().getStringExtra("adressFrom"))
+                            && dataSnapshot1.child("AdressTo").getValue().toString().equalsIgnoreCase(getIntent().getStringExtra("adressTo"))
+//                            && dataSnapshot1.child("Date").getValue().toString().equals(getIntent().getStringExtra(""))
+                            && dataSnapshot1.child("Day").getValue().toString().equalsIgnoreCase(getIntent().getStringExtra("day"))
+//                            && dataSnapshot1.child("ETimeFrom").getValue().toString().equals(getIntent().getStringExtra("eveningTimeFrom"))
+//                            && dataSnapshot1.child("ETimeTo").getValue().toString().equals(getIntent().getStringExtra("eveningTimeTo"))
+//                            && dataSnapshot1.child("MTimeTo").getValue().toString().equals(getIntent().getStringExtra("morningTimeTo"))
+//                            && dataSnapshot1.child("MTimeFrom").getValue().toString().equals(getIntent().getStringExtra("morningTimeFrom"))
+                            && dataSnapshot1.child("Shift").getValue().toString().equals(getIntent().getStringExtra("shift")) )
                     {
+                       Toast.makeText(MatchActivity.this, DemoClass.commuterMatch, Toast.LENGTH_SHORT).show();
+
                         routes.add(dataSnapshot1.getValue(Routes.class));
 
                     }
+
 
                 }
                 matchAdapter = new MatchAdapter(routes, MatchActivity.this);

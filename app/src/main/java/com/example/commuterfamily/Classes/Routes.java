@@ -1,7 +1,7 @@
 package com.example.commuterfamily.Classes;
 
 public class Routes {
-   private String Date
+   private String Date,Number
     ,Day
     ,ETimeFrom
     ,ETimeTo
@@ -32,6 +32,13 @@ private LatLongClass
     public Routes() {
     }
 
+    public void setNumber(String number) {
+        Number = number;
+    }
+
+    public String getNumber() {
+        return Number;
+    }
 
     public void setDate(String date) {
         Date = date;
