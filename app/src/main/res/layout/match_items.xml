@@ -4,8 +4,7 @@
     android:elevation="15dp"
     android:layout_margin="10dp"
     android:background="@drawable/strokes"
-    android:id="@+id/caardviewmatch"
-
+android:id="@+id/caardviewmatch"
     >
     <LinearLayout
         android:orientation="vertical"

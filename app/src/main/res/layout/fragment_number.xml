@@ -71,8 +71,7 @@
             android:layout_below="@id/et_number"
             android:layout_centerHorizontal="true"
             android:text="Not your number? Find your account."
-            android:textSize="12sp"
-            />
+            android:textSize="12sp"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_next_1"
