@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,34 +7,201 @@
     android:layout_height="match_parent"
     tools:context=".Activities.MatchRouteDetailActivity">
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textViewMR_RD"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Route Detail"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:textStyle="bold"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewMd1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_corner_top"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/textViewMR_RD">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textViewMR_SD"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:text="Shift Detail"
+                    android:textSize="16dp"
+                    android:textAlignment="center"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/textViewMR_SD1"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="Shift"
+                    android:textSize="14dp"
+                    android:layout_below="@+id/textViewMR_SD"/>
+                <TextView
+                    android:id="@+id/textViewMR_SD2"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_below="@id/textViewMR_SD1"
+                    android:text="Day"/>
+                <TextView
+                    android:id="@+id/textViewMR_SD3"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_below="@id/textViewMR_SD2"
+                    android:text="Time"/>
+                <TextView
+                    android:id="@+id/textViewMR_SD4"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_below="@id/textViewMR_SD3"
+                    android:text="Start"/>
+                <TextView
+                    android:id="@+id/textViewMR_SD5"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_below="@id/textViewMR_SD4"
+                    android:text="End"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#111111"
+            android:alpha=".2"
+            android:layout_below="@id/cardViewMd1"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewMd2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_below="@+id/cardViewMd1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textViewMR_VD"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:text="Vehicle Detail"
+                    android:textSize="16dp"
+                    android:textAlignment="center"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/textViewMR_VD1"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="Shift"
+                    android:textSize="14dp"
+                    android:layout_below="@+id/textViewMR_VD"/>
+                <TextView
+                    android:id="@+id/textViewMR_VD2"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_below="@id/textViewMR_VD1"
+                    android:text="Day"/>
+                <TextView
+                    android:id="@+id/textViewMR_VD3"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_below="@id/textViewMR_VD2"
+                    android:text="Time"/>
+                <TextView
+                    android:id="@+id/textViewMR_VD4"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_below="@id/textViewMR_VD3"
+                    android:text="Start"/>
+                <TextView
+                    android:id="@+id/textViewMR_VD5"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_below="@id/textViewMR_VD4"
+                    android:text="End"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#111111"
+            android:alpha=".2"
+            android:layout_below="@id/cardViewMd2"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:layout_margin="10dp">
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/round_bottom_corner"
+            android:layout_below="@+id/cardViewMd2">
 
-            <TextView
-                android:id="@+id/textViewMR_RD"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:text="Route Detail"
-                android:textSize="20dp"
-                android:textAlignment="center"
-                android:textStyle="bold"/>
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/textViewMR"
-                android:layout_width="match_parent"
-                android:layout_height="20dp"/>
+                <TextView
+                    android:id="@+id/textViewMR_CD"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:text="Commuter Detail"
+                    android:textSize="16dp"
+                    android:textAlignment="center"
+                    android:textStyle="bold"/>
 
-
+                <TextView
+                    android:id="@+id/textViewMR_CD1"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="Shift"
+                    android:textSize="14dp"
+                    android:layout_below="@+id/textViewMR_CD"/>
+                <TextView
+                    android:id="@+id/textViewMR_CD2"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_below="@id/textViewMR_CD1"
+                    android:text="Day"/>
+                <TextView
+                    android:id="@+id/textViewMR_CD3"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_below="@id/textViewMR_CD2"
+                    android:text="Time"/>
+                <TextView
+                    android:id="@+id/textViewMR_CD4"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_below="@id/textViewMR_CD3"
+                    android:text="Start"/>
+                <TextView
+                    android:id="@+id/textViewMR_CD5"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_below="@id/textViewMR_CD4"
+                    android:text="End"/>
+            </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
-
-    </ScrollView>
-
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>
