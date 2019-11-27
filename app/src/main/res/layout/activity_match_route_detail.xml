@@ -221,6 +221,7 @@
             android:layout_below="@id/cardViewMd2"/>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewMd3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -283,6 +284,14 @@
                 </LinearLayout>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/button_request"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cardViewMd3"
+            android:layout_margin="20dp"
+            android:background="@drawable/round_all_corners" />
 
     </RelativeLayout>
 </ScrollView>
