@@ -1,5 +1,6 @@
 package com.example.commuterfamily.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -14,6 +15,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class MatchRouteDetailActivity extends AppCompatActivity {
@@ -29,8 +31,7 @@ private TextView name,view;
         Initilize();
         ProductId=getIntent().getStringExtra("rid");
         Pnumber=getIntent().getStringExtra("number");
-        getRouteDetails(ProductId);
-      getVehiclesDetail(Pnumber);
+       getVehiclesDetail(Pnumber);
         getUserDetails(Pnumber);
 
     }
@@ -49,34 +50,10 @@ private TextView name,view;
         view=findViewById(R.id.textViewMR_CD2);
 
    }
-    private void getRouteDetails(String productId) {
-        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child(DemoClass.RouteFor);
-        reference.child(productId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                    Routes routes=dataSnapshot.getValue(Routes.class);
-                    shift.setText("Shift: "+routes.getShift());
-                    day.setText("Day: "+routes.getDay());
-                    time.setText("Time: "+routes.getETimeFrom()+"-"+routes.getETimeTo()+routes.getMTimeFrom()+"-"+routes.getMTimeTo());
-                    start.setText("Start From: "+routes.getAdressFrom());
-                    end.setText("End On: "+routes.getAdressTo());
 
-//                    PDname.setText(products.getName());
-//                    PDprice.setText(products.getPrice());
-//                    PDdescription.setText(products.getDescription());
-//                    PDdescription.setText(products.getDescription());
-//                    PDdescription.setText(products.getDescription());
-                 }
-            }
+//            @Override
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
 
-                Toast.makeText(MatchRouteDetailActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
     private void getVehiclesDetail(String productId) {
         DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("Commuters").child("Driver")  ;
         reference.child(productId).child("Car").addValueEventListener(new ValueEventListener() {
