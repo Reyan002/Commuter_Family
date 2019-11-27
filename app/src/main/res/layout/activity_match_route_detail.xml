@@ -239,6 +239,18 @@
             android:background="@drawable/round_bottom_corner"
             android:layout_below="@+id/view2">
 
+
+
+
+
+
+
+
+
+
+
+
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:background="@drawable/round_bottom_corner"
@@ -254,13 +266,42 @@
                     android:textStyle="bold"
                     android:textColor="@android:color/white"/>
 
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/textViewMR_CD"
+                android:weightSum="10">
+
+                <LinearLayout
+                    android:layout_weight="3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:weightSum="1">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/circularImageMRD"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        app:civ_border_width="5dp"
+                        android:layout_weight="1"
+                        app:civ_border_color="@android:color/white"
+                        android:src="@drawable/end_location_image"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7">
+
                 <LinearLayout
                     android:id="@+id/llCD1"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:orientation="horizontal"
-                    android:weightSum="10"
-                    android:layout_below="@id/textViewMR_CD">
+                    android:weightSum="10">
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="20dp"
@@ -294,8 +335,27 @@
                     android:textColor="@android:color/white"
                     android:text="Day"/>
                 </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <Button
             android:id="@+id/button_request"
