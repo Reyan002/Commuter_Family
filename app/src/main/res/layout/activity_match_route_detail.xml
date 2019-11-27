@@ -19,61 +19,137 @@
             android:background="@drawable/round_corner_top"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-         >
+            android:layout_marginTop="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@drawable/round_corner_top">
 
                 <TextView
                     android:id="@+id/textViewMR_SD"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:text="Route Detail"
+                    android:textColor="@android:color/white"
                     android:textSize="16dp"
                     android:textAlignment="center"
                     android:textStyle="bold"/>
 
+                <LinearLayout
+                    android:id="@+id/llSD1"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:orientation="horizontal"
+                    android:weightSum="10"
+                    android:layout_below="@id/textViewMR_SD">
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"/>
                 <TextView
                     android:id="@+id/textViewMR_SD1"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="20dp"
                     android:text="Shift"
+                    android:textColor="@android:color/white"
                     android:textSize="14dp"
-                    android:layout_below="@+id/textViewMR_SD"/>
+                    android:layout_weight="9" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llSD2"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:orientation="horizontal"
+                    android:weightSum="10"
+                    android:layout_below="@id/llSD1">
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"/>
                 <TextView
                     android:id="@+id/textViewMR_SD2"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="9"
+                    android:text="Day"
+                    android:textColor="@android:color/white"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llSD3"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
-                    android:layout_below="@id/textViewMR_SD1"
-                    android:text="Day"/>
+                    android:orientation="horizontal"
+                    android:weightSum="10"
+                    android:layout_below="@id/llSD2">
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"/>
                 <TextView
                     android:id="@+id/textViewMR_SD3"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="20dp"
-                    android:layout_below="@id/textViewMR_SD2"
+                    android:layout_weight="9"
+                    android:textColor="@android:color/white"
                     android:text="Time"/>
-                <TextView
-                    android:id="@+id/textViewMR_SD4"
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llSD4"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
+                    android:orientation="horizontal"
+                    android:weightSum="10"
+                    android:layout_below="@id/llSD3">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/start_circle"/>
+                    <TextView
+                    android:id="@+id/textViewMR_SD4"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="9"
                     android:layout_below="@id/textViewMR_SD3"
-                    android:text="Start"/>
+                    android:text="Start"
+                    android:textColor="@android:color/white"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llSD5"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:orientation="horizontal"
+                    android:weightSum="10"
+                    android:layout_below="@id/llSD4">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/end_location_image"/>
                 <TextView
                     android:id="@+id/textViewMR_SD5"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="20dp"
-                    android:layout_below="@id/textViewMR_SD4"
+                    android:layout_weight="9"
+                    android:textColor="@android:color/white"
                     android:text="End"/>
+                </LinearLayout>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
         <View
+            android:id="@+id/view1"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#111111"
+            android:layout_height="10dp"
+            android:background="#000000"
             android:alpha=".2"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_below="@id/cardViewMd1"/>
 
         <androidx.cardview.widget.CardView
@@ -83,11 +159,12 @@
             android:background="@color/colorPrimary"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_below="@+id/cardViewMd1">
+            android:layout_below="@+id/view1">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary">
 
                 <TextView
                     android:id="@+id/textViewMR_VD"
@@ -95,44 +172,76 @@
                     android:layout_height="25dp"
                     android:text="Vehicle Detail"
                     android:textSize="16dp"
+                    android:textColor="@android:color/white"
                     android:textAlignment="center"
                     android:textStyle="bold"/>
 
+                <LinearLayout
+                    android:id="@+id/llVD1"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:orientation="horizontal"
+                    android:weightSum="10"
+                    android:layout_below="@id/textViewMR_VD">
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"/>
                 <TextView
                     android:id="@+id/textViewMR_VD1"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="20dp"
                     android:text="Shift"
+                    android:textColor="@android:color/white"
                     android:textSize="14dp"
-                    android:layout_below="@+id/textViewMR_VD"/>
-                <TextView
-                    android:id="@+id/textViewMR_VD2"
+                    android:layout_weight="9"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llVD2"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
-                    android:layout_below="@id/textViewMR_VD1"
-                    android:text="Day"/>
-
+                    android:orientation="horizontal"
+                    android:weightSum="10"
+                    android:layout_below="@id/llVD1">
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/textViewMR_VD2"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="9"
+                    android:text="Day"
+                    android:textColor="@android:color/white"/>
+                </LinearLayout>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
         <View
+            android:id="@+id/view2"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#111111"
+            android:layout_height="10dp"
+            android:background="#000000"
             android:alpha=".2"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_below="@id/cardViewMd2"/>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewMd3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/round_bottom_corner"
-            android:layout_below="@+id/cardViewMd2">
+            android:layout_below="@+id/view2">
 
             <RelativeLayout
                 android:layout_width="match_parent"
+                android:background="@drawable/round_bottom_corner"
                 android:layout_height="match_parent">
 
                 <TextView
@@ -142,24 +251,62 @@
                     android:text="Commuter Detail"
                     android:textSize="16dp"
                     android:textAlignment="center"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"/>
 
+                <LinearLayout
+                    android:id="@+id/llCD1"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:orientation="horizontal"
+                    android:weightSum="10"
+                    android:layout_below="@id/textViewMR_CD">
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"/>
                 <TextView
                     android:id="@+id/textViewMR_CD1"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="9"
+                    android:text="Shift"
+                    android:textColor="@android:color/white"
+                    android:textSize="14dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llCD2"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
-                    android:text="Shift"
-                    android:textSize="14dp"
-                    android:layout_below="@+id/textViewMR_CD"/>
+                    android:orientation="horizontal"
+                    android:weightSum="10"
+                    android:layout_below="@id/llCD1">
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"/>
                 <TextView
                     android:id="@+id/textViewMR_CD2"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="20dp"
-                    android:layout_below="@id/textViewMR_CD1"
+                    android:layout_weight="9"
+                    android:textColor="@android:color/white"
                     android:text="Day"/>
-
+                </LinearLayout>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/button_request"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cardViewMd3"
+            android:layout_margin="20dp"
+            android:background="@drawable/round_all_corners"
+            android:text="Send Request"
+            android:textColor="#ffffff"
+            android:textStyle="bold"/>
 
     </RelativeLayout>
 </ScrollView>
