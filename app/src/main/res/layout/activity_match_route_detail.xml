@@ -19,12 +19,12 @@
             android:background="@drawable/round_corner_top"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-         >
+            android:layout_marginTop="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@drawable/round_corner_top">
 
                 <TextView
                     android:id="@+id/textViewMR_SD"
@@ -137,10 +137,13 @@
         </androidx.cardview.widget.CardView>
 
         <View
+            android:id="@+id/view1"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#111111"
+            android:layout_height="10dp"
+            android:background="#000000"
             android:alpha=".2"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_below="@id/cardViewMd1"/>
 
         <androidx.cardview.widget.CardView
@@ -150,11 +153,12 @@
             android:background="@color/colorPrimary"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_below="@+id/cardViewMd1">
+            android:layout_below="@+id/view1">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary">
 
                 <TextView
                     android:id="@+id/textViewMR_VD"
@@ -207,10 +211,13 @@
         </androidx.cardview.widget.CardView>
 
         <View
+            android:id="@+id/view2"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#111111"
+            android:layout_height="10dp"
+            android:background="#000000"
             android:alpha=".2"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_below="@id/cardViewMd2"/>
 
         <androidx.cardview.widget.CardView
@@ -220,10 +227,11 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/round_bottom_corner"
-            android:layout_below="@+id/cardViewMd2">
+            android:layout_below="@+id/view2">
 
             <RelativeLayout
                 android:layout_width="match_parent"
+                android:background="@drawable/round_bottom_corner"
                 android:layout_height="match_parent">
 
                 <TextView
