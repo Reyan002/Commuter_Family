@@ -68,7 +68,7 @@ private TextView name,view;
         request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendMessage(jsonArray,"Hello","How r u","Http:\\google.com","My Name is Reyan and i am from CFamily ");
+                sendMessage(jsonArray,"Hello","How r u"," ","My Name is Reyan and i am from CFamily ");
 
             }
         });
@@ -198,7 +198,7 @@ private TextView name,view;
         Request request = new Request.Builder()
                 .url(FCM_MESSAGE_URL)
                 .post(body)
-                .addHeader("Authorization", "key=" + "your server key")
+                .addHeader("Authorization", "key=" + "AIzaSyA9seXnlmIzZ5zNqb9DFQur0aE1AjMLJUs")
                 .build();
         Response response = mClient.newCall(request).execute();
         return response.body().string();

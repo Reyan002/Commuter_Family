@@ -19,7 +19,9 @@
             android:background="@drawable/round_corner_top"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardElevation="0dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -105,6 +107,8 @@
                     android:weightSum="10"
                     android:layout_below="@id/llSD3">
                     <TextView
+                        android:paddingLeft="10dp"
+
                         android:layout_width="0dp"
                         android:layout_height="20dp"
                         android:layout_weight="1"
@@ -127,11 +131,13 @@
                     android:weightSum="10"
                     android:layout_below="@id/llSD4">
                 <TextView
+                    android:paddingLeft="10dp"
                     android:layout_width="0dp"
                     android:layout_height="20dp"
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/end_location_image"/>
                 <TextView
+
                     android:id="@+id/textViewMR_SD5"
                     android:layout_width="0dp"
                     android:layout_height="20dp"
@@ -145,9 +151,8 @@
         <View
             android:id="@+id/view1"
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="#000000"
-            android:alpha=".2"
+            android:layout_height="0.5dp"
+            android:background="@android:color/black"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
             android:layout_below="@id/cardViewMd1"/>
@@ -156,7 +161,8 @@
             android:id="@+id/cardViewMd2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardElevation="0dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_below="@+id/view1">
@@ -187,14 +193,6 @@
                     android:layout_width="0dp"
                     android:layout_height="20dp"
                     android:layout_weight="1"/>
-                <TextView
-                    android:id="@+id/textViewMR_VD1"
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:text="Shift"
-                    android:textColor="@android:color/white"
-                    android:textSize="14dp"
-                    android:layout_weight="9"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -208,23 +206,32 @@
                     android:layout_width="0dp"
                     android:layout_height="20dp"
                     android:layout_weight="1"/>
+                </LinearLayout>
+
                 <TextView
                     android:id="@+id/textViewMR_VD2"
                     android:layout_width="0dp"
                     android:layout_height="20dp"
                     android:layout_weight="9"
                     android:text="Day"
-                    android:textColor="@android:color/white"/>
-                </LinearLayout>
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/textViewMR_VD1"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="9"
+                    android:text="Shift"
+                    android:textColor="@android:color/white"
+                    android:textSize="14dp" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
         <View
             android:id="@+id/view2"
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="#000000"
-            android:alpha=".2"
+            android:layout_height="0.5dp"
+            android:background="@android:color/black"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_below="@id/cardViewMd2"/>
@@ -237,7 +244,9 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/round_bottom_corner"
-            android:layout_below="@+id/view2">
+            android:layout_below="@+id/view2"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardElevation="0dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -254,13 +263,38 @@
                     android:textStyle="bold"
                     android:textColor="@android:color/white"/>
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/textViewMR_CD"
+                android:weightSum="10">
+
+                <LinearLayout
+                    android:layout_weight="3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:weightSum="1">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/circularImageMRD"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                         android:layout_weight="1"
+                         android:src="@drawable/end_location_image"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7">
+
                 <LinearLayout
                     android:id="@+id/llCD1"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:orientation="horizontal"
-                    android:weightSum="10"
-                    android:layout_below="@id/textViewMR_CD">
+                    android:weightSum="10">
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="20dp"
@@ -294,6 +328,11 @@
                     android:textColor="@android:color/white"
                     android:text="Day"/>
                 </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
