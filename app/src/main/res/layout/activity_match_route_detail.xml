@@ -19,7 +19,9 @@
             android:background="@drawable/round_corner_top"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardElevation="0dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -145,9 +147,8 @@
         <View
             android:id="@+id/view1"
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="#000000"
-            android:alpha=".2"
+            android:layout_height="3dp"
+            android:background="@android:color/black"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
             android:layout_below="@id/cardViewMd1"/>
@@ -156,7 +157,8 @@
             android:id="@+id/cardViewMd2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardElevation="0dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_below="@+id/view1">
@@ -222,9 +224,8 @@
         <View
             android:id="@+id/view2"
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="#000000"
-            android:alpha=".2"
+            android:layout_height="3dp"
+            android:background="@android:color/black"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_below="@id/cardViewMd2"/>
@@ -237,19 +238,9 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/round_bottom_corner"
-            android:layout_below="@+id/view2">
-
-
-
-
-
-
-
-
-
-
-
-
+            android:layout_below="@+id/view2"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardElevation="0dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -265,8 +256,6 @@
                     android:textAlignment="center"
                     android:textStyle="bold"
                     android:textColor="@android:color/white"/>
-
-
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -342,20 +331,6 @@
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         <Button
             android:id="@+id/button_request"

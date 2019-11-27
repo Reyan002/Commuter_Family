@@ -33,13 +33,7 @@
         android:roundIcon="@mipmap/icon_image_new"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.MatchRouteDetailActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".Activities.MatchRouteDetailActivity"></activity>
         <activity
             android:name=".NaigationDrawerActivity.MainDrawerActivity"
             android:label="@string/title_activity_main_drawer"
@@ -90,6 +84,11 @@
         <activity
             android:name=".Activities.Splash"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Activities.LoginActivity" />
         <activity android:name=".Activities.SplashScreenActivity" />
