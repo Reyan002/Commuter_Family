@@ -74,7 +74,7 @@ public class VehicleType extends Fragment {
                     DemoClass.vtype=Vtype;
                     AddCarActivity.fragmentManagerAddCar.beginTransaction()
                             .replace(R.id.fragment_container_add_car, new VehicleNumber(), null)
-                            .commit();
+                            .addToBackStack(null).commit();
                 }
 
             }

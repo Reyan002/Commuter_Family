@@ -36,8 +36,7 @@ public class VehicleNumber extends Fragment {
                     DemoClass.vnum=number.getText().toString();
                     AddCarActivity.fragmentManagerAddCar.beginTransaction()
                             .replace(R.id.fragment_container_add_car, new VehicleDocs()
-                                    , null)
-                            .commit();
+                                    , null).addToBackStack(null).commit();
 
                 }
 
