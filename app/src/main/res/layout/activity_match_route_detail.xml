@@ -147,7 +147,7 @@
         <View
             android:id="@+id/view1"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="3dp"
             android:background="@android:color/black"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"

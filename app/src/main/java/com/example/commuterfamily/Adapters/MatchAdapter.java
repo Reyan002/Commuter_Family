@@ -73,6 +73,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
                            Intent intent=new Intent(context, MatchRouteDetailActivity.class);
                            intent.putExtra("number",cars.getNumber());
                            intent.putExtra("rid",cars.getRouteID());
+                            Toast.makeText(context, cars.getRouteID(), Toast.LENGTH_SHORT).show();
                            context.startActivity(intent);
                         }
                         if(which==1){

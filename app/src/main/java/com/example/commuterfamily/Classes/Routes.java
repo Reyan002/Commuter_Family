@@ -32,6 +32,23 @@ private LatLongClass
     public Routes() {
     }
 
+    public Routes(String date, String number, String day, String ETimeFrom, String ETimeTo, String MTimeFrom, String MTimeTo, String routeID, String shift, String time, String adressFrom, String adressTo, LatLongClass locFrom, LatLongClass locTo) {
+        Date = date;
+        Number = number;
+        Day = day;
+        this.ETimeFrom = ETimeFrom;
+        this.ETimeTo = ETimeTo;
+        this.MTimeFrom = MTimeFrom;
+        this.MTimeTo = MTimeTo;
+        RouteID = routeID;
+        Shift = shift;
+        Time = time;
+        AdressFrom = adressFrom;
+        AdressTo = adressTo;
+        LocFrom = locFrom;
+        LocTo = locTo;
+    }
+
     public void setNumber(String number) {
         Number = number;
     }
