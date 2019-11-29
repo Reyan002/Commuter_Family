@@ -7,35 +7,36 @@
     android:layout_height="match_parent"
     tools:context=".Activities.MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:background="@color/colorPrimary">
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="65dp"-->
+<!--        android:background="@color/colorPrimary">-->
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
 
             <TextView
                 android:textSize="36dp"
                 android:text="Want to ?"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"/>
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"/>
 
-            <ImageButton
-                android:id="@+id/kebab_logout"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/kebab_white"
-                android:background="@color/colorPrimary"
-                android:layout_alignParentRight="true"/>
+<!--            <ImageButton-->
+<!--                android:id="@+id/kebab_logout"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:src="@drawable/kebab_white"-->
+<!--                android:background="@color/colorPrimary"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                app:showAsAction="ifRoom"/>-->
 
-        </RelativeLayout>
-    </androidx.appcompat.widget.Toolbar>
+<!--        </RelativeLayout>-->
+<!--    </androidx.appcompat.widget.Toolbar>-->
 
     <Button
-
         android:id="@+id/Ride"
         android:layout_width="250dp"
         android:layout_height="50dp"
