@@ -79,7 +79,9 @@ public class DriverCnic extends Fragment  {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.driver_cnic,container,false);
         imageview=view.findViewById(R.id.cnic);
-        sessionManager=new SessionManager(getContext());
+    sessionManager=new SessionManager(getContext());
+
+
         btnSelectImage=view.findViewById(R.id.add_cnic);
         next=view.findViewById(R.id.nextDriverCNIC);
         loadingBar=new

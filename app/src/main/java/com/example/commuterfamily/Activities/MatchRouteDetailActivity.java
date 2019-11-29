@@ -19,7 +19,11 @@ import com.example.commuterfamily.Classes.Vehicle;
 import com.example.commuterfamily.Interfaces.FirebaseAPI;
 import com.example.commuterfamily.Interfaces.Messege;
 import com.example.commuterfamily.Interfaces.NotifyData;
+import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,40 +50,174 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Url;
 
+
 public class MatchRouteDetailActivity extends AppCompatActivity  {
 
 private String  ProductId,Pnumber;
 private TextView shift,day,time,start,end;
-private Button request;
+private Button request,cancle;
 private TextView type,number;
-    OkHttpClient mClient = new OkHttpClient();
+private DatabaseReference request_ref,connect_ref;
+private FirebaseAuth mAuth;
+private String sender;
+private String current_request ;
 
-    String refreshedToken = "AAAAA29OTRk:APA91bFIQpeFy1-dbkHXop66shdEEcEzQX3bBfN-LOnjUClucGUiuqxo-YhUBhuhGyFVBFChzjaStyuRBQRH4wNQjyVK5LkKxMz6oWmus2WexYuydk-rAvsrJiqeqVNK1wgjGqEXyNy2";//add your user refresh tokens who are logged in with firebase.
 
-    JSONArray jsonArray = new JSONArray();
 private TextView name,view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match_route_detail);
-        jsonArray.put(refreshedToken);
 
+        current_request="new";
         Initilize();
-        request.setOnClickListener(new View.OnClickListener() {
+
+        shift.setText(getIntent().getStringExtra("shift"));
+        day.setText(getIntent().getStringExtra("day"));
+        time.setText(getIntent().getStringExtra("time_m_f")+getIntent().getStringExtra("time_e_f")+"-"+getIntent().getStringExtra("time_m_t")+getIntent().getStringExtra("time_e_t"));
+        start.setText(getIntent().getStringExtra("from"));
+        end.setText(getIntent().getStringExtra("to"));
+       sender = Prevalent.currentOnlineUser.getPhone();
+        request_ref=FirebaseDatabase.getInstance().getReference().child("Request");
+        connect_ref=FirebaseDatabase.getInstance().getReference().child("PeopleConnected");
+        ProductId=getIntent().getStringExtra("rid");
+        Pnumber=getIntent().getStringExtra("number");
+        retriev();
+
+
+
+
+    }
+    public void retriev(){
+        getVehiclesDetail( );
+        getUserDetails(Pnumber);
+        manageDetails();
+        manageRequestInfo();
+    }
+
+    private void acceptRequest() {
+        connect_ref.child(sender).child(Pnumber).child("Contact").setValue("Saved").addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onClick(View v) {
-                sendMessage(jsonArray,"Hello","How r u"," ","My Name is Reyan and i am from CFamily ");
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    connect_ref.child(Pnumber).child(sender).child("Contact").setValue("Saved").addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+
+                                request_ref.child(sender).child(Pnumber).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            request_ref.child(Pnumber).child(sender).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if(task.isSuccessful()){
+
+                                                        current_request="commute";
+                                                        request.setText("Remove");
+                                                         cancle.setVisibility(View.GONE);
+                                                         cancle.setEnabled(false);
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    private void cancleRequest() {
+        request_ref.child(sender).child(Pnumber).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    request_ref.child(Pnumber).child(sender).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+
+                            if(task.isSuccessful()){
+                                request.setText("Send Request");
+                                current_request="new";
+
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    public void manageRequestInfo(){
+        request_ref.child(sender).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.hasChild(Pnumber))
+                {
+                    String request_type=dataSnapshot.child(Pnumber).child("request_type").getValue() .toString();
+
+                    if(request_type.equals("sent")){
+                        current_request="request_sent";
+                        request.setText("Cancle Request");
+                        cancle.setVisibility(View.GONE);
+                        Toast.makeText(MatchRouteDetailActivity.this, request_type, Toast.LENGTH_SHORT).show();
+                    }
+                    else if(request_type.equals("recieved")){
+                        current_request="request_recieved";
+                        request.setText("Accept Request");
+                        cancle.setVisibility(View.VISIBLE);
+                        cancle.setText("Decline Request");
+                        Toast.makeText(MatchRouteDetailActivity.this, request_type, Toast.LENGTH_SHORT).show();
+
+                        cancle.setEnabled(true);
+                        cancle.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                cancleRequest();
+                                cancle.setVisibility(View.GONE);
+                                cancle.setEnabled(false);
+                            }
+                        });
+                    }
+
+                }
+                else{
+
+                        connect_ref.child(sender).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if(dataSnapshot.hasChild(Pnumber)) {
+                                    current_request="new";
+                                    request.setText("Remove");
+                                }
+
+
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                   
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-        ProductId=getIntent().getStringExtra("rid");
-        Pnumber=getIntent().getStringExtra("number");
-       getVehiclesDetail(Pnumber);
-        getUserDetails(Pnumber);
-
     }
-
-   public void Initilize(){
+    public void Initilize(){
+        cancle=findViewById(R.id.cancle_request);
         request=findViewById(R.id.button_request);
         shift=findViewById(R.id.textViewMR_SD1);
         day=findViewById(R.id.textViewMR_SD2);
@@ -95,12 +233,31 @@ private TextView name,view;
 
    }
 
+  public void sendRequestOfRide(){
+        request_ref.child(sender).child(Pnumber).child("request_type").setValue("sent").addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    request_ref.child(Pnumber).child(sender).child("request_type").setValue("recieved").addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+
+                            if(task.isSuccessful()){
+                                request.setText("Cancle Request");
+                                current_request="request_sent";
+                            }
+                        }
+                    });
+                }
+            }
+        });
+  }
 //            @Override
 
 
-    private void getVehiclesDetail(String productId) {
-        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("Commuters").child("Driver")  ;
-        reference.child(productId).child("Car").addValueEventListener(new ValueEventListener() {
+    private void getVehiclesDetail( ) {
+        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("Commuters")  ;
+        reference.child(DemoClass.commuterMatch).child(Pnumber).child("Car").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
@@ -113,6 +270,7 @@ private TextView name,view;
 //                    PDdescription.setText(products.getDescription());
 //                    Picasso.get().load(products.getImage()).into(productDetailsImage);
                 }
+                Toast.makeText(MatchRouteDetailActivity.this, "NOT EXIST", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -130,6 +288,7 @@ private TextView name,view;
                     User v=dataSnapshot.getValue(User.class);
 
                    name.setText(v.getName());
+
 //                    PDname.setText(products.getName());
 //                    PDprice.setText(products.getPrice());
 //                    PDdescription.setText(products.getDescription());
@@ -144,64 +303,62 @@ private TextView name,view;
         });
     }
 
-    public void sendMessage(final JSONArray recipients, final String title, final String body, final String icon, final String message) {
+public void manageDetails(){
+        if(!sender.equals(Pnumber)){
+            request.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(current_request.equals ("new")){
+                        sendRequestOfRide();
+                    }
+                    if(current_request.equals ("request_sent")){
+                        cancle.setVisibility(View.GONE);
+                        cancle.setEnabled(false);
+                        cancleRequest();
+                    }
+                    if(current_request.equals("request_recieved")){
 
-        new AsyncTask<String, String, String>() {
-            @Override
-            protected String doInBackground(String... params) {
-                try {
-                    JSONObject root = new JSONObject();
-                    JSONObject notification = new JSONObject();
-                    notification.put("body", body);
-                    notification.put("title", title);
-                    notification.put("icon", icon);
+                        acceptRequest();
+                    }if(current_request.equals("commute")){
 
-                    JSONObject data = new JSONObject();
-                    data.put("message", message);
-                    root.put("notification", notification);
-                    root.put("data", data);
-                    root.put("registration_ids", recipients);
+                        removeRequest();
+                    }
+//                    if(current_request.equals("cancle_request")){
+//
+//                    }
+//                    if(current_request.equals("acceept_request")){
+//
+//                    }
 
-                    String result = postToFCM(root.toString());
-                    Log.d("Main Activity", "Result: " + result);
-                    return result;
-                } catch (Exception ex) {
-                    ex.printStackTrace();
                 }
-                return null;
-            }
+            });
+        }else
+        {
+            request.setEnabled(false);
+            request.setVisibility(View.GONE);
+        }
+}
 
-            @Override
-            protected void onPostExecute(String result) {
-                try {
-                    JSONObject resultJson = new JSONObject(result);
-                    int success, failure;
-                    success = resultJson.getInt("success");
-                    failure = resultJson.getInt("failure");
-                    Toast.makeText(MatchRouteDetailActivity.this, "Message Success: " + success + "Message Failed: " + failure, Toast.LENGTH_LONG).show();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Toast.makeText(MatchRouteDetailActivity.this, "Message Failed, Unknown error occurred.", Toast.LENGTH_LONG).show();
+    private void removeRequest() {
+
+            connect_ref.child(sender).child(Pnumber).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()){
+                        connect_ref.child(Pnumber).child(sender).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+
+                                if(task.isSuccessful()){
+                                    request.setText("Send Request");
+                                    current_request="new";
+                                }
+                            }
+                        });
+                    }
                 }
-            }
-        }.execute();
-    }
+            });
 
-    String postToFCM(String bodyString) throws IOException {
-
-
-   String FCM_MESSAGE_URL = "https://fcm.googleapis.com/fcm/send";
-        final MediaType JSON
-                = MediaType.parse("application/json; charset=utf-8");
-
-        RequestBody body = RequestBody.create(JSON, bodyString);
-        Request request = new Request.Builder()
-                .url(FCM_MESSAGE_URL)
-                .post(body)
-                .addHeader("Authorization", "key=" + "AIzaSyA9seXnlmIzZ5zNqb9DFQur0aE1AjMLJUs")
-                .build();
-        Response response = mClient.newCall(request).execute();
-        return response.body().string();
     }
 
 }

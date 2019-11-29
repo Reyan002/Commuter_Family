@@ -72,6 +72,15 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
                         if(which==0){
                            Intent intent=new Intent(context, MatchRouteDetailActivity.class);
                            intent.putExtra("number",cars.getNumber());
+                           intent.putExtra("shift",cars.getShift());
+                           intent.putExtra("day",cars.getDay());
+                           intent.putExtra("time_m_f",cars.getMTimeFrom());
+                           intent.putExtra("time_m_t",cars.getMTimeTo());
+                           intent.putExtra("time_e_f",cars.getETimeFrom());
+                           intent.putExtra("time_e_t",cars.getETimeTo());
+                           intent.putExtra("from",cars.getAdressFrom());
+                           intent.putExtra("to",cars.getAdressTo());
+                            Toast.makeText(context, cars.getNumber(), Toast.LENGTH_SHORT).show();
                            intent.putExtra("rid",cars.getRouteID());
                             Toast.makeText(context, cars.getRouteID(), Toast.LENGTH_SHORT).show();
                            context.startActivity(intent);
