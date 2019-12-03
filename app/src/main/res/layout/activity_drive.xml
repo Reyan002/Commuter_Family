@@ -5,31 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activities.RideActivity">
+
     <LinearLayout
+        android:layout_marginTop="5dp"
         android:id="@+id/lll"
         android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
 
 
    <Button
        android:layout_margin="5dp"
-
-       android:background="@drawable/strokes"
-       android:textColor="@color/colorPrimary"
+       android:background="@drawable/round_all_corners"
+       android:textColor="@color/quantum_white_text"
        android:text="Add Car"
        android:id="@+id/car"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"/>
     <Button
         android:layout_margin="5dp"
-        android:background="@drawable/strokes"
-        android:textColor="@color/colorPrimary"
+        android:background="@drawable/round_all_corners"
+        android:textColor="@color/quantum_white_text"
         android:text="Add Route"
         android:id="@+id/route"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_margin="5dp"
         android:layout_below="@+id/lll"

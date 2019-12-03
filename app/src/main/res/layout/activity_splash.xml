@@ -8,7 +8,6 @@
     tools:context=".Activities.Splash">
     <ImageView
         android:layout_centerInParent="true"
-
         android:id="@+id/whitelogo"
         android:src="@drawable/whitelogo"
         android:layout_width="200dp"
