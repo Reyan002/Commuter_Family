@@ -44,14 +44,14 @@
         android:text="Select Day of Trip*"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
     <Spinner
-
-
-
-         android:gravity="center"
-          android:id="@+id/ride_days"
+        android:gravity="center"
+        android:id="@+id/ride_days"
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
+
+
     <TextView
         android:text="Select Shift of Trip*"
         android:layout_width="wrap_content"
