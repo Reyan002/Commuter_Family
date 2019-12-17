@@ -360,21 +360,20 @@ public class RideActivity extends AppCompatActivity  {
         // attaching data adapter to spinner
         spinnerEveMornigTo.setAdapter(dataAdapter);
     }
-public void Initialize(){
-    next=findViewById(R.id.nextToMap);
+
+    public void Initialize(){
+        next=findViewById(R.id.nextToMap);
         morning=findViewById(R.id.morning_times);
-    spinner =  findViewById(R.id.ride_days);
- evening=findViewById(R.id.evening_times);
-    locationFrom=findViewById(R.id.locFrom);
+        spinner =  findViewById(R.id.ride_days);
+        evening=findViewById(R.id.evening_times);
+        locationFrom=findViewById(R.id.locFrom);
 
-    spinnerTimeMornigFrom=findViewById(R.id.morning_timeFrom);
-    spinnerTimeMornigTo=findViewById(R.id.morning_timeTO);
-    spinnerTimeEveFrom=findViewById(R.id.timeFrom);
-    spinnerEveMornigTo=findViewById(R.id.TimeTo);
-
-    radioGroup = (RadioGroup) findViewById(R.id.shift);
-
-}
+        spinnerTimeMornigFrom=findViewById(R.id.morning_timeFrom);
+        spinnerTimeMornigTo=findViewById(R.id.morning_timeTO);
+        spinnerTimeEveFrom=findViewById(R.id.timeFrom);
+        spinnerEveMornigTo=findViewById(R.id.TimeTo);
+        radioGroup = (RadioGroup) findViewById(R.id.shift);
+    }
 
     public void addRiderIntoDataBase(){
 

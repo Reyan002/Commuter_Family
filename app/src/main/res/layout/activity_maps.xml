@@ -47,8 +47,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/map_container"
-        android:layout_below="@+id/relLayout1">
+        android:id="@+id/map_container">
 
         <com.google.android.gms.maps.MapView
             android:layout_width="match_parent"
