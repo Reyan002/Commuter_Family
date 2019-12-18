@@ -1,11 +1,14 @@
 package com.example.commuterfamily.Activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
@@ -20,16 +23,11 @@ import com.example.commuterfamily.Classes.LatLongClass;
 import com.example.commuterfamily.MapsCredentials.GPSTracker;
 import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
-import com.example.commuterfamily.TutorialFragment.Ride;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,10 +39,10 @@ public class RideActivity extends AppCompatActivity  {
 
     private TextView locationFrom;
     private String txtDay,txtShift,txtMTimeFrom,txtMTimeTo,txtETimeFrom,txtEtimeTo ;
-     private Spinner spinner,spinnerTimeMornigFrom,spinnerTimeMornigTo,spinnerTimeEveFrom,spinnerEveMornigTo ;
+    private Spinner spinner,spinnerTimeMornigFrom,spinnerTimeMornigTo,spinnerTimeEveFrom,spinnerEveMornigTo ;
     private GPSTracker gps;
     private LinearLayout morning,evening;
-    private   RadioGroup radioGroup;
+    private RadioGroup radioGroup;
     private FloatingActionButton next;
     private LatLongClass latLongFrom,latLongTo;
     String randomKey;
@@ -53,7 +51,7 @@ public class RideActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ride);
-         Initialize();
+        Initialize();
         spinnerDay();
         setSpinnerTimeMornigFrom();
         setSpinnerTimeEveFrom();
@@ -61,14 +59,14 @@ public class RideActivity extends AppCompatActivity  {
         setSpinnerTimeEveTo();
         latLongFrom=new LatLongClass();
         latLongTo=new LatLongClass();
-         spinnerTimeMornigFrom.setEnabled(false);
-                spinnerTimeMornigTo.setEnabled(false);
+        spinnerTimeMornigFrom.setEnabled(false);
+        spinnerTimeMornigTo.setEnabled(false);
         // Spinner click listener
 
-next.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        if(!txtDay.equals("")&&!txtShift.equals("")&&
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!txtDay.equals("")&&!txtShift.equals("")&&
                 ((!txtMTimeFrom.equals("")&&!txtMTimeTo.equals(""))||
                          (!txtETimeFrom.equals("")&&!txtEtimeTo.equals("") ) )
         &&!DemoClass.latLongFrom.equals("")&&!DemoClass.latLongTo.equals("") )  {
@@ -151,8 +149,11 @@ next.setOnClickListener(new View.OnClickListener() {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position==0){
+                    Toast.makeText(RideActivity.this, "Select any Day", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 txtDay = parent.getItemAtPosition(position).toString();
-
             }
 
             @Override
@@ -164,7 +165,7 @@ next.setOnClickListener(new View.OnClickListener() {
 
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
-        categories.add("");
+        categories.add("Select Day");
         categories.add("Monday");
         categories.add("Tuesday");
         categories.add("Wednesday");
@@ -174,14 +175,37 @@ next.setOnClickListener(new View.OnClickListener() {
         categories.add("Sunday");
 
         // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>
+                (this, R.layout.spinner_item, categories) {
+            @Override
+            public boolean isEnabled(int position) {
+                if (position == 0) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
 
-        // Drop down layout style - list view with radio button
+            @Override
+            public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if(position==0) {
+                    // Set the disable item text color
+                    tv.setTextColor(Color.GRAY);
+                }
+                else {
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
+            }
+        };
+
+
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // attaching data adapter to spinner
         spinner.setAdapter(dataAdapter);
     }
+
     public void setSpinnerTimeMornigFrom(){
         spinnerTimeMornigFrom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -336,21 +360,20 @@ next.setOnClickListener(new View.OnClickListener() {
         // attaching data adapter to spinner
         spinnerEveMornigTo.setAdapter(dataAdapter);
     }
-public void Initialize(){
-    next=findViewById(R.id.nextToMap);
+
+    public void Initialize(){
+        next=findViewById(R.id.nextToMap);
         morning=findViewById(R.id.morning_times);
-    spinner =  findViewById(R.id.ride_days);
- evening=findViewById(R.id.evening_times);
-    locationFrom=findViewById(R.id.locFrom);
+        spinner =  findViewById(R.id.ride_days);
+        evening=findViewById(R.id.evening_times);
+        locationFrom=findViewById(R.id.locFrom);
 
-    spinnerTimeMornigFrom=findViewById(R.id.morning_timeFrom);
-    spinnerTimeMornigTo=findViewById(R.id.morning_timeTO);
-    spinnerTimeEveFrom=findViewById(R.id.timeFrom);
-    spinnerEveMornigTo=findViewById(R.id.TimeTo);
-
-    radioGroup = (RadioGroup) findViewById(R.id.shift);
-
-}
+        spinnerTimeMornigFrom=findViewById(R.id.morning_timeFrom);
+        spinnerTimeMornigTo=findViewById(R.id.morning_timeTO);
+        spinnerTimeEveFrom=findViewById(R.id.timeFrom);
+        spinnerEveMornigTo=findViewById(R.id.TimeTo);
+        radioGroup = (RadioGroup) findViewById(R.id.shift);
+    }
 
     public void addRiderIntoDataBase(){
 

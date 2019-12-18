@@ -1,9 +1,21 @@
 package com.example.commuterfamily.Activities;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
@@ -14,12 +26,20 @@ import com.example.commuterfamily.Classes.DemoClass;
 import com.example.commuterfamily.Classes.LatLongClass;
 import com.example.commuterfamily.R;
 import com.example.commuterfamily.TutorialFragment.Ride;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.internal.ConnectionCallbacks;
+import com.google.android.gms.common.api.internal.OnConnectionFailedListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
@@ -33,12 +53,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private String apiKey="AIzaSyCrr57KiCAmX_PJK57nCryJZ9wwuYNoFok";
+    private LatLongClass latLongFrom , latLongTo;
+    private MapView mMapView;
 
-    private LatLongClass latLongFrom,latLongTo;
+    private double bb,lb,tb,rb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        mMapView = findViewById(R.id.mapView);
+
         if(!Places.isInitialized()){
             Places.initialize(this,apiKey);
         }
@@ -46,6 +72,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         latLongFrom=new LatLongClass();
         latLongTo=new LatLongClass();
+
         findViewById(R.id.goBack).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +80,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     startActivity(new Intent(MapsActivity.this, RideActivity.class));
                 }
                 else
-                    Toast.makeText(MapsActivity.this, "Please Give Complte Details", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MapsActivity.this, "Please Give Complete Details", Toast.LENGTH_SHORT).show();
             }
         });
         // Initialize the AutocompleteSupportFragment.
@@ -73,6 +100,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 DemoClass.latLongFrom.setLat(place.getLatLng().latitude) ;
                 DemoClass.latLongFrom.setLong(place.getLatLng().longitude); ;
                 //Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
+
+                mMap.clear();
+                mMap.addMarker(new MarkerOptions().position(place.getLatLng()).title(place.getName()));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(),15.0f));
+
             }
 
             @Override
@@ -98,7 +131,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 DemoClass.AdressTo=place.getName();
 
                 DemoClass.latLongTo.setLat(place.getLatLng().latitude) ;
-               DemoClass.latLongTo.setLong(place.getLatLng().longitude); ;
+                DemoClass.latLongTo.setLong(place.getLatLng().longitude);
+                mMap.clear();
+                mMap.addMarker(new MarkerOptions().position(place.getLatLng()).title(place.getName()));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(),15.0f));
             }
 
             @Override
@@ -114,6 +151,157 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
 //                .findFragmentById(R.id.map);
 //        mapFragment.getMapAsync(this);
+
+        initGoogleMap(savedInstanceState);
+
+//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapView);
+//        mapFragment.getMapAsync(this);
+//
+//        googleApiClient = new GoogleApiClient.Builder(this)
+//                .addConnectionCallbacks(this).addConnectionCallbacks(this)
+//                .addApi(LocationServices.API).build();
+//
+//        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+//        checkLocation();
+
+    }
+
+//    private boolean checkLocation() {
+//        if (!isLocationEnabled()){
+//            showAlert();
+//        }
+//        return isLocationEnabled();
+//    }
+//
+//    private void showAlert() {
+//
+//        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+//        dialog.setTitle("Enable Location")
+//        .setMessage("Your Device Location is Off.\n Please Enable to location to use this app")
+//        .setPositiveButton("Location Setting", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                Intent myIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+//                startActivity(myIntent);
+//            }
+//        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//            }
+//        });
+//        dialog.show();
+//    }
+
+//    private boolean isLocationEnabled() {
+//
+//        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
+//                locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+//    }
+
+    private void initGoogleMap(Bundle savedInstanceState){
+        // *** IMPORTANT ***
+        // MapView requires that the Bundle you pass contain _ONLY_ MapView SDK
+        // objects or sub-Bundles.
+        Bundle mapViewBundle = null;
+        if (savedInstanceState != null) {
+            mapViewBundle = savedInstanceState.getBundle(apiKey);
+        }
+
+        mMapView.onCreate(mapViewBundle);
+        mMapView.getMapAsync(this);
+    }
+
+//    private void initUserListRecyclerView() {
+//        mUserRecyclerAdapter = new UserRecyclerAdapter(mUserList);
+//        mUserListRecyclerView.setAdapter(mUserRecyclerAdapter);
+//        mUserListRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+//    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        Bundle mapViewBundle = outState.getBundle(apiKey);
+        if (mapViewBundle == null) {
+            mapViewBundle = new Bundle();
+            outState.putBundle(apiKey, mapViewBundle);
+        }
+
+        mMapView.onSaveInstanceState(mapViewBundle);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mMapView.onResume();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mMapView.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mMapView.onStop();
+    }
+
+    @Override
+    public void onMapReady(GoogleMap map) {
+
+        mMap = map;
+
+        LatLng sydney = new LatLng(24.8607, 67.0011);
+
+        bb = 24.926294 - 0.1 ;
+        lb = 67.022095 - 0.1 ;
+        tb = 24.926294 + 0.1 ;
+        rb = 67.022095 + 0.1 ;
+
+        LatLngBounds latLngBounds = new LatLngBounds(new LatLng(bb,lb),new LatLng(tb,rb));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds,1));
+
+
+        // Add a marker in Sydney and  move the camera
+//        LatLng sydney = new LatLng(24.8607, 67.0011);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Karachi"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney,10.0f));
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            return;
+        }
+
+//        mMap.setMyLocationEnabled(true);
+//        mMap.getUiSettings().setMyLocationButtonEnabled(true);
+//        mMap.getUiSettings().setZoomControlsEnabled(true);
+//        mMap.getUiSettings().setMapToolbarEnabled(true);
+    }
+
+    @Override
+    public void onPause() {
+        mMapView.onPause();
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        mMapView.onDestroy();
+        super.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mMapView.onLowMemory();
     }
 
 
@@ -126,14 +314,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-    }
+//    @Override
+//    public void onMapReady(GoogleMap googleMap) {
+//        mMap = googleMap;
+//
+//        // Add a marker in Sydney and move the camera
+//        LatLng sydney = new LatLng(-34, 151);
+//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+//    }
 
 }

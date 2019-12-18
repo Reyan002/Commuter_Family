@@ -82,7 +82,7 @@ public class RiderRouteActivity extends AppCompatActivity {
                 holder.txtProductQuantity.setText("Trip Starts From: "+ model.getAdressFrom());
                 holder.toLocation.setText( "Trip Ends On: "+model.getAdressTo());
                 holder.fromTIme.setText( "Trip Time Range: "+model.getMTimeTo()+model.getETimeFrom() +" - "+model.getMTimeTo()+model.getETimeTo());
- //                int oneTypeProductTotalPric=((Integer.valueOf(model.getProductPrice())))*((Integer.valueOf(model.getQuantity())));
+                //                int oneTypeProductTotalPric=((Integer.valueOf(model.getProductPrice())))*((Integer.valueOf(model.getQuantity())));
 //                overAlltotalPrice = overAlltotalPrice + oneTypeProductTotalPric;
 
 
@@ -91,7 +91,7 @@ public class RiderRouteActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         CharSequence options[]=new CharSequence[]{
-                               "See your Commute", "View Route","Edit","Remove"
+                                "See your Commute", "View Route","Edit","Remove"
                         };
                         AlertDialog.Builder builder=new AlertDialog.Builder(RiderRouteActivity.this);
                         builder.setTitle("Route Option");
@@ -101,7 +101,7 @@ public class RiderRouteActivity extends AppCompatActivity {
                                 if(which==0){DemoClass.commuterMatch= "Drivers";
                                     Intent intent=new Intent(RiderRouteActivity.this,MatchActivity.class);
                                     intent.putExtra("morningTimeFrom",model.getMTimeFrom());
-                                     intent.putExtra("morningTimeTo",model.getMTimeTo());
+                                    intent.putExtra("morningTimeTo",model.getMTimeTo());
                                     intent.putExtra("eveningTimeFrom",model.getETimeFrom());
                                     intent.putExtra("eveningTimeTo",model.getETimeTo());
                                     intent.putExtra("shift",model.getShift());
@@ -112,7 +112,7 @@ public class RiderRouteActivity extends AppCompatActivity {
                                     intent.putExtra("locLatTo",String.valueOf(model.getLocTo().getLat()));
                                     intent.putExtra("locLongTo",String.valueOf(model.getLocTo().getLong()));
 
-                                startActivity(intent);
+                                    startActivity(intent);
                                 }
                                 if(which==1){
                                     Intent intent=new Intent(RiderRouteActivity.this,RiderRouteMapActivity.class);
@@ -139,7 +139,7 @@ public class RiderRouteActivity extends AppCompatActivity {
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if(task.isSuccessful()){
                                                         Toast.makeText(RiderRouteActivity.this,"Route removed Succesfully.",Toast.LENGTH_SHORT).show();
-                                                       // startActivity(new Intent(RiderRouteActivity.this,HomeActivity.class));
+                                                        // startActivity(new Intent(RiderRouteActivity.this,HomeActivity.class));
                                                     }
                                                 }
                                             });

@@ -94,9 +94,6 @@ public class InfoFragment extends Fragment {
         verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
                 firebaseAuth.createUserWithEmailAndPassword(email.getText().toString(),password.getText().toString())
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
@@ -111,6 +108,7 @@ public class InfoFragment extends Fragment {
                                                 Toast.makeText(getContext(), "Please go to the gmail account to verify email", Toast.LENGTH_SHORT).show();
 
                                                 btn_next.setEnabled(true);
+                                                verify.setVisibility(View.GONE);
                                             }
                                             else{
                                                 Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();

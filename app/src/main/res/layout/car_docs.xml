@@ -12,7 +12,6 @@
             android:layout_height="200dp"/>
         <Button
             android:textColor="@android:color/white"
-
             android:background="@drawable/fullcolor"
             android:text="Upload Vehicle Documents"
             android:id="@+id/v_docs_add"
@@ -21,7 +20,7 @@
     </LinearLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
 
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
         android:id="@+id/addCarNext"
         android:src="@drawable/arrow_right_white"
         android:layout_alignParentRight="true"

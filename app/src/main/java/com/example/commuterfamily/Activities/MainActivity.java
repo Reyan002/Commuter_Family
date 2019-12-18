@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void logout() {
+        
         sessionManager.logoutUser();
         Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show();
     }
