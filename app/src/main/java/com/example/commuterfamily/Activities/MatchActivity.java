@@ -75,6 +75,7 @@ public class MatchActivity extends AppCompatActivity {
                             && dataSnapshot1.child("AdressTo").getValue().toString().equalsIgnoreCase(getIntent().getStringExtra("adressTo"))
 //                            && dataSnapshot1.child("Date").getValue().toString().equals(getIntent().getStringExtra(""))
                             && dataSnapshot1.child("Day").getValue().toString().equalsIgnoreCase(getIntent().getStringExtra("day"))
+//                            && ! dataSnapshot1.child("Number").equals(Prevalent.currentOnlineUser.getPhone())
 //                            && dataSnapshot1.child("ETimeFrom").getValue().toString().equals(getIntent().getStringExtra("eveningTimeFrom"))
 //                            && dataSnapshot1.child("ETimeTo").getValue().toString().equals(getIntent().getStringExtra("eveningTimeTo"))
 //                            && dataSnapshot1.child("MTimeTo").getValue().toString().equals(getIntent().getStringExtra("morningTimeTo"))

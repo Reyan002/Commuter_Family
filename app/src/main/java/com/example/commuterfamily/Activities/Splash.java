@@ -57,7 +57,6 @@ public class Splash extends AppCompatActivity {
                 @Override
                 public void run() {
                     Prevalent.currentOnlineUser.setPhone(sessionManager.getUserDetails()) ;
-                    if(sessionManager.isKey()){ DemoClass.CarKey=sessionManager.getIsKey();}
 
                     startActivity(new Intent(Splash.this,MainActivity.class));
 

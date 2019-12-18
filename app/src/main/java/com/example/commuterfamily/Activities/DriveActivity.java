@@ -40,7 +40,11 @@ public class DriveActivity extends AppCompatActivity {
         setContentView(R.layout.activity_drive);
         recyclerView=(RecyclerView)findViewById(R.id.vehicles_driver);
 
-        sessionManager=new SessionManager(this);
+
+            sessionManager=new SessionManager(this);
+
+        if( sessionManager.isKey())
+         { DemoClass.CarKey=sessionManager.getIsKey();}
         recyclerView.setHasFixedSize(true);
         layoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);

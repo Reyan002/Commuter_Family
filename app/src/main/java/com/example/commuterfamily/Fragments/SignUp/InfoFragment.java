@@ -285,4 +285,5 @@ public class InfoFragment extends Fragment {
 
         firebaseAuth.getInstance().getCurrentUser().reload();
     }
+     
 }

@@ -5,6 +5,7 @@ import com.example.commuterfamily.Classes.User;
 
 public class Prevalent {
     public static User currentOnlineUser=new User();
+
     public static LatLongClass latLongfrom;
     public static LatLongClass latLongto;
     public static final String UserPhoneKey="UserPhone";

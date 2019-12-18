@@ -333,15 +333,27 @@
         </androidx.cardview.widget.CardView>
 
         <Button
-            android:id="@+id/button_request"
+            android:text="Send Request"
+             android:id="@+id/button_request"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/cardViewMd3"
             android:layout_margin="20dp"
             android:background="@drawable/round_all_corners"
-            android:text="Send Request"
+             android:textColor="#ffffff"
+            android:textStyle="bold"/>
+        <Button
+
+
+
+            android:visibility="gone"
+             android:id="@+id/cancle_request"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button_request"
+            android:layout_margin="20dp"
+            android:background="@drawable/round_all_corners"
             android:textColor="#ffffff"
             android:textStyle="bold"/>
-
     </RelativeLayout>
 </ScrollView>
