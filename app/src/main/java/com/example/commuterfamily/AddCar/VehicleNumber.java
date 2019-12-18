@@ -30,15 +30,13 @@ public class VehicleNumber extends Fragment {
         number=view.findViewById(R.id.v_number);
         next=view.findViewById(R.id.nextCarNumber);
         next.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 if(!TextUtils.isEmpty(number.getText().toString())) {
                     DemoClass.vnum=number.getText().toString();
                     AddCarActivity.fragmentManagerAddCar.beginTransaction()
-                            .replace(R.id.fragment_container_add_car, new DriverLicense()
-                                    , null)
-                            .commit();
+                            .replace(R.id.fragment_container_add_car, new VehicleDocs()
+                                    , null).addToBackStack(null).commit();
 
                 }
 

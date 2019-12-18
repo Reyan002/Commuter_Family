@@ -30,7 +30,8 @@ public class VehicleType extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+    {
         View view=inflater.inflate(R.layout.car_type,container,false);
         spinner=view.findViewById(R.id.v_type);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -72,8 +73,8 @@ public class VehicleType extends Fragment {
                 else{
                     DemoClass.vtype=Vtype;
                     AddCarActivity.fragmentManagerAddCar.beginTransaction()
-                            .replace(R.id.fragment_container_add_car, new VehicleDocs(), null)
-                            .commit();
+                            .replace(R.id.fragment_container_add_car, new VehicleNumber(), null)
+                            .addToBackStack(null).commit();
                 }
 
             }

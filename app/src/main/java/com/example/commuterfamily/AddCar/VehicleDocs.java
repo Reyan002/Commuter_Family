@@ -96,7 +96,7 @@ public class VehicleDocs extends Fragment {
                 else {
                     storeProductInformation();
                     AddCarActivity.fragmentManagerAddCar.beginTransaction()
-                            .replace(R.id.fragment_container_add_car, new VehicleNumber(), null)
+                            .replace(R.id.fragment_container_add_car, new DriverLicense(), null).addToBackStack(null)
                             .commit();
 
                 }

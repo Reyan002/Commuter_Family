@@ -22,12 +22,15 @@ import com.example.commuterfamily.Classes.User;
 import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
 import com.example.commuterfamily.SessionManager.SessionManager;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class Paswoord extends Fragment {
 
@@ -100,16 +103,24 @@ public class Paswoord extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.child(parentDB).child(number).exists()){
 
-                    User userData=dataSnapshot.child(parentDB).child(number).getValue(User.class);
+                    final User userData=dataSnapshot.child(parentDB).child(number).getValue(User.class);
 
                     if(userData.getPhone() .equals(number)){
                         if(userData.getPassword().equals(pass)){
 
-                            Toast.makeText(getContext(),"Logged In Successfully....",Toast.LENGTH_SHORT).show();
-                            Prevalent.currentOnlineUser=userData;
-                            sessionManager.createLoginSession(number,pass);
-                            loadingBar.dismiss();
-                            startActivity(new Intent(getContext(),MainActivity.class));
+                            String DeviceToken= FirebaseInstanceId.getInstance().getToken();
+                            RootRef.child(parentDB).child(number).child("DeviceToken").setValue(DeviceToken).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+
+                                    Toast.makeText(getContext(),"Logged In Successfully....",Toast.LENGTH_SHORT).show();
+                                    Prevalent.currentOnlineUser=userData;
+                                    sessionManager.createLoginSession(number,pass);
+                                    loadingBar.dismiss();
+                                    startActivity(new Intent(getContext(),MainActivity.class));
+                                }
+                            });
+
 
                         }
                         else{
