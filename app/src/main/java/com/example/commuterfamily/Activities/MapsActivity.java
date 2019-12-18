@@ -270,7 +270,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        LatLng sydney = new LatLng(24.8607, 67.0011);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Karachi"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney,10.0f));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney,12.0f));
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
@@ -304,6 +304,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMapView.onLowMemory();
     }
 
+    private void setUpMapIfNeeded() {
+        // Do a null check to confirm that we have not already instantiated the map.
+        if (mMap == null) {
+            // Try to obtain the map from the SupportMapFragment.
+            mMapView = findViewById(R.id.mapView);
+            mMap.setMyLocationEnabled(true);
+            // Check if we were successful in obtaining the map.
+            if (mMap != null) {
+                mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+                    @Override
+                    public void onMyLocationChange(Location arg0) {
+                        mMap.addMarker(new MarkerOptions().position(new LatLng(arg0.getLatitude(), arg0.getLongitude())).title("It's Me!"));
+                    }
+                });
+            }
+        }
+    }
 
     /**
      * Manipulates the map once available.
