@@ -84,7 +84,9 @@
         <activity
             android:name=".Activities.RideActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity android:name=".Activities.MainActivity" />
+        <activity android:name=".Activities.MainActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            />
         <activity android:name=".Activities.TutotrialActivity" />
         <activity
             android:name=".Activities.Splash"

@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.commuterfamily.R;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
      private Boolean check=false;
      SessionManager sessionManager;
+     ImageButton logOutBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +32,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         sessionManager = new SessionManager(MainActivity.this);
+        logOutBtn = findViewById(R.id.logoutBtn);
 
-        findViewById(R.id.Ride).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.ride).setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
                  startActivity(new Intent(MainActivity.this,RiderRouteActivity.class));
@@ -39,13 +42,20 @@ public class MainActivity extends AppCompatActivity {
 
              }
          });
-        findViewById(R.id.Drive).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.drive).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,DriveActivity.class));
                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
 
 
+            }
+        });
+
+        logOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopup();
             }
         });
 
@@ -65,26 +75,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.kebab_logout, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        switch (item.getItemId()){
-            case R.id.logout_text:
-//                Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
-                showPopup();
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     private void showPopup() {
