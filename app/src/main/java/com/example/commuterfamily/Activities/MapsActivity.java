@@ -256,14 +256,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         LatLng sydney = new LatLng(24.8607, 67.0011);
 
-        bb = 24.926294 - 0.1 ;
-        lb = 67.022095 - 0.1 ;
-        tb = 24.926294 + 0.1 ;
-        rb = 67.022095 + 0.1 ;
-
-        LatLngBounds latLngBounds = new LatLngBounds(new LatLng(bb,lb),new LatLng(tb,rb));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds,1));
+//        bb = 24.926294 - 0.1 ;
+//        lb = 67.022095 - 0.1 ;
+//        tb = 24.926294 + 0.1 ;
+//        rb = 67.022095 + 0.1 ;
+//
+//        LatLngBounds latLngBounds = new LatLngBounds(new LatLng(bb,lb),new LatLng(tb,rb));
+////        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+//        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds,1));
 
 
         // Add a marker in Sydney and  move the camera
