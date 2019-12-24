@@ -109,8 +109,8 @@ public class DriverLicense extends Fragment {
         return view;
     }
     private void storeProductInformation() {
-        loadingBar.setTitle("Adding your Vehicle");
-        loadingBar.setMessage("Dear User, Please wait while we are adding new Vehicle");
+        loadingBar.setTitle("Please Wait");
+
         loadingBar.setCanceledOnTouchOutside(false);
         loadingBar.show();
 

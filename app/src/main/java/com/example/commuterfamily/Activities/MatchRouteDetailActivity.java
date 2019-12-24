@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.HashMap;
 
@@ -288,11 +289,13 @@ private String firebaseInstanceId;
                                 chatNotifi.put("from",sender);
                                 chatNotifi.put("type","request");
 
+
                                 notify_ref.child(Pnumber).push().setValue(chatNotifi).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if(task.isSuccessful()){
                                             request.setEnabled(false);
+                                            FirebaseMessaging.getInstance().subscribeToTopic("sendNotification");
                                             request.setText("Cancle Request");
                                             current_request="request_sent";
                                         }
