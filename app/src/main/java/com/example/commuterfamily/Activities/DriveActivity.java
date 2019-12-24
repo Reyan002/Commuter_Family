@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.commuterfamily.Adapters.CartViewHolder;
@@ -34,12 +35,13 @@ public class DriveActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ProgressDialog loadingBar;
     private SessionManager sessionManager;
+    private ImageButton kebab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drive);
         recyclerView=(RecyclerView)findViewById(R.id.vehicles_driver);
-
+        kebab = findViewById(R.id.kebabCard);
 
             sessionManager=new SessionManager(this);
 
@@ -91,7 +93,7 @@ public class DriveActivity extends AppCompatActivity {
 
 //                loadingBar.dismiss();
                 holder.txtProductPrice.setText("Trip Day: "+model.getDay());
-                holder.txtProductnName.setText("Trip Shift: " +model.getShift());
+//                holder.txtProductnName.setText("Trip Shift: " +model.getShift());
                 holder.txtProductQuantity.setText("Trip Starts From: "+ model.getAdressFrom());
                 holder.toLocation.setText( "Trip Ends On: "+model.getAdressTo());
                 holder.fromTIme.setText( "Trip Time Range: "+model.getMTimeTo()+model.getETimeFrom() +" - "+model.getMTimeTo()+model.getETimeTo());
@@ -100,7 +102,7 @@ public class DriveActivity extends AppCompatActivity {
 
 
 
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                holder.kebab.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         CharSequence options[]=new CharSequence[]{

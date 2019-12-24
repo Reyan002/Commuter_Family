@@ -9,14 +9,16 @@ import com.example.commuterfamily.Interfaces.itemClickListener;
 import com.example.commuterfamily.R;
 
 public class MatchViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-    public TextView txtProductnName,txtProductPrice,txtProductQuantity,toLocation,fromTIme,ToTime;
+    public TextView txtProductnName,
+//            txtProductPrice,
+            txtProductQuantity,toLocation,fromTIme,ToTime;
     private itemClickListener itemclicklistener;
 
     public MatchViewHolder(View itemView) {
         super(itemView);
 
         txtProductnName=(TextView)itemView.findViewById(R.id.cart_product_name_m);
-        txtProductPrice=(TextView)itemView.findViewById(R.id.cart_product_price_m);
+//        txtProductPrice=(TextView)itemView.findViewById(R.id.cart_product_price_m);
         txtProductQuantity=(TextView)itemView.findViewById(R.id.cart_product_quantity_m);
         toLocation=(TextView)itemView.findViewById(R.id.location_to_m);
         fromTIme=(TextView)itemView.findViewById(R.id.from_time_m);
