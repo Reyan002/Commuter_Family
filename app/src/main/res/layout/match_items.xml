@@ -23,14 +23,14 @@
 <!--            android:text="Trip Day:"-->
 <!--             android:textSize="14dp"-->
 <!--            />-->
-        <TextView
-            android:drawableLeft="@drawable/ic_keyboard_arrow_right_black_24dp"
-            android:id="@+id/cart_product_name_m"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Trip Shift:"
-             android:textSize="14dp"
-            />
+<!--        <TextView-->
+<!--            android:drawableLeft="@drawable/ic_keyboard_arrow_right_black_24dp"-->
+<!--            android:id="@+id/cart_product_name_m"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Trip Shift:"-->
+<!--             android:textSize="14dp"-->
+<!--            />-->
 
 <!--        <TextView-->
 <!--            android:drawableLeft="@drawable/ic_keyboard_arrow_right_black_24dp"-->
@@ -155,7 +155,7 @@
                         android:alpha="0.5"/>
 
                     <TextView
-                        android:id="@+id/cart_product_price_m"
+                        android:id="@+id/cart_product_name_m"
                         style="@style/Base.TextAppearance.AppCompat.Caption"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

@@ -53,7 +53,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
 
         final Routes cars= myCarList.get(position);
         holder.txtProductnName.setText(cars.getDay());
-        holder.txtProductPrice.setText( cars.getShift());
+//        holder.txtProductPrice.setText( cars.getShift());
         holder.txtProductQuantity.setText(cars.getAdressFrom());
         holder.toLocation.setText(cars.getAdressTo());
         holder.fromTIme.setText(cars.getMTimeFrom()+"  "+cars.getMTimeTo()+cars.getETimeFrom()+"  "+cars.getETimeTo() );
@@ -113,7 +113,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView txtProductnName;
         private View view;
-        public TextView txtProductPrice;
+//        public TextView txtProductPrice;
          public TextView txtProductQuantity;
         public TextView toLocation;
         public TextView fromTIme;
@@ -125,7 +125,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
             this.view=itemView;
             txtProductnName=(TextView)itemView.findViewById(R.id.cart_product_name_m);
             layout= itemView.findViewById(R.id.caardviewmatch);
-            txtProductPrice=(TextView)itemView.findViewById(R.id.cart_product_price_m);
+//            txtProductPrice=(TextView)itemView.findViewById(R.id.cart_product_price_m);
             txtProductQuantity=(TextView)itemView.findViewById(R.id.cart_product_quantity_m);
             toLocation=(TextView)itemView.findViewById(R.id.location_to_m);
             fromTIme=(TextView)itemView.findViewById(R.id.from_time_m);

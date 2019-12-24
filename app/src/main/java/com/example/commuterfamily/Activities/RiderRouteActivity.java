@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ public class RiderRouteActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private Button addRoute;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +80,7 @@ public class RiderRouteActivity extends AppCompatActivity {
 
 //                loadingBar.dismiss();
                 holder.txtProductPrice.setText("Trip Day: "+model.getDay());
-                holder.txtProductnName.setText("Trip Shift: " +model.getShift());
+//                holder.txtProductnName.setText("Trip Shift: " +model.getShift());
                 holder.txtProductQuantity.setText("Trip Starts From: "+ model.getAdressFrom());
                 holder.toLocation.setText( "Trip Ends On: "+model.getAdressTo());
                 holder.fromTIme.setText( "Trip Time Range: "+model.getMTimeTo()+model.getETimeFrom() +" - "+model.getMTimeTo()+model.getETimeTo());
@@ -87,7 +89,7 @@ public class RiderRouteActivity extends AppCompatActivity {
 
 
 
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                holder.kebab.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         CharSequence options[]=new CharSequence[]{
@@ -162,6 +164,7 @@ public class RiderRouteActivity extends AppCompatActivity {
                 return holder;
             }
         };
+
         recyclerView.setAdapter(adapter);
         adapter.startListening();
 
