@@ -1,5 +1,6 @@
 package com.example.commuterfamily.Activities;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +19,13 @@ import com.example.commuterfamily.Interfaces.NotifyData;
 import com.example.commuterfamily.Prevalent.Prevalent;
 
 import com.example.commuterfamily.R;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.CircleOptions;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +35,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.type.Color;
 
 import java.util.HashMap;
 
@@ -38,7 +47,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Url;
 
 
-public class MatchRouteDetailActivity extends AppCompatActivity  {
+public class MatchRouteDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
 
 private String  ProductId,Pnumber;
 private TextView shift,day,time,start,end;
@@ -49,12 +58,11 @@ private FirebaseAuth mAuth;
 private String sender;
 private String current_request ;
 private String firebaseInstanceId;
+private TextView name,view;
+//private MapView mapView;
+private GoogleMap gMap;
+private MapFragment mapFragment;
 
-
-
-
-
- private TextView name,view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +78,7 @@ private String firebaseInstanceId;
         time.setText(getIntent().getStringExtra("time_m_f")+getIntent().getStringExtra("time_e_f")+"-"+getIntent().getStringExtra("time_m_t")+getIntent().getStringExtra("time_e_t"));
         start.setText(getIntent().getStringExtra("from"));
         end.setText(getIntent().getStringExtra("to"));
-       sender = Prevalent.currentOnlineUser.getPhone();
+        sender = Prevalent.currentOnlineUser.getPhone();
         request_ref=FirebaseDatabase.getInstance().getReference().child("Request");
         connect_ref=FirebaseDatabase.getInstance().getReference().child("PeopleConnected");
         notify_ref=FirebaseDatabase.getInstance().getReference().child("Notification");
@@ -309,19 +317,18 @@ private String firebaseInstanceId;
     public void Initilize(){
         cancle=findViewById(R.id.cancle_request);
         request=findViewById(R.id.button_request);
-
-
-         shift=findViewById(R.id.textViewMR_SD1);
+        shift=findViewById(R.id.textViewMR_SD1);
         day=findViewById(R.id.textViewMR_SD2);
         time=findViewById(R.id.textViewMR_SD3);
         start=findViewById(R.id.textViewMR_SD4);
         end=findViewById(R.id.textViewMR_SD5);
-
         type=findViewById(R.id.textViewMR_VD1);
         number=findViewById(R.id.textViewMR_VD2);
-
         name=findViewById(R.id.textViewMR_CD1);
         view=findViewById(R.id.textViewMR_CD2);
+//        mapView = findViewById(R.id.mapViewMatchRoute);
+        mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.mapViewMatchRoute);
+        mapFragment.getMapAsync(this);
 
    }
     private void getUserDetails(String productId) {
@@ -398,7 +405,40 @@ private String firebaseInstanceId;
 
             }}  );
 
-        }}
+        }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+        double lat = Double.parseDouble(getIntent().getStringExtra("latFrom"));
+        double lng = Double.parseDouble(getIntent().getStringExtra("longFrom"));
+
+        LatLng latlng = new LatLng(lat, lng);
+
+
+
+        gMap = googleMap;
+        gMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        try {
+            googleMap.setMyLocationEnabled(true);
+        } catch (SecurityException se) {
+
+        }
+
+        gMap.setTrafficEnabled(true);
+        gMap.setIndoorEnabled(true);
+        gMap.setBuildingsEnabled(true);
+        gMap.getUiSettings().setZoomControlsEnabled(true);
+
+//        Marker placeMarker = googleMap.addMarker(new MarkerOptions().position(placeLocation)
+//                .title(***NAME OF PLACE HERE***));
+        gMap.addCircle(new CircleOptions().center(latlng).radius(100));
+        gMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));
+        gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng,14.0f));
+
+
+    }
+}
 
 
 

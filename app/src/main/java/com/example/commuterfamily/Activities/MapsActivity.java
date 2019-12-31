@@ -55,7 +55,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private String apiKey="AIzaSyCrr57KiCAmX_PJK57nCryJZ9wwuYNoFok";
     private LatLongClass latLongFrom , latLongTo;
     private MapView mMapView;
-
     private double bb,lb,tb,rb;
 
     @Override
@@ -97,10 +96,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // TODO: Get info about the selected place.
                 Toast.makeText(MapsActivity.this, "Place: " + place.getLatLng().latitude, Toast.LENGTH_SHORT).show();
                 DemoClass.AdressFrom=place.getName();
-                DemoClass.latLongFrom.setLat(place.getLatLng().latitude) ;
-                DemoClass.latLongFrom.setLong(place.getLatLng().longitude); ;
-                //Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
+                DemoClass.latLongFrom.setLat(place.getLatLng().latitude);
+                DemoClass.latLongFrom.setLong(place.getLatLng().longitude);
 
+                //Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
                 mMap.clear();
                 mMap.addMarker(new MarkerOptions().position(place.getLatLng()).title(place.getName()));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
@@ -200,9 +199,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //    }
 
     private void initGoogleMap(Bundle savedInstanceState){
-        // *** IMPORTANT ***
-        // MapView requires that the Bundle you pass contain _ONLY_ MapView SDK
-        // objects or sub-Bundles.
+
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
             mapViewBundle = savedInstanceState.getBundle(apiKey);

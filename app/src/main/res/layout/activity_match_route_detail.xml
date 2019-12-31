@@ -31,10 +31,10 @@
                 <TextView
                     android:id="@+id/textViewMR_SD"
                     android:layout_width="match_parent"
-                    android:layout_height="25dp"
+                    android:layout_height="30dp"
                     android:text="Route Detail"
                     android:textColor="@android:color/white"
-                    android:textSize="16dp"
+                    android:textSize="20dp"
                     android:textAlignment="center"
                     android:textStyle="bold"/>
 
@@ -45,101 +45,119 @@
                     android:orientation="horizontal"
                     android:weightSum="10"
                     android:layout_below="@id/textViewMR_SD">
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"/>
-                <TextView
-                    android:id="@+id/textViewMR_SD1"
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:text="Shift"
-                    android:textColor="@android:color/white"
-                    android:textSize="14dp"
-                    android:layout_weight="9" />
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:id="@+id/textViewMR_SD1"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:text="Shift"
+                        android:textColor="@android:color/white"
+                        android:textSize="14dp"
+                        android:layout_weight="9" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/llSD2"
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
+                    android:layout_height="25dp"
                     android:orientation="horizontal"
                     android:weightSum="10"
                     android:layout_below="@id/llSD1">
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"/>
-                <TextView
-                    android:id="@+id/textViewMR_SD2"
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="9"
-                    android:text="Day"
-                    android:textColor="@android:color/white"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_date_range_black_24dp"
+                        android:alpha="0.5"/>
+                    <TextView
+                        android:id="@+id/textViewMR_SD2"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="9"
+                        android:text="Day"
+                        android:textSize="18dp"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@android:color/white"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/llSD3"
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
+                    android:layout_height="25dp"
                     android:orientation="horizontal"
                     android:weightSum="10"
                     android:layout_below="@id/llSD2">
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"/>
-                <TextView
-                    android:id="@+id/textViewMR_SD3"
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="9"
-                    android:textColor="@android:color/white"
-                    android:text="Time"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:alpha="0.5"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_access_time_black_24dp"/>
+                    <TextView
+                        android:id="@+id/textViewMR_SD3"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="9"
+                        android:textSize="18dp"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@android:color/white"
+                        android:text="Time"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/llSD4"
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
+                    android:layout_height="25dp"
                     android:orientation="horizontal"
                     android:weightSum="10"
                     android:layout_below="@id/llSD3">
-                    <TextView
+                    <ImageView
                         android:layout_width="0dp"
                         android:layout_height="20dp"
                         android:layout_weight="1"
-                        android:drawableLeft="@drawable/start_circle"/>
+                        android:alpha="0.5"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/targetpoint"/>
                     <TextView
-                    android:id="@+id/textViewMR_SD4"
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="9"
-                    android:layout_below="@id/textViewMR_SD3"
-                    android:text="Start"
-                    android:textColor="@android:color/white"/>
+                        android:id="@+id/textViewMR_SD4"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="9"
+                        android:textSize="18dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_below="@id/textViewMR_SD3"
+                        android:text="Start"
+                        android:textColor="@android:color/white"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/llSD5"
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
+                    android:layout_height="25dp"
                     android:orientation="horizontal"
                     android:weightSum="10"
                     android:layout_below="@id/llSD4">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    android:drawableLeft="@drawable/end_location_image"/>
-                <TextView
-                    android:id="@+id/textViewMR_SD5"
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="9"
-                    android:textColor="@android:color/white"
-                    android:text="End"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:alpha="0.5"
+                        android:src="@drawable/flag"
+                        android:layout_gravity="center_vertical"/>
+                    <TextView
+                        android:id="@+id/textViewMR_SD5"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="9"
+                        android:textSize="18dp"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@android:color/white"
+                        android:text="End"/>
                 </LinearLayout>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -148,7 +166,7 @@
             android:id="@+id/view1"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="@android:color/black"
+            android:background="@android:color/white"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
             android:layout_below="@id/cardViewMd1"/>
@@ -171,9 +189,9 @@
                 <TextView
                     android:id="@+id/textViewMR_VD"
                     android:layout_width="match_parent"
-                    android:layout_height="25dp"
+                    android:layout_height="30dp"
                     android:text="Vehicle Detail"
-                    android:textSize="16dp"
+                    android:textSize="20dp"
                     android:textColor="@android:color/white"
                     android:textAlignment="center"
                     android:textStyle="bold"/>
@@ -181,42 +199,52 @@
                 <LinearLayout
                     android:id="@+id/llVD1"
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
+                    android:layout_height="25dp"
                     android:orientation="horizontal"
                     android:weightSum="10"
                     android:layout_below="@id/textViewMR_VD">
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"/>
-                <TextView
-                    android:id="@+id/textViewMR_VD1"
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:text="Shift"
-                    android:textColor="@android:color/white"
-                    android:textSize="14dp"
-                    android:layout_weight="9"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:alpha="0.5"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_directions_car_white_24dp"
+                        android:tint="@color/quantum_black_100"/>
+                    <TextView
+                        android:id="@+id/textViewMR_VD1"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:text="Shift"
+                        android:textSize="18dp"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@android:color/white"
+                        android:layout_weight="9"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/llVD2"
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
+                    android:layout_height="25dp"
                     android:orientation="horizontal"
                     android:weightSum="10"
                     android:layout_below="@id/llVD1">
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"/>
-                <TextView
-                    android:id="@+id/textViewMR_VD2"
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="9"
-                    android:text="Day"
-                    android:textColor="@android:color/white"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:alpha="0.5"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/license_plate"/>
+                    <TextView
+                        android:id="@+id/textViewMR_VD2"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="9"
+                        android:text="Day"
+                        android:textSize="18dp"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@android:color/white"/>
                 </LinearLayout>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -225,7 +253,7 @@
             android:id="@+id/view2"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="@android:color/black"
+            android:background="@android:color/white"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_below="@id/cardViewMd2"/>
@@ -250,104 +278,115 @@
                 <TextView
                     android:id="@+id/textViewMR_CD"
                     android:layout_width="match_parent"
-                    android:layout_height="25dp"
+                    android:layout_height="30dp"
                     android:text="Commuter Detail"
-                    android:textSize="16dp"
+                    android:textSize="20dp"
                     android:textAlignment="center"
                     android:textStyle="bold"
                     android:textColor="@android:color/white"/>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/textViewMR_CD"
-                android:weightSum="10">
-
                 <LinearLayout
-                    android:layout_weight="3"
-                    android:layout_width="0dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:weightSum="1">
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/circularImageMRD"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        app:civ_border_width="5dp"
-                        android:layout_weight="1"
-                        app:civ_border_color="@android:color/white"
-                        android:src="@drawable/end_location_image"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="7">
-
-                <LinearLayout
-                    android:id="@+id/llCD1"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:orientation="horizontal"
+                    android:layout_below="@id/textViewMR_CD"
                     android:weightSum="10">
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"/>
-                <TextView
-                    android:id="@+id/textViewMR_CD1"
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="9"
-                    android:text="Shift"
-                    android:textColor="@android:color/white"
-                    android:textSize="14dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/layout_User"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:layout_gravity="center">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/user_photo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_person_black_24dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8"
+                        android:layout_marginLeft="10dp">
+
+                        <LinearLayout
+                            android:id="@+id/llCD1"
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:id="@+id/textViewMR_CD1"
+                                android:layout_width="match_parent"
+                                android:layout_height="25dp"
+                                android:text="Shift"
+                                android:textColor="@android:color/white"
+                                android:textSize="18dp"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llCD2"
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:orientation="horizontal"
+                            android:layout_below="@id/llCD1">
+                            <TextView
+                                android:id="@+id/textViewMR_CD2"
+                                android:layout_width="match_parent"
+                                android:layout_height="25dp"
+                                android:layout_weight="9"
+                                android:textColor="@android:color/white"
+                                android:text="Day"
+                                android:textSize="18dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
                 </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/llCD2"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:orientation="horizontal"
-                    android:weightSum="10"
-                    android:layout_below="@id/llCD1">
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"/>
-                <TextView
-                    android:id="@+id/textViewMR_CD2"
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="9"
-                    android:textColor="@android:color/white"
-                    android:text="Day"/>
-                </LinearLayout>
-                </LinearLayout>
-
-            </LinearLayout>
-
-
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
+<!--        <LinearLayout-->
+<!--            android:id="@+id/llmv"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="140dp"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_below="@id/cardViewMd3">-->
+
+<!--            <com.google.android.gms.maps.MapView-->
+<!--                android:id="@+id/mapViewMatchRoute"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_margin="10dp"/>-->
+
+<!--        </LinearLayout>-->
+
+        <fragment
+            android:id="@+id/mapViewMatchRoute"
+            android:layout_below="@id/cardViewMd3"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="10dp"
+            class="com.google.android.gms.maps.MapFragment" />
+
+
         <Button
             android:text="Send Request"
-             android:id="@+id/button_request"
+            android:id="@+id/button_request"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cardViewMd3"
-            android:layout_margin="20dp"
+            android:layout_below="@+id/mapViewMatchRoute"
+            android:layout_margin="10dp"
             android:background="@drawable/round_all_corners"
-             android:textColor="#ffffff"
+            android:textColor="#ffffff"
             android:textStyle="bold"/>
+
         <Button
-
-
-
             android:visibility="gone"
-             android:id="@+id/cancle_request"
+            android:id="@+id/cancle_request"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/button_request"
@@ -355,5 +394,6 @@
             android:background="@drawable/round_all_corners"
             android:textColor="#ffffff"
             android:textStyle="bold"/>
+
     </RelativeLayout>
 </ScrollView>
