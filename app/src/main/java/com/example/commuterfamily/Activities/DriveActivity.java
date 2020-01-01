@@ -26,8 +26,11 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class DriveActivity extends AppCompatActivity {
 
@@ -59,17 +62,45 @@ public class DriveActivity extends AppCompatActivity {
         findViewById(R.id.route).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!sessionManager.isKey())
-                {
-                    Toast.makeText(DriveActivity.this, "Add Car First", Toast.LENGTH_SHORT).show();
-                }
-                else{startActivity(new Intent(DriveActivity.this,RideActivity.class));
 
-                    DemoClass.RouteFor="Driver";}
+                    getCarKey();
+
+
 
             }
         });
     }
+
+    public void getCarKey(){
+        DatabaseReference reference=FirebaseDatabase.getInstance().getReference().child("Commuters");
+
+        reference.child("Driver").child(Prevalent.currentOnlineUser.getPhone())
+                 .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        if( dataSnapshot.hasChild("Car")){
+                            startActivity(new Intent(DriveActivity.this,RideActivity.class));
+
+                            DemoClass.RouteFor="Driver";
+
+
+
+                        }
+                        else{
+                            Toast.makeText(DriveActivity.this, "Add Car First", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                }) ;
+    }
+
+
     @Override
     protected void onStart() {
         super.onStart();

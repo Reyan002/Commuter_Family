@@ -90,19 +90,19 @@ public class CodeFragment extends Fragment {
         editText6.setOnKeyListener(new PinOnKeyListener(5));
         btn_next = view.findViewById(R.id.btn_next_3);
         btn_back = view.findViewById(R.id.btn_back_3);
-      sendVerificationCode(DemoClass.number);
+   sendVerificationCode(DemoClass.number);
 
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if(TextUtils.isEmpty(editText1.getText().toString())||TextUtils.isEmpty(editText2.getText().toString())||TextUtils.isEmpty(editText3.getText().toString())||TextUtils.isEmpty(editText4.getText().toString())||TextUtils.isEmpty(editText5.getText().toString())||TextUtils.isEmpty(editText6.getText().toString()) )
-//                  {
-//                      Toast.makeText(getContext(), "Please Enter Code", Toast.LENGTH_SHORT).show();
-//                }
-//                else{
-//                    verifyVerificationCode(editTexts.toString());
-//
-//                }
+                if(TextUtils.isEmpty(editText1.getText().toString())||TextUtils.isEmpty(editText2.getText().toString())||TextUtils.isEmpty(editText3.getText().toString())||TextUtils.isEmpty(editText4.getText().toString())||TextUtils.isEmpty(editText5.getText().toString())||TextUtils.isEmpty(editText6.getText().toString()) )
+                  {
+                      Toast.makeText(getContext(), "Please Enter Code", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    verifyVerificationCode(editTexts.toString());
+
+                }
 
                 String code = editText.getText().toString().trim();
                 if (code.isEmpty() || code.length() < 6) {
@@ -113,7 +113,6 @@ public class CodeFragment extends Fragment {
 
                 //verifying the code entered manually
                 verifyVerificationCode(code);
-
 
             }
         });
