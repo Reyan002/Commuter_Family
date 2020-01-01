@@ -62,25 +62,22 @@ public class DriveActivity extends AppCompatActivity {
         findViewById(R.id.route).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< HEAD
-=======
+
                 if (!sessionManager.isKey())
                 {
                     Toast.makeText(DriveActivity.this, "Add Car First", Toast.LENGTH_SHORT).show();
                 }
                 else{
 //                    startActivity(new Intent(DriveActivity.this,RideActivity.class));
-                    startActivity(new Intent(DriveActivity.this,MapsActivity.class));
 
->>>>>>> f76c1c4eddc75c42bc0671d9a7e511defad112f4
 
                     getCarKey();
 
 
 
-            }
+            }}
         });
-    }
+      }
 
     public void getCarKey(){
         DatabaseReference reference=FirebaseDatabase.getInstance().getReference().child("Commuters");
@@ -91,7 +88,7 @@ public class DriveActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         if( dataSnapshot.hasChild("Car")){
-                            startActivity(new Intent(DriveActivity.this,RideActivity.class));
+                            startActivity(new Intent(DriveActivity.this,MapsActivity.class));
 
                             DemoClass.RouteFor="Driver";
 
@@ -225,5 +222,9 @@ public class DriveActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this,MainActivity.class));
 
+    }
 }

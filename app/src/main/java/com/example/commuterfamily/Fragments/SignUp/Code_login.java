@@ -38,7 +38,7 @@ import java.util.concurrent.TimeUnit;
 public class Code_login extends Fragment {
 
     private String mVerificationId;
-    private EditText editText,editText1, editText2, editText3, editText4,editText5,editText6;
+    private EditText editText;
     private EditText[] editTexts;
     private AppCompatButton btn_next;
     private ImageView btn_back;
@@ -51,30 +51,7 @@ public class Code_login extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.login_cod_fragment, container, false);
         mAuth = FirebaseAuth.getInstance();
-
         editText=view.findViewById(R.id.cod_login);
-        editText1 = view.findViewById(R.id.otpEdit7);
-        editText2 = view.findViewById(R.id.otpEdit8);
-        editText3 = view.findViewById(R.id.otpEdit9);
-        editText4 = view.findViewById(R.id.otpEdit10);
-        editText5 = view.findViewById(R.id.otpEdit11);
-        editText6 = view.findViewById(R.id.otpEdit12);
-
-        editTexts = new EditText[]{editText1, editText2, editText3, editText4,editText5,editText6};
-
-        editText1.addTextChangedListener(new PinTextWatcher(0));
-        editText2.addTextChangedListener(new PinTextWatcher(1));
-        editText3.addTextChangedListener(new PinTextWatcher(2));
-        editText4.addTextChangedListener(new PinTextWatcher(3));
-        editText5.addTextChangedListener(new PinTextWatcher(4));
-        editText6.addTextChangedListener(new PinTextWatcher(5));
-
-        editText1.setOnKeyListener(new PinOnKeyListener(0));
-        editText2.setOnKeyListener(new PinOnKeyListener(1));
-        editText3.setOnKeyListener(new PinOnKeyListener(2));
-        editText4.setOnKeyListener(new PinOnKeyListener(3));
-        editText5.setOnKeyListener(new PinOnKeyListener(4));
-        editText6.setOnKeyListener(new PinOnKeyListener(5));
         btn_next = view.findViewById(R.id.btn_next_4);
         btn_back = view.findViewById(R.id.btn_back_4);
          sendVerificationCode(DemoClass.number);

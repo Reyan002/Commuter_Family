@@ -3,16 +3,22 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
+        android:layout_centerInParent="true"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
+            android:background="@drawable/strokes"
+            android:layout_gravity="center"
             android:id="@+id/v_docs"
             android:layout_width="200dp"
             android:layout_height="200dp"/>
         <Button
-            android:textColor="@android:color/white"
-            android:background="@drawable/fullcolor"
+            android:layout_margin="10dp"
+            style="@style/Widget.AppCompat.Button.Borderless"
+
+            android:textColor="@color/colorPrimary"
+
             android:text="Upload Vehicle Documents"
             android:id="@+id/v_docs_add"
             android:layout_width="match_parent"

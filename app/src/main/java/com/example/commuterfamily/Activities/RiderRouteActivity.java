@@ -171,4 +171,9 @@ public class RiderRouteActivity extends AppCompatActivity {
         adapter.startListening();
 
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this,MainActivity.class));
+    }
 }

@@ -175,6 +175,7 @@ public class VehicleDocs extends Fragment {
         if(requestCode==galleryPic&&resultCode==RESULT_OK&&data!=null){
             ImageUri=data.getData();
             imageView.setImageURI(ImageUri);
+            
         }
     }
 }
