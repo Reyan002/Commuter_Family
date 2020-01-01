@@ -63,7 +63,10 @@ public class DriveActivity extends AppCompatActivity {
                 {
                     Toast.makeText(DriveActivity.this, "Add Car First", Toast.LENGTH_SHORT).show();
                 }
-                else{startActivity(new Intent(DriveActivity.this,RideActivity.class));
+                else{
+//                    startActivity(new Intent(DriveActivity.this,RideActivity.class));
+                    startActivity(new Intent(DriveActivity.this,MapsActivity.class));
+
 
                     DemoClass.RouteFor="Driver";}
 
