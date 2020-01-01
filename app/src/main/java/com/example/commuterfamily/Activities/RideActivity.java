@@ -100,6 +100,18 @@ public class RideActivity extends AppCompatActivity  {
                 }
             }
         });
+
+        String from = getIntent().getStringExtra("fromMap");
+        String to = getIntent().getStringExtra("toMap");
+        Toast.makeText(RideActivity.this, "From"+from+"\nTo"+to, Toast.LENGTH_SHORT).show();
+
+        if (locationFrom.getText().equals(null)){
+            locationFrom.setHint("Route");
+        }
+        else{
+            locationFrom.setText(""+from+"\nto\n"+""+to);
+        }
+
         locationFrom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,7 +162,7 @@ public class RideActivity extends AppCompatActivity  {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position==0){
-                    Toast.makeText(RideActivity.this, "Select any Day", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(RideActivity.this, "Select any Day", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 txtDay = parent.getItemAtPosition(position).toString();

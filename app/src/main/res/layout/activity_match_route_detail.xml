@@ -364,21 +364,28 @@
 
 <!--        </LinearLayout>-->
 
-        <fragment
-            android:id="@+id/mapViewMatchRoute"
-            android:layout_below="@id/cardViewMd3"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_margin="10dp"
-            class="com.google.android.gms.maps.MapFragment" />
+            android:layout_height="150dp"
+            android:layout_below="@id/cardViewMd3"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:cardCornerRadius="10dp"
+            android:id="@+id/cardViewmap">
 
+            <fragment
+                android:id="@+id/mapViewMatchRoute"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                class="com.google.android.gms.maps.MapFragment" />
+        </androidx.cardview.widget.CardView>
 
         <Button
             android:text="Send Request"
             android:id="@+id/button_request"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/mapViewMatchRoute"
+            android:layout_below="@+id/cardViewmap"
             android:layout_margin="10dp"
             android:background="@drawable/round_all_corners"
             android:textColor="#ffffff"
@@ -390,7 +397,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/button_request"
-            android:layout_margin="20dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/round_all_corners"
             android:textColor="#ffffff"
             android:textStyle="bold"/>

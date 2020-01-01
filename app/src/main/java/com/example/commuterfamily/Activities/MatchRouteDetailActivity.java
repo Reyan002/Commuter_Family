@@ -3,6 +3,8 @@ package com.example.commuterfamily.Activities;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -35,7 +37,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.type.Color;
 
 import java.util.HashMap;
 
@@ -419,6 +420,7 @@ private MapFragment mapFragment;
 
         gMap = googleMap;
         gMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
         try {
             googleMap.setMyLocationEnabled(true);
         } catch (SecurityException se) {
@@ -430,9 +432,14 @@ private MapFragment mapFragment;
         gMap.setBuildingsEnabled(true);
         gMap.getUiSettings().setZoomControlsEnabled(true);
 
-//        Marker placeMarker = googleMap.addMarker(new MarkerOptions().position(placeLocation)
-//                .title(***NAME OF PLACE HERE***));
-        gMap.addCircle(new CircleOptions().center(latlng).radius(100));
+        CircleOptions circleOptions = new CircleOptions();
+        circleOptions.center(new LatLng(lat,lng));
+        circleOptions.radius(300);
+        circleOptions.strokeColor(Color.parseColor("#000000"));
+        circleOptions.fillColor(Color.parseColor("#E4B0E7FF"));
+        circleOptions.strokeWidth(3);
+
+        gMap.addCircle(circleOptions);
         gMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));
         gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng,14.0f));
 

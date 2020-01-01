@@ -76,11 +76,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 if( !DemoClass.latLongTo.equals(null)&&! DemoClass.latLongFrom.equals(null)){
-                    startActivity(new Intent(MapsActivity.this, RideActivity.class));
+
+                    startActivity(new Intent(MapsActivity.this,RideActivity.class));
+                    Intent intent = new Intent(MapsActivity.this,RideActivity.class);
+                    String from = DemoClass.AdressFrom, to = DemoClass.AdressTo;
+                    intent.putExtra("fromMap",DemoClass.AdressFrom);
+                    intent.putExtra("toMap",DemoClass.AdressTo);
+                    startActivity(intent);
                 }
-                else
+                else {
                     Toast.makeText(MapsActivity.this, "Please Give Complete Details", Toast.LENGTH_SHORT).show();
+                }
             }
+
         });
         // Initialize the AutocompleteSupportFragment.
         AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)

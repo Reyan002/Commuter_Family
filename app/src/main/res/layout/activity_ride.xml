@@ -24,19 +24,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <LinearLayout
-
         android:layout_margin="10dp"
         android:background="@drawable/strokes"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="60dp">
 
         <TextView
             android:id="@+id/locFrom"
             android:gravity="center"
             android:layout_gravity="center"
-            android:text="Route"
+            android:hint="Route"
             android:layout_weight="1"
+            android:maxLines="3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
 
