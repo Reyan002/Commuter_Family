@@ -62,6 +62,17 @@ public class DriveActivity extends AppCompatActivity {
         findViewById(R.id.route).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+<<<<<<< HEAD
+=======
+                if (!sessionManager.isKey())
+                {
+                    Toast.makeText(DriveActivity.this, "Add Car First", Toast.LENGTH_SHORT).show();
+                }
+                else{
+//                    startActivity(new Intent(DriveActivity.this,RideActivity.class));
+                    startActivity(new Intent(DriveActivity.this,MapsActivity.class));
+
+>>>>>>> f76c1c4eddc75c42bc0671d9a7e511defad112f4
 
                     getCarKey();
 

@@ -51,7 +51,9 @@ public class RiderRouteActivity extends AppCompatActivity {
         addRoute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RiderRouteActivity.this, RideActivity.class));
+//                startActivity(new Intent(RiderRouteActivity.this, RideActivity.class));
+                startActivity(new Intent(RiderRouteActivity.this, MapsActivity.class));
+
                 DemoClass.RouteFor="Rider";
             }
         });
