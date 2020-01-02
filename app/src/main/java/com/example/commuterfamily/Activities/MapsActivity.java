@@ -90,9 +90,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
 
         });
+
         // Initialize the AutocompleteSupportFragment.
         AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
                 getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+        autocompleteFragment.setCountry("PAK");
 
 // Specify the types of place data to return.
         autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME,Place.Field.LAT_LNG,Place.Field.ADDRESS));
@@ -124,6 +126,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
         AutocompleteSupportFragment autocompleteFragmentTO = (AutocompleteSupportFragment)
                 getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment_to);
+        autocompleteFragment.setCountry("PAK");
 
 // Specify the types of place data to return
         autocompleteFragmentTO.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME,Place.Field.LAT_LNG,Place.Field.ADDRESS));

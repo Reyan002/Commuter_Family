@@ -21,7 +21,6 @@ import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
@@ -33,7 +32,6 @@ public class RiderRouteActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private Button addRoute;
-    private ProgressBarCircularIndeterminate progressBarCircular;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
