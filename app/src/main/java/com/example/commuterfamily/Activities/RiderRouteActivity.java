@@ -5,8 +5,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.commuterfamily.Adapters.CartViewHolder;
@@ -23,9 +19,9 @@ import com.example.commuterfamily.Classes.DemoClass;
 import com.example.commuterfamily.Classes.Routes;
 import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
-import com.example.commuterfamily.TutorialFragment.Ride;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +33,7 @@ public class RiderRouteActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private Button addRoute;
+    private ProgressBarCircularIndeterminate progressBarCircular;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +65,7 @@ public class RiderRouteActivity extends AppCompatActivity {
 //        loadingBar.setMessage("Please wait ...");
 //        loadingBar.setCanceledOnTouchOutside(false);
 //        loadingBar.show();
+
         final DatabaseReference cartListRef= FirebaseDatabase.getInstance().getReference().child("Commuters");
         FirebaseRecyclerOptions<Routes> options=
                 new FirebaseRecyclerOptions.Builder<Routes>()
@@ -85,7 +83,8 @@ public class RiderRouteActivity extends AppCompatActivity {
 //                holder.txtProductnName.setText("Trip Shift: " +model.getShift());
                 holder.txtProductQuantity.setText("Trip Starts From: "+ model.getAdressFrom());
                 holder.toLocation.setText( "Trip Ends On: "+model.getAdressTo());
-                holder.fromTIme.setText( "Trip Time Range: "+model.getMTimeTo()+model.getETimeFrom() +" - "+model.getMTimeTo()+model.getETimeTo());
+                holder.fromTIme.setText( "Trip Time Range: "+model.getMTimeTo()+model.getETimeFrom()
+                        +" - "+model.getMTimeTo()+model.getETimeTo());
                 //                int oneTypeProductTotalPric=((Integer.valueOf(model.getProductPrice())))*((Integer.valueOf(model.getQuantity())));
 //                overAlltotalPrice = overAlltotalPrice + oneTypeProductTotalPric;
 
