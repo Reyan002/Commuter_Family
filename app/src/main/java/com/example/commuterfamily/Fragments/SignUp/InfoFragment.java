@@ -3,6 +3,8 @@ package com.example.commuterfamily.Fragments.SignUp;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -91,41 +93,46 @@ public class InfoFragment extends Fragment {
         btn_next.setEnabled(false);
         btn_back = view.findViewById(R.id.btn_back_2);
 
-        verify.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                firebaseAuth.createUserWithEmailAndPassword(email.getText().toString(),password.getText().toString())
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-
-                                if(task.isSuccessful()){
-
-                                    firebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if(task.isSuccessful()){
-                                                Toast.makeText(getContext(), "Please go to the gmail account to verify email", Toast.LENGTH_SHORT).show();
-
-                                                btn_next.setEnabled(true);
-                                                verify.setVisibility(View.GONE);
-                                            }
-                                            else{
-                                                Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                            }
-                                        }
-                                    });
-
-                                }
-                                else{
-                                    Toast.makeText(getContext(), task.getException().getMessage() , Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-
-
-            }
-        });
+//        verify.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                firebaseAuth.createUserWithEmailAndPassword(email.getText().toString(),password.getText().toString())
+//                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<AuthResult> task) {
+//
+//                                if(task.isSuccessful()){
+//
+//                                    firebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                        @Override
+//                                        public void onComplete(@NonNull Task<Void> task) {
+//                                            if(task.isSuccessful()){
+//                                                Toast.makeText(getContext(), "Please go to the gmail account to verify email", Toast.LENGTH_SHORT).show();
+//
+//                                                btn_next.setEnabled(true);
+//                                                verify.setVisibility(View.GONE);
+//                                                Intent email = new Intent(Intent.ACTION_MAIN);
+//
+//                                                email.addCategory(Intent.CATEGORY_APP_EMAIL);
+//                                                startActivity(email);
+//
+//                                            }
+//                                            else{
+//                                                Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+//                                            }
+//                                        }
+//                                    });
+//
+//                                }
+//                                else{
+//                                    Toast.makeText(getContext(), task.getException().getMessage() , Toast.LENGTH_SHORT).show();
+//                                }
+//                            }
+//                        });
+//
+//
+//            }
+//        });
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
 
@@ -235,10 +242,10 @@ public class InfoFragment extends Fragment {
             Toast.makeText(getContext(), "Pleasse provide All the credendials", Toast.LENGTH_SHORT).show();
 
         }
-        else if(!firebaseAuth.getCurrentUser().isEmailVerified()){
-            Toast.makeText(getContext(), "Kindly click to the verify email and go to the GMail to verify your email ", Toast.LENGTH_LONG).show();
-
-        }
+//        else if(!firebaseAuth.getCurrentUser().isEmailVerified()){
+//            Toast.makeText(getContext(), "Kindly click to the verify email and go to the GMail to verify your email ", Toast.LENGTH_LONG).show();
+//
+//        }
          else if (!userPass.equals(userCPass)){
             Toast.makeText(getContext(), "Password Not Match ", Toast.LENGTH_SHORT).show();
         }
@@ -273,17 +280,17 @@ public class InfoFragment extends Fragment {
 
 
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        firebaseAuth.getInstance().getCurrentUser().reload();
-    }
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        firebaseAuth.getInstance().getCurrentUser().reload();
-    }
-     
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//
+//        firebaseAuth.getInstance().getCurrentUser().reload();
+//    }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//
+//        firebaseAuth.getInstance().getCurrentUser().reload();
+//    }
+//
 }

@@ -106,9 +106,8 @@ public class VehicleDocs extends Fragment {
         return view;
     }
     private void storeProductInformation() {
-        loadingBar.setTitle("Adding your Vehicle");
-        loadingBar.setMessage("Dear User, Please wait while we are adding new Vehicle");
-        loadingBar.setCanceledOnTouchOutside(false);
+        loadingBar.setTitle("Please Wait");
+         loadingBar.setCanceledOnTouchOutside(false);
         loadingBar.show();
 
         Calendar calendar=Calendar.getInstance();
@@ -176,6 +175,7 @@ public class VehicleDocs extends Fragment {
         if(requestCode==galleryPic&&resultCode==RESULT_OK&&data!=null){
             ImageUri=data.getData();
             imageView.setImageURI(ImageUri);
+            
         }
     }
 }

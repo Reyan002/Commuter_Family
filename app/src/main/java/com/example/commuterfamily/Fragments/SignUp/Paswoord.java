@@ -115,6 +115,7 @@ public class Paswoord extends Fragment {
 
                                     Toast.makeText(getContext(),"Logged In Successfully....",Toast.LENGTH_SHORT).show();
                                     Prevalent.currentOnlineUser=userData;
+                                    Prevalent.UserPhoneKey=userData.getPhone();
                                     sessionManager.createLoginSession(number,pass);
                                     loadingBar.dismiss();
                                     startActivity(new Intent(getContext(),MainActivity.class));
