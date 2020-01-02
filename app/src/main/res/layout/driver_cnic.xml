@@ -14,8 +14,8 @@
         android:scaleType="fitXY"
         android:layout_gravity="center"
         android:id="@+id/cnic"
-        android:layout_width="200dp"
-        android:layout_height="200dp"/>
+        android:layout_width="300dp"
+        android:layout_height="300dp"/>
     <Button
         android:layout_margin="10dp"
         style="@style/Widget.AppCompat.Button.Borderless"

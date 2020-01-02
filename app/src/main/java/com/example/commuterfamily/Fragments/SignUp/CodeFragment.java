@@ -78,14 +78,8 @@ public class CodeFragment extends Fragment {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(TextUtils.isEmpty(editText1.getText().toString())||TextUtils.isEmpty(editText2.getText().toString())||TextUtils.isEmpty(editText3.getText().toString())||TextUtils.isEmpty(editText4.getText().toString())||TextUtils.isEmpty(editText5.getText().toString())||TextUtils.isEmpty(editText6.getText().toString()) )
-                  {
-                      Toast.makeText(getContext(), "Please Enter Code", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    verifyVerificationCode(editTexts.toString());
 
-                }
+
 
                 String code = editText.getText().toString().trim();
                 if (code.isEmpty() || code.length() < 6) {
@@ -96,6 +90,7 @@ public class CodeFragment extends Fragment {
 
                 //verifying the code entered manually
                 verifyVerificationCode(code);
+
 
             }
         });

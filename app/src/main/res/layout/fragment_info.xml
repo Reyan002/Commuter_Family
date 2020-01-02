@@ -113,16 +113,7 @@
                 android:layout_below="@id/et_confirm_pass"
                 android:text="M/F"
                 />
-            <Button
 
-                android:textSize="10dp"
-                android:textColor="@android:color/white"
-                android:background="@color/colorPrimary"
-                android:text="Verify Email"
-                android:layout_below="@+id/tv_gender"
-                android:id="@+id/verifyemail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
 

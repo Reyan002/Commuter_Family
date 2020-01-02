@@ -74,7 +74,6 @@ public class InfoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_info, container, false);
         loadingBar=new ProgressDialog(getContext());
 
-         verify=view.findViewById(R.id.verifyemail);
 
 
          firebaseAuth=FirebaseAuth.getInstance();
@@ -90,7 +89,7 @@ public class InfoFragment extends Fragment {
          gender_text=view.findViewById(R.id.tv_gender);
 
          btn_next = view.findViewById(R.id.btn_next_2);
-        btn_next.setEnabled(false);
+
         btn_back = view.findViewById(R.id.btn_back_2);
 
 //        verify.setOnClickListener(new View.OnClickListener() {
