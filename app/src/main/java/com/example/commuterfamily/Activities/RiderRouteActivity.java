@@ -3,6 +3,7 @@ package com.example.commuterfamily.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
@@ -11,9 +12,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.agrawalsuneet.dotsloader.loaders.LazyLoader;
 import com.example.commuterfamily.Adapters.CartViewHolder;
 import com.example.commuterfamily.Classes.DemoClass;
 import com.example.commuterfamily.Classes.Routes;
@@ -30,18 +34,19 @@ import com.squareup.okhttp.Route;
 
 public class RiderRouteActivity extends AppCompatActivity {
 
+    private RelativeLayout layout;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private Button addRoute;
-    private ProgressBarCircularIndeterminate progressBarCircular;
-
+private LazyLoader ll;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rider_route);
         addRoute=findViewById(R.id.addRoute);
 
-        recyclerView=(RecyclerView)findViewById(R.id.cart_list);
+        layout=findViewById(R.id.rr);
+          recyclerView=(RecyclerView)findViewById(R.id.cart_list);
         recyclerView.setHasFixedSize(true);
         layoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -54,7 +59,22 @@ public class RiderRouteActivity extends AppCompatActivity {
                 DemoClass.RouteFor="Rider";
             }
         });
-    }
+
+
+        ll=findViewById(R.id.loader);
+        LazyLoader loader = new LazyLoader(this, 30, 20, ContextCompat.getColor(this, R.color.loader_selected),
+                ContextCompat.getColor(this, R.color.loader_selected),
+                ContextCompat.getColor(this, R.color.colorAccent));
+        loader.setAnimDuration(500);
+        loader.setFirstDelayDuration(100);
+        loader.setSecondDelayDuration(200);
+        loader.setInterpolator(new LinearInterpolator());
+
+        ll.addView(loader);
+
+
+
+     }
 
     @Override
     protected void onStart() {
@@ -74,9 +94,14 @@ public class RiderRouteActivity extends AppCompatActivity {
                         .build();
 
 
-        FirebaseRecyclerAdapter<Routes, CartViewHolder> adapter=new FirebaseRecyclerAdapter<Routes, CartViewHolder>(options) {
+        final FirebaseRecyclerAdapter<Routes, CartViewHolder> adapter=new FirebaseRecyclerAdapter<Routes, CartViewHolder>(options) {
+
+
             @Override
             protected void onBindViewHolder(@NonNull CartViewHolder holder , int position , @NonNull final Routes model) {
+
+
+
 
 //                loadingBar.dismiss();
                 holder.txtProductPrice.setText("Trip Day: "+model.getDay());
@@ -167,6 +192,7 @@ public class RiderRouteActivity extends AppCompatActivity {
         };
 
         recyclerView.setAdapter(adapter);
+
         adapter.startListening();
 
     }
