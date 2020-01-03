@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity;
 import com.example.commuterfamily.R;
 import com.example.commuterfamily.SessionManager.SessionManager;
 import com.google.android.material.snackbar.Snackbar;
@@ -59,8 +60,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
+        findViewById(R.id.drawercheck).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, DashboardDrawerActivity.class));
+            }
+        });
 
     }
     @Override
