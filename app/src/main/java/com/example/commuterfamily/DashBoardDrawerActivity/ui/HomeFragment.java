@@ -14,6 +14,7 @@ import com.example.commuterfamily.R;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -35,7 +36,7 @@ public class HomeFragment extends Fragment {
         viewPager = (ViewPager) myView.findViewById(R.id.pager);
         sliderDotspanel = (LinearLayout) myView.findViewById(R.id.layout_dots);
 
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(context);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getContext());
 
         viewPager.setAdapter(viewPagerAdapter);
 
@@ -44,8 +45,8 @@ public class HomeFragment extends Fragment {
 
         for(int i = 0; i < dotscount; i++){
 
-            dots[i] = new ImageView(context);
-            dots[i].setImageDrawable(context.getDrawable(R.drawable.home));
+            dots[i] = new ImageView(getContext());
+            dots[i].setImageDrawable(ContextCompat.getDrawable(getContext(),R.drawable.home));
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
@@ -55,7 +56,7 @@ public class HomeFragment extends Fragment {
 
         }
 
-        dots[0].setImageDrawable(context.getDrawable(R.drawable.active_dots));
+        dots[0].setImageDrawable(ContextCompat.getDrawable(getContext(),R.drawable.active_dots));
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -67,10 +68,10 @@ public class HomeFragment extends Fragment {
             public void onPageSelected(int position) {
 
                 for(int i = 0; i< dotscount; i++){
-                    dots[i].setImageDrawable(context.getDrawable(R.drawable.not_active_dots));
+                    dots[i].setImageDrawable(ContextCompat.getDrawable(getContext(),R.drawable.not_active_dots));
                 }
 
-                dots[position].setImageDrawable(context.getDrawable(R.drawable.active_dots));
+                dots[position].setImageDrawable(ContextCompat.getDrawable(getContext(),R.drawable.active_dots));
 
             }
 

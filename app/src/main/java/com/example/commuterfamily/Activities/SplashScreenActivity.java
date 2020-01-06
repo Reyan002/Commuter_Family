@@ -1,3 +1,4 @@
+
 package com.example.commuterfamily.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,33 +14,33 @@ import java.util.Objects;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    Button btn_signup, btn_login;
+  Button btn_signup, btn_login;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_splash_screen);
 
-        getSupportActionBar().hide();
+    getSupportActionBar().hide();
 
-        btn_signup = findViewById(R.id.btn_signup);
-        btn_login = findViewById(R.id.btn_login);
+    btn_signup = findViewById(R.id.btn_signup);
+    btn_login = findViewById(R.id.btn_login);
 
-        btn_signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(SplashScreenActivity.this, SignUpActivity.class));
-                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
-            }
-        });
+    btn_signup.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        startActivity(new Intent(SplashScreenActivity.this, SignUpActivity.class));
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+      }
+    });
 
-        btn_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
-                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
-            }
-        });
+    btn_login.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+      }
+    });
 
-    }
+  }
 }
