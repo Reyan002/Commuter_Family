@@ -9,17 +9,17 @@
             android:icon="@drawable/home"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_drive"
             android:icon="@drawable/ic_directions_car_white_24dp"
             android:iconTint="@color/quantum_black_100"
             android:title="Driver" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_passenger"
             android:icon="@drawable/call_taxi"
             android:title="Passenger"
             android:iconTint="@color/quantum_black_100"/>
         <item
-            android:id="@+id/nav_tools"
+            android:id="@+id/nav_wallet"
             android:icon="@drawable/wallet"
             android:title="Wallet" />
     </group>
@@ -27,7 +27,7 @@
     <item android:title="Extra">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_about"
                 android:icon="@drawable/icons_about"
                 android:title="About Us" />
 

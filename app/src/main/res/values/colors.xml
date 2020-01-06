@@ -5,7 +5,13 @@
     <color name="colorAccent">#97CEC8</color>
     <color name="grey_60">#666666</color>
     <color name="grey_80">#37474F</color>
-    <color name="grey_90">#263837</color>
     <color name="transparent">#00303f9f</color>
     <color name="sky">#E4B0E7FF</color>
+
+    <color name="overlay_dark_30">#4D000000</color>
+    <color name="overlay_dark_40">#66000000</color>
+    <color name="grey_90">#263238</color>
+    <color name="grey_10">#e6e6e6</color>
+    <color name="grey_20">#cccccc</color>
+    <color name="overlay_dark_10">#1A000000</color>
 </resources>
