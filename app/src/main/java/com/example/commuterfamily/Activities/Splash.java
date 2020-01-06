@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.commuterfamily.Classes.DemoClass;
-import com.example.commuterfamily.Prevalent.Prevalent;
+ import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
 import com.example.commuterfamily.SessionManager.SessionManager;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -59,7 +59,6 @@ public class Splash extends AppCompatActivity {
                     Prevalent.currentOnlineUser.setPhone(sessionManager.getUserDetails()) ;
 
                     startActivity(new Intent(Splash.this,MainActivity.class));
-
 
                 }
             },2000);

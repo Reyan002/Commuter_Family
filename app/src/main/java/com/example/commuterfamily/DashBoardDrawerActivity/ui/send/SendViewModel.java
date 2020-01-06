@@ -1,4 +1,4 @@
-package com.example.commuterfamily.NaigationDrawerActivity.ui.send;
+package com.example.commuterfamily.DashBoardDrawerActivity.ui.send;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

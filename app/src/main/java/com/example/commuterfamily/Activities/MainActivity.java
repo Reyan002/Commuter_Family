@@ -55,9 +55,13 @@ public class MainActivity extends AppCompatActivity {
         logOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showPopup();
+                //showPopup();
+                startActivity(new Intent(MainActivity.this,Notification.class));
             }
         });
+
+
+
 
     }
     @Override
