@@ -21,7 +21,6 @@ import androidx.viewpager.widget.ViewPager;
 public class HomeFragment extends Fragment {
 
     View myView;
-    Context context;
     private ViewPager viewPager;
     private LinearLayout sliderDotspanel;
     private int dotscount;
@@ -30,7 +29,8 @@ public class HomeFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.home_fragment,container,false);
 
         viewPager = (ViewPager) myView.findViewById(R.id.pager);
@@ -46,9 +46,10 @@ public class HomeFragment extends Fragment {
         for(int i = 0; i < dotscount; i++){
 
             dots[i] = new ImageView(getContext());
-            dots[i].setImageDrawable(ContextCompat.getDrawable(getContext(),R.drawable.home));
+            dots[i].setImageDrawable(ContextCompat.getDrawable(getContext(),R.drawable.not_active_dots));
 
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
+                    (LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
             params.setMargins(8, 0, 8, 0);
 
