@@ -1,7 +1,6 @@
 package com.example.commuterfamily.DashBoardDrawerActivity;
 
 import android.os.Bundle;
-
 import com.example.commuterfamily.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
