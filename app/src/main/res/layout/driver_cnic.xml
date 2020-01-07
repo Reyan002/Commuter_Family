@@ -2,13 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-<LinearLayout
+  <LinearLayout
 
 
-    android:layout_centerInParent="true"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+      android:layout_centerInParent="true"
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
     <ImageView
         android:background="@drawable/strokes"
         android:scaleType="fitXY"
@@ -20,19 +20,19 @@
         android:layout_margin="10dp"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:textColor="@color/colorPrimary"
-         android:text="Upload CNIC"
+        android:text="Upload CNIC"
         android:id="@+id/add_cnic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-</LinearLayout>
+  </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_margin="20dp"
-        android:id="@+id/nextDriverCNIC"
-        android:src="@drawable/arrow_right_white"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"/>
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+      android:layout_margin="20dp"
+      android:id="@+id/nextDriverCNIC"
+      android:src="@drawable/arrow_right_white"
+      android:layout_alignParentRight="true"
+      android:layout_alignParentBottom="true"
+      android:layout_height="wrap_content"
+      android:layout_width="wrap_content"/>
 
 </RelativeLayout>

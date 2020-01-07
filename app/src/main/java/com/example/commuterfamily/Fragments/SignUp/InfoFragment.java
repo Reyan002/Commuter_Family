@@ -1,3 +1,4 @@
+
 package com.example.commuterfamily.Fragments.SignUp;
 
 
@@ -76,7 +77,7 @@ public class InfoFragment extends Fragment {
 
 
 
-         firebaseAuth=FirebaseAuth.getInstance();
+        firebaseAuth=FirebaseAuth.getInstance();
         sessionManager=new SessionManager(getContext());
 
         name=view.findViewById(R.id.et_username);
@@ -86,9 +87,9 @@ public class InfoFragment extends Fragment {
         cnic=view.findViewById(R.id.et_cnic);
 
         gender=view.findViewById(R.id.tv_gender_dettail);
-         gender_text=view.findViewById(R.id.tv_gender);
+        gender_text=view.findViewById(R.id.tv_gender);
 
-         btn_next = view.findViewById(R.id.btn_next_2);
+        btn_next = view.findViewById(R.id.btn_next_2);
 
         btn_back = view.findViewById(R.id.btn_back_2);
 
@@ -137,7 +138,7 @@ public class InfoFragment extends Fragment {
 
             public void onClick(View view) {
                 Userdetails();
-             }
+            }
         });
 
         btn_back.setOnClickListener(new View.OnClickListener() {
@@ -245,32 +246,32 @@ public class InfoFragment extends Fragment {
 //            Toast.makeText(getContext(), "Kindly click to the verify email and go to the GMail to verify your email ", Toast.LENGTH_LONG).show();
 //
 //        }
-         else if (!userPass.equals(userCPass)){
+        else if (!userPass.equals(userCPass)){
             Toast.makeText(getContext(), "Password Not Match ", Toast.LENGTH_SHORT).show();
         }
         else if(userCnic.charAt(14)=='1'|| userCnic.charAt(14)=='3'||userCnic.charAt(14)=='5'||userCnic.charAt(14)=='7'||userCnic.charAt(14)=='9' )
-         {
-             gender_text.setVisibility(View.VISIBLE);
-             gender.setText("Male");
-             gender.setVisibility(View.VISIBLE);
-             loadingBar.setTitle("Create Account");
-             loadingBar.setMessage("Please wait while we are checking Credentials");
-             loadingBar.setCanceledOnTouchOutside(false);
-             loadingBar.show();
-             ValidatePhoneNumber(userName, DemoClass.number,userEmail,userPass,gender.getText().toString(),userCnic);
-         }
-         else  if(userCnic.charAt(14)=='0'|| userCnic.charAt(14)=='2'||userCnic.charAt(14)=='4'||userCnic.charAt(14)=='6'||userCnic.charAt(14)=='8' )
-         {
-             gender_text.setVisibility(View.VISIBLE);
+        {
+            gender_text.setVisibility(View.VISIBLE);
+            gender.setText("Male");
+            gender.setVisibility(View.VISIBLE);
+            loadingBar.setTitle("Create Account");
+            loadingBar.setMessage("Please wait while we are checking Credentials");
+            loadingBar.setCanceledOnTouchOutside(false);
+            loadingBar.show();
+            ValidatePhoneNumber(userName, DemoClass.number,userEmail,userPass,gender.getText().toString(),userCnic);
+        }
+        else  if(userCnic.charAt(14)=='0'|| userCnic.charAt(14)=='2'||userCnic.charAt(14)=='4'||userCnic.charAt(14)=='6'||userCnic.charAt(14)=='8' )
+        {
+            gender_text.setVisibility(View.VISIBLE);
 
-             gender.setText("Female");
-             gender.setVisibility(View.VISIBLE);
-             loadingBar.setTitle("Create Account");
-             loadingBar.setMessage("Please wait while we are checking Credentials");
-             loadingBar.setCanceledOnTouchOutside(false);
-             loadingBar.show();
-             ValidatePhoneNumber(userName, DemoClass.number,userEmail,userPass,gender.getText().toString(),userCnic);
-         }
+            gender.setText("Female");
+            gender.setVisibility(View.VISIBLE);
+            loadingBar.setTitle("Create Account");
+            loadingBar.setMessage("Please wait while we are checking Credentials");
+            loadingBar.setCanceledOnTouchOutside(false);
+            loadingBar.show();
+            ValidatePhoneNumber(userName, DemoClass.number,userEmail,userPass,gender.getText().toString(),userCnic);
+        }
         else{
             Toast.makeText(getContext(), "you are doing something wrong", Toast.LENGTH_SHORT).show();
         }

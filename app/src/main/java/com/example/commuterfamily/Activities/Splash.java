@@ -1,3 +1,4 @@
+
 package com.example.commuterfamily.Activities;
 
 import androidx.annotation.NonNull;
@@ -13,7 +14,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.commuterfamily.Classes.DemoClass;
- import com.example.commuterfamily.Prevalent.Prevalent;
+import com.example.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity;
+import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
 import com.example.commuterfamily.SessionManager.SessionManager;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -58,13 +60,13 @@ public class Splash extends AppCompatActivity {
                 public void run() {
                     Prevalent.currentOnlineUser.setPhone(sessionManager.getUserDetails()) ;
 
-//                    startActivity(new Intent(Splash.this, DashboardDrawerActivity.class));
+                    startActivity(new Intent(Splash.this, DashboardDrawerActivity.class));
 
                 }
             },2000);
 
 
-          }
+        }
 
 
     }

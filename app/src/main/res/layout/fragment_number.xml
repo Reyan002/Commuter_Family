@@ -49,7 +49,7 @@
             android:textSize="16sp" />
 
         <EditText
-             android:id="@+id/et_number"
+            android:id="@+id/et_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/textview_2"
