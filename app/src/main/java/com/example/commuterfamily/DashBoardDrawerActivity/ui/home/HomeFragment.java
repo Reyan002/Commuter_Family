@@ -12,8 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.commuterfamily.R;
-
+import com.example.commuterfamily.DashBoardDrawerActivity.R;
 
 public class HomeFragment extends Fragment {
 
