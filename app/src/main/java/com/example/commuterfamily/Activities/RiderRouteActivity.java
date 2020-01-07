@@ -1,3 +1,4 @@
+
 package com.example.commuterfamily.Activities;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.example.commuterfamily.Adapters.CartViewHolder;
 import com.example.commuterfamily.Classes.DemoClass;
 import com.example.commuterfamily.Classes.Routes;
+import com.example.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity;
 import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -29,34 +31,34 @@ import com.squareup.okhttp.Route;
 
 public class RiderRouteActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManager;
-    private Button addRoute;
+  private RecyclerView recyclerView;
+  private RecyclerView.LayoutManager layoutManager;
+  private Button addRoute;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rider_route);
-        addRoute=findViewById(R.id.addRoute);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_rider_route);
+    addRoute=findViewById(R.id.addRoute);
 
-        recyclerView=(RecyclerView)findViewById(R.id.cart_list);
-        recyclerView.setHasFixedSize(true);
-        layoutManager=new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        addRoute.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    recyclerView=(RecyclerView)findViewById(R.id.cart_list);
+    recyclerView.setHasFixedSize(true);
+    layoutManager=new LinearLayoutManager(this);
+    recyclerView.setLayoutManager(layoutManager);
+    addRoute.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
 //                startActivity(new Intent(RiderRouteActivity.this, RideActivity.class));
-                startActivity(new Intent(RiderRouteActivity.this, MapsActivity.class));
+        startActivity(new Intent(RiderRouteActivity.this, MapsActivity.class));
 
-                DemoClass.RouteFor="Rider";
-            }
-        });
-    }
+        DemoClass.RouteFor="Rider";
+      }
+    });
+  }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+  @Override
+  protected void onStart() {
+    super.onStart();
 
 //        final ProgressDialog loadingBar=new ProgressDialog(this);
 //        loadingBar.setTitle("Loading Routes");
@@ -64,113 +66,113 @@ public class RiderRouteActivity extends AppCompatActivity {
 //        loadingBar.setCanceledOnTouchOutside(false);
 //        loadingBar.show();
 
-        final DatabaseReference cartListRef= FirebaseDatabase.getInstance().getReference().child("Commuters");
-        FirebaseRecyclerOptions<Routes> options=
-                new FirebaseRecyclerOptions.Builder<Routes>()
-                        .setQuery(cartListRef.child("Rider")
-                                .child(Prevalent.currentOnlineUser.getPhone()).child("Ride"),Routes.class)
-                        .build();
+    final DatabaseReference cartListRef= FirebaseDatabase.getInstance().getReference().child("Commuters");
+    FirebaseRecyclerOptions<Routes> options=
+            new FirebaseRecyclerOptions.Builder<Routes>()
+                    .setQuery(cartListRef.child("Rider")
+                            .child(Prevalent.currentOnlineUser.getPhone()).child("Ride"),Routes.class)
+                    .build();
 
 
-        FirebaseRecyclerAdapter<Routes, CartViewHolder> adapter=new FirebaseRecyclerAdapter<Routes, CartViewHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull CartViewHolder holder , int position , @NonNull final Routes model) {
+    FirebaseRecyclerAdapter<Routes, CartViewHolder> adapter=new FirebaseRecyclerAdapter<Routes, CartViewHolder>(options) {
+      @Override
+      protected void onBindViewHolder(@NonNull CartViewHolder holder , int position , @NonNull final Routes model) {
 
 //                loadingBar.dismiss();
-                holder.txtProductPrice.setText("Trip Day: "+model.getDay());
+        holder.txtProductPrice.setText("Trip Day: "+model.getDay());
 //                holder.txtProductnName.setText("Trip Shift: " +model.getShift());
-                holder.txtProductQuantity.setText("Trip Starts From: "+ model.getAdressFrom());
-                holder.toLocation.setText( "Trip Ends On: "+model.getAdressTo());
-                holder.fromTIme.setText( "Trip Time Range: "+model.getMTimeTo()+model.getETimeFrom()
-                        +" - "+model.getMTimeTo()+model.getETimeTo());
-                //                int oneTypeProductTotalPric=((Integer.valueOf(model.getProductPrice())))*((Integer.valueOf(model.getQuantity())));
+        holder.txtProductQuantity.setText("Trip Starts From: "+ model.getAdressFrom());
+        holder.toLocation.setText( "Trip Ends On: "+model.getAdressTo());
+        holder.fromTIme.setText( "Trip Time Range: "+model.getMTimeTo()+model.getETimeFrom()
+                +" - "+model.getMTimeTo()+model.getETimeTo());
+        //                int oneTypeProductTotalPric=((Integer.valueOf(model.getProductPrice())))*((Integer.valueOf(model.getQuantity())));
 //                overAlltotalPrice = overAlltotalPrice + oneTypeProductTotalPric;
 
 
 
-                holder.kebab.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        CharSequence options[]=new CharSequence[]{
-                                "See your Commute", "View Route","Edit","Remove"
-                        };
-                        AlertDialog.Builder builder=new AlertDialog.Builder(RiderRouteActivity.this);
-                        builder.setTitle("Route Option");
-                        builder.setItems(options , new DialogInterface.OnClickListener() {
+        holder.kebab.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            CharSequence options[]=new CharSequence[]{
+                    "See your Commute", "View Route","Edit","Remove"
+            };
+            AlertDialog.Builder builder=new AlertDialog.Builder(RiderRouteActivity.this);
+            builder.setTitle("Route Option");
+            builder.setItems(options , new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog , int which) {
+                if(which==0){DemoClass.commuterMatch= "Drivers";
+                  Intent intent=new Intent(RiderRouteActivity.this,MatchActivity.class);
+                  intent.putExtra("morningTimeFrom",model.getMTimeFrom());
+                  intent.putExtra("morningTimeTo",model.getMTimeTo());
+                  intent.putExtra("eveningTimeFrom",model.getETimeFrom());
+                  intent.putExtra("eveningTimeTo",model.getETimeTo());
+                  intent.putExtra("shift",model.getShift());
+                  intent.putExtra("day",model.getDay());
+                  intent.putExtra( "adressTo",model.getAdressTo());
+                  intent.putExtra( "adressFrom",model.getAdressFrom());
+                  intent.putExtra("locLongFrom",String.valueOf(model.getLocFrom().getLong()));
+                  intent.putExtra("locLatTo",String.valueOf(model.getLocTo().getLat()));
+                  intent.putExtra("locLongTo",String.valueOf(model.getLocTo().getLong()));
+
+                  startActivity(intent);
+                }
+                if(which==1){
+                  Intent intent=new Intent(RiderRouteActivity.this,RiderRouteMapActivity.class);
+                  intent.putExtra("pid",model.getRouteID());
+                  intent.putExtra("latFrom",String.valueOf( model.getLocFrom().getLat()));
+                  intent.putExtra("longFrom",String.valueOf( model.getLocFrom().getLong()));
+                  intent.putExtra("latTo",String.valueOf( model.getLocTo().getLat()));
+                  intent.putExtra("longTo",String.valueOf( model.getLocTo().getLong()));
+                  startActivity(intent);
+                }
+                if(which==2){
+                  Intent intent=new Intent(RiderRouteActivity.this,RideActivity.class);
+                  intent.putExtra("pid",model.getRouteID());
+                  startActivity(intent);
+                }
+                if(which==3){
+                  cartListRef.child("Rider")
+                          .child(Prevalent.currentOnlineUser.getPhone())
+                          .child("Ride")
+                          .child(model.getRouteID())
+                          .removeValue()
+                          .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
-                            public void onClick(DialogInterface dialog , int which) {
-                                if(which==0){DemoClass.commuterMatch= "Drivers";
-                                    Intent intent=new Intent(RiderRouteActivity.this,MatchActivity.class);
-                                    intent.putExtra("morningTimeFrom",model.getMTimeFrom());
-                                    intent.putExtra("morningTimeTo",model.getMTimeTo());
-                                    intent.putExtra("eveningTimeFrom",model.getETimeFrom());
-                                    intent.putExtra("eveningTimeTo",model.getETimeTo());
-                                    intent.putExtra("shift",model.getShift());
-                                    intent.putExtra("day",model.getDay());
-                                    intent.putExtra( "adressTo",model.getAdressTo());
-                                    intent.putExtra( "adressFrom",model.getAdressFrom());
-                                    intent.putExtra("locLongFrom",String.valueOf(model.getLocFrom().getLong()));
-                                    intent.putExtra("locLatTo",String.valueOf(model.getLocTo().getLat()));
-                                    intent.putExtra("locLongTo",String.valueOf(model.getLocTo().getLong()));
-
-                                    startActivity(intent);
-                                }
-                                if(which==1){
-                                    Intent intent=new Intent(RiderRouteActivity.this,RiderRouteMapActivity.class);
-                                    intent.putExtra("pid",model.getRouteID());
-                                    intent.putExtra("latFrom",String.valueOf( model.getLocFrom().getLat()));
-                                    intent.putExtra("longFrom",String.valueOf( model.getLocFrom().getLong()));
-                                    intent.putExtra("latTo",String.valueOf( model.getLocTo().getLat()));
-                                    intent.putExtra("longTo",String.valueOf( model.getLocTo().getLong()));
-                                    startActivity(intent);
-                                }
-                                if(which==2){
-                                    Intent intent=new Intent(RiderRouteActivity.this,RideActivity.class);
-                                    intent.putExtra("pid",model.getRouteID());
-                                    startActivity(intent);
-                                }
-                                if(which==3){
-                                    cartListRef.child("Rider")
-                                            .child(Prevalent.currentOnlineUser.getPhone())
-                                            .child("Ride")
-                                            .child(model.getRouteID())
-                                            .removeValue()
-                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<Void> task) {
-                                                    if(task.isSuccessful()){
-                                                        Toast.makeText(RiderRouteActivity.this,"Route removed Succesfully.",Toast.LENGTH_SHORT).show();
-                                                        // startActivity(new Intent(RiderRouteActivity.this,HomeActivity.class));
-                                                    }
-                                                }
-                                            });
-                                    DatabaseReference newRef=FirebaseDatabase.getInstance().getReference();
-                                    newRef.child("Riders").child(model.getRouteID()).removeValue();
-                                }
+                            public void onComplete(@NonNull Task<Void> task) {
+                              if(task.isSuccessful()){
+                                Toast.makeText(RiderRouteActivity.this,"Route removed Succesfully.",Toast.LENGTH_SHORT).show();
+                                // startActivity(new Intent(RiderRouteActivity.this,HomeActivity.class));
+                              }
                             }
-                        });
-                        builder.show();
-                    }
-                });
+                          });
+                  DatabaseReference newRef=FirebaseDatabase.getInstance().getReference();
+                  newRef.child("Riders").child(model.getRouteID()).removeValue();
+                }
+              }
+            });
+            builder.show();
+          }
+        });
 
-            }
+      }
 
-            @NonNull
-            @Override
-            public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent , int viewType) {
-                View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_item_layout,parent,false);
-                CartViewHolder holder=new CartViewHolder(view);
-                return holder;
-            }
-        };
+      @NonNull
+      @Override
+      public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent , int viewType) {
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_item_layout,parent,false);
+        CartViewHolder holder=new CartViewHolder(view);
+        return holder;
+      }
+    };
 
-        recyclerView.setAdapter(adapter);
-        adapter.startListening();
+    recyclerView.setAdapter(adapter);
+    adapter.startListening();
 
-    }
+  }
 
-    @Override
-    public void onBackPressed() {
-        startActivity(new Intent(this,MainActivity.class));
-    }
+  @Override
+  public void onBackPressed() {
+    startActivity(new Intent(this, DashboardDrawerActivity.class));
+  }
 }

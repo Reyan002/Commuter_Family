@@ -99,30 +99,28 @@ public class DashboardDrawerActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
-
-    public void displaySelectedScreen(int itemId){
-
-        Fragment fragment = null;
-        switch (itemId){
-            case R.id.nav_home:
-                fragment = new HomeFragment();
-                break;
-            case R.id.nav_drive:
-                startActivity(new Intent(DashboardDrawerActivity.this, DriveActivity.class));
-                Toast.makeText(this, "Driver Activity", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_passenger:
-                startActivity(new Intent(DashboardDrawerActivity.this, RiderRouteActivity.class));
-                Toast.makeText(this, "Passenger Activity", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_wallet:
-                Toast.makeText(this, "Wallet Activity work in progress...!!!", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_about:
-                Toast.makeText(this, "About Us Activity work in progress...!!!", Toast.LENGTH_SHORT).show();
-                break;
-        }
-
-    }
+//    public void displaySelectedScreen(int itemId){
+//
+//        Fragment fragment = null;
+//        switch (itemId){
+//            case R.id.nav_home:
+//                fragment = new HomeFragment();
+//                break;
+//            case R.id.nav_drive:
+//                startActivity(new Intent(DashboardDrawerActivity.this, DriveActivity.class));
+//                Toast.makeText(this, "Driver Activity", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.nav_passenger:
+//                startActivity(new Intent(DashboardDrawerActivity.this, RiderRouteActivity.class));
+//                Toast.makeText(this, "Passenger Activity", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.nav_wallet:
+//                Toast.makeText(this, "Wallet Activity work in progress...!!!", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.nav_about:
+//                Toast.makeText(this, "About Us Activity work in progress...!!!", Toast.LENGTH_SHORT).show();
+//                break;
+//        }
+//
+//    }
 }

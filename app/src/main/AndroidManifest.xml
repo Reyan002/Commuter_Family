@@ -44,9 +44,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".NaigationDrawerActivity.MainDrawerActivity"
-            android:label="@string/title_activity_main_drawer"></activity>
         <activity android:name=".Activities.AddCarActivity" />
         <activity android:name=".Activities.MatchActivity" />
         <!--
@@ -64,7 +61,8 @@
         <activity
             android:name=".Activities.RiderRouteMapActivity"
             android:label="@string/title_activity_rider_route_map" />
-        <activity android:name=".Activities.RiderRouteActivity" />
+        <activity android:name=".Activities.RiderRouteActivity"
+            android:parentActivityName=".DashBoardDrawerActivity.DashboardDrawerActivity"/>
         <activity
             android:name=".Activities.MapsActivity"
             android:label="@string/title_activity_maps" />
@@ -82,7 +80,8 @@
         -->
         <activity
             android:name=".Activities.DriveActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:parentActivityName=".DashBoardDrawerActivity.DashboardDrawerActivity" />
         <activity
             android:name=".Activities.RideActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
