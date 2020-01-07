@@ -13,7 +13,7 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     private Context context;
     private LayoutInflater layoutInflater;
-    private Integer [] images = {R.drawable.logo, R.drawable.logoicon,R.drawable.img_code_verification};
+    private Integer [] images = {R.drawable.cover1, R.drawable.cover2,R.drawable.cover3};
 
     public ViewPagerAdapter(Context context) {
         this.context = context;

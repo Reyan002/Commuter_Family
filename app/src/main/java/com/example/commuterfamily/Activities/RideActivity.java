@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.commuterfamily.Classes.DemoClass;
 import com.example.commuterfamily.Classes.LatLongClass;
+import com.example.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity;
 import com.example.commuterfamily.MapsCredentials.GPSTracker;
 import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
@@ -507,6 +508,6 @@ public class RideActivity extends AppCompatActivity  {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(RideActivity.this,MainActivity.class));
+        startActivity(new Intent(RideActivity.this, DashboardDrawerActivity.class));
     }
 }
