@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.commuterfamily.Activities.Notification;
 import com.example.commuterfamily.Classes.Nification;
+import com.example.commuterfamily.Classes.NotificationDisplay;
 import com.example.commuterfamily.R;
 
 import java.util.ArrayList;
@@ -19,10 +20,10 @@ import java.util.ArrayList;
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder> {
 
 
-    private ArrayList<Nification> list;
+    private ArrayList<NotificationDisplay> list;
     private Context context;
 
-    public NotificationAdapter(ArrayList<Nification> list, Context context) {
+    public NotificationAdapter(ArrayList<NotificationDisplay> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -38,9 +39,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public void onBindViewHolder(@NonNull NotificationViewHolder holder, int position) {
 
-        final Nification notify= list.get(position);
-        holder.Title.setText(notify.getFrom());
-        holder.Pick.setText(notify.getType());
+        final NotificationDisplay notify= list.get(position);
+        holder.Title.setText(notify.getName());
+        holder.Pick.setText(notify.getPhone());
 
 
     }
@@ -62,9 +63,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         super(itemView);
         this.view=itemView;
 
-        Title=(TextView)itemView.findViewById(R.id.title_noti);
-        Pick=(TextView)itemView.findViewById(R.id.starting);
-        DT=(TextView)itemView.findViewById(R.id.date);
+        Title= itemView.findViewById(R.id.title_noti);
+        Pick= itemView.findViewById(R.id.starting);
+        DT= itemView.findViewById(R.id.date);
     }
 
 }

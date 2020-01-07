@@ -33,7 +33,9 @@
         android:roundIcon="@mipmap/icon_image_new"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.Notification"></activity>
+        <activity android:name=".Activities.Notification"
+            android:parentActivityName=".DashBoardDrawerActivity.DashboardDrawerActivity"
+            ></activity>
         <activity
             android:name=".DashBoardDrawerActivity.DashboardDrawerActivity"
             android:label="@string/title_activity_dashboard_drawer"
