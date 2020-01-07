@@ -1,18 +1,15 @@
 package com.example.commuterfamily.DashBoardDrawerActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.commuterfamily.Activities.DriveActivity;
+import com.example.commuterfamily.Activities.RiderRouteActivity;
 import com.example.commuterfamily.DashBoardDrawerActivity.ui.HomeFragment;
 import com.example.commuterfamily.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import android.view.MenuItem;
-import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -69,16 +66,18 @@ public class DashboardDrawerActivity extends AppCompatActivity {
                         fragment = new HomeFragment();
                         break;
                     case R.id.nav_drive:
+                        startActivity(new Intent(DashboardDrawerActivity.this, DriveActivity.class));
                         Toast.makeText(DashboardDrawerActivity.this, "Driver Activity", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.nav_passenger:
+                        startActivity(new Intent(DashboardDrawerActivity.this, RiderRouteActivity.class));
                         Toast.makeText(DashboardDrawerActivity.this, "Passenger Activity", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.nav_wallet:
-                        Toast.makeText(DashboardDrawerActivity.this, "Wallet Activity", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DashboardDrawerActivity.this, "Wallet Activity work in progress...!!!", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.nav_about:
-                        Toast.makeText(DashboardDrawerActivity.this, "About Us Activity", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DashboardDrawerActivity.this, "About Us Activity work in progress...!!!", Toast.LENGTH_SHORT).show();
                         break;
                 }
                 return false;
@@ -110,22 +109,19 @@ public class DashboardDrawerActivity extends AppCompatActivity {
                 fragment = new HomeFragment();
                 break;
             case R.id.nav_drive:
+                startActivity(new Intent(DashboardDrawerActivity.this, DriveActivity.class));
                 Toast.makeText(this, "Driver Activity", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_passenger:
+                startActivity(new Intent(DashboardDrawerActivity.this, RiderRouteActivity.class));
                 Toast.makeText(this, "Passenger Activity", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_wallet:
-                Toast.makeText(this, "Wallet Activity", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Wallet Activity work in progress...!!!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_about:
-                Toast.makeText(this, "About Us Activity", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "About Us Activity work in progress...!!!", Toast.LENGTH_SHORT).show();
                 break;
-
-//            if (fragment != null) {
-//                FragmentTransaction ft = getSupportFragmentManager().beginTransaction()
-//                        .replace(R.id.nav_host_fragment).commit();
-//            }
         }
 
     }
