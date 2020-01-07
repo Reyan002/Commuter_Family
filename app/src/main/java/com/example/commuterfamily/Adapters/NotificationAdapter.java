@@ -13,19 +13,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.commuterfamily.Activities.Notification;
 import com.example.commuterfamily.Classes.Nification;
 import com.example.commuterfamily.Classes.NotificationDisplay;
+import com.example.commuterfamily.Classes.User;
 import com.example.commuterfamily.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder> {
 
 
-    private ArrayList<NotificationDisplay> list;
+    private ArrayList<User> list;
     private Context context;
+    private String Date;
+    private String Time;
 
-    public NotificationAdapter(ArrayList<NotificationDisplay> list, Context context) {
+    public NotificationAdapter(ArrayList<User> list, Context context, String date, String time) {
         this.list = list;
         this.context = context;
+        this.Date = date;
+        this.Time = time;
     }
 
     @NonNull
@@ -39,9 +45,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public void onBindViewHolder(@NonNull NotificationViewHolder holder, int position) {
 
-        final NotificationDisplay notify= list.get(position);
-        holder.Title.setText(notify.getName());
-        holder.Pick.setText(notify.getPhone());
+      User notify= list.get(position);
+//        holder.Title.setText(notify.getName());
+        holder.Pick.setText(notify.getName()+" Phone : "+notify.getPhone());
+        holder.DT.setText(Date+"  "+Time);
 
 
     }

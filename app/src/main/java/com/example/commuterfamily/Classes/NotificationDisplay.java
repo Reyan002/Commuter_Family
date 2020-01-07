@@ -3,9 +3,7 @@ package com.example.commuterfamily.Classes;
 public class NotificationDisplay {
     private String Name;
     private String Phone;
-    public NotificationDisplay(NotificationDisplay notificationDisplay){
 
-    }
 
 
 

@@ -1,24 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_margin="0.5dp"
     android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
 <TextView
+    android:padding="10dp"
+    android:textSize="24dp"
+    android:textColor="@color/colorPrimaryDark"
     android:text="You Have Notification From"
     android:id="@+id/title_noti"
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"/>
     <TextView
+        android:layout_marginLeft="10dp"
         android:text="Pick Up point is "
         android:id="@+id/starting"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <TextView
+
+       android:layout_marginLeft="10dp"
         android:text="Dated"
         android:id="@+id/date"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-</LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
