@@ -112,6 +112,7 @@ public class RiderRouteActivity extends AppCompatActivity {
                   intent.putExtra( "adressTo",model.getAdressTo());
                   intent.putExtra( "adressFrom",model.getAdressFrom());
                   intent.putExtra("locLongFrom",String.valueOf(model.getLocFrom().getLong()));
+                  intent.putExtra("locLatFrom",String.valueOf(model.getLocFrom().getLat()));
                   intent.putExtra("locLatTo",String.valueOf(model.getLocTo().getLat()));
                   intent.putExtra("locLongTo",String.valueOf(model.getLocTo().getLong()));
 

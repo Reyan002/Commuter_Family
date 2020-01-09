@@ -49,6 +49,7 @@ public class RiderRouteMapActivity extends FragmentActivity implements OnMapRead
     private GoogleMap mMap;
     private MarkerOptions place1, place2;
     private FusedLocationProviderClient mFusedLocationProviderClient;
+    public final static double AVERAGE_RADIUS_OF_EARTH = 6371;
 
     Button getDirection;
     private Polyline currentPolyline;
@@ -64,15 +65,39 @@ public class RiderRouteMapActivity extends FragmentActivity implements OnMapRead
         place2 = new MarkerOptions().position(new LatLng( Double.parseDouble(getIntent().getStringExtra("latTo")),Double.parseDouble(getIntent().getStringExtra("longTo")))).title("To");
         new FetchURL(RiderRouteMapActivity.this).execute(getUrl(place1.getPosition(), place2.getPosition(), "driving"), "driving");
 
+
         //27.658143,85.3199503
         //27.667491,85.3208583
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.mapNearBy);
         mapFragment.getMapAsync(this);
 
+        double a=calculateDistance(Double.parseDouble(getIntent().getStringExtra("latFrom")),
+                Double.parseDouble(getIntent().getStringExtra("longFrom")),
+                Double.parseDouble(getIntent().getStringExtra("latTo")),
+                Double.parseDouble(getIntent().getStringExtra("longTo"))
+                );
+        Toast.makeText(this, String.valueOf(a), Toast.LENGTH_SHORT).show();
 
     }
 
+
+    public double calculateDistance(double userLat, double userLng, double venueLat, double venueLng) {
+
+        double latDistance = Math.toRadians(userLat - venueLat);
+        double lngDistance = Math.toRadians(userLng - venueLng);
+
+        double a = (Math.sin(latDistance / 2) * Math.sin(latDistance / 2)) +
+                (Math.cos(Math.toRadians(userLat))) *
+                        (Math.cos(Math.toRadians(venueLat))) *
+                        (Math.sin(lngDistance / 2)) *
+                        (Math.sin(lngDistance / 2));
+
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        return   AVERAGE_RADIUS_OF_EARTH * c  ;
+
+    }
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;

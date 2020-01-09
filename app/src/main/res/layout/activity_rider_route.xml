@@ -26,22 +26,5 @@
         android:layout_height="match_parent"/>
 
 
-    <com.agrawalsuneet.dotsloader.loaders.LazyLoader
- android:layout_centerInParent="true"
-        android:id="@+id/loader"
-         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:layout_marginTop="30dp"
-        app:lazyloader_animDur="200"
-        app:lazyloader_dotsDist="10dp"
-        app:lazyloader_dotsRadius="5dp"
-        app:lazyloader_firstDelayDur="150"
-
-         app:lazyloader_secondDelayDur="300"
-        app:lazyloader_thirdDotColor="@color/colorAccent"
-        app:lazyloader_firstDotColor="@color/colorPrimaryDark"
-        app:lazyloader_secondDotColor="@color/colorPrimary"
-     />
 
 </RelativeLayout>

@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.commuterfamily.Activities.DriveActivity;
+import com.example.commuterfamily.Activities.Notification;
 import com.example.commuterfamily.Activities.RiderRouteActivity;
 import com.example.commuterfamily.DashBoardDrawerActivity.ui.HomeFragment;
 import com.example.commuterfamily.R;
+
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -85,11 +88,21 @@ public class DashboardDrawerActivity extends AppCompatActivity {
         });
 
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.dashboard_drawer, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.dashboard_drawer,menu);
+        MenuItem menuItem=menu.findItem(R.id.action_settings);
+        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+
+                Toast.makeText(DashboardDrawerActivity.this, "Hello Notification", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(DashboardDrawerActivity.this, Notification.class));
+                return false;
+            }
+        });
         return true;
     }
 
