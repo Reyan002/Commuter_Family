@@ -48,7 +48,7 @@ public class Notification extends AppCompatActivity {
             getSupportActionBar().setTitle("Notification");
 
         }
-        notificatioRef = FirebaseDatabase.getInstance().getReference().child("Notification").child("03408377547");
+        notificatioRef = FirebaseDatabase.getInstance().getReference().child("Notification").child(Prevalent.currentOnlineUser.getPhone());
 
         notificatioRef.addValueEventListener(new ValueEventListener() {
             @Override

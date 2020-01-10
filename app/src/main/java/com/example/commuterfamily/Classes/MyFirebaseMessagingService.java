@@ -46,6 +46,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             String type=remoteMessage.getData().get("type") ;
             Toast.makeText(this, type, Toast.LENGTH_SHORT).show();
+            switch (type){
+                 
+            }
 
             NotificationCompat.Builder notifyBuilder=new NotificationCompat.Builder(this);
 
