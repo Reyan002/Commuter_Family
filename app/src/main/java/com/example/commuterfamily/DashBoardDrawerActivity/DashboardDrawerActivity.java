@@ -7,11 +7,13 @@ import com.example.commuterfamily.Activities.DriveActivity;
 import com.example.commuterfamily.Activities.Notification;
 import com.example.commuterfamily.Activities.RiderRouteActivity;
 import com.example.commuterfamily.DashBoardDrawerActivity.ui.HomeFragment;
+import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
 
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import androidx.annotation.NonNull;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -19,6 +21,11 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -26,11 +33,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import ru.nikartm.support.ImageBadgeView;
 
 public class DashboardDrawerActivity extends AppCompatActivity {
 
+   long count ;
     private AppBarConfiguration mAppBarConfiguration;
+    TextView textCartItemCount;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +52,10 @@ public class DashboardDrawerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard_drawer);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+
+
 //        FloatingActionButton fab = findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -93,16 +111,27 @@ public class DashboardDrawerActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.dashboard_drawer,menu);
-        MenuItem menuItem=menu.findItem(R.id.action_settings);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
+        final MenuItem menuItem=menu.findItem(R.id.action_settings);
 
+
+
+
+        View actionView = MenuItemCompat.getActionView(menuItem);
+        textCartItemCount = actionView.findViewById(R.id.cart_badge);
+
+
+        showNumber();
+
+        actionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Toast.makeText(DashboardDrawerActivity.this, "Hello Notification", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(DashboardDrawerActivity.this, Notification.class));
-                return false;
+                textCartItemCount.setText("");
+
             }
         });
+
         return true;
     }
 
@@ -136,4 +165,52 @@ public class DashboardDrawerActivity extends AppCompatActivity {
 //        }
 //
 //    }
-}
+
+    private long showNumber(){
+
+
+        long ncount=0;
+
+        DatabaseReference notificatioRef;
+        notificatioRef = FirebaseDatabase.getInstance().getReference().child("Notification").child(Prevalent.currentOnlineUser.getPhone());
+
+        notificatioRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()) {
+                    count = dataSnapshot.getChildrenCount();
+
+                    setupBadge( count);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+        ncount=count;
+
+
+        return ncount;
+
+    }
+
+    private void setupBadge(long count) {
+
+        if (textCartItemCount != null) {
+            if ( count == 0) {
+                if (textCartItemCount.getVisibility() != View.GONE) {
+                    textCartItemCount.setVisibility(View.GONE);
+                }
+            } else {
+                textCartItemCount.setText(String.valueOf(Math.min(count, 99)));
+                if (textCartItemCount.getVisibility() != View.VISIBLE) {
+                    textCartItemCount.setVisibility(View.VISIBLE);
+                }
+            }
+        }
+}}

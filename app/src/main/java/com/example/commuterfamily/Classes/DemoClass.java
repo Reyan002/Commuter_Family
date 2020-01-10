@@ -14,6 +14,8 @@ public class DemoClass {
     public static String vnum;
     public static String Dlicence;
     public static String commuterMatch;
+    public static String lat;
+    public static String lng;
     public static String CarKey="";
 
 
