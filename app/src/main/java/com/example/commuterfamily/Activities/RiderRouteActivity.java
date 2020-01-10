@@ -23,7 +23,7 @@ import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
+ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -41,7 +41,7 @@ public class RiderRouteActivity extends AppCompatActivity {
     setContentView(R.layout.activity_rider_route);
     addRoute=findViewById(R.id.addRoute);
 
-    recyclerView=(RecyclerView)findViewById(R.id.cart_list);
+    recyclerView= findViewById(R.id.cart_list);
     recyclerView.setHasFixedSize(true);
     layoutManager=new LinearLayoutManager(this);
     recyclerView.setLayoutManager(layoutManager);
@@ -93,9 +93,9 @@ public class RiderRouteActivity extends AppCompatActivity {
         holder.kebab.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-            CharSequence options[]=new CharSequence[]{
-                    "See your Commute", "View Route","Edit","Remove"
-            };
+              CharSequence[] options = new CharSequence[]{
+                      "See your Commute", "View Route", "Edit", "Remove"
+              };
             AlertDialog.Builder builder=new AlertDialog.Builder(RiderRouteActivity.this);
             builder.setTitle("Route Option");
             builder.setItems(options , new DialogInterface.OnClickListener() {
@@ -112,6 +112,7 @@ public class RiderRouteActivity extends AppCompatActivity {
                   intent.putExtra( "adressTo",model.getAdressTo());
                   intent.putExtra( "adressFrom",model.getAdressFrom());
                   intent.putExtra("locLongFrom",String.valueOf(model.getLocFrom().getLong()));
+                  intent.putExtra("locLatFrom",String.valueOf(model.getLocFrom().getLat()));
                   intent.putExtra("locLatTo",String.valueOf(model.getLocTo().getLat()));
                   intent.putExtra("locLongTo",String.valueOf(model.getLocTo().getLong()));
 

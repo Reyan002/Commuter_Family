@@ -56,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
         logOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showPopup();
+                //showPopup();
+                startActivity(new Intent(MainActivity.this,Notification.class));
             }
         });
 
@@ -106,4 +107,7 @@ public class MainActivity extends AppCompatActivity {
         sessionManager.logoutUser();
         Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show();
     }
+
+
+    
 }

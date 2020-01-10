@@ -33,8 +33,8 @@ public class HomeFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.home_fragment,container,false);
 
-        viewPager = (ViewPager) myView.findViewById(R.id.pager);
-        sliderDotspanel = (LinearLayout) myView.findViewById(R.id.layout_dots);
+        viewPager = myView.findViewById(R.id.pager);
+        sliderDotspanel = myView.findViewById(R.id.layout_dots);
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getContext());
 

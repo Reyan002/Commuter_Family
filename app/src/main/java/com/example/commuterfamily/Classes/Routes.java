@@ -9,7 +9,8 @@ public class Routes {
     ,MTimeTo
     ,RouteID
     ,Shift
-    ,Time,AdressFrom,AdressTo;
+    ,Time,AdressFrom,AdressTo
+           ,PickUp;
 private LatLongClass
     LocFrom
     ,LocTo;
@@ -32,7 +33,8 @@ private LatLongClass
     public Routes() {
     }
 
-    public Routes(String date, String number, String day, String ETimeFrom, String ETimeTo, String MTimeFrom, String MTimeTo, String routeID, String shift, String time, String adressFrom, String adressTo, LatLongClass locFrom, LatLongClass locTo) {
+
+    public Routes(String date, String number, String day, String ETimeFrom, String ETimeTo, String MTimeFrom, String MTimeTo, String routeID, String shift, String time, String adressFrom, String adressTo, String pickUp, LatLongClass locFrom, LatLongClass locTo) {
         Date = date;
         Number = number;
         Day = day;
@@ -45,8 +47,17 @@ private LatLongClass
         Time = time;
         AdressFrom = adressFrom;
         AdressTo = adressTo;
+        PickUp = pickUp;
         LocFrom = locFrom;
         LocTo = locTo;
+    }
+
+    public void setPickUp(String pickUp) {
+        PickUp = pickUp;
+    }
+
+    public String getPickUp() {
+        return PickUp;
     }
 
     public void setNumber(String number) {

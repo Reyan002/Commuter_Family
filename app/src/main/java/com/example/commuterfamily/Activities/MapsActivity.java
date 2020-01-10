@@ -43,6 +43,7 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.TypeFilter;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -126,9 +127,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
         AutocompleteSupportFragment autocompleteFragmentTO = (AutocompleteSupportFragment)
                 getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment_to);
-        autocompleteFragment.setCountry("PAK");
-
-// Specify the types of place data to return
+ // Specify the types of place data to return
+        autocompleteFragmentTO.setCountry("PAK");
         autocompleteFragmentTO.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME,Place.Field.LAT_LNG,Place.Field.ADDRESS));
 
 // Set up a PlaceSelectionListener to handle the response
