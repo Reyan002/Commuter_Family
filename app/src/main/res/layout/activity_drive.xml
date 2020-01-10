@@ -15,10 +15,9 @@
         android:layout_centerHorizontal="true"
         android:weightSum="2">
 
-
    <Button
        android:layout_margin="5dp"
-       android:background="@drawable/dark_btn_bg"
+       android:background="@drawable/round_all_corners"
        android:textColor="@color/quantum_white_text"
        android:text="Add Car"
        android:id="@+id/car"
@@ -27,7 +26,7 @@
        android:layout_weight="1"/>
     <Button
         android:layout_margin="5dp"
-        android:background="@drawable/dark_btn_bg"
+        android:background="@drawable/round_all_corners"
         android:textColor="@color/quantum_white_text"
         android:text="Add Route"
         android:id="@+id/route"
