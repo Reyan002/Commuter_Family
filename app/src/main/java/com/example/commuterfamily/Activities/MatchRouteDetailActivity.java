@@ -39,6 +39,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -64,6 +66,7 @@ private TextView name,view;
 //private MapView mapView;
 private GoogleMap gMap;
 private MapFragment mapFragment;
+private TextView pickUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +77,7 @@ private MapFragment mapFragment;
         current_request="new";
         Initilize();
 
+        pickUp.setText(getIntent().getStringExtra("pick"));
 
         shift.setText(getIntent().getStringExtra("shift"));
         day.setText(getIntent().getStringExtra("day"));
@@ -294,9 +298,19 @@ private MapFragment mapFragment;
 
                             if(task.isSuccessful()){
 
+                                final String saveCurrentDate,saveCurrentime;
+
+                                Calendar calForDate= Calendar.getInstance();
+                                SimpleDateFormat currentDate=new SimpleDateFormat("MMM dd,YYY");
+                                saveCurrentDate=currentDate.format(calForDate.getTime());
+
+                                SimpleDateFormat currentTime=new SimpleDateFormat("HH:mm:ss a");
+                                saveCurrentime=currentTime.format(calForDate.getTime());
                                 HashMap<String ,String > chatNotifi=new HashMap<>();
                                 chatNotifi.put("from",sender);
                                 chatNotifi.put("type","request");
+                                chatNotifi.put("Date", saveCurrentDate);
+                                chatNotifi.put("Time",saveCurrentime);
 
 
                                 notify_ref.child(Pnumber).push().setValue(chatNotifi).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -319,6 +333,7 @@ private MapFragment mapFragment;
         });
     }
     public void Initilize(){
+        pickUp=findViewById(R.id.pick_text);
         cancle=findViewById(R.id.cancle_request);
         request=findViewById(R.id.button_request);
         shift=findViewById(R.id.textViewMR_SD1);

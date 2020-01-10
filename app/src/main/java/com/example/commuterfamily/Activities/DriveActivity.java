@@ -42,7 +42,7 @@ public class DriveActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_drive);
-    recyclerView=(RecyclerView)findViewById(R.id.vehicles_driver);
+    recyclerView= findViewById(R.id.vehicles_driver);
     kebab = findViewById(R.id.kebabCard);
 
     sessionManager=new SessionManager(this);
@@ -110,9 +110,9 @@ public class DriveActivity extends AppCompatActivity {
         holder.kebab.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-            CharSequence options[]=new CharSequence[]{
-                    "See Your Commute","View Route","Edit","Remove"
-            };
+              CharSequence[] options = new CharSequence[]{
+                      "See Your Commute", "View Route", "Edit", "Remove"
+              };
             AlertDialog.Builder builder=new AlertDialog.Builder(DriveActivity.this);
             builder.setTitle("Route Option");
             builder.setItems(options , new DialogInterface.OnClickListener() {
@@ -130,6 +130,7 @@ public class DriveActivity extends AppCompatActivity {
                   intent.putExtra("adressTo", model.getAdressTo());
                   intent.putExtra("adressFrom", model.getAdressFrom());
                   intent.putExtra("locLongFrom", String.valueOf(model.getLocFrom().getLong()));
+                  intent.putExtra("locLatFrom", String.valueOf(model.getLocFrom().getLong()));
                   intent.putExtra("locLatTo", String.valueOf(model.getLocTo().getLat()));
                   intent.putExtra("locLongTo", String.valueOf(model.getLocTo().getLong()));
                   startActivity(intent);

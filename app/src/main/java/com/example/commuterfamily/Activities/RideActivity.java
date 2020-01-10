@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -46,7 +47,8 @@ public class RideActivity extends AppCompatActivity  {
     private RadioGroup radioGroup;
     private FloatingActionButton next;
     private LatLongClass latLongFrom,latLongTo;
-    String randomKey;
+    private String randomKey;
+    private EditText pickup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,7 @@ public class RideActivity extends AppCompatActivity  {
         latLongTo=new LatLongClass();
         spinnerTimeMornigFrom.setEnabled(false);
         spinnerTimeMornigTo.setEnabled(false);
+        pickup=findViewById(R.id.pickPoint);
         // Spinner click listener
 
         next.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +72,7 @@ public class RideActivity extends AppCompatActivity  {
             public void onClick(View v) {
                 if(!txtDay.equals("")&&!txtShift.equals("")&&
                 ((!txtMTimeFrom.equals("")&&!txtMTimeTo.equals(""))||
-                         (!txtETimeFrom.equals("")&&!txtEtimeTo.equals("") ) )
+                         (!txtETimeFrom.equals("")&&!txtEtimeTo.equals("")||!pickup.getText().equals("") ) )
         &&!DemoClass.latLongFrom.equals("")&&!DemoClass.latLongTo.equals("") )  {
             addRiderIntoDataBase();
         }
@@ -410,6 +413,7 @@ public class RideActivity extends AppCompatActivity  {
             cartMap.put("Number",Prevalent.currentOnlineUser.getPhone());
             cartMap.put("RouteID", randomKey);
             cartMap.put("Day", txtDay);
+            cartMap.put("PickUp",pickup.getText().toString());
             cartMap.put("Shift", txtShift);
             cartMap.put("Date", saveCurrentDate);
             cartMap.put("Time", saveCurrentime);
