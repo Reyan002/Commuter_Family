@@ -22,6 +22,7 @@
         android:src="@drawable/ic_person_outline_black_24dp" />
 
     <TextView
+        android:id="@+id/userName"
         android:textColor="@android:color/white"
         android:layout_gravity="center"
 
@@ -32,11 +33,12 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
+
         android:textColor="@android:color/white"
 
         android:layout_gravity="center"
 
-        android:id="@+id/textView"
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nav_header_subtitle" />

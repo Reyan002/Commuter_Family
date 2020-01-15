@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.commuterfamily.Activities.DriveActivity;
+import com.example.commuterfamily.Activities.MainActivity;
 import com.example.commuterfamily.Activities.Notification;
 import com.example.commuterfamily.Activities.RiderRouteActivity;
 import com.example.commuterfamily.Activities.SplashScreenActivity;
@@ -30,6 +31,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -41,6 +43,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import ru.nikartm.support.ImageBadgeView;
 
 public class DashboardDrawerActivity extends AppCompatActivity {
@@ -57,6 +60,7 @@ public class DashboardDrawerActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        sessionManager = new SessionManager(DashboardDrawerActivity.this);
 
 
 
@@ -72,6 +76,12 @@ public class DashboardDrawerActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
+        View headerView=navigationView.getHeaderView(0);
+        TextView userNameTextView=headerView.findViewById(R.id.userName);
+        CircleImageView profilePicture=headerView.findViewById(R.id.imageView );
+
+        userNameTextView.setText(Prevalent.currentOnlineUser.getName());
+        Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.active_dots).into(profilePicture);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_drive, R.id.nav_passenger,
                 R.id.nav_wallet, R.id.nav_about)
@@ -133,8 +143,7 @@ public class DashboardDrawerActivity extends AppCompatActivity {
     private void logout() {
 
         sessionManager.logoutUser();
-        startActivity(new Intent(DashboardDrawerActivity.this, SplashScreenActivity.class));
-    }
+     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

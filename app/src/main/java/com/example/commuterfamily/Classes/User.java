@@ -1,6 +1,7 @@
 package com.example.commuterfamily.Classes;
 
 public class User {
+    private String Image;
     private String Date;
     private String Time;
     private String Name;
@@ -9,6 +10,14 @@ public class User {
     private String Phone;
     private String CNIC;
     private String Gender;
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        Image = image;
+    }
 
     public String getDate() {
         return Date;
