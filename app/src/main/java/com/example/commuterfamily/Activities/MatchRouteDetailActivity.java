@@ -73,9 +73,11 @@ private TextView pickUp;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match_route_detail);
 
-        firebaseInstanceId=FirebaseInstanceId.getInstance().getToken();
+                firebaseInstanceId=FirebaseInstanceId.getInstance().getToken();
         current_request="new";
         Initilize();
+
+
 
         pickUp.setText(getIntent().getStringExtra("pick"));
 
@@ -108,7 +110,7 @@ private TextView pickUp;
         manageRequestInfo();
     }
     public void manageDetails(){
-        if(!sender.equals(Pnumber)){
+        if(!sender.equals(Pnumber) ){
             request.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

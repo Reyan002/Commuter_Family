@@ -24,14 +24,14 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     private ArrayList<User> list;
     private Context context;
-    private String Date;
-    private String Time;
+    private    ArrayList<String> date ;
+    private    ArrayList<String> time ;
 
-    public NotificationAdapter(ArrayList<User> list, Context context, String date, String time) {
+    public NotificationAdapter(ArrayList<User> list, Context context, ArrayList<String> date, ArrayList<String> time) {
         this.list = list;
         this.context = context;
-        this.Date = date;
-        this.Time = time;
+        this.date = date;
+        this.time = time;
     }
 
     @NonNull
@@ -45,6 +45,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public void onBindViewHolder(@NonNull NotificationViewHolder holder, int position) {
 
+        String Date=date.get(position);
+        String Time=time.get(position);
       User notify= list.get(position);
 //        holder.Title.setText(notify.getName());
         holder.Pick.setText(notify.getName()+" Phone : "+notify.getPhone());

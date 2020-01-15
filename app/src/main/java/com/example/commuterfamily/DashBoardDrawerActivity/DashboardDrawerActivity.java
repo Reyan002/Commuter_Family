@@ -1,11 +1,13 @@
 package com.example.commuterfamily.DashBoardDrawerActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.commuterfamily.Activities.DriveActivity;
 import com.example.commuterfamily.Activities.Notification;
 import com.example.commuterfamily.Activities.RiderRouteActivity;
+import com.example.commuterfamily.Activities.SplashScreenActivity;
 import com.example.commuterfamily.DashBoardDrawerActivity.ui.HomeFragment;
 import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
@@ -13,6 +15,7 @@ import com.example.commuterfamily.R;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -20,6 +23,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.commuterfamily.SessionManager.SessionManager;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,10 +45,10 @@ import ru.nikartm.support.ImageBadgeView;
 
 public class DashboardDrawerActivity extends AppCompatActivity {
 
-   long count ;
+    long count ;
     private AppBarConfiguration mAppBarConfiguration;
     TextView textCartItemCount;
-
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,12 +104,38 @@ public class DashboardDrawerActivity extends AppCompatActivity {
                     case R.id.nav_about:
                         Toast.makeText(DashboardDrawerActivity.this, "About Us Activity work in progress...!!!", Toast.LENGTH_SHORT).show();
                         break;
+                    case R.id.nav_logout:
+                        showPopup();
+                        break;
                 }
                 return false;
             }
         });
 
     }
+
+    private void showPopup() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(DashboardDrawerActivity.this);
+        alert.setMessage("Are you sure?")
+                .setPositiveButton("Logout", new DialogInterface.OnClickListener()                 {
+
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        logout();
+
+                    }
+                }).setNegativeButton("Cancel", null);
+
+        AlertDialog alert1 = alert.create();
+        alert1.show();
+    }
+
+    private void logout() {
+
+        sessionManager.logoutUser();
+        startActivity(new Intent(DashboardDrawerActivity.this, SplashScreenActivity.class));
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -141,30 +171,6 @@ public class DashboardDrawerActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-//    public void displaySelectedScreen(int itemId){
-//
-//        Fragment fragment = null;
-//        switch (itemId){
-//            case R.id.nav_home:
-//                fragment = new HomeFragment();
-//                break;
-//            case R.id.nav_drive:
-//                startActivity(new Intent(DashboardDrawerActivity.this, DriveActivity.class));
-//                Toast.makeText(this, "Driver Activity", Toast.LENGTH_SHORT).show();
-//                break;
-//            case R.id.nav_passenger:
-//                startActivity(new Intent(DashboardDrawerActivity.this, RiderRouteActivity.class));
-//                Toast.makeText(this, "Passenger Activity", Toast.LENGTH_SHORT).show();
-//                break;
-//            case R.id.nav_wallet:
-//                Toast.makeText(this, "Wallet Activity work in progress...!!!", Toast.LENGTH_SHORT).show();
-//                break;
-//            case R.id.nav_about:
-//                Toast.makeText(this, "About Us Activity work in progress...!!!", Toast.LENGTH_SHORT).show();
-//                break;
-//        }
-//
-//    }
 
     private long showNumber(){
 

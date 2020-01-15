@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.commuterfamily.Adapters.NotificationAdapter;
+import com.example.commuterfamily.Classes.DemoClass;
 import com.example.commuterfamily.Classes.Nification;
+import com.example.commuterfamily.Classes.Noti;
 import com.example.commuterfamily.Classes.NotificationDisplay;
 import com.example.commuterfamily.Classes.Routes;
 import com.example.commuterfamily.Classes.User;
@@ -30,14 +32,16 @@ public class Notification extends AppCompatActivity {
     private  LinearLayoutManager layoutManager;
     private DatabaseReference notificatioRef,refDisplay;
     private NotificationAdapter notificationAdapter;
-    private User user;
-    private String date,time;
+     private String date,time;
+     private Noti notif;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
-        recyclerView= findViewById(R.id.notifiList);
+        notif=new Noti();
+         recyclerView= findViewById(R.id.notifiList);
 
         recyclerView.setHasFixedSize(true);
         layoutManager=new LinearLayoutManager(this);
@@ -53,27 +57,30 @@ public class Notification extends AppCompatActivity {
         notificatioRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Toast.makeText(Notification.this, String.valueOf(dataSnapshot.getChildrenCount()), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(Notification.this, String.valueOf(dataSnapshot.getChildrenCount()), Toast.LENGTH_SHORT).show();
                 final ArrayList<User> noti=new ArrayList<>();
+                final ArrayList<String> date=new ArrayList<>();
+                final ArrayList<String> time=new ArrayList<>();
 
-                final NotificationDisplay[] notificationDisplay = {new NotificationDisplay()};
-                user =new User();
+
+
 
                 for ( DataSnapshot snapshot : dataSnapshot.getChildren()) {
  //                    Toast.makeText(Notification.this, snapshot.getValue(Nification.class).toString() , Toast.LENGTH_SHORT).show();
                     final Nification order = snapshot.getValue(Nification.class);
-                    date=order.getDate();
-                    time=order.getTime();
+                     date.add(order.getDate());
+                   time.add(order.getTime());
                     refDisplay = FirebaseDatabase.getInstance().getReference().child("Users").child(order.getFrom()) ;
                     refDisplay.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                         user = dataSnapshot.getValue(User.class);
+                           DemoClass.user= dataSnapshot.getValue(User.class) ;
 
 
-                            Toast.makeText(Notification.this, user.getName(), Toast.LENGTH_SHORT).show();
 
+//                            Toast.makeText(Notification.this, user.getName(), Toast.LENGTH_SHORT).show();
+//
 
                         }
 
@@ -85,11 +92,12 @@ public class Notification extends AppCompatActivity {
                     });
 
 
-                    noti.add(user);
+
+                    noti.add(DemoClass.user);
 
    }
 //             Toast.makeText(Notification.this, noti.size(), Toast.LENGTH_SHORT).show();
-                notificationAdapter = new NotificationAdapter( noti, Notification.this,date,time);
+                notificationAdapter = new NotificationAdapter( noti, Notification.this, date, time);
 
                 recyclerView.setAdapter(notificationAdapter);
                 notificationAdapter.notifyDataSetChanged();
