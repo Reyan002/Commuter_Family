@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/setting_profile_image_change"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/upload_image_background"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/setting_profile_image_change"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/setting_profile_image_change_btn"
+            android:text="Change Profile Picture"
+            android:textColor="@android:color/black"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Name"
+            android:textStyle="bold"
+            android:textAlignment="textStart"
+            android:textSize="30dp"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/textViewProfileUN"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:hint="User Name"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Number"
+            android:textStyle="bold"
+            android:textAlignment="textStart"
+            android:textSize="30dp"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/textViewProfileNum"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:hint="03001234567"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Email"
+            android:textStyle="bold"
+            android:textAlignment="textStart"
+            android:textSize="30dp"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/textViewProfileEmail"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:hint="abc@xyz.com"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+
+</LinearLayout>

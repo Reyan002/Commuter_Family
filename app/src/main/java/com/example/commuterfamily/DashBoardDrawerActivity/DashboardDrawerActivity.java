@@ -30,9 +30,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -57,9 +55,6 @@ public class DashboardDrawerActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
-
 //        FloatingActionButton fab = findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -68,6 +63,7 @@ public class DashboardDrawerActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+        sessionManager = new SessionManager(DashboardDrawerActivity.this);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -85,6 +81,7 @@ public class DashboardDrawerActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
                 Fragment fragment = null;
                 switch (menuItem.getItemId()){
                     case R.id.nav_home:
@@ -99,7 +96,7 @@ public class DashboardDrawerActivity extends AppCompatActivity {
                         Toast.makeText(DashboardDrawerActivity.this, "Passenger Activity", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.nav_wallet:
-                        Toast.makeText(DashboardDrawerActivity.this, "Wallet Activity work in progress...!!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DashboardDrawerActivity.this, "Wallet Activity under construction...!!!", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.nav_about:
                         Toast.makeText(DashboardDrawerActivity.this, "About Us Activity work in progress...!!!", Toast.LENGTH_SHORT).show();
@@ -112,28 +109,31 @@ public class DashboardDrawerActivity extends AppCompatActivity {
             }
         });
 
+        View header = navigationView.getHeaderView(0);
+        header.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(DashboardDrawerActivity.this, "Header", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 
     private void showPopup() {
         AlertDialog.Builder alert = new AlertDialog.Builder(DashboardDrawerActivity.this);
         alert.setMessage("Are you sure?")
-                .setPositiveButton("Logout", new DialogInterface.OnClickListener()                 {
+                .setPositiveButton("SignOut", new DialogInterface.OnClickListener()                 {
 
                     public void onClick(DialogInterface dialog, int which) {
 
-                        logout();
+                        sessionManager.logoutUser();
 
                     }
                 }).setNegativeButton("Cancel", null);
 
         AlertDialog alert1 = alert.create();
         alert1.show();
-    }
-
-    private void logout() {
-
-        sessionManager.logoutUser();
-        startActivity(new Intent(DashboardDrawerActivity.this, SplashScreenActivity.class));
     }
 
     @Override
