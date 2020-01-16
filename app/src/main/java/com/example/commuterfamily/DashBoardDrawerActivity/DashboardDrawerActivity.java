@@ -54,7 +54,6 @@ public class DashboardDrawerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard_drawer);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 //        FloatingActionButton fab = findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -83,6 +82,7 @@ public class DashboardDrawerActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
                 Fragment fragment = null;
+
                 switch (menuItem.getItemId()){
                     case R.id.nav_home:
                         fragment = new HomeFragment();

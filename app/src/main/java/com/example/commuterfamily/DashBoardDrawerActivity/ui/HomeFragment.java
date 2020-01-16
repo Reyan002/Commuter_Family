@@ -1,6 +1,7 @@
 package com.example.commuterfamily.DashBoardDrawerActivity.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,7 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.example.commuterfamily.Activities.DriveActivity;
+import com.example.commuterfamily.Activities.RiderRouteActivity;
+import com.example.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity;
 import com.example.commuterfamily.R;
 
 import androidx.annotation.NonNull;
@@ -78,6 +83,37 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        myView.findViewById(R.id.card1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), DriveActivity.class));
+            }
+        });
+
+        myView.findViewById(R.id.card2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), RiderRouteActivity.class));
+
+            }
+        });
+
+        myView.findViewById(R.id.card3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Wallet Activity under construction...:p", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        myView.findViewById(R.id.card4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "About Us Activity under construction...:p", Toast.LENGTH_SHORT).show();
 
             }
         });

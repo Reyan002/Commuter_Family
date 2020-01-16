@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.commuterfamily.R;
 
@@ -39,6 +40,13 @@ public class SplashScreenActivity extends AppCompatActivity {
       public void onClick(View view) {
         startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+      }
+    });
+
+    findViewById(R.id.textForgPass).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Toast.makeText(SplashScreenActivity.this, "Forgot Password", Toast.LENGTH_SHORT).show();
       }
     });
 

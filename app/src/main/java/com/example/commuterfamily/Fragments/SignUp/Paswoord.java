@@ -19,6 +19,7 @@ import com.example.commuterfamily.Activities.MainActivity;
 import com.example.commuterfamily.Activities.SplashScreenActivity;
 import com.example.commuterfamily.Classes.DemoClass;
 import com.example.commuterfamily.Classes.User;
+import com.example.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity;
 import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
 import com.example.commuterfamily.SessionManager.SessionManager;
@@ -118,7 +119,7 @@ public class Paswoord extends Fragment {
                                     Prevalent.UserPhoneKey=userData.getPhone();
                                     sessionManager.createLoginSession(number,pass);
                                     loadingBar.dismiss();
-                                    startActivity(new Intent(getContext(),MainActivity.class));
+                                    startActivity(new Intent(getContext(), DashboardDrawerActivity.class));
                                 }
                             });
 
