@@ -29,6 +29,7 @@ import com.example.commuterfamily.Activities.SignUpActivity;
 import com.example.commuterfamily.Activities.SplashScreenActivity;
 import com.example.commuterfamily.Classes.DemoClass;
 import com.example.commuterfamily.Classes.User;
+import com.example.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity;
 import com.example.commuterfamily.R;
 import com.example.commuterfamily.SessionManager.SessionManager;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -202,7 +203,7 @@ public class InfoFragment extends Fragment {
                                         Toast.makeText(getContext(),"Congratulations! your Account has Created succesfully",Toast.LENGTH_SHORT).show();
                                         loadingBar.dismiss();
                                         sessionManager.createLoginSession(phone,pass);
-                                        startActivity(new Intent(getContext(), MainActivity.class));
+                                        startActivity(new Intent(getContext(), DashboardDrawerActivity.class));
                                     }
                                     else {
                                         loadingBar.dismiss();

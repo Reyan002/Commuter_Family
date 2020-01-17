@@ -1,6 +1,7 @@
 package com.example.commuterfamily.DashBoardDrawerActivity.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,17 +11,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.example.commuterfamily.Activities.MainActivity;
-import com.example.commuterfamily.Classes.Images;
+import com.example.commuterfamily.Activities.DriveActivity;
+import com.example.commuterfamily.Activities.RiderRouteActivity;
+import com.example.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity;
 import com.example.commuterfamily.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,18 +23,13 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import java.util.ArrayList;
-
 public class HomeFragment extends Fragment {
 
-    View myView;
+   private View myView;
     private ViewPager viewPager;
     private LinearLayout sliderDotspanel;
     private int dotscount;
     private ImageView[] dots;
-    private StorageReference firebaseStorage;
-     private  ViewPagerAdapter viewPagerAdapter;
-    private DatabaseReference image;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Nullable
@@ -49,23 +38,15 @@ public class HomeFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.home_fragment,container,false);
 
-ImageView imageView=myView.findViewById(R.id.imageVIEW);
         viewPager = myView.findViewById(R.id.pager);
         sliderDotspanel = myView.findViewById(R.id.layout_dots);
 
-
-
-
-                viewPagerAdapter = new ViewPagerAdapter(getContext() );
-
-
-
-
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getContext());
 
         viewPager.setAdapter(viewPagerAdapter);
 
         dotscount = viewPagerAdapter.getCount();
-        dots = new ImageView[3];
+        dots = new ImageView[dotscount];
 
         for(int i = 0; i < dotscount; i++){
 
@@ -102,6 +83,37 @@ ImageView imageView=myView.findViewById(R.id.imageVIEW);
 
             @Override
             public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        myView.findViewById(R.id.card1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), DriveActivity.class));
+            }
+        });
+
+        myView.findViewById(R.id.card2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), RiderRouteActivity.class));
+
+            }
+        });
+
+        myView.findViewById(R.id.card3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Wallet Activity under construction...:p", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        myView.findViewById(R.id.card4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "About Us Activity under construction...:p", Toast.LENGTH_SHORT).show();
 
             }
         });
