@@ -61,12 +61,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.drawercheck).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, DashboardDrawerActivity.class));
-            }
-        });
+
 
     }
     @Override

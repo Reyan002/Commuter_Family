@@ -8,8 +8,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.commuterfamily.Activities.MainActivity;
+import com.example.commuterfamily.Classes.Images;
 import com.example.commuterfamily.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +29,8 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import java.util.ArrayList;
+
 public class HomeFragment extends Fragment {
 
     View myView;
@@ -25,6 +38,9 @@ public class HomeFragment extends Fragment {
     private LinearLayout sliderDotspanel;
     private int dotscount;
     private ImageView[] dots;
+    private StorageReference firebaseStorage;
+     private  ViewPagerAdapter viewPagerAdapter;
+    private DatabaseReference image;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Nullable
@@ -33,15 +49,23 @@ public class HomeFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.home_fragment,container,false);
 
+ImageView imageView=myView.findViewById(R.id.imageVIEW);
         viewPager = myView.findViewById(R.id.pager);
         sliderDotspanel = myView.findViewById(R.id.layout_dots);
 
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getContext());
+
+
+
+                viewPagerAdapter = new ViewPagerAdapter(getContext() );
+
+
+
+
 
         viewPager.setAdapter(viewPagerAdapter);
 
         dotscount = viewPagerAdapter.getCount();
-        dots = new ImageView[dotscount];
+        dots = new ImageView[3];
 
         for(int i = 0; i < dotscount; i++){
 

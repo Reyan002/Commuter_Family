@@ -1,13 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
+<!--    <android.support.design.widget.AppBarLayout-->
+<!--        android:id="@+id/app_bar_settings"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="75dp">-->
+<!--        <android.support.v7.widget.Toolbar-->
+<!--            android:id="@+id/tool_bar_settings"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content">-->
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent">-->
+<!--                <TextView-->
+<!--                    android:layout_alignParentStart="true"-->
+<!--                    android:id="@+id/setting_close"-->
+<!--                    android:text="Close"-->
+<!--                    android:textColor="@android:color/white"-->
+<!--                    android:textSize="17dp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content" />-->
+<!--                <TextView-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:id="@+id/setting_update"-->
+<!--                    android:text="Update"-->
+<!--                    android:textColor="@android:color/white"-->
+<!--                    android:textSize="17dp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginRight="10dp"/>-->
 
+<!--            </RelativeLayout>-->
+
+<!--        </android.support.v7.widget.Toolbar>-->
+<!--    </android.support.design.widget.AppBarLayout>-->
+<!--    <de.hdodenhof.circleimageview.CircleImageView-->
+<!--        android:id="@+id/setting_profile_image_change"-->
+<!--        android:layout_width="130dp"-->
+<!--        android:layout_height="130dp"-->
+<!--        android:layout_below="@+id/app_bar_settings"-->
+<!--        android:src="@drawable/profile"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_centerHorizontal="true"/>-->
+<!--    <TextView-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_below="@+id/setting_profile_image_change"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:id="@+id/setting_profile_image_change_btn"-->
+<!--        android:text="Change Profile Picture"-->
+<!--        android:textColor="@android:color/black"-->
+<!--        android:textSize="17dp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        />-->
+<!--    <EditText-->
+<!--        android:padding="10dp"-->
+<!--        android:layout_marginTop="15dp"-->
+<!--        android:id="@+id/setting_phone_number"-->
+<!--        android:hint="Phone Number..."-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/setting_profile_image_change_btn"/>-->
+<!--    <EditText-->
+<!--        android:padding="10dp"-->
+<!--        android:layout_marginTop="15dp"-->
+<!--        android:id="@+id/setting_full_name"-->
+<!--        android:hint="Full Name..."-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/setting_phone_number"/>-->
+<!--    <EditText-->
+<!--        android:padding="10dp"-->
+<!--        android:layout_marginTop="15dp"-->
+<!--        android:id="@+id/setting_address"-->
+<!--        android:hint="Address..."-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/setting_full_name"/>-->
 
 </RelativeLayout>
-
-<!--    git add .-->
-<!--    git commit -m"reyan"-->
-<!--    git push/pull-->

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
-    android:background="@drawable/side_nav_bar"
+    android:background="@color/colorPrimary"
     android:gravity="bottom"
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -14,33 +14,32 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageView"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_gravity="center"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:contentDescription="@string/nav_header_desc"
+        android:layout_gravity="center_horizontal"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:src="@drawable/ic_person_outline_black_24dp" />
+        app:srcCompat="@drawable/whitelogo" />
 
     <TextView
-        android:id="@+id/userName"
-        android:textColor="@android:color/white"
-        android:layout_gravity="center"
-
-        android:layout_width="wrap_content"
+        android:id="@+id/textViewUserName"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="@string/nav_header_title"
+        android:text="User Name"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/quantum_white_100"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
-
-        android:textColor="@android:color/white"
-
-        android:layout_gravity="center"
-
-        android:id="@+id/email"
+        android:id="@+id/textViewEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/nav_header_subtitle" />
+        android:text="username@commutersfamily.com"
+        android:textColor="@color/quantum_white_100"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"/>
 
 </LinearLayout>

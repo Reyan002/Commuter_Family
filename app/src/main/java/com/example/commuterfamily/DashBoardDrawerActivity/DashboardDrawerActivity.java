@@ -9,6 +9,8 @@ import com.example.commuterfamily.Activities.MainActivity;
 import com.example.commuterfamily.Activities.Notification;
 import com.example.commuterfamily.Activities.RiderRouteActivity;
 import com.example.commuterfamily.Activities.SplashScreenActivity;
+import com.example.commuterfamily.Activities.UpdateProfile;
+import com.example.commuterfamily.Classes.User;
 import com.example.commuterfamily.DashBoardDrawerActivity.ui.HomeFragment;
 import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
@@ -25,21 +27,24 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.commuterfamily.SessionManager.SessionManager;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import com.squareup.picasso.Picasso;
 
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +54,9 @@ import ru.nikartm.support.ImageBadgeView;
 public class DashboardDrawerActivity extends AppCompatActivity {
 
     long count ;
+    private TextView userName;
+    private CircleImageView imageView;
+    private TextView email;
     private AppBarConfiguration mAppBarConfiguration;
     TextView textCartItemCount;
     SessionManager sessionManager;
@@ -60,7 +68,8 @@ public class DashboardDrawerActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        sessionManager = new SessionManager(DashboardDrawerActivity.this);
+
+
 
 
 
@@ -72,16 +81,13 @@ public class DashboardDrawerActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+        sessionManager = new SessionManager(DashboardDrawerActivity.this);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        View headerView=navigationView.getHeaderView(0);
-        TextView userNameTextView=headerView.findViewById(R.id.userName);
-        CircleImageView profilePicture=headerView.findViewById(R.id.imageView );
 
-        userNameTextView.setText(Prevalent.currentOnlineUser.getName());
-        Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.active_dots).into(profilePicture);
+
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_drive, R.id.nav_passenger,
                 R.id.nav_wallet, R.id.nav_about)
@@ -95,6 +101,7 @@ public class DashboardDrawerActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
                 Fragment fragment = null;
                 switch (menuItem.getItemId()){
                     case R.id.nav_home:
@@ -109,7 +116,7 @@ public class DashboardDrawerActivity extends AppCompatActivity {
                         Toast.makeText(DashboardDrawerActivity.this, "Passenger Activity", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.nav_wallet:
-                        Toast.makeText(DashboardDrawerActivity.this, "Wallet Activity work in progress...!!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DashboardDrawerActivity.this, "Wallet Activity under construction...!!!", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.nav_about:
                         Toast.makeText(DashboardDrawerActivity.this, "About Us Activity work in progress...!!!", Toast.LENGTH_SHORT).show();
@@ -122,16 +129,56 @@ public class DashboardDrawerActivity extends AppCompatActivity {
             }
         });
 
+        View header = navigationView.getHeaderView(0);
+        userName=header.findViewById(R.id.textViewUserName);
+        email  =header.findViewById(R.id.textViewEmail);
+        imageView=header.findViewById(R.id.imageView );
+        profile();
+        Toast.makeText(this, Prevalent.currentOnlineUser.getEmail(), Toast.LENGTH_SHORT).show();
+ //        userNameTextView.setText(Prevalent.currentOnlineUser.getName());
+//        userEmailTextView.setText(Prevalent.currentOnlineUser.getEmail());
+        header.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DashboardDrawerActivity.this, UpdateProfile.class));
+                Toast.makeText(DashboardDrawerActivity.this, "Header", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
+
+    public void profile(){
+
+           DatabaseReference  request_ref=FirebaseDatabase.getInstance().getReference().child("Users");
+           request_ref.child(Prevalent.currentOnlineUser.getPhone()).addValueEventListener(new ValueEventListener() {
+               @Override
+               public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                   if(dataSnapshot.exists()){
+                       userName.setText(dataSnapshot.getValue(User.class).getName());
+                       email.setText(dataSnapshot.getValue(User.class).getEmail());
+                       Picasso.get().load(dataSnapshot.getValue(User.class).getImage()).placeholder(R.drawable.ic_person_black_24dp).into(imageView);
+
+                   }
+               }
+
+               @Override
+               public void onCancelled(@NonNull DatabaseError databaseError) {
+
+               }
+           });
+
+    }
+
 
     private void showPopup() {
         AlertDialog.Builder alert = new AlertDialog.Builder(DashboardDrawerActivity.this);
         alert.setMessage("Are you sure?")
-                .setPositiveButton("Logout", new DialogInterface.OnClickListener()                 {
+                .setPositiveButton("SignOut", new DialogInterface.OnClickListener()                 {
 
                     public void onClick(DialogInterface dialog, int which) {
 
-                        logout();
+                        sessionManager.logoutUser();
 
                     }
                 }).setNegativeButton("Cancel", null);
@@ -140,10 +187,12 @@ public class DashboardDrawerActivity extends AppCompatActivity {
         alert1.show();
     }
 
+
     private void logout() {
 
         sessionManager.logoutUser();
      }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -228,4 +277,8 @@ public class DashboardDrawerActivity extends AppCompatActivity {
                 }
             }
         }
-}}
+}
+
+
+
+}
