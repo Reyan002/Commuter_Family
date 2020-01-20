@@ -66,6 +66,5 @@ dependencies {
     implementation 'com.github.nikartm:image-support:1.0.5'
 
 
-
 }
 apply plugin: 'com.google.gms.google-services'

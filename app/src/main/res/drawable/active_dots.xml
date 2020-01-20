@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="oval" android:useLevel="true"
-    android:dither="true">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <size android:height="9dp" android:width="9dp"/>
+    <item>
 
-    <solid android:color="#bebebe"/>
-</shape>
+        <shape android:shape="ring"
+            android:innerRadius="0dp"
+            android:thickness="4dp"
+            android:useLevel="false">
+
+            <solid android:color="#bebebe" />
+
+
+
+        </shape>
+
+
+
+    </item>
+
+
+
+</layer-list>

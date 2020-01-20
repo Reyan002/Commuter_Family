@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.commuterfamily.Activities.DriveActivity;
+import com.example.commuterfamily.Activities.IntroActivity;
 import com.example.commuterfamily.Activities.Notification;
 import com.example.commuterfamily.Activities.RiderRouteActivity;
 import com.example.commuterfamily.Activities.SplashScreenActivity;
+import com.example.commuterfamily.DashBoardDrawerActivity.ui.AboutUs;
 import com.example.commuterfamily.DashBoardDrawerActivity.ui.HomeFragment;
 import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
@@ -96,10 +98,11 @@ public class DashboardDrawerActivity extends AppCompatActivity {
                         Toast.makeText(DashboardDrawerActivity.this, "Passenger Activity", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.nav_wallet:
-                        Toast.makeText(DashboardDrawerActivity.this, "Wallet Activity under construction...!!!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(DashboardDrawerActivity.this, IntroActivity.class));
+//                        Toast.makeText(DashboardDrawerActivity.this, "Wallet Activity under construction...!!!", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.nav_about:
-                        Toast.makeText(DashboardDrawerActivity.this, "About Us Activity work in progress...!!!", Toast.LENGTH_SHORT).show();
+                        fragment = new AboutUs();
                         break;
                     case R.id.nav_logout:
                         showPopup();
