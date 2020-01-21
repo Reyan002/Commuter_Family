@@ -1,6 +1,7 @@
 package com.example.commuterfamily.Classes;
 
 public class User {
+
     private String Image;
     private String Date;
     private String Time;

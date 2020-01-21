@@ -26,6 +26,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.commuterfamily.Classes.DemoClass.user;
+
 public class Notification extends AppCompatActivity {
 
     private RecyclerView recyclerView;
@@ -75,11 +77,11 @@ public class Notification extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                           DemoClass.user= dataSnapshot.getValue(User.class) ;
+                           user= dataSnapshot.getValue(User.class) ;
 
 
 
-//                            Toast.makeText(Notification.this, user.getName(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Notification.this, user.getName(), Toast.LENGTH_SHORT).show();
 //
 
                         }
@@ -93,7 +95,7 @@ public class Notification extends AppCompatActivity {
 
 
 
-                    noti.add(DemoClass.user);
+                    noti.add(user);
 
    }
 //             Toast.makeText(Notification.this, noti.size(), Toast.LENGTH_SHORT).show();

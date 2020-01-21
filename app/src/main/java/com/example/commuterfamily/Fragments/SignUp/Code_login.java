@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -88,10 +89,17 @@ public class Code_login extends Fragment {
     }
     private void verifyVerificationCode(String code) {
         //creating the credential
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
-
+//        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
+        try {
+            PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
+            signInWithPhoneAuthCredential(credential);
+        }catch (Exception e){
+            Toast toast = Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER,0,0);
+            toast.show();
+        }
         //signing the user
-        signInWithPhoneAuthCredential(credential);
+
     }
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {

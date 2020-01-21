@@ -2,10 +2,17 @@ package com.example.commuterfamily.Activities;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -67,6 +74,8 @@ private TextView name,view;
 private GoogleMap gMap;
 private MapFragment mapFragment;
 private TextView pickUp;
+    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS =0 ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +124,9 @@ private TextView pickUp;
                 @Override
                 public void onClick(View v) {
                     if(current_request.equals ("new")){
-                        sendRequestOfRide();
+
+                        Toast.makeText(MatchRouteDetailActivity.this, current_request, Toast.LENGTH_SHORT).show();
+                        showAlert();
                     }
                     if(current_request.equals ("request_sent")){
                         cancle.setVisibility(View.GONE);
@@ -288,6 +299,20 @@ private TextView pickUp;
 
             }
         });
+    }
+    public void showAlert(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+// Add the buttons
+         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                sendSMSMessage();
+             }
+        });
+        builder.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+finish();            }
+        });
+        builder.show();
     }
     public void sendRequestOfRide(){
         request_ref.child(sender).child(Pnumber).child("request_type").setValue("sent").addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -463,6 +488,43 @@ private TextView pickUp;
         gMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));
         gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng,14.0f));
 
+
+    }
+
+    protected void sendSMSMessage() {
+
+
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.SEND_SMS)
+                != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.SEND_SMS)) {
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.SEND_SMS},
+                        MY_PERMISSIONS_REQUEST_SEND_SMS);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_SEND_SMS: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage("+923123850471", null, "Hello G", null, null);
+                    sendRequestOfRide();
+                    Toast.makeText(getApplicationContext(), "SMS sent.",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            "SMS faild, please try again.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+            }
+        }
 
     }
 }
