@@ -21,9 +21,7 @@ public class AboutUs extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.about_us_fragment,container,false);
 
-
-
-
         return myView;
     }
+
 }

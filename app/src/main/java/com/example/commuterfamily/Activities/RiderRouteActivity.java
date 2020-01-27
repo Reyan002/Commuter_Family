@@ -27,7 +27,6 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.okhttp.Route;
 
 public class RiderRouteActivity extends AppCompatActivity {
 

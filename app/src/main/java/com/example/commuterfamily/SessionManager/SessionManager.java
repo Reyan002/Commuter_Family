@@ -125,6 +125,7 @@ public class SessionManager {
 
         // Staring Login Activity
         _context.startActivity(i);
+
     }
     public String getIsKey(){
 //        HashMap<String, String> user = new HashMap<String, String>();

@@ -1,17 +1,12 @@
 package com.example.commuterfamily.Activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -19,7 +14,6 @@ import com.example.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivit
 import com.example.commuterfamily.R;
 import com.example.commuterfamily.SessionManager.SessionManager;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 

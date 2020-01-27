@@ -1,7 +1,6 @@
 
 package com.example.commuterfamily.Activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -11,17 +10,11 @@ import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.example.commuterfamily.Classes.DemoClass;
 import com.example.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity;
 import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
 import com.example.commuterfamily.SessionManager.SessionManager;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 public class Splash extends AppCompatActivity {
 

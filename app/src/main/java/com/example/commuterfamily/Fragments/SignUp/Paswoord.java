@@ -14,8 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.commuterfamily.Activities.LoginActivity;
-import com.example.commuterfamily.Activities.MainActivity;
 import com.example.commuterfamily.Activities.SplashScreenActivity;
 import com.example.commuterfamily.Classes.DemoClass;
 import com.example.commuterfamily.Classes.User;

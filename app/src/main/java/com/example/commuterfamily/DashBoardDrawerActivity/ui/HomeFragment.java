@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.commuterfamily.Activities.DriveActivity;
+import com.example.commuterfamily.Activities.IntroActivity;
 import com.example.commuterfamily.Activities.RiderRouteActivity;
 import com.example.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity;
 import com.example.commuterfamily.R;
@@ -21,6 +22,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 public class HomeFragment extends Fragment {
@@ -30,6 +33,7 @@ public class HomeFragment extends Fragment {
     private LinearLayout sliderDotspanel;
     private int dotscount;
     private ImageView[] dots;
+    static FragmentManager fragmentManager;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Nullable
@@ -105,6 +109,7 @@ public class HomeFragment extends Fragment {
         myView.findViewById(R.id.card3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(getContext(), IntroActivity.class));
                 Toast.makeText(getContext(), "Wallet Activity under construction...:p", Toast.LENGTH_SHORT).show();
 
             }
@@ -113,8 +118,17 @@ public class HomeFragment extends Fragment {
         myView.findViewById(R.id.card4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "About Us Activity under construction...:p", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "About Us Activity under construction...:p", Toast.LENGTH_SHORT).show();
 
+//                Fragment fragment = new AboutUs();
+//                    fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, new AboutUs()).commit();
+                Fragment fragment;
+                fragment = new AboutUs();
+                if (fragment != null) {
+                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.nav_host_fragment, fragment);
+                    ft.commit();
+                }
             }
         });
 

@@ -6,13 +6,10 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.commuterfamily.Classes.IntroClasses.IntroViewPagerAdapter;
 import com.example.commuterfamily.Classes.IntroClasses.ScreenItem;
@@ -47,7 +44,7 @@ public class IntroActivity extends AppCompatActivity {
         final List<ScreenItem> mlist = new ArrayList<>();
         adapter = new IntroViewPagerAdapter(this, mlist);
 
-        mlist.add(new ScreenItem("Driver","This is Driver page",R.mipmap.driver_foreground));
+        mlist.add(new ScreenItem("Set Schedule","Text",R.drawable.intro_set_schedule));
         mlist.add(new ScreenItem("Passenger","This is Passenger page",R.mipmap.ic_passenger_foreground));
         mlist.add(new ScreenItem("Wallet","This is Wallet page",R.mipmap.ic_wallet_foreground));
 
