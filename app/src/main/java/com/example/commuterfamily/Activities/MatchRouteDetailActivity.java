@@ -126,7 +126,7 @@ private TextView pickUp;
                     if(current_request.equals ("new")){
 
                         Toast.makeText(MatchRouteDetailActivity.this, current_request, Toast.LENGTH_SHORT).show();
-                        showAlert();
+                        sendRequestOfRide();
                     }
                     if(current_request.equals ("request_sent")){
                         cancle.setVisibility(View.GONE);
@@ -340,7 +340,7 @@ finish();            }
                                 chatNotifi.put("Time",saveCurrentime);
 
 
-                                notify_ref.child(Pnumber).push().setValue(chatNotifi).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                notify_ref.child(Pnumber).child(getIntent().getStringExtra("rid")).setValue(chatNotifi).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if(task.isSuccessful()){

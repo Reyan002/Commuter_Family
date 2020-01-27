@@ -1,4 +1,3 @@
-
 <resources>
   <string name="app_name">Commuters Family</string>
   <string name="log_in">Log In</string>
@@ -107,7 +106,6 @@
   <string name="scr5">Our main aim is to make daily commute easier for daily commuters, connecting neghbors sharing same route and time to reduce amount of vehicles on road in turn making transport system more effecient</string>
   <string name="scr6">Our mission is to bridge the mobility gap in Pakistan and connect commuters to opportunity and also empower women. To transform the transportation into next level by providing a social platform that helps every new and existing commuters in their commute.</string>
   <string name="scr7">Schedule your transportation for work, college or university with the neighbors of same destination.</string>
-
 
 
 </resources>

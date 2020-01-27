@@ -6,6 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.commuterfamily.Adapters.NotificationAdapter;
@@ -17,6 +20,8 @@ import com.example.commuterfamily.Classes.Routes;
 import com.example.commuterfamily.Classes.User;
 import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +41,7 @@ public class Notification extends AppCompatActivity {
     private NotificationAdapter notificationAdapter;
      private String date,time;
      private Noti notif;
+     private DatabaseReference getNotificatioRef;
 
 
     @Override
@@ -45,6 +51,7 @@ public class Notification extends AppCompatActivity {
         notif=new Noti();
          recyclerView= findViewById(R.id.notifiList);
 
+         getNotificatioRef=FirebaseDatabase.getInstance().getReference().child("Notification");
         recyclerView.setHasFixedSize(true);
         layoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -54,64 +61,70 @@ public class Notification extends AppCompatActivity {
             getSupportActionBar().setTitle("Notification");
 
         }
-        notificatioRef = FirebaseDatabase.getInstance().getReference().child("Notification").child(Prevalent.currentOnlineUser.getPhone());
 
-        notificatioRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                Toast.makeText(Notification.this, String.valueOf(dataSnapshot.getChildrenCount()), Toast.LENGTH_SHORT).show();
-                final ArrayList<User> noti=new ArrayList<>();
-                final ArrayList<String> date=new ArrayList<>();
-                final ArrayList<String> time=new ArrayList<>();
-
-
-
-
-                for ( DataSnapshot snapshot : dataSnapshot.getChildren()) {
- //                    Toast.makeText(Notification.this, snapshot.getValue(Nification.class).toString() , Toast.LENGTH_SHORT).show();
-                    final Nification order = snapshot.getValue(Nification.class);
-                     date.add(order.getDate());
-                   time.add(order.getTime());
-                    refDisplay = FirebaseDatabase.getInstance().getReference().child("Users").child(order.getFrom()) ;
-                    refDisplay.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                           user= dataSnapshot.getValue(User.class) ;
-
-
-
-                            Toast.makeText(Notification.this, user.getName(), Toast.LENGTH_SHORT).show();
-//
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            Toast.makeText(Notification.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                    });
-
-
-
-                    noti.add(user);
-
-   }
-//             Toast.makeText(Notification.this, noti.size(), Toast.LENGTH_SHORT).show();
-                notificationAdapter = new NotificationAdapter( noti, Notification.this, date, time);
-
-                recyclerView.setAdapter(notificationAdapter);
-                notificationAdapter.notifyDataSetChanged();
-
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseRecyclerOptions<Nification> options=
+                new FirebaseRecyclerOptions.Builder<Nification>()
+                        .setQuery(getNotificatioRef.child(Prevalent.currentOnlineUser.getPhone()),Nification.class)
+                        .build();
+
+
+        FirebaseRecyclerAdapter<Nification,NotificationAdapter> adapter=
+                new FirebaseRecyclerAdapter<Nification, NotificationAdapter>(options) {
+                    @Override
+                    protected void onBindViewHolder(@NonNull final NotificationAdapter notificationAdapter, int i, @NonNull Nification nification) {
+
+                        notificationAdapter.product_price.setText(nification.getDate()+nification.getTime());
+                        DatabaseReference noi=getRef(i).child("from").getRef();
+                        noi.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                if(dataSnapshot.exists()){
+
+                                    DatabaseReference reference;
+                                    reference=FirebaseDatabase.getInstance().getReference().child("Users");
+                                    reference.child(dataSnapshot.getValue().toString()).addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            notificationAdapter.product_desc.setText(dataSnapshot.getValue(User.class).getName() +" - "+dataSnapshot.getValue(User.class).getPhone());
+                                            //notificationAdapter.product_name.setText(dataSnapshot.getValue(User.class).getPhone());
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        }
+                                    });
+                                }
+                                else{
+                                    Toast.makeText(Notification.this, "No any Notification", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+
+
+
+                    @Override
+                    public NotificationAdapter onCreateViewHolder(ViewGroup parent , int viewType) {
+                        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.notify_item,parent,false);
+                        NotificationAdapter holder=new NotificationAdapter(view);
+                        return holder;
+                    }
+                };
+        recyclerView.setAdapter(adapter);
+        adapter.startListening();
+    }
+
 }
