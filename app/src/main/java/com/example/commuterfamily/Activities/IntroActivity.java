@@ -1,3 +1,4 @@
+
 package com.example.commuterfamily.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,92 +23,94 @@ import java.util.List;
 
 public class IntroActivity extends AppCompatActivity {
 
-    private ViewPager viewPager;
-    private IntroViewPagerAdapter adapter;
-    TabLayout tabIndicator;
-    int pos = 0;
-    Button getStart;
-    TextView btnnext;
-    Animation btnAnim;
+  private ViewPager viewPager;
+  private IntroViewPagerAdapter adapter;
+  TabLayout tabIndicator;
+  int pos = 0;
+  Button getStart;
+  TextView btnnext;
+  Animation btnAnim;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_intro);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_intro);
 
-        btnnext = findViewById(R.id.button_NxtInt);
-        getStart = findViewById(R.id.getStartBtn);
-        btnAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.button_anim);
-        viewPager = findViewById(R.id.viewPagerIntro);
-        tabIndicator = findViewById(R.id.tab_indicator);
-        tabIndicator.setSelectedTabIndicator(null);
-        final List<ScreenItem> mlist = new ArrayList<>();
-        adapter = new IntroViewPagerAdapter(this, mlist);
+    btnnext = findViewById(R.id.button_NxtInt);
+    getStart = findViewById(R.id.getStartBtn);
+    btnAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.button_anim);
+    viewPager = findViewById(R.id.viewPagerIntro);
+    tabIndicator = findViewById(R.id.tab_indicator);
+    tabIndicator.setSelectedTabIndicator(null);
+    final List<ScreenItem> mlist = new ArrayList<>();
+    adapter = new IntroViewPagerAdapter(this, mlist);
 
-        mlist.add(new ScreenItem("Set Schedule","Text",R.drawable.intro_set_schedule));
-        mlist.add(new ScreenItem("Passenger","This is Passenger page",R.mipmap.ic_passenger_foreground));
-        mlist.add(new ScreenItem("Wallet","This is Wallet page",R.mipmap.ic_wallet_foreground));
+    mlist.add(new ScreenItem("Find a Perfect Match","@string/scr2",R.drawable.intro_match));
+    mlist.add(new ScreenItem("Cheaper & Affordable","@string/scr4",R.drawable.intro_payment));
+    mlist.add(new ScreenItem("Reliable and Safe","@string/scr5",R.drawable.intro_safe));
+    mlist.add(new ScreenItem("Empower Women","string/scr6",R.drawable.intro_female_only));
+    mlist.add(new ScreenItem("Set Schedule","string/scr6",R.drawable.intro_set_schedule));
 
-        viewPager.setAdapter(adapter);
-        tabIndicator.setupWithViewPager(viewPager);
+    viewPager.setAdapter(adapter);
+    tabIndicator.setupWithViewPager(viewPager);
 
-        findViewById(R.id.textSkip).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(IntroActivity.this, DashboardDrawerActivity.class));
-            }
-        });
+    findViewById(R.id.textSkip).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        startActivity(new Intent(IntroActivity.this, DashboardDrawerActivity.class));
+      }
+    });
 
-        btnnext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    btnnext.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
 
-                pos = viewPager.getCurrentItem();
-                if (pos <= mlist.size()){
-                    pos++;
-                    viewPager.setCurrentItem(pos);
-                }
-                if (pos == mlist.size()-1){
-                    loadLastScreen();
-                }
-            }
-        });
+        pos = viewPager.getCurrentItem();
+        if (pos <= mlist.size()){
+          pos++;
+          viewPager.setCurrentItem(pos);
+        }
+        if (pos == mlist.size()-1){
+          loadLastScreen();
+        }
+      }
+    });
 
-        tabIndicator.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                if (tab.getPosition() == mlist.size()-1){
-                    loadLastScreen();
-                }
-            }
+    tabIndicator.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
+      @Override
+      public void onTabSelected(TabLayout.Tab tab) {
+        if (tab.getPosition() == mlist.size()-1){
+          loadLastScreen();
+        }
+      }
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
+      @Override
+      public void onTabUnselected(TabLayout.Tab tab) {
 
-            }
+      }
 
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
+      @Override
+      public void onTabReselected(TabLayout.Tab tab) {
 
-            }
-        });
-        
-        getStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(IntroActivity.this, SplashScreenActivity.class));
-            }
-        });
+      }
+    });
 
-    }
+    getStart.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        startActivity(new Intent(IntroActivity.this, SplashScreenActivity.class));
+      }
+    });
 
-    private void loadLastScreen() {
+  }
 
-        btnnext.setVisibility(View.INVISIBLE);
-        getStart.setVisibility(View.VISIBLE);
-        tabIndicator.setVisibility(View.INVISIBLE);
+  private void loadLastScreen() {
 
-        getStart.setAnimation(btnAnim);
+    btnnext.setVisibility(View.INVISIBLE);
+    getStart.setVisibility(View.VISIBLE);
+    tabIndicator.setVisibility(View.INVISIBLE);
 
-    }
+    getStart.setAnimation(btnAnim);
+
+  }
 }

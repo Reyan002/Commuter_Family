@@ -38,10 +38,7 @@
             android:name=".DashBoardDrawerActivity.DashboardDrawerActivity"
             android:label="@string/title_activity_dashboard_drawer"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".DashBoardDrawerActivity.DashBoardDrawerActivity"
-            android:label="@string/title_activity_dash_board_drawer"
-            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".Activities.IntroActivity"
             android:theme="@style/AppTheme.NoActionBar" />
