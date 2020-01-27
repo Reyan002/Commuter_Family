@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -33,6 +34,13 @@ public class IntroActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
+    if (restorePrefData()){
+        Intent intent = new Intent(IntroActivity.this,SplashScreenActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     setContentView(R.layout.activity_intro);
 
     btnnext = findViewById(R.id.button_NxtInt);
@@ -56,7 +64,7 @@ public class IntroActivity extends AppCompatActivity {
     findViewById(R.id.textSkip).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        startActivity(new Intent(IntroActivity.this, DashboardDrawerActivity.class));
+        startActivity(new Intent(IntroActivity.this, SplashScreenActivity.class));
       }
     });
 
@@ -98,12 +106,15 @@ public class IntroActivity extends AppCompatActivity {
       @Override
       public void onClick(View v) {
         startActivity(new Intent(IntroActivity.this, SplashScreenActivity.class));
+
+        savePrefsData();
+        finish();
       }
     });
 
   }
 
-  private void loadLastScreen() {
+    private void loadLastScreen() {
 
     btnnext.setVisibility(View.INVISIBLE);
     getStart.setVisibility(View.VISIBLE);
@@ -111,5 +122,19 @@ public class IntroActivity extends AppCompatActivity {
 
     getStart.setAnimation(btnAnim);
 
+  }
+
+  private void savePrefsData(){
+      SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
+      SharedPreferences.Editor editor = pref.edit();
+      editor.putBoolean("isIntrupted",true);
+      editor.commit();
+  }
+
+  private boolean restorePrefData() {
+
+    SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
+    Boolean isIntroActOpenBefore = pref.getBoolean("isIntrupted",false);
+    return isIntroActOpenBefore;
   }
 }
