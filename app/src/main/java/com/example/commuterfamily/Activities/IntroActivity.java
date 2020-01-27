@@ -1,4 +1,3 @@
-
 package com.example.commuterfamily.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,11 +44,11 @@ public class IntroActivity extends AppCompatActivity {
     final List<ScreenItem> mlist = new ArrayList<>();
     adapter = new IntroViewPagerAdapter(this, mlist);
 
-    mlist.add(new ScreenItem("Find a Perfect Match","@string/scr2",R.drawable.intro_match));
-    mlist.add(new ScreenItem("Cheaper & Affordable","@string/scr4",R.drawable.intro_payment));
-    mlist.add(new ScreenItem("Reliable and Safe","@string/scr5",R.drawable.intro_safe));
-    mlist.add(new ScreenItem("Empower Women","string/scr6",R.drawable.intro_female_only));
-    mlist.add(new ScreenItem("Set Schedule","string/scr6",R.drawable.intro_set_schedule));
+    mlist.add(new ScreenItem("Find a Perfect Match",getString(R.string.scr2),R.drawable.intro_match));
+    mlist.add(new ScreenItem("Cheaper & Affordable",getString(R.string.scr4),R.drawable.intro_payment));
+    mlist.add(new ScreenItem("Reliable and Safe",getString(R.string.scr5),R.drawable.intro_safe));
+    mlist.add(new ScreenItem("Empower Women",getString(R.string.scr6),R.drawable.intro_female_only));
+    mlist.add(new ScreenItem("Set Schedule",getString(R.string.scr7),R.drawable.intro_set_schedule));
 
     viewPager.setAdapter(adapter);
     tabIndicator.setupWithViewPager(viewPager);
