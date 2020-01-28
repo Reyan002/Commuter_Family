@@ -83,6 +83,9 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <activity
+            android:name=".Activities.IntroActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".Activities.DriveActivity"
             android:parentActivityName=".DashBoardDrawerActivity.DashboardDrawerActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />

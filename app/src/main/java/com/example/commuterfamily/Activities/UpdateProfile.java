@@ -35,6 +35,7 @@ import java.util.HashMap;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UpdateProfile extends AppCompatActivity {
+    private static final int galleryPic=1;
 
     private CircleImageView profile_image_view;
     private TextView close_btn,update_btn,profile_change_btn;
@@ -85,31 +86,27 @@ public class UpdateProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checker="clicked";
-                CropImage.activity(imageUri)
-                        .setAspectRatio(1,1)
-                        .start(UpdateProfile.this);
+                openGallery();
             }
         });
     }
+    private void openGallery() {
+        Intent galleryInten=new Intent();
+        galleryInten.setAction(Intent.ACTION_GET_CONTENT);
+        galleryInten.setType("image/*");
+
+        startActivityForResult(galleryInten,galleryPic);
+    }
 
     @Override
-    protected void onActivityResult(int requestCode , int resultCode , Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode , resultCode , data);
-
-        if(requestCode==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode==RESULT_OK && data!=null){
-            CropImage.ActivityResult result=CropImage.getActivityResult(data);
-            imageUri=result.getUri();
-
+        if(requestCode==galleryPic&&resultCode==RESULT_OK&&data!=null){
+            imageUri=data.getData();
             profile_image_view.setImageURI(imageUri);
         }
-        else{
-
-            Toast.makeText(this,"Error Try Again",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(UpdateProfile.this,UpdateProfile.class));
-            finish();
-        }
-
     }
+
 
     private void updateOnlyUserInfo()
     {
@@ -178,9 +175,9 @@ public class UpdateProfile extends AppCompatActivity {
 
                         HashMap<String,Object> userMap=new HashMap<>();
                         userMap.put("Name",fname_ed.getText().toString());
-                        userMap.put("Adress",adress_ed.getText().toString());
-                        userMap.put("PhoneOrder",phone_ed.getText().toString());
-                        userMap.put("image",myUrl);
+                        userMap.put("Email",adress_ed.getText().toString());
+                        userMap.put("Phone",phone_ed.getText().toString());
+                        userMap.put("Image",myUrl);
                         reference.child(Prevalent.currentOnlineUser.getPhone()).updateChildren(userMap);
 
                         loadingBar.dismiss();

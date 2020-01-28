@@ -3,24 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
-    android:background="@drawable/side_nav_bar"
-    android:gravity="bottom"
-    android:orientation="vertical"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+     android:orientation="vertical"
+    android:gravity="center_vertical"
+     android:paddingBottom="@dimen/activity_vertical_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_marginTop="30dp"
+        app:civ_border_width="1dp"
+        app:civ_border_color="@color/colorPrimary"
+        android:layout_gravity="center"
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         app:srcCompat="@mipmap/ic_launcher_round" />
 
     <TextView
+        android:textSize="16dp"
+        android:id="@+id/nameU"
+        android:textColor="@android:color/black"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
@@ -28,8 +32,13 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+
+        android:textColor="@android:color/black"
+
+        android:textSize="10dp"
+        android:gravity="center"
+        android:id="@+id/emailU"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/nav_header_subtitle" />
 

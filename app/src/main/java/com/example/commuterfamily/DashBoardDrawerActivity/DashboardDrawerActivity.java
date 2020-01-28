@@ -2,12 +2,15 @@ package com.example.commuterfamily.DashBoardDrawerActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.icu.text.CaseMap;
 import android.os.Bundle;
 
 import com.example.commuterfamily.Activities.DriveActivity;
 import com.example.commuterfamily.Activities.Notification;
 import com.example.commuterfamily.Activities.RiderRouteActivity;
 import com.example.commuterfamily.Activities.SplashScreenActivity;
+import com.example.commuterfamily.Activities.UpdateProfile;
+import com.example.commuterfamily.Classes.User;
 import com.example.commuterfamily.DashBoardDrawerActivity.ui.HomeFragment;
 import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
@@ -30,6 +33,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -39,10 +44,13 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import ru.nikartm.support.ImageBadgeView;
 
 public class DashboardDrawerActivity extends AppCompatActivity {
 
+    private TextView userName,email;
+    private  CircleImageView profilePicture;
     long count ;
     private AppBarConfiguration mAppBarConfiguration;
     TextView textCartItemCount;
@@ -113,13 +121,35 @@ public class DashboardDrawerActivity extends AppCompatActivity {
         header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(DashboardDrawerActivity.this, "Header", Toast.LENGTH_SHORT).show();
-            }
+startActivity(new Intent(DashboardDrawerActivity.this, UpdateProfile.class));            }
         });
 
+        userName=header.findViewById(R.id.nameU);
+ email=header.findViewById(R.id.emailU);
+        profilePicture=header.findViewById(R.id.imageView);
+
+        fetch();
 
     }
 
+
+    public void fetch(){
+        DatabaseReference get=FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.currentOnlineUser.getPhone());
+        get.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                userName.setText(dataSnapshot.getValue(User.class).getName());
+                  email.setText(dataSnapshot.getValue(User.class).getEmail());
+                Picasso.get().load(dataSnapshot.getValue(User.class).getImage()).placeholder(R.drawable.ic_person_black_24dp).into(profilePicture);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
     private void showPopup() {
         AlertDialog.Builder alert = new AlertDialog.Builder(DashboardDrawerActivity.this);
         alert.setMessage("Are you sure?")
