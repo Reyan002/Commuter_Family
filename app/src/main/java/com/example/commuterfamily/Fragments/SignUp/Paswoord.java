@@ -8,12 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.commuterfamily.Activities.LoginActivity;
 import com.example.commuterfamily.Activities.SplashScreenActivity;
 import com.example.commuterfamily.Classes.DemoClass;
 import com.example.commuterfamily.Classes.User;
@@ -39,6 +41,7 @@ public class Paswoord extends Fragment {
     String parentDB="Users";
     private ProgressDialog loadingBar;
     private SessionManager sessionManager;
+    private TextView PassFor;
     public Paswoord() {
         // Required empty public constructor
     }
@@ -48,6 +51,7 @@ public class Paswoord extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.password_fragment, container, false);
         btn_next = view.findViewById(R.id.next_to_login);
+        PassFor=view.findViewById(R.id.forgetPassword);
         btn_back = view.findViewById(R.id.btn_backLoginPass_2);
         loadingBar=new ProgressDialog(getContext());
         numberr=view.findViewById(R.id.et_password_login);
@@ -79,6 +83,14 @@ public class Paswoord extends Fragment {
 
 
 
+            }
+        });
+        PassFor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginActivity.fragmentManagerLogin.beginTransaction()
+                        .replace(R.id.fragment_container_login, new ResetNumberFragment(), null)
+                        .commit();
             }
         });
 

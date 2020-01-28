@@ -43,12 +43,12 @@ public class SplashScreenActivity extends AppCompatActivity {
       }
     });
 
-    findViewById(R.id.textForgPass).setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Toast.makeText(SplashScreenActivity.this, "Forgot Password", Toast.LENGTH_SHORT).show();
-      }
-    });
+//    findViewById(R.id.textForgPass).setOnClickListener(new View.OnClickListener() {
+//      @Override
+//      public void onClick(View v) {
+//        Toast.makeText(SplashScreenActivity.this, "Forgot Password", Toast.LENGTH_SHORT).show();
+//      }
+//    });
 
   }
 
