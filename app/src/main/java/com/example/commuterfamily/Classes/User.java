@@ -80,8 +80,6 @@ public class User {
         return Phone;
     }
 
-
-
     public void setCNIC(String CNIC) {
         this.CNIC = CNIC;
     }
