@@ -63,14 +63,7 @@ public class DashboardDrawerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard_drawer);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+
         sessionManager = new SessionManager(DashboardDrawerActivity.this);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -84,39 +77,7 @@ public class DashboardDrawerActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
         navigationView.bringToFront();
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
-                Fragment fragment = null;
-
-                switch (menuItem.getItemId()){
-                    case R.id.nav_home:
-                        fragment = new HomeFragment();
-                        break;
-                    case R.id.nav_drive:
-                        startActivity(new Intent(DashboardDrawerActivity.this, DriveActivity.class));
-                        Toast.makeText(DashboardDrawerActivity.this, "Driver Activity", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.nav_passenger:
-                        startActivity(new Intent(DashboardDrawerActivity.this, RiderRouteActivity.class));
-                        Toast.makeText(DashboardDrawerActivity.this, "Passenger Activity", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.nav_wallet:
-                        Toast.makeText(DashboardDrawerActivity.this, "Wallet Activity under construction...!!!", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.nav_about:
-                        Toast.makeText(DashboardDrawerActivity.this, "About Us Activity work in progress...!!!", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.nav_logout:
-                        showPopup();
-                        break;
-                }
-                return false;
-            }
-        });
 
         View header = navigationView.getHeaderView(0);
         header.setOnClickListener(new View.OnClickListener() {
@@ -230,8 +191,6 @@ public class DashboardDrawerActivity extends AppCompatActivity {
 
 
         ncount=count;
-
-
         return ncount;
 
     }
@@ -250,4 +209,5 @@ public class DashboardDrawerActivity extends AppCompatActivity {
                 }
             }
         }
-}}
+    }
+}

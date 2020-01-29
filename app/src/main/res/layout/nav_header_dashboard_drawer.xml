@@ -1,44 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/nav_header_height"
-    android:background="@color/colorPrimary"
+    android:layout_height="180dp"
+    android:background="@color/quantum_white_100"
     android:gravity="bottom"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageView"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:contentDescription="@string/nav_header_desc"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@drawable/whitelogo" />
+        app:civ_border_width="2dp"
+        app:civ_border_color="@color/colorPrimaryDark"
+        tools:src="@tools:sample/avatars"
+        tools:srcCompat="@tools:sample/avatars[0]" />
 
     <TextView
         android:id="@+id/nameU"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="User Name"
+        android:hint="User Name"
         android:textStyle="bold"
+        android:textSize="16dp"
         android:textAlignment="center"
         android:layout_gravity="center_horizontal"
-        android:textColor="@color/quantum_white_100"
+        android:textColor="@color/colorPrimary"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/emailU"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="username@commutersfamily.com"
-        android:textColor="@color/quantum_white_100"
+        android:hint="abc123@xyz.com"
+        android:textSize="10dp"
+        android:textColor="@color/colorPrimary"
         android:layout_gravity="center_horizontal"
         android:textAlignment="center"/>
 

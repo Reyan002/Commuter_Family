@@ -2,7 +2,6 @@ package com.example.commuterfamily.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,7 +11,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity;
 import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
@@ -56,7 +54,6 @@ public class UpdateProfile extends AppCompatActivity {
         close_btn=(TextView)findViewById(R.id.setting_close);
         update_btn=(TextView)findViewById(R.id.setting_update);
         profile_change_btn=(TextView)findViewById(R.id.setting_profile_image_change_btn);
-
         phone_ed=(EditText)findViewById(R.id.setting_phone_number);
         fname_ed=(EditText)findViewById(R.id.setting_full_name);
         adress_ed=(EditText)findViewById(R.id.setting_address);
