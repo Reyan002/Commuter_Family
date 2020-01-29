@@ -56,11 +56,12 @@
         android:textSize="22sp" />
 
     <TextView
+
         android:id="@+id/textForgPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Forgot Pssword?"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@android:color/white"
         android:textStyle="bold"
         android:textAlignment="center"
         android:layout_centerHorizontal="true"

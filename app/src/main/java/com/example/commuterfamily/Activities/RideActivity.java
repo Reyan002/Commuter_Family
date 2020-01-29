@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.commuterfamily.Classes.DemoClass;
 import com.example.commuterfamily.Classes.LatLongClass;
+import com.example.commuterfamily.Classes.Routes;
 import com.example.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity;
 import com.example.commuterfamily.MapsCredentials.GPSTracker;
 import com.example.commuterfamily.Prevalent.Prevalent;
@@ -28,13 +29,17 @@ import com.example.commuterfamily.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 public class RideActivity extends AppCompatActivity  {
@@ -195,11 +200,7 @@ public class RideActivity extends AppCompatActivity  {
                 (this, R.layout.spinner_item, categories) {
             @Override
             public boolean isEnabled(int position) {
-                if (position == 0) {
-                    return false;
-                } else {
-                    return true;
-                }
+                return position != 0;
             }
 
             @Override
@@ -388,7 +389,7 @@ public class RideActivity extends AppCompatActivity  {
         spinnerTimeMornigTo=findViewById(R.id.morning_timeTO);
         spinnerTimeEveFrom=findViewById(R.id.timeFrom);
         spinnerEveMornigTo=findViewById(R.id.TimeTo);
-        radioGroup = (RadioGroup) findViewById(R.id.shift);
+        radioGroup = findViewById(R.id.shift);
     }
 
     public void addRiderIntoDataBase(){
@@ -436,27 +437,79 @@ public class RideActivity extends AppCompatActivity  {
                         // Access a Cloud Firestore instance from your Activity
 
 
-                        DatabaseReference reference=FirebaseDatabase.getInstance().getReference().child("Riders");
-                        reference.child(saveCurrentDate + saveCurrentime).updateChildren(cartMap);
-                        Toast.makeText(RideActivity.this, "Wellcome Commuter", Toast.LENGTH_SHORT).show();
-                        Intent intent=new Intent(RideActivity.this,RiderRouteActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
-                        finish();
+                            final DatabaseReference match = FirebaseDatabase.getInstance().getReference().child("Drivers");
+                            match.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    Iterator<DataSnapshot> dataSnapshots = dataSnapshot.getChildren().iterator();
+                                    List<Routes> users = new ArrayList<>();
+                                    while (dataSnapshots.hasNext()) {
+                                        DataSnapshot dataSnapshotChild = dataSnapshots.next();
+                                        Routes user = dataSnapshotChild.getValue(Routes.class);
+                                        users.add(user);
+                                    }
+                                    String userids = "";
+                                    List<Routes> temp = new ArrayList();
+                                    try {
+                                        for (int i = 0; i < users.size(); i++) {
+                                            if (users.get(i).getAdressFrom().equalsIgnoreCase(DemoClass.AdressFrom)) {
+                                                temp.add(users.get(i));
+//                                                //Here you can find your searchable user
+//                                                Log.e("temp", "+" + temp.get(i).getFirebaseId());
+//                                                email = temp.get(i).getEmailId();
+                                                Toast.makeText(RideActivity.this, "Your Match Has Found", Toast.LENGTH_SHORT).show();
+
+                                            }
+                                        }
+
+                                        Toast.makeText(RideActivity.this, String.valueOf(temp.size()), Toast.LENGTH_SHORT).show();
+                                        if(temp.isEmpty()){
+                                            Toast.makeText(RideActivity.this, "Please Wait We are Comming soon with your matched route", Toast.LENGTH_SHORT).show();
+                                            DatabaseReference reference=FirebaseDatabase.getInstance().getReference().child("Riders");
+                                            reference.child(saveCurrentDate + saveCurrentime).updateChildren(cartMap);
+                                            Toast.makeText(RideActivity.this, "Wellcome Commuter", Toast.LENGTH_SHORT).show();
+                                            Intent intent=new Intent(RideActivity.this,RiderRouteActivity.class);
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                        else{
+                                            Toast.makeText(RideActivity.this, "We hav Your Match ", Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(RideActivity.this, temp.get(0).getNumber(), Toast.LENGTH_SHORT).show();
+
+                                            DatabaseReference reference=FirebaseDatabase.getInstance().getReference().child("Riders");
+                                            reference.child(saveCurrentDate + saveCurrentime).updateChildren(cartMap);
+                                            Toast.makeText(RideActivity.this, "Wellcome Commuter", Toast.LENGTH_SHORT).show();
+                                            Intent intent=new Intent(RideActivity.this,RiderRouteActivity.class);
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+//                                        Log.e("Logs", e.toString());
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+                        }
+
+
+
+
 
                     }
-                }
+
             });
 
         }
-        if(DemoClass.RouteFor=="Driver"){
-            if(DemoClass.CarKey==""){
-                Toast.makeText(RideActivity.this, "Add Car firstly", Toast.LENGTH_LONG).show();
-                startActivity(new Intent(RideActivity.this,DriveActivity.class));
-                finish();
-
-        }
-        else{
+        if(DemoClass.RouteFor=="Driver") {
                 final DatabaseReference cartListRef= FirebaseDatabase.getInstance().getReference().child("Commuters");
 
                 final HashMap<String,Object> cartMap =new HashMap<>();
@@ -485,13 +538,66 @@ public class RideActivity extends AppCompatActivity  {
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
 
-                            DatabaseReference reference=FirebaseDatabase.getInstance().getReference().child("Drivers");
-                            reference.child(saveCurrentDate+saveCurrentime).updateChildren(cartMap);
-                            Toast.makeText(RideActivity.this,"Wellcome Commuter",Toast.LENGTH_SHORT).show();
-                            Intent intent=new Intent(RideActivity.this,DriveActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
-                            finish();
+                            final DatabaseReference match = FirebaseDatabase.getInstance().getReference().child("Riders");
+                            match.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    Iterator<DataSnapshot> dataSnapshots = dataSnapshot.getChildren().iterator();
+                                    List<Routes> users = new ArrayList<>();
+                                    while (dataSnapshots.hasNext()) {
+                                        DataSnapshot dataSnapshotChild = dataSnapshots.next();
+                                        Routes user = dataSnapshotChild.getValue(Routes.class);
+                                        users.add(user);
+                                    }
+                                    String userids = "";
+                                    List<Routes> temp = new ArrayList();
+                                    try {
+                                        for (int i = 0; i < users.size(); i++) {
+                                            if (users.get(i).getAdressFrom().equalsIgnoreCase(DemoClass.AdressFrom)) {
+                                                temp.add(users.get(i));
+//                                                //Here you can find your searchable user
+//                                                Log.e("temp", "+" + temp.get(i).getFirebaseId());
+//                                                email = temp.get(i).getEmailId();
+                                                Toast.makeText(RideActivity.this, "Your Match Has Found", Toast.LENGTH_SHORT).show();
+
+                                            }
+                                        }
+
+                                        Toast.makeText(RideActivity.this, String.valueOf(temp.size()), Toast.LENGTH_SHORT).show();
+                                        if(temp.isEmpty()){
+                                            Toast.makeText(RideActivity.this, "Please Wait We are Comming soon with your matched route", Toast.LENGTH_SHORT).show();
+                                            DatabaseReference reference=FirebaseDatabase.getInstance().getReference().child("Drivers");
+                                            reference.child(saveCurrentDate + saveCurrentime).updateChildren(cartMap);
+                                            Toast.makeText(RideActivity.this, "Wellcome Commuter", Toast.LENGTH_SHORT).show();
+                                            Intent intent=new Intent(RideActivity.this,RiderRouteActivity.class);
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                        else{
+                                            Toast.makeText(RideActivity.this, "We hav Your Match ", Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(RideActivity.this, temp.get(0).getNumber(), Toast.LENGTH_SHORT).show();
+
+                                            DatabaseReference reference=FirebaseDatabase.getInstance().getReference().child("Drivers");
+                                            reference.child(saveCurrentDate + saveCurrentime).updateChildren(cartMap);
+                                            Toast.makeText(RideActivity.this, "Wellcome Commuter", Toast.LENGTH_SHORT).show();
+                                            Intent intent=new Intent(RideActivity.this,RiderRouteActivity.class);
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+//                                        Log.e("Logs", e.toString());
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
 
                         }
                     }
@@ -501,7 +607,7 @@ public class RideActivity extends AppCompatActivity  {
             }
         }
 
-    }
+
 
     @Override
     protected void onRestart() {

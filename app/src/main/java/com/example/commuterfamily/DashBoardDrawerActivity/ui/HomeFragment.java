@@ -28,7 +28,7 @@ import androidx.viewpager.widget.ViewPager;
 
 public class HomeFragment extends Fragment {
 
-    View myView;
+   private View myView;
     private ViewPager viewPager;
     private LinearLayout sliderDotspanel;
     private int dotscount;

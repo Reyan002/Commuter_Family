@@ -100,7 +100,8 @@ public class RiderRouteActivity extends AppCompatActivity {
             builder.setItems(options , new DialogInterface.OnClickListener() {
               @Override
               public void onClick(DialogInterface dialog , int which) {
-                if(which==0){DemoClass.commuterMatch= "Drivers";
+                if(which==0){
+                  DemoClass.commuterMatch= "Drivers";
                   Intent intent=new Intent(RiderRouteActivity.this,MatchActivity.class);
                   intent.putExtra("morningTimeFrom",model.getMTimeFrom());
                   intent.putExtra("morningTimeTo",model.getMTimeTo());

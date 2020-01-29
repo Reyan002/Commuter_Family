@@ -56,6 +56,7 @@ public class MatchActivity extends AppCompatActivity {
         locLongFrom= Double.parseDouble(getIntent().getStringExtra("locLongFrom"));
         locLatTo= Double.parseDouble(getIntent().getStringExtra("locLatTo"));
         locLngTo= Double.parseDouble(getIntent().getStringExtra("locLongTo"));
+        Toast.makeText(MatchActivity.this, DemoClass.commuterMatch, Toast.LENGTH_SHORT).show();
 
         recyclerView.setHasFixedSize(true);
         layoutManager=new LinearLayoutManager(this);
@@ -79,6 +80,7 @@ public class MatchActivity extends AppCompatActivity {
                   ArrayList<Routes> routes=new ArrayList<>();
                  for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     if(
+                             !dataSnapshot1.child("Number").getValue().toString().equalsIgnoreCase(Prevalent.currentOnlineUser.getPhone())&&
 //                            dataSnapshot1.child("AdressFrom").getValue().toString().equalsIgnoreCase(getIntent().getStringExtra("adressFrom"))
 //                            && dataSnapshot1.child("AdressTo").getValue().toString().equalsIgnoreCase(getIntent().getStringExtra("adressTo"))
 //                            && dataSnapshot1.child("Date").getValue().toString().equals(getIntent().getStringExtra(""))
@@ -92,16 +94,15 @@ public class MatchActivity extends AppCompatActivity {
 
                     )
                     {
+                        Toast.makeText(MatchActivity.this, dataSnapshot1.child("Number").getValue().toString(), Toast.LENGTH_SHORT).show();
                         if(calculateDistance(locLatFrom,locLongFrom,Double.valueOf(dataSnapshot1.child("LocFrom").child("lat").getValue().toString()),
                                 Double.valueOf(dataSnapshot1.child("LocFrom").child("long").getValue().toString())
                                )<1.0f){
-                            Toast.makeText(MatchActivity.this, DemoClass.commuterMatch, Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(MatchActivity.this, DemoClass.commuterMatch, Toast.LENGTH_SHORT).show();
 
                             routes.add(dataSnapshot1.getValue(Routes.class));
                         }
-                        else{
-                            Toast.makeText(MatchActivity.this, "Phat  gya", Toast.LENGTH_SHORT).show();
-                        }
+
 
 
                     }
