@@ -91,7 +91,7 @@ public class UpdateProfile extends AppCompatActivity {
         });
     }
     private void openGallery() {
-        Intent galleryInten=new Intent();
+        Intent galleryInten = new Intent();
         galleryInten.setAction(Intent.ACTION_GET_CONTENT);
         galleryInten.setType("image/*");
 
