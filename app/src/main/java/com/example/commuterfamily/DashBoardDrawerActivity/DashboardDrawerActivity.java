@@ -63,7 +63,14 @@ public class DashboardDrawerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard_drawer);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+//        FloatingActionButton fab = findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
         sessionManager = new SessionManager(DashboardDrawerActivity.this);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -77,7 +84,9 @@ public class DashboardDrawerActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
         navigationView.bringToFront();
+
 
         View header = navigationView.getHeaderView(0);
         header.setOnClickListener(new View.OnClickListener() {
@@ -191,6 +200,8 @@ public class DashboardDrawerActivity extends AppCompatActivity {
 
 
         ncount=count;
+
+
         return ncount;
 
     }
@@ -209,5 +220,4 @@ public class DashboardDrawerActivity extends AppCompatActivity {
                 }
             }
         }
-    }
-}
+}}

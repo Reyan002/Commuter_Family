@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,9 +78,19 @@ public class Notification extends AppCompatActivity {
         FirebaseRecyclerAdapter<Nification,NotificationAdapter> adapter=
                 new FirebaseRecyclerAdapter<Nification, NotificationAdapter>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull final NotificationAdapter notificationAdapter, int i, @NonNull Nification nification) {
+                    protected void onBindViewHolder(@NonNull final NotificationAdapter notificationAdapter, int i, @NonNull final Nification nification) {
 
-                        notificationAdapter.product_price.setText(nification.getDate()+nification.getTime());
+                        notificationAdapter.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                Intent intent=new Intent(Notification.this,MatchRouteDetailActivity.class);
+                                intent.putExtra("rid",nification.getNotiId());
+                                intent.putExtra("number",nification.getFrom());
+                                startActivity(intent);
+                            }
+                        });
+                        notificationAdapter.product_price.setText(nification.getDate()+" "+nification.getTime());
                         DatabaseReference noi=getRef(i).child("from").getRef();
                         noi.addValueEventListener(new ValueEventListener() {
                             @Override
