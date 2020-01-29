@@ -5,17 +5,19 @@ public class Nification {
     private String type;
     private String Date;
     private String Time;
+    private String NotiId;
 
 
     public Nification() {
     }
 
 
-    public Nification(String from, String type, String date, String time) {
-        this.from = from;
-        this.type = type;
-        Date = date;
-        Time = time;
+    public String getNotiId() {
+        return NotiId;
+    }
+
+    public void setNotiId(String notiId) {
+        NotiId = notiId;
     }
 
     public String getDate() {

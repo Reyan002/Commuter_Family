@@ -86,37 +86,7 @@ public class DashboardDrawerActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         navigationView.bringToFront();
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-                Fragment fragment = null;
-
-                switch (menuItem.getItemId()){
-                    case R.id.nav_home:
-                        fragment = new HomeFragment();
-                        break;
-                    case R.id.nav_drive:
-                        startActivity(new Intent(DashboardDrawerActivity.this, DriveActivity.class));
-                        Toast.makeText(DashboardDrawerActivity.this, "Driver Activity", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.nav_passenger:
-                        startActivity(new Intent(DashboardDrawerActivity.this, RiderRouteActivity.class));
-                        Toast.makeText(DashboardDrawerActivity.this, "Passenger Activity", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.nav_wallet:
-                        Toast.makeText(DashboardDrawerActivity.this, "Wallet Activity under construction...!!!", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.nav_about:
-                        Toast.makeText(DashboardDrawerActivity.this, "About Us Activity work in progress...!!!", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.nav_logout:
-                        showPopup();
-                        break;
-                }
-                return false;
-            }
-        });
 
         View header = navigationView.getHeaderView(0);
         header.setOnClickListener(new View.OnClickListener() {

@@ -88,13 +88,13 @@ private TextView pickUp;
 
 
 
-        pickUp.setText(getIntent().getStringExtra("pick"));
-
-        shift.setText(getIntent().getStringExtra("shift"));
-        day.setText(getIntent().getStringExtra("day"));
-        time.setText(getIntent().getStringExtra("time_m_f")+getIntent().getStringExtra("time_e_f")+"-"+getIntent().getStringExtra("time_m_t")+getIntent().getStringExtra("time_e_t"));
-        start.setText(getIntent().getStringExtra("from"));
-        end.setText(getIntent().getStringExtra("to"));
+//        pickUp.setText(getIntent().getStringExtra("pick"));
+//
+//        shift.setText(getIntent().getStringExtra("shift"));
+//        day.setText(getIntent().getStringExtra("day"));
+//        time.setText(getIntent().getStringExtra("time_m_f")+getIntent().getStringExtra("time_e_f")+"-"+getIntent().getStringExtra("time_m_t")+getIntent().getStringExtra("time_e_t"));
+//        start.setText(getIntent().getStringExtra("from"));
+//        end.setText(getIntent().getStringExtra("to"));
         sender = Prevalent.currentOnlineUser.getPhone();
         request_ref=FirebaseDatabase.getInstance().getReference().child("Request");
         connect_ref=FirebaseDatabase.getInstance().getReference().child("PeopleConnected");
@@ -104,6 +104,30 @@ private TextView pickUp;
         retriev();
 
 
+        DatabaseReference details=FirebaseDatabase.getInstance().getReference().child("Riders");
+        details.child(ProductId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                shift.setText(dataSnapshot.getValue(Routes.class).getShift());
+                day.setText(dataSnapshot.getValue(Routes.class).getDay());
+                time.setText(dataSnapshot.getValue(Routes.class).getETimeFrom()+dataSnapshot.getValue(Routes.class).getETimeTo()+dataSnapshot.getValue(Routes.class).getMTimeFrom()+dataSnapshot.getValue(Routes.class).getMTimeTo());
+                start.setText(dataSnapshot.getValue(Routes.class).getAdressFrom());
+                    Toast.makeText(MatchRouteDetailActivity.this, shift.getText().toString(), Toast.LENGTH_SHORT).show();
+
+                    end.setText(dataSnapshot.getValue(Routes.class).getAdressTo());}
+                else{
+                    Toast.makeText(MatchRouteDetailActivity.this, "nikal l**y", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        Toast.makeText(this, ProductId, Toast.LENGTH_SHORT).show();
 
 
     }
@@ -338,6 +362,7 @@ finish();            }
                                 chatNotifi.put("type","request");
                                 chatNotifi.put("Date", saveCurrentDate);
                                 chatNotifi.put("Time",saveCurrentime);
+                                chatNotifi.put("NotiId",getIntent().getStringExtra("rid"));
 
 
                                 notify_ref.child(Pnumber).child(getIntent().getStringExtra("rid")).setValue(chatNotifi).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -456,8 +481,8 @@ finish();            }
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-        double lat = Double.parseDouble(getIntent().getStringExtra("latFrom"));
-        double lng = Double.parseDouble(getIntent().getStringExtra("longFrom"));
+        double lat = 15.3276;//Double.parseDouble(getIntent().getStringExtra("latFrom"));
+        double lng = 119.978;//Double.parseDouble(getIntent().getStringExtra("longFrom"));
 
         LatLng latlng = new LatLng(lat, lng);
 
