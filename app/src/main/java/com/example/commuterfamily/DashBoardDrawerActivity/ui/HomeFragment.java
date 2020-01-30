@@ -109,26 +109,24 @@ public class HomeFragment extends Fragment {
         myView.findViewById(R.id.card3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), IntroActivity.class));
                 Toast.makeText(getContext(), "Wallet Activity under construction...:p", Toast.LENGTH_SHORT).show();
-
             }
         });
 
         myView.findViewById(R.id.card4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(getContext(), "About Us Activity under construction...:p", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "About Us Activity under construction...:p", Toast.LENGTH_SHORT).show();
 
 //                Fragment fragment = new AboutUs();
 //                    fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, new AboutUs()).commit();
-                Fragment fragment;
-                fragment = new AboutUs();
-                if (fragment != null) {
-                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                    ft.replace(R.id.nav_host_fragment, fragment);
-                    ft.commit();
-                }
+//                Fragment fragment;
+//                fragment = new AboutUs();
+////                if (fragment != null) {
+//                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+//                    ft.replace(R.id.nav_host_fragment, fragment);
+//                    ft.commit();
+//                }
             }
         });
 

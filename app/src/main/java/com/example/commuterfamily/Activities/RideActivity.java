@@ -91,8 +91,8 @@ public class RideActivity extends AppCompatActivity  {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
-                    case R.id.morning:
 
+                    case R.id.morning:
                         RadioButton radioButton=findViewById(radioGroup.getCheckedRadioButtonId());
                         txtShift=radioButton.getText().toString();
                         spinnerTimeMornigFrom.setEnabled(true);
@@ -100,6 +100,7 @@ public class RideActivity extends AppCompatActivity  {
                         evening.setVisibility(View.GONE);
                         morning.setVisibility(View.VISIBLE);
                          break;
+
                     case R.id.evening:
                         RadioButton radioButton1=findViewById(radioGroup.getCheckedRadioButtonId());
                         txtShift=radioButton1.getText().toString();
@@ -499,11 +500,6 @@ public class RideActivity extends AppCompatActivity  {
                             });
 
                         }
-
-
-
-
-
                     }
 
             });

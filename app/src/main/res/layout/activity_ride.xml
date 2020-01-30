@@ -20,164 +20,165 @@
             android:layout_height="match_parent"
             android:background="@color/transparent">
 
-    <TextView
-        android:text="Give your Start and End location of your Trip *"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Give your Start and End location of your Trip *"/>
 
-    <LinearLayout
-        android:layout_margin="10dp"
-        android:background="@drawable/strokes"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/strokes"
+                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/locFrom"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:gravity="center"
-            android:hint="Route"
-            android:textColor="#000000" />
-
-
-    </LinearLayout>
-    <TextView
-        android:text="Select Day of Trip*"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <Spinner
-        android:gravity="center"
-        android:id="@+id/ride_days"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"/>
+                <TextView
+                    android:id="@+id/locFrom"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:hint="Route"
+                    android:textColor="#000000" />
 
 
-    <TextView
-        android:text="Select Shift of Trip*"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <RadioGroup
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Day of Trip*"/>
 
-        android:id="@+id/shift"
-        android:padding="10dp"
-        android:background="@drawable/strokes"
-        android:layout_margin="10dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-        <RadioButton
-            android:id="@+id/morning"
-             android:text="Morning"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
-        <RadioButton
-            android:id="@+id/evening"
-            android:text="Evening"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
-    </RadioGroup>
+            <Spinner
+                android:id="@+id/ride_days"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"/>
 
 
-<RelativeLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-    <LinearLayout
-         android:id="@+id/evening_times"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <TextView
-android:layout_gravity="center"
-        android:text="Give your Time Range of your Trip *"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <LinearLayout
-        android:layout_margin="10dp"
-        android:background="@drawable/strokes"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-        <Spinner
-            android:id="@+id/timeFrom"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:text="From"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Shift of Trip*"/>
+            <RadioGroup
 
-        <Spinner
+                android:id="@+id/shift"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/strokes"
+                android:orientation="horizontal"
+                android:padding="10dp">
+                <RadioButton
+                    android:id="@+id/morning"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Morning"/>
+                <RadioButton
+                    android:id="@+id/evening"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Evening"/>
+            </RadioGroup>
 
-            android:id="@+id/TimeTo"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:text="To"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-    </LinearLayout>
-<LinearLayout
-    android:id="@+id/morning_times"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-    <TextView
-        android:layout_gravity="center"
-        android:text="Give your Time Range of your Trip *"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <LinearLayout
 
-        android:layout_margin="10dp"
-        android:background="@drawable/strokes"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-        <Spinner
-            android:id="@+id/morning_timeFrom"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:text="From"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/evening_times"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Give your Time Range of your Trip *"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/strokes"
+                        android:orientation="horizontal">
+                        <Spinner
+                            android:id="@+id/timeFrom"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="From"/>
 
-        <Spinner
+                        <Spinner
 
-            android:id="@+id/morning_timeTO"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:text="To"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-    <EditText
-        android:id="@+id/pickPoint"
-        android:layout_margin="10dp"
-        android:background="@drawable/strokes"
-        android:gravity="center"
-        android:hint="Type Pickup Point"
-         android:layout_width="match_parent"
-        android:layout_height="50dp"/>
-</LinearLayout>
-</RelativeLayout>
+                            android:id="@+id/TimeTo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="To"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/morning_times"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Give your Time Range of your Trip *"/>
+                    <LinearLayout
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:id="@+id/nextToMap"
-        android:tooltipText="GO"
-        android:src="@drawable/arrow_right_white"
-        android:layout_height="wrap_content"
-        android:elevation="0dp"/>
-</LinearLayout>
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/strokes"
+                        android:orientation="horizontal">
+                        <Spinner
+                            android:id="@+id/morning_timeFrom"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="From"/>
+
+                        <Spinner
+                            android:id="@+id/morning_timeTO"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="To"/>
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/pickPoint"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/strokes"
+                        android:gravity="center"
+                        android:hint="Type Pickup Point(Optional)"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/nextToMap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="0dp"
+                android:src="@drawable/arrow_right_white"
+                android:tooltipText="GO"/>
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

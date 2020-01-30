@@ -15,6 +15,7 @@ import com.example.commuterfamily.DashBoardDrawerActivity.ui.HomeFragment;
 import com.example.commuterfamily.Prevalent.Prevalent;
 import com.example.commuterfamily.R;
 
+import android.os.Handler;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import androidx.annotation.NonNull;
@@ -28,6 +29,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.commuterfamily.SessionManager.SessionManager;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,9 +47,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-import ru.nikartm.support.ImageBadgeView;
-
 public class DashboardDrawerActivity extends AppCompatActivity {
 
     private TextView userName,email;
@@ -56,6 +55,7 @@ public class DashboardDrawerActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     TextView textCartItemCount;
     SessionManager sessionManager;
+    private boolean check = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,14 +63,7 @@ public class DashboardDrawerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard_drawer);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+
         sessionManager = new SessionManager(DashboardDrawerActivity.this);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -220,4 +213,37 @@ public class DashboardDrawerActivity extends AppCompatActivity {
                 }
             }
         }
-}}
+    }
+
+    @Override
+    public void onBackPressed() {
+
+//        if(!check){
+//            Snackbar.make( findViewById(R.id.nav_host_fragment),"Press one more time to exit",Snackbar.LENGTH_SHORT).show();
+//            // Toast.makeText(this,"Press one more time to exit",Toast.LENGTH_SHORT).show();
+//            check=true;
+//        }
+//        else {
+//            Intent a = new Intent(Intent.ACTION_MAIN);
+//            a.addCategory(Intent.CATEGORY_HOME);
+//            a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            startActivity(a);
+
+        if (!check) {
+            Toast.makeText(this, "Please click Back again to exit", Toast.LENGTH_SHORT).show();
+            check = true;
+        }else{
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent a = new Intent(Intent.ACTION_MAIN);
+                a.addCategory(Intent.CATEGORY_HOME);
+                a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(a);
+            }
+        }, 400);
+        check = false;
+        }
+    }
+
+}
