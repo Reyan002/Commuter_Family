@@ -53,15 +53,15 @@
                 android:id="@+id/ride_days"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:gravity="center"/>
+                android:gravity="center" />
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Select Shift of Trip*"/>
-            <RadioGroup
 
+            <RadioGroup
                 android:id="@+id/shift"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -123,16 +123,19 @@
                             android:text="To"/>
                     </LinearLayout>
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/morning_times"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="Give your Time Range of your Trip *"/>
+
                     <LinearLayout
 
                         android:layout_width="match_parent"
@@ -159,17 +162,19 @@
                             android:text="To"/>
                     </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/pickPoint"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/strokes"
-                        android:gravity="center"
-                        android:hint="Type Pickup Point(Optional)"/>
+
                 </LinearLayout>
 
             </RelativeLayout>
+
+            <EditText
+                android:id="@+id/pickPoint"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/strokes"
+                android:gravity="center"
+                android:hint="Type Pickup Point(Optional)"/>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/nextToMap"
@@ -177,6 +182,7 @@
                 android:layout_height="wrap_content"
                 android:elevation="0dp"
                 android:src="@drawable/arrow_right_white"
+                android:layout_marginTop="10dp"
                 android:tooltipText="GO"/>
         </LinearLayout>
 
