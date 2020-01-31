@@ -196,6 +196,8 @@
             android:layout_below="@id/cardViewMd1"/>
 
         <androidx.cardview.widget.CardView
+
+            android:visibility="gone"
             android:id="@+id/cardViewMd2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -235,15 +237,16 @@
                         android:layout_gravity="center_vertical"
                         android:src="@drawable/ic_directions_car_white_24dp"
                         android:tint="@color/quantum_black_100"/>
+
                     <TextView
                         android:id="@+id/textViewMR_VD1"
                         android:layout_width="0dp"
                         android:layout_height="25dp"
-                        android:text="Shift"
-                        android:textSize="18dp"
                         android:layout_gravity="center_vertical"
+                        android:layout_weight="9"
+                        android:text="Shift"
                         android:textColor="@android:color/white"
-                        android:layout_weight="9"/>
+                        android:textSize="18dp" />
                 </LinearLayout>
 
                 <LinearLayout

@@ -80,7 +80,7 @@ public class MatchActivity extends AppCompatActivity {
                   ArrayList<Routes> routes=new ArrayList<>();
                  for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     if(
-                             !dataSnapshot1.child("Number").getValue().toString().equalsIgnoreCase(Prevalent.currentOnlineUser.getPhone())&&
+//                             ?dataSnapshot1.child("Number").getValue().toString().equalsIgnoreCase(Prevalent.currentOnlineUser.getPhone())&&
 //                            dataSnapshot1.child("AdressFrom").getValue().toString().equalsIgnoreCase(getIntent().getStringExtra("adressFrom"))
 //                            && dataSnapshot1.child("AdressTo").getValue().toString().equalsIgnoreCase(getIntent().getStringExtra("adressTo"))
 //                            && dataSnapshot1.child("Date").getValue().toString().equals(getIntent().getStringExtra(""))

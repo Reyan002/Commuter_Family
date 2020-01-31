@@ -1,9 +1,5 @@
 package com.example.commuterfamily.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,6 +14,10 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.commuterfamily.Classes.DemoClass;
 import com.example.commuterfamily.Classes.LatLongClass;
@@ -34,6 +34,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -457,6 +458,7 @@ public class RideActivity extends AppCompatActivity  {
 //                                                //Here you can find your searchable user
 //                                                Log.e("temp", "+" + temp.get(i).getFirebaseId());
 //                                                email = temp.get(i).getEmailId();
+                                                FirebaseMessaging.getInstance().subscribeToTopic("sendNotification");
                                                 Toast.makeText(RideActivity.this, "Your Match Has Found", Toast.LENGTH_SHORT).show();
 
                                             }
@@ -524,6 +526,7 @@ public class RideActivity extends AppCompatActivity  {
                 cartMap.put("Time",saveCurrentime);
                 cartMap.put("MTimeFrom",txtMTimeFrom);
                 cartMap.put("MTimeTo",txtMTimeTo);
+                cartMap.put("PickUp",pickup.getText().toString());
                 cartMap.put("ETimeFrom",txtETimeFrom);
                 cartMap.put("ETimeTo",txtEtimeTo);
                 cartMap.put("AdressFrom",DemoClass.AdressFrom);
@@ -553,11 +556,13 @@ public class RideActivity extends AppCompatActivity  {
                                     List<Routes> temp = new ArrayList();
                                     try {
                                         for (int i = 0; i < users.size(); i++) {
-                                            if (users.get(i).getAdressFrom().equalsIgnoreCase(DemoClass.AdressFrom)) {
+                                            if (users.get(i).getAdressFrom().equalsIgnoreCase(DemoClass.AdressFrom)
+                                            && users.get(i).getShift().equals(txtShift)) {
                                                 temp.add(users.get(i));
 //                                                //Here you can find your searchable user
 //                                                Log.e("temp", "+" + temp.get(i).getFirebaseId());
 //                                                email = temp.get(i).getEmailId();
+
                                                 Toast.makeText(RideActivity.this, "Your Match Has Found", Toast.LENGTH_SHORT).show();
 
                                             }

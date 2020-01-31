@@ -4,6 +4,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -82,6 +83,12 @@ private TextView pickUp;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match_route_detail);
 
+
+        CardView cardView=findViewById(R.id.cardViewMd2);
+
+        if(DemoClass.commuterMatch=="Drivers"){
+            cardView.setVisibility(View.VISIBLE);
+        }
                 firebaseInstanceId=FirebaseInstanceId.getInstance().getToken();
         current_request="new";
         Initilize();
@@ -99,44 +106,46 @@ private TextView pickUp;
         request_ref=FirebaseDatabase.getInstance().getReference().child("Request");
         connect_ref=FirebaseDatabase.getInstance().getReference().child("PeopleConnected");
         notify_ref=FirebaseDatabase.getInstance().getReference().child("Notification");
-        ProductId=getIntent().getStringExtra("rid");
-        Pnumber=getIntent().getStringExtra("number");
+
+//        Pnumber=getIntent().getStringExtra("number");
         retriev();
 
 
-        DatabaseReference details=FirebaseDatabase.getInstance().getReference().child("Riders");
-        details.child(ProductId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                shift.setText(dataSnapshot.getValue(Routes.class).getShift());
-                day.setText(dataSnapshot.getValue(Routes.class).getDay());
-                time.setText(dataSnapshot.getValue(Routes.class).getETimeFrom()+dataSnapshot.getValue(Routes.class).getETimeTo()+dataSnapshot.getValue(Routes.class).getMTimeFrom()+dataSnapshot.getValue(Routes.class).getMTimeTo());
-                start.setText(dataSnapshot.getValue(Routes.class).getAdressFrom());
-                    Toast.makeText(MatchRouteDetailActivity.this, shift.getText().toString(), Toast.LENGTH_SHORT).show();
+//        DatabaseReference details=FirebaseDatabase.getInstance().getReference().child("Riders");
+//        details.child(ProductId).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if(dataSnapshot.exists()){
+//                shift.setText(dataSnapshot.getValue(Routes.class).getShift());
+//                day.setText(dataSnapshot.getValue(Routes.class).getDay());
+//                time.setText(dataSnapshot.getValue(Routes.class).getETimeFrom()+dataSnapshot.getValue(Routes.class).getETimeTo()+dataSnapshot.getValue(Routes.class).getMTimeFrom()+dataSnapshot.getValue(Routes.class).getMTimeTo());
+//                start.setText(dataSnapshot.getValue(Routes.class).getAdressFrom());
+//                    Toast.makeText(MatchRouteDetailActivity.this, shift.getText().toString(), Toast.LENGTH_SHORT).show();
+//
+//                    end.setText(dataSnapshot.getValue(Routes.class).getAdressTo());}
+//                else{
+//                    Toast.makeText(MatchRouteDetailActivity.this, "Error", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
 
-                    end.setText(dataSnapshot.getValue(Routes.class).getAdressTo());}
-                else{
-                    Toast.makeText(MatchRouteDetailActivity.this, "nikal l**y", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        Toast.makeText(this, ProductId, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, ProductId, Toast.LENGTH_SHORT).show();
 
 
     }
+
     public void retriev(){
+        ProductId=getIntent().getStringExtra("rid");
+        Pnumber=getIntent().getStringExtra("number");
         getVehiclesDetail( );
 
         Initilize();
-        ProductId=getIntent().getStringExtra("rid");
-        Pnumber=getIntent().getStringExtra("number");
+
         getRouteDetails(ProductId);
           getUserDetails(Pnumber);
         manageDetails();
@@ -449,7 +458,7 @@ finish();            }
 
 
     private void getRouteDetails(String productId) {
-        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child(DemoClass.RouteFor);
+        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("Drivers");
         reference.child(productId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -460,6 +469,7 @@ finish();            }
                     time.setText("Time: "+routes.getETimeFrom()+"-"+routes.getETimeTo()+routes.getMTimeFrom()+"-"+routes.getMTimeTo());
                     start.setText("Start From: "+routes.getAdressFrom());
                     end.setText("End On: "+routes.getAdressTo());
+                    pickUp.setText("Pick up Point: "+routes.getPickUp());
 
 
 //            @Override
