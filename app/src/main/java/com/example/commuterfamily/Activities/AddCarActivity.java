@@ -24,8 +24,8 @@ public class AddCarActivity extends AppCompatActivity {
                 return;
             }
             FragmentTransaction fragmentTransaction = fragmentManagerAddCar.beginTransaction();
-            VehicleType vehivalType = new VehicleType();
-            fragmentTransaction.add(R.id.fragment_container_add_car, vehivalType, null).addToBackStack(null).commit();
+            VehicleType vehicleType = new VehicleType();
+            fragmentTransaction.add(R.id.fragment_container_add_car, vehicleType, null).addToBackStack(null).commit();
         }
     }
     }

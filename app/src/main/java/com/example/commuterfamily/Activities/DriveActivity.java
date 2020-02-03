@@ -55,6 +55,7 @@ public class DriveActivity extends AppCompatActivity {
     recyclerView.setHasFixedSize(true);
     layoutManager=new LinearLayoutManager(this);
     recyclerView.setLayoutManager(layoutManager);
+
     findViewById(R.id.car).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {

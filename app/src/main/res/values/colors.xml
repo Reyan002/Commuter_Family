@@ -7,6 +7,7 @@
     <color name="grey_80">#37474F</color>
     <color name="transparent">#00303f9f</color>
     <color name="sky">#E4B0E7FF</color>
+    <color name="colorIcons">#307B76</color>
 
     <color name="overlay_dark_30">#4D000000</color>
     <color name="overlay_dark_40">#66000000</color>

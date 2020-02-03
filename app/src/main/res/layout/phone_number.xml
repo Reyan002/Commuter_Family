@@ -56,11 +56,13 @@
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/black_border_bg"
-            android:hint="+92 333 300 0124"
+            android:hint="0312 345 6789"
             android:inputType="number"
             android:paddingStart="14dp"
             android:paddingLeft="14dp"
             android:paddingTop="8dp"
+            android:maxLength="11"
+            android:maxLines="1"
             android:paddingBottom="8dp"
             android:textSize="18sp" />
 

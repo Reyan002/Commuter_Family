@@ -1,8 +1,6 @@
 package com.example.commuterfamily.DashBoardDrawerActivity.ui;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,41 +10,30 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.commuterfamily.Activities.AddCarActivity;
-import com.example.commuterfamily.Activities.DriveActivity;
-import com.example.commuterfamily.Activities.IntroActivity;
 import com.example.commuterfamily.Activities.MapsActivity;
-import com.example.commuterfamily.Activities.RideActivity;
-import com.example.commuterfamily.Activities.RiderRouteActivity;
-import com.example.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity;
 import com.example.commuterfamily.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
-public class HomeFragment extends Fragment {
+public class Home_Passenger extends Fragment {
 
-    private View myView;
+    View myView;
     private ViewPager viewPager;
     private LinearLayout sliderDotspanel;
     private int dotscount;
     private ImageView[] dots;
-    static FragmentManager fragmentManager;
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.home_fragment,container,false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        myView = inflater.inflate(R.layout.home_passenger,container,false);
 
-        viewPager = myView.findViewById(R.id.pager);
-        sliderDotspanel = myView.findViewById(R.id.layout_dots);
+        viewPager = myView.findViewById(R.id.pagerP);
+        sliderDotspanel = myView.findViewById(R.id.layout_dotsP);
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getContext());
 
@@ -94,42 +81,32 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        myView.findViewById(R.id.card1).setOnClickListener(new View.OnClickListener() {
+
+        myView.findViewById(R.id.card1p).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), AddCarActivity.class));
             }
         });
 
-        myView.findViewById(R.id.card2).setOnClickListener(new View.OnClickListener() {
+        myView.findViewById(R.id.card2p).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), MapsActivity.class));
-
+                startActivity(new Intent(getContext(), AddCarActivity.class));
             }
         });
 
-        myView.findViewById(R.id.card3).setOnClickListener(new View.OnClickListener() {
+        myView.findViewById(R.id.card3p).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Distance Calculator under construction...:p", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "card 3", Toast.LENGTH_SHORT).show();
             }
         });
 
-        myView.findViewById(R.id.card4).setOnClickListener(new View.OnClickListener() {
+        myView.findViewById(R.id.card4p).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "History Activity under construction...:p", Toast.LENGTH_SHORT).show();
-//                startActivity(new Intent(getContext(), AddCarActivity.class));
-//                Fragment fragment = new AboutUs();
-//                    fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, new AboutUs()).commit();
-//                Fragment fragment;
-//                fragment = new AboutUs();
-////                if (fragment != null) {
-//                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-//                    ft.replace(R.id.nav_host_fragment, fragment);
-//                    ft.commit();
-//                }
+                Toast.makeText(getContext(), "card 4", Toast.LENGTH_SHORT).show();
             }
         });
 

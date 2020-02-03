@@ -8,7 +8,9 @@
         android:id="@+id/v_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Vehicle Number" />
+        android:hint="Vehicle Number"
+        android:inputType="text"
+        android:maxLines="1"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
