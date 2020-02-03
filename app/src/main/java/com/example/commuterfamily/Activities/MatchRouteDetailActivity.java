@@ -72,7 +72,8 @@ private String current_request ;
 private String firebaseInstanceId;
 private TextView name,view;
 //private MapView mapView;
-private GoogleMap gMap;
+
+    private GoogleMap gMap;
 private MapFragment mapFragment;
 private TextView pickUp;
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS =0 ;
@@ -90,10 +91,10 @@ private TextView pickUp;
             cardView.setVisibility(View.VISIBLE);
         }
                 firebaseInstanceId=FirebaseInstanceId.getInstance().getToken();
-        current_request="new";
         Initilize();
 
 
+        current_request="new";
 
 //        pickUp.setText(getIntent().getStringExtra("pick"));
 //
@@ -107,7 +108,7 @@ private TextView pickUp;
         connect_ref=FirebaseDatabase.getInstance().getReference().child("PeopleConnected");
         notify_ref=FirebaseDatabase.getInstance().getReference().child("Notification");
 
-//        Pnumber=getIntent().getStringExtra("number");
+ //        Pnumber=getIntent().getStringExtra("number");
         retriev();
 
 
@@ -158,7 +159,6 @@ private TextView pickUp;
                 public void onClick(View v) {
                     if(current_request.equals ("new")){
 
-                        Toast.makeText(MatchRouteDetailActivity.this, current_request, Toast.LENGTH_SHORT).show();
                         sendRequestOfRide();
                     }
                     if(current_request.equals ("request_sent")){
@@ -170,6 +170,7 @@ private TextView pickUp;
 
                         acceptRequest();
                     }if(current_request.equals("commute")){
+                        Toast.makeText(MatchRouteDetailActivity.this, current_request, Toast.LENGTH_SHORT).show();
 
                         removeRequest();
                     }
@@ -180,6 +181,7 @@ private TextView pickUp;
 //
 //                    }
 
+                    Toast.makeText(MatchRouteDetailActivity.this, current_request, Toast.LENGTH_SHORT).show();
                 }
             });
         }else
@@ -309,7 +311,7 @@ private TextView pickUp;
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 if(dataSnapshot.hasChild(Pnumber)) {
-                                    current_request="new";
+                                    current_request="commute";
                                     request.setText("Remove");
                                 }
 

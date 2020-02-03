@@ -71,8 +71,6 @@ public class MainActivity extends AppCompatActivity {
             a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(a);}
 
-
-
     }
 
     private void showPopup() {

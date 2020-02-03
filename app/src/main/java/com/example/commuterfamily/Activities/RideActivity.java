@@ -91,22 +91,26 @@ public class RideActivity extends AppCompatActivity  {
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+
                 switch (checkedId) {
                     case R.id.morning:
-
                         RadioButton radioButton=findViewById(radioGroup.getCheckedRadioButtonId());
                         txtShift=radioButton.getText().toString();
                         spinnerTimeMornigFrom.setEnabled(true);
                         spinnerTimeMornigTo.setEnabled(true);
                         evening.setVisibility(View.GONE);
                         morning.setVisibility(View.VISIBLE);
-                         break;
+                        break;
+
                     case R.id.evening:
                         RadioButton radioButton1=findViewById(radioGroup.getCheckedRadioButtonId());
                         txtShift=radioButton1.getText().toString();
+                        spinnerTimeMornigFrom.setEnabled(true);
+                        spinnerTimeMornigTo.setEnabled(true);
                         morning.setVisibility(View.GONE);
                         evening.setVisibility(View.VISIBLE);
-                          break;
+                        break;
+
                 }
             }
         });
@@ -163,8 +167,6 @@ public class RideActivity extends AppCompatActivity  {
 //                }
 //            }
 //        });
-
-
     }
 
     public void spinnerDay(){
@@ -241,7 +243,7 @@ public class RideActivity extends AppCompatActivity  {
 
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
-        categories.add("");
+        categories.add("Initial Start Time Morning");
         categories.add("7:30 am");
         categories.add("7:45 am");
         categories.add("8:00 am");
@@ -255,8 +257,9 @@ public class RideActivity extends AppCompatActivity  {
         categories.add("10:00 am");
 
         // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories) {
 
+        };
         // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -280,7 +283,7 @@ public class RideActivity extends AppCompatActivity  {
 
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
-        categories.add("");
+        categories.add("Initial Start Time Evening");
         categories.add("4:30 pm");
         categories.add("4:45 pm");
         categories.add("5:00 pm");
@@ -319,7 +322,7 @@ public class RideActivity extends AppCompatActivity  {
 
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
-        categories.add("");
+        categories.add("Ending Start Time Morning");
         categories.add("7:45 am");
         categories.add("8:00 am");
         categories.add("8:15 am");
@@ -357,7 +360,7 @@ public class RideActivity extends AppCompatActivity  {
 
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
-        categories.add("");
+        categories.add("Ending Start Time Evening");
         categories.add("4:45 pm");
         categories.add("5:00 pm");
         categories.add("5:15 pm");
@@ -501,11 +504,6 @@ public class RideActivity extends AppCompatActivity  {
                             });
 
                         }
-
-
-
-
-
                     }
 
             });

@@ -49,14 +49,14 @@ public class UpdateProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile);
 
-        storageReferencePicture= FirebaseStorage.getInstance().getReference().child("Profile pictures");
-        profile_image_view=(CircleImageView) findViewById(R.id.setting_profile_image_change);
-        close_btn=(TextView)findViewById(R.id.setting_close);
-        update_btn=(TextView)findViewById(R.id.setting_update);
-        profile_change_btn=(TextView)findViewById(R.id.setting_profile_image_change_btn);
-        phone_ed=(EditText)findViewById(R.id.setting_phone_number);
-        fname_ed=(EditText)findViewById(R.id.setting_full_name);
-        adress_ed=(EditText)findViewById(R.id.setting_address);
+        storageReferencePicture = FirebaseStorage.getInstance().getReference().child("Profile pictures");
+        profile_image_view = (CircleImageView) findViewById(R.id.setting_profile_image_change);
+        close_btn = (TextView)findViewById(R.id.setting_close);
+        update_btn = (TextView)findViewById(R.id.setting_update);
+        profile_change_btn = (TextView)findViewById(R.id.setting_profile_image_change_btn);
+        phone_ed = (EditText)findViewById(R.id.setting_phone_number);
+        fname_ed = (EditText)findViewById(R.id.setting_full_name);
+        adress_ed = (EditText)findViewById(R.id.setting_address);
 
         userPrfileinfo(profile_image_view,fname_ed,phone_ed,adress_ed);
 

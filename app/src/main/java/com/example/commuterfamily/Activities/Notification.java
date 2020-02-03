@@ -40,9 +40,9 @@ public class Notification extends AppCompatActivity {
     private  LinearLayoutManager layoutManager;
     private DatabaseReference notificatioRef,refDisplay;
     private NotificationAdapter notificationAdapter;
-     private String date,time;
-     private Noti notif;
-     private DatabaseReference getNotificatioRef;
+    private String date,time;
+    private Noti notif;
+    private DatabaseReference getNotificatioRef;
 
 
     @Override
@@ -50,9 +50,8 @@ public class Notification extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
         notif=new Noti();
-         recyclerView= findViewById(R.id.notifiList);
-
-         getNotificatioRef=FirebaseDatabase.getInstance().getReference().child("Notification");
+        recyclerView= findViewById(R.id.notifiList);
+        getNotificatioRef=FirebaseDatabase.getInstance().getReference().child("Notification");
         recyclerView.setHasFixedSize(true);
         layoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);

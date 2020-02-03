@@ -3,36 +3,38 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_margin="0.5dp"
     android:layout_height="wrap_content">
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
-<TextView
-    android:padding="10dp"
-    android:textSize="24dp"
-    android:textColor="@color/colorPrimaryDark"
-    android:text="You Have Notification From"
-    android:id="@+id/title_noti"
+        <TextView
+            android:id="@+id/title_noti"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="You Have Notification From"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20dp"/>
 
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"/>
-    <TextView
-        android:layout_marginLeft="10dp"
-        android:text="Pick Up point is "
-        android:id="@+id/starting"
+        <TextView
+            android:id="@+id/starting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Name"
+            android:textStyle="bold"/>
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <TextView
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:autoText="true"
+            android:text="Dated"/>
 
-       android:layout_marginLeft="10dp"
-        android:text="Dated"
-        android:id="@+id/date"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

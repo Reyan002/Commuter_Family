@@ -22,6 +22,7 @@ public class AboutUs extends Fragment {
         myView = inflater.inflate(R.layout.about_us_fragment,container,false);
 
         return myView;
+
     }
 
 }
