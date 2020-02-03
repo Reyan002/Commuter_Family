@@ -4,20 +4,17 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/home"
-            android:title="@string/menu_home" />
-        <item
-            android:id="@+id/nav_drive"
-            android:icon="@drawable/ic_directions_car_white_24dp"
-            android:iconTint="@color/quantum_black_100"
+            android:icon="@mipmap/driver_foreground"
+            android:iconTint="@color/colorIcons"
             android:title="Driver" />
         <item
             android:id="@+id/nav_passenger"
             android:icon="@drawable/call_taxi"
             android:title="Passenger"
-            android:iconTint="@color/quantum_black_100"/>
+            android:iconTint="@color/colorIcons"/>
         <item
             android:id="@+id/nav_wallet"
             android:icon="@drawable/wallet"
@@ -30,13 +27,14 @@
             <item
                 android:id="@+id/nav_about"
                 android:icon="@drawable/icons_about"
-                android:title="About Us" />
+                android:iconTint="@color/colorIcons"
+                android:title="About Us"/>
 
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@mipmap/logout"
-                android:title="SignOut"
-                android:iconTint="@color/quantum_black_100"/>
+                android:title="Setting"
+                android:iconTint="@color/colorIcons"/>
         </menu>
     </item>
 

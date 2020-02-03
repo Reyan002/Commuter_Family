@@ -8,8 +8,15 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.commuterfamily.DashBoardDrawerActivity.ui.HomeFragment"
-        android:label="@string/menu_home"
+        android:label="I am Driver"
         tools:layout="@layout/home_fragment" />
+
+    <fragment
+        android:id="@+id/nav_passenger"
+        android:name="com.example.commuterfamily.DashBoardDrawerActivity.ui.Home_Passenger"
+        android:label="I am Passenger"
+        tools:layout="@layout/home_passenger"/>
+
 
     <fragment
         android:id="@+id/nav_about"
@@ -17,16 +24,10 @@
         android:label="@string/menu_gallery"
         tools:layout="@layout/about_us_fragment" />
 
-    <activity
-        android:id="@+id/nav_drive"
-        android:name="com.example.commuterfamily.Activities.DriveActivity"
-        android:label="Drive"
-        tools:layout="@layout/activity_drive"/>
-
-    <activity
-        android:id="@+id/nav_passenger"
-        android:name="com.example.commuterfamily.Activities.RiderRouteActivity"
-        android:label="Passenger"
-        tools:layout="@layout/activity_rider_route"/>
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.example.commuterfamily.DashBoardDrawerActivity.ui.Setting"
+        android:label="Setting"
+        tools:layout="@layout/fragment_setting"/>
 
 </navigation>

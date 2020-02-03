@@ -63,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
-    <EditText
+    <TextView
         android:padding="10dp"
         android:layout_marginTop="15dp"
         android:id="@+id/setting_phone_number"
@@ -71,7 +71,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLines="1"
-        android:inputType="number"
+        android:textSize="16dp"
         android:layout_below="@+id/setting_profile_image_change_btn"/>
     <EditText
         android:padding="10dp"
@@ -80,6 +80,8 @@
         android:hint="Full Name..."
         android:maxLines="1"
         android:inputType="text"
+        android:textSize="16dp"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/setting_phone_number"/>
@@ -88,6 +90,7 @@
         android:layout_marginTop="15dp"
         android:id="@+id/setting_address"
         android:hint="Email"
+        android:textSize="16dp"
         android:maxLines="1"
         android:inputType="textEmailAddress"
         android:layout_width="match_parent"

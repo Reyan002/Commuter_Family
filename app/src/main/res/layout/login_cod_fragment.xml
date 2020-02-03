@@ -68,7 +68,8 @@
             <EditText
                 android:id="@+id/cod_login"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:maxLines="1" />
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_next_4"
                 style="@style/Widget.AppCompat.Button.Borderless"
