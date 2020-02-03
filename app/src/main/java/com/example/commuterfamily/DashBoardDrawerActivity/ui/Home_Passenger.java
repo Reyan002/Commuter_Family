@@ -85,7 +85,7 @@ public class Home_Passenger extends Fragment {
         myView.findViewById(R.id.card1p).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), AddCarActivity.class));
+                startActivity(new Intent(getContext(), MapsActivity.class));
             }
         });
 
@@ -99,14 +99,14 @@ public class Home_Passenger extends Fragment {
         myView.findViewById(R.id.card3p).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "card 3", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Distance Calculator not worked", Toast.LENGTH_SHORT).show();
             }
         });
 
         myView.findViewById(R.id.card4p).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "card 4", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "History not worked", Toast.LENGTH_SHORT).show();
             }
         });
 
