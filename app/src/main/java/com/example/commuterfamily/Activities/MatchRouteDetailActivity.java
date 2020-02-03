@@ -4,6 +4,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -71,7 +72,8 @@ private String current_request ;
 private String firebaseInstanceId;
 private TextView name,view;
 //private MapView mapView;
-private GoogleMap gMap;
+
+    private GoogleMap gMap;
 private MapFragment mapFragment;
 private TextView pickUp;
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS =0 ;
@@ -82,11 +84,17 @@ private TextView pickUp;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match_route_detail);
 
+
+        CardView cardView=findViewById(R.id.cardViewMd2);
+
+        if(DemoClass.commuterMatch=="Drivers"){
+            cardView.setVisibility(View.VISIBLE);
+        }
                 firebaseInstanceId=FirebaseInstanceId.getInstance().getToken();
-        current_request="new";
         Initilize();
 
 
+        current_request="new";
 
 //        pickUp.setText(getIntent().getStringExtra("pick"));
 //
@@ -99,44 +107,46 @@ private TextView pickUp;
         request_ref=FirebaseDatabase.getInstance().getReference().child("Request");
         connect_ref=FirebaseDatabase.getInstance().getReference().child("PeopleConnected");
         notify_ref=FirebaseDatabase.getInstance().getReference().child("Notification");
-        ProductId=getIntent().getStringExtra("rid");
-        Pnumber=getIntent().getStringExtra("number");
+
+ //        Pnumber=getIntent().getStringExtra("number");
         retriev();
 
 
-        DatabaseReference details=FirebaseDatabase.getInstance().getReference().child("Riders");
-        details.child(ProductId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                shift.setText(dataSnapshot.getValue(Routes.class).getShift());
-                day.setText(dataSnapshot.getValue(Routes.class).getDay());
-                time.setText(dataSnapshot.getValue(Routes.class).getETimeFrom()+dataSnapshot.getValue(Routes.class).getETimeTo()+dataSnapshot.getValue(Routes.class).getMTimeFrom()+dataSnapshot.getValue(Routes.class).getMTimeTo());
-                start.setText(dataSnapshot.getValue(Routes.class).getAdressFrom());
-                    Toast.makeText(MatchRouteDetailActivity.this, shift.getText().toString(), Toast.LENGTH_SHORT).show();
+//        DatabaseReference details=FirebaseDatabase.getInstance().getReference().child("Riders");
+//        details.child(ProductId).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if(dataSnapshot.exists()){
+//                shift.setText(dataSnapshot.getValue(Routes.class).getShift());
+//                day.setText(dataSnapshot.getValue(Routes.class).getDay());
+//                time.setText(dataSnapshot.getValue(Routes.class).getETimeFrom()+dataSnapshot.getValue(Routes.class).getETimeTo()+dataSnapshot.getValue(Routes.class).getMTimeFrom()+dataSnapshot.getValue(Routes.class).getMTimeTo());
+//                start.setText(dataSnapshot.getValue(Routes.class).getAdressFrom());
+//                    Toast.makeText(MatchRouteDetailActivity.this, shift.getText().toString(), Toast.LENGTH_SHORT).show();
+//
+//                    end.setText(dataSnapshot.getValue(Routes.class).getAdressTo());}
+//                else{
+//                    Toast.makeText(MatchRouteDetailActivity.this, "Error", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
 
-                    end.setText(dataSnapshot.getValue(Routes.class).getAdressTo());}
-                else{
-                    Toast.makeText(MatchRouteDetailActivity.this, "nikal l**y", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        Toast.makeText(this, ProductId, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, ProductId, Toast.LENGTH_SHORT).show();
 
 
     }
+
     public void retriev(){
+        ProductId=getIntent().getStringExtra("rid");
+        Pnumber=getIntent().getStringExtra("number");
         getVehiclesDetail( );
 
         Initilize();
-        ProductId=getIntent().getStringExtra("rid");
-        Pnumber=getIntent().getStringExtra("number");
+
         getRouteDetails(ProductId);
           getUserDetails(Pnumber);
         manageDetails();
@@ -149,7 +159,6 @@ private TextView pickUp;
                 public void onClick(View v) {
                     if(current_request.equals ("new")){
 
-                        Toast.makeText(MatchRouteDetailActivity.this, current_request, Toast.LENGTH_SHORT).show();
                         sendRequestOfRide();
                     }
                     if(current_request.equals ("request_sent")){
@@ -161,6 +170,7 @@ private TextView pickUp;
 
                         acceptRequest();
                     }if(current_request.equals("commute")){
+//                        Toast.makeText(MatchRouteDetailActivity.this, current_request, Toast.LENGTH_SHORT).show();
 
                         removeRequest();
                     }
@@ -171,6 +181,7 @@ private TextView pickUp;
 //
 //                    }
 
+//                    Toast.makeText(MatchRouteDetailActivity.this, current_request, Toast.LENGTH_SHORT).show();
                 }
             });
         }else
@@ -252,7 +263,7 @@ private TextView pickUp;
 //                    PDdescription.setText(products.getDescription());
 //                    Picasso.get().load(products.getImage()).into(productDetailsImage);
                 }
-                Toast.makeText(MatchRouteDetailActivity.this, "NOT EXIST", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MatchRouteDetailActivity.this, "NOT EXIST", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -273,14 +284,14 @@ private TextView pickUp;
                         current_request="request_sent";
                         request.setText("Cancle Request");
                         cancle.setVisibility(View.GONE);
-                        Toast.makeText(MatchRouteDetailActivity.this, request_type, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MatchRouteDetailActivity.this, request_type, Toast.LENGTH_SHORT).show();
                     }
                     else if(request_type.equals("recieved")){
                         current_request="request_recieved";
                         request.setText("Accept Request");
                         cancle.setVisibility(View.VISIBLE);
                         cancle.setText("Decline Request");
-                        Toast.makeText(MatchRouteDetailActivity.this, request_type, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MatchRouteDetailActivity.this, request_type, Toast.LENGTH_SHORT).show();
 
                         cancle.setEnabled(true);
                         cancle.setOnClickListener(new View.OnClickListener() {
@@ -300,7 +311,7 @@ private TextView pickUp;
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 if(dataSnapshot.hasChild(Pnumber)) {
-                                    current_request="new";
+                                    current_request="commute";
                                     request.setText("Remove");
                                 }
 
@@ -449,7 +460,7 @@ finish();            }
 
 
     private void getRouteDetails(String productId) {
-        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child(DemoClass.RouteFor);
+        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("Drivers");
         reference.child(productId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -460,6 +471,7 @@ finish();            }
                     time.setText("Time: "+routes.getETimeFrom()+"-"+routes.getETimeTo()+routes.getMTimeFrom()+"-"+routes.getMTimeTo());
                     start.setText("Start From: "+routes.getAdressFrom());
                     end.setText("End On: "+routes.getAdressTo());
+                    pickUp.setText("Pick up Point: "+routes.getPickUp());
 
 
 //            @Override
@@ -541,11 +553,11 @@ finish();            }
                     SmsManager smsManager = SmsManager.getDefault();
                     smsManager.sendTextMessage("+923123850471", null, "Hello G", null, null);
                     sendRequestOfRide();
-                    Toast.makeText(getApplicationContext(), "SMS sent.",
-                            Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getApplicationContext(), "SMS sent.",
+//                            Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(getApplicationContext(),
-                            "SMS faild, please try again.", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getApplicationContext(),
+//                            "SMS faild, please try again.", Toast.LENGTH_LONG).show();
                     return;
                 }
             }

@@ -112,6 +112,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 //Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
                 mMap.clear();
+
                 mMap.addMarker(new MarkerOptions().position(place.getLatLng()).title(place.getName()));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(),15.0f));

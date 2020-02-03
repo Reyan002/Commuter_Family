@@ -29,7 +29,6 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.commuterfamily.SessionManager.SessionManager;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,15 +46,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+import ru.nikartm.support.ImageBadgeView;
+
 public class DashboardDrawerActivity extends AppCompatActivity {
 
+    long count ;
     private TextView userName,email;
     private ImageView profilePicture;
-    long count;
+    private boolean check=false;
     private AppBarConfiguration mAppBarConfiguration;
     TextView textCartItemCount;
     SessionManager sessionManager;
-    private boolean check = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,17 +79,7 @@ public class DashboardDrawerActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
         navigationView.bringToFront();
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                return false;
-
-
-            }
-        });
-
 
         View header = navigationView.getHeaderView(0);
         header.setOnClickListener(new View.OnClickListener() {
@@ -201,8 +193,6 @@ public class DashboardDrawerActivity extends AppCompatActivity {
 
 
         ncount=count;
-
-
         return ncount;
 
     }
@@ -225,6 +215,7 @@ public class DashboardDrawerActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
 //        if(!check){
 //            Snackbar.make( findViewById(R.id.nav_host_fragment),"Press one more time to exit",Snackbar.LENGTH_SHORT).show();
 //            // Toast.makeText(this,"Press one more time to exit",Toast.LENGTH_SHORT).show();
@@ -235,22 +226,21 @@ public class DashboardDrawerActivity extends AppCompatActivity {
 //            a.addCategory(Intent.CATEGORY_HOME);
 //            a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //            startActivity(a);
+
         if (!check) {
             Toast.makeText(this, "Please click Back again to exit", Toast.LENGTH_SHORT).show();
             check = true;
         }else{
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent a = new Intent(Intent.ACTION_MAIN);
-                a.addCategory(Intent.CATEGORY_HOME);
-                a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(a);
-                finish();
-            }
-        }, 400);
-        check = false;
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent a = new Intent(Intent.ACTION_MAIN);
+                    a.addCategory(Intent.CATEGORY_HOME);
+                    a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(a);
+                }
+            }, 400);
+            check = false;
         }
     }
-
 }

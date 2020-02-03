@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -44,7 +45,7 @@ public class MatchActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private MatchAdapter matchAdapter;
     private double locLatFrom,locLongFrom,locLatTo,locLngTo;
-
+    private ProgressDialog loadingBar;
 
     private DatabaseReference databaseReference;
     @Override
@@ -56,7 +57,7 @@ public class MatchActivity extends AppCompatActivity {
         locLongFrom= Double.parseDouble(getIntent().getStringExtra("locLongFrom"));
         locLatTo= Double.parseDouble(getIntent().getStringExtra("locLatTo"));
         locLngTo= Double.parseDouble(getIntent().getStringExtra("locLongTo"));
-        Toast.makeText(MatchActivity.this, DemoClass.commuterMatch, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(MatchActivity.this, DemoClass.commuterMatch, Toast.LENGTH_SHORT).show();
 
         recyclerView.setHasFixedSize(true);
         layoutManager=new LinearLayoutManager(this);
@@ -66,11 +67,11 @@ public class MatchActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-//        loadingBar=new ProgressDialog(this);
-//        loadingBar.setTitle("Loading Routes");
-//        loadingBar.setMessage("Please wait ...");
-//        loadingBar.setCanceledOnTouchOutside(false);
-//        loadingBar.show();
+        loadingBar=new ProgressDialog(this);
+        loadingBar.setTitle("Loading Routes");
+        loadingBar.setMessage("Please wait ...");
+        loadingBar.setCanceledOnTouchOutside(false);
+        loadingBar.show();
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child(DemoClass.commuterMatch);
@@ -80,7 +81,7 @@ public class MatchActivity extends AppCompatActivity {
                   ArrayList<Routes> routes=new ArrayList<>();
                  for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     if(
-                             !dataSnapshot1.child("Number").getValue().toString().equalsIgnoreCase(Prevalent.currentOnlineUser.getPhone())&&
+                              !dataSnapshot1.child("Number").getValue().toString().equalsIgnoreCase(Prevalent.currentOnlineUser.getPhone())&&
 //                            dataSnapshot1.child("AdressFrom").getValue().toString().equalsIgnoreCase(getIntent().getStringExtra("adressFrom"))
 //                            && dataSnapshot1.child("AdressTo").getValue().toString().equalsIgnoreCase(getIntent().getStringExtra("adressTo"))
 //                            && dataSnapshot1.child("Date").getValue().toString().equals(getIntent().getStringExtra(""))
@@ -94,11 +95,11 @@ public class MatchActivity extends AppCompatActivity {
 
                     )
                     {
-                        Toast.makeText(MatchActivity.this, dataSnapshot1.child("Number").getValue().toString(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MatchActivity.this, dataSnapshot1.child("Number").getValue().toString(), Toast.LENGTH_SHORT).show();
                         if(calculateDistance(locLatFrom,locLongFrom,Double.valueOf(dataSnapshot1.child("LocFrom").child("lat").getValue().toString()),
                                 Double.valueOf(dataSnapshot1.child("LocFrom").child("long").getValue().toString())
                                )<1.0f){
-//                            Toast.makeText(MatchActivity.this, DemoClass.commuterMatch, Toast.LENGTH_SHORT).show();
+//                      if      Toast.makeText(MatchActivity.this, DemoClass.commuterMatch, Toast.LENGTH_SHORT).show();
 
                             routes.add(dataSnapshot1.getValue(Routes.class));
                         }
@@ -109,8 +110,16 @@ public class MatchActivity extends AppCompatActivity {
 
 
                 }
-                matchAdapter = new MatchAdapter(routes, MatchActivity.this);
-                recyclerView.setAdapter(matchAdapter);
+                 if(!routes.isEmpty()){
+                     loadingBar.dismiss();
+                     matchAdapter = new MatchAdapter(routes, MatchActivity.this);
+                     recyclerView.setAdapter(matchAdapter);
+
+                 }
+                 else{
+                     loadingBar.dismiss();
+                     Toast.makeText(MatchActivity.this, "No Match Found", Toast.LENGTH_SHORT).show();
+                 }
 
             }
 
