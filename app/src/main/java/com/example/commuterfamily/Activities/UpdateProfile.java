@@ -35,8 +35,8 @@ public class UpdateProfile extends AppCompatActivity {
 
     private static final int galleryPic=1;
     private CircleImageView profile_image_view;
-    private TextView close_btn,update_btn,profile_change_btn;
-    private EditText phone_ed,fname_ed,adress_ed;
+    private TextView close_btn,update_btn,profile_change_btn,phone_ed;
+    private EditText fname_ed,adress_ed;
     private Uri imageUri;
     private String Url="";
     private StorageReference storageReferencePicture;
@@ -54,7 +54,7 @@ public class UpdateProfile extends AppCompatActivity {
         close_btn = (TextView)findViewById(R.id.setting_close);
         update_btn = (TextView)findViewById(R.id.setting_update);
         profile_change_btn = (TextView)findViewById(R.id.setting_profile_image_change_btn);
-        phone_ed = (EditText)findViewById(R.id.setting_phone_number);
+        phone_ed = (TextView)findViewById(R.id.setting_phone_number);
         fname_ed = (EditText)findViewById(R.id.setting_full_name);
         adress_ed = (EditText)findViewById(R.id.setting_address);
 
@@ -200,7 +200,7 @@ public class UpdateProfile extends AppCompatActivity {
 
     }
 
-    private void userPrfileinfo(final CircleImageView profile_image_view , final EditText fname_ed , final EditText phone_ed , final EditText adress_ed) {
+    private void userPrfileinfo(final CircleImageView profile_image_view , final EditText fname_ed , final TextView phone_ed , final EditText adress_ed) {
 
         DatabaseReference userRef= FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.currentOnlineUser.getPhone());
         userRef.addValueEventListener(new ValueEventListener() {
