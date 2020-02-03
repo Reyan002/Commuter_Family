@@ -96,10 +96,10 @@
                 app:cardCornerRadius="10dp">
 
                 <ImageView
-                    android:layout_width="110dp"
-                    android:layout_height="110dp"
+                    android:layout_width="105dp"
+                    android:layout_height="105dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/passenger"
+                    android:src="@drawable/route_view"
                     android:tint="#307B76"/>
 
                 <TextView
@@ -166,8 +166,8 @@
                 app:cardCornerRadius="10dp">
 
                 <ImageView
-                    android:layout_width="110dp"
-                    android:layout_height="110dp"
+                    android:layout_width="105dp"
+                    android:layout_height="105dp"
                     android:layout_gravity="center"
                     android:foregroundTint="@color/transparent"
                     android:src="@drawable/history_route"
