@@ -81,11 +81,11 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
                            intent.putExtra("from",cars.getAdressFrom());
                            intent.putExtra("to",cars.getAdressTo());
                            intent.putExtra("pick",cars.getPickUp());
-                           Toast.makeText(context, cars.getNumber(), Toast.LENGTH_SHORT).show();
+//                           Toast.makeText(context, cars.getNumber(), Toast.LENGTH_SHORT).show();
                            intent.putExtra("rid",cars.getRouteID());
                            intent.putExtra("latFrom",String.valueOf( cars.getLocFrom().getLat()));
                            intent.putExtra("longFrom",String.valueOf( cars.getLocFrom().getLong()));
-                           Toast.makeText(context, cars.getRouteID(), Toast.LENGTH_SHORT).show();
+//                           Toast.makeText(context, cars.getRouteID(), Toast.LENGTH_SHORT).show();
                            context.startActivity(intent);
                         }
                         if(which==1){
