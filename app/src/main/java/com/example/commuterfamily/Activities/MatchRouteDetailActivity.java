@@ -170,7 +170,7 @@ private TextView pickUp;
 
                         acceptRequest();
                     }if(current_request.equals("commute")){
-                        Toast.makeText(MatchRouteDetailActivity.this, current_request, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MatchRouteDetailActivity.this, current_request, Toast.LENGTH_SHORT).show();
 
                         removeRequest();
                     }
@@ -181,7 +181,7 @@ private TextView pickUp;
 //
 //                    }
 
-                    Toast.makeText(MatchRouteDetailActivity.this, current_request, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(MatchRouteDetailActivity.this, current_request, Toast.LENGTH_SHORT).show();
                 }
             });
         }else
@@ -263,7 +263,7 @@ private TextView pickUp;
 //                    PDdescription.setText(products.getDescription());
 //                    Picasso.get().load(products.getImage()).into(productDetailsImage);
                 }
-                Toast.makeText(MatchRouteDetailActivity.this, "NOT EXIST", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MatchRouteDetailActivity.this, "NOT EXIST", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -284,14 +284,14 @@ private TextView pickUp;
                         current_request="request_sent";
                         request.setText("Cancle Request");
                         cancle.setVisibility(View.GONE);
-                        Toast.makeText(MatchRouteDetailActivity.this, request_type, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MatchRouteDetailActivity.this, request_type, Toast.LENGTH_SHORT).show();
                     }
                     else if(request_type.equals("recieved")){
                         current_request="request_recieved";
                         request.setText("Accept Request");
                         cancle.setVisibility(View.VISIBLE);
                         cancle.setText("Decline Request");
-                        Toast.makeText(MatchRouteDetailActivity.this, request_type, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MatchRouteDetailActivity.this, request_type, Toast.LENGTH_SHORT).show();
 
                         cancle.setEnabled(true);
                         cancle.setOnClickListener(new View.OnClickListener() {
@@ -553,11 +553,11 @@ finish();            }
                     SmsManager smsManager = SmsManager.getDefault();
                     smsManager.sendTextMessage("+923123850471", null, "Hello G", null, null);
                     sendRequestOfRide();
-                    Toast.makeText(getApplicationContext(), "SMS sent.",
-                            Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getApplicationContext(), "SMS sent.",
+//                            Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(getApplicationContext(),
-                            "SMS faild, please try again.", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getApplicationContext(),
+//                            "SMS faild, please try again.", Toast.LENGTH_LONG).show();
                     return;
                 }
             }
