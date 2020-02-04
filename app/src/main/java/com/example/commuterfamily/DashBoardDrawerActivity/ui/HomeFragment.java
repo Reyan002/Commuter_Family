@@ -119,8 +119,7 @@ public class HomeFragment extends Fragment {
         myView.findViewById(R.id.card4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "History Activity under construction...:p", Toast.LENGTH_SHORT).show();
-//                startActivity(new Intent(getContext(), AddCarActivity.class));
+                startActivity(new Intent(getContext(), DriveActivity.class));
 //                Fragment fragment = new AboutUs();
 //                    fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, new AboutUs()).commit();
 //                Fragment fragment;

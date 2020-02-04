@@ -33,7 +33,7 @@
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@mipmap/logout"
-                android:title="SignOut"
+                android:title="Setting"
                 android:iconTint="@color/colorIcons"/>
         </menu>
     </item>

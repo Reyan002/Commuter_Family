@@ -65,11 +65,15 @@
                 android:layout_weight="1"
                 android:elevation="10dp"
                 app:cardCornerRadius="10dp">
-
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
                 <ImageView
                     android:layout_width="110dp"
                     android:layout_height="110dp"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_horizontal"
                     android:src="@drawable/route"
                     android:tint="#307B76"/>
 
@@ -79,11 +83,11 @@
                     android:layout_gravity="center_horizontal|bottom"
                     android:layout_marginBottom="10dp"
                     android:text="Add Route"
-                    android:textAlignment="center"
+                    android:layout_marginTop="10dp"
                     android:textColor="@color/colorPrimary"
                     android:textSize="20dp"
                     android:textStyle="bold"/>
-
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -94,11 +98,15 @@
                 android:layout_weight="1"
                 android:elevation="15dp"
                 app:cardCornerRadius="10dp">
-
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
                 <ImageView
                     android:layout_width="105dp"
                     android:layout_height="105dp"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_horizontal"
                     android:src="@drawable/route_view"
                     android:tint="#307B76"/>
 
@@ -108,11 +116,11 @@
                     android:layout_gravity="center_horizontal|bottom"
                     android:layout_marginBottom="10dp"
                     android:text="View Routes"
-                    android:textAlignment="center"
+                    android:layout_marginTop="10dp"
                     android:textColor="@color/colorPrimary"
                     android:textSize="20dp"
                     android:textStyle="bold"/>
-
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
         </LinearLayout>
@@ -135,11 +143,15 @@
                 android:layout_weight="1"
                 android:elevation="10dp"
                 app:cardCornerRadius="10dp">
-
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
                 <ImageView
                     android:layout_width="110dp"
                     android:layout_height="110dp"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_horizontal"
                     android:src="@drawable/route_calc"
                     android:tint="@color/colorIcons"/>
 
@@ -149,11 +161,11 @@
                     android:layout_gravity="center_horizontal|bottom"
                     android:layout_marginBottom="10dp"
                     android:text="Distance Calc"
-                    android:textAlignment="center"
+                    android:layout_marginTop="10dp"
                     android:textColor="@color/colorPrimary"
                     android:textSize="20dp"
                     android:textStyle="bold"/>
-
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -164,12 +176,15 @@
                 android:layout_weight="1"
                 android:elevation="15dp"
                 app:cardCornerRadius="10dp">
-
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
                 <ImageView
                     android:layout_width="105dp"
                     android:layout_height="105dp"
-                    android:layout_gravity="center"
-                    android:foregroundTint="@color/transparent"
+                    android:layout_gravity="center_horizontal"
                     android:src="@drawable/history_route"
                     android:tint="#307B76"/>
 
@@ -179,11 +194,11 @@
                     android:layout_gravity="center_horizontal|bottom"
                     android:layout_marginBottom="10dp"
                     android:text="History"
-                    android:textAlignment="center"
+                    android:layout_marginTop="10dp"
                     android:textColor="@color/colorPrimary"
                     android:textSize="20dp"
                     android:textStyle="bold"/>
-
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
         </LinearLayout>

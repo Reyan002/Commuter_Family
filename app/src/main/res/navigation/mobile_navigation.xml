@@ -24,10 +24,10 @@
         android:label="@string/menu_gallery"
         tools:layout="@layout/about_us_fragment" />
 
-<!--    <activity-->
-<!--        android:id="@+id/nav_drive"-->
-<!--        android:name="com.example.commuterfamily.Activities.DriveActivity"-->
-<!--        android:label="Drive"-->
-<!--        tools:layout="@layout/activity_drive"/>-->
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.example.commuterfamily.DashBoardDrawerActivity.ui.Setting"
+        android:label="Setting"
+        tools:layout="@layout/fragment_setting"/>
 
 </navigation>

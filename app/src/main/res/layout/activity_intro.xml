@@ -16,23 +16,30 @@
         android:text="SKIP"
         android:textSize="20dp"
         android:layout_alignParentRight="true"
-        android:layout_margin="20dp"/>
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"/>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPagerIntro"
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:layout_below="@+id/textSkip"
-        android:layout_marginTop="10dp"/>
+        android:layout_below="@+id/textSkip" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/viewPagerIntro"
+        android:layout_alignParentBottom="true"
+        android:paddingTop="10dp"
+        android:paddingBottom="20dp">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_indicator"
         app:tabBackground="@drawable/dots_selector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp">
 
     </com.google.android.material.tabs.TabLayout>
 
@@ -45,9 +52,9 @@
         android:textAllCaps="true"
         android:textColor="@color/colorPrimary"
         android:drawableRight="@drawable/arrow"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
+        android:layout_alignParentRight="true"
+        android:padding="10dp"
         android:layout_marginRight="20dp"
         android:drawableTint="@color/colorPrimary"/>
 
@@ -59,13 +66,8 @@
         android:text="Get Started"
         android:textStyle="bold"
         android:background="@drawable/round_all_corners"
-        android:padding="10dp"
-        android:layout_below="@id/viewPagerIntro"
         android:textAllCaps="false"
-        android:layout_marginTop="10dp"
         android:visibility="invisible"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"/>
-
+        android:layout_centerInParent="true"/>
+    </RelativeLayout>
 </RelativeLayout>

@@ -54,11 +54,11 @@ public class UpdateProfile extends AppCompatActivity {
         close_btn = (TextView)findViewById(R.id.setting_close);
         update_btn = (TextView)findViewById(R.id.setting_update);
         profile_change_btn = (TextView)findViewById(R.id.setting_profile_image_change_btn);
-        phone_ed = (TextView)findViewById(R.id.setting_phone_number);
+//        phone_ed = (TextView)findViewById(R.id.setting_phone_number);
         fname_ed = (EditText)findViewById(R.id.setting_full_name);
         adress_ed = (EditText)findViewById(R.id.setting_address);
 
-        userPrfileinfo(profile_image_view,fname_ed,phone_ed,adress_ed);
+        userPrfileinfo(profile_image_view,fname_ed,adress_ed);
 
         close_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +112,7 @@ public class UpdateProfile extends AppCompatActivity {
         HashMap<String, Object> userMap = new HashMap<>();
         userMap. put("Name", fname_ed.getText().toString());
         userMap. put("Phone", adress_ed.getText().toString());
-        userMap. put("Email", phone_ed.getText().toString());
+//        userMap. put("Email", phone_ed.getText().toString());
         ref.child(Prevalent.currentOnlineUser.getPhone()).updateChildren(userMap);
 
         startActivity(new Intent(UpdateProfile.this, DashboardDrawerActivity.class));
@@ -125,9 +125,9 @@ public class UpdateProfile extends AppCompatActivity {
         if(TextUtils.isEmpty(fname_ed.getText().toString())){
             Toast.makeText(this,"Name is Mandatory",Toast.LENGTH_SHORT).show();
         }
-        else  if(TextUtils.isEmpty(phone_ed.getText().toString())){
-            Toast.makeText(this,"Phone is Mandatory",Toast.LENGTH_SHORT).show();
-        }
+//        else  if(TextUtils.isEmpty(phone_ed.getText().toString())){
+//            Toast.makeText(this,"Phone is Mandatory",Toast.LENGTH_SHORT).show();
+//        }
         else if(TextUtils.isEmpty(adress_ed.getText().toString())){
             Toast.makeText(this,"Adress is Mandatory",Toast.LENGTH_SHORT).show();
         }
@@ -173,7 +173,7 @@ public class UpdateProfile extends AppCompatActivity {
                         HashMap<String,Object> userMap=new HashMap<>();
                         userMap.put("Name",fname_ed.getText().toString());
                         userMap.put("Email",adress_ed.getText().toString());
-                        userMap.put("Phone",phone_ed.getText().toString());
+//                        userMap.put("Phone",phone_ed.getText().toString());
                         userMap.put("Image",myUrl);
                         reference.child(Prevalent.currentOnlineUser.getPhone()).updateChildren(userMap);
 
@@ -200,7 +200,7 @@ public class UpdateProfile extends AppCompatActivity {
 
     }
 
-    private void userPrfileinfo(final CircleImageView profile_image_view , final EditText fname_ed , final TextView phone_ed , final EditText adress_ed) {
+    private void userPrfileinfo(final CircleImageView profile_image_view , final EditText fname_ed , final EditText adress_ed) {
 
         DatabaseReference userRef= FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.currentOnlineUser.getPhone());
         userRef.addValueEventListener(new ValueEventListener() {

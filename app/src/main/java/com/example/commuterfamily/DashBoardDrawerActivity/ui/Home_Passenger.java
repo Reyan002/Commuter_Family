@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.commuterfamily.Activities.AddCarActivity;
 import com.example.commuterfamily.Activities.MapsActivity;
+import com.example.commuterfamily.Activities.RiderRouteActivity;
 import com.example.commuterfamily.R;
 
 import androidx.annotation.NonNull;
@@ -92,7 +93,7 @@ public class Home_Passenger extends Fragment {
         myView.findViewById(R.id.card2p).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), AddCarActivity.class));
+                startActivity(new Intent(getContext(), RiderRouteActivity.class));
             }
         });
 

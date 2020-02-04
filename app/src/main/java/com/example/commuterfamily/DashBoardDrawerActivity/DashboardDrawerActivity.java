@@ -51,7 +51,7 @@ import ru.nikartm.support.ImageBadgeView;
 
 public class DashboardDrawerActivity extends AppCompatActivity {
 
-    long count ;
+    long count;
     private TextView userName,email;
     private ImageView profilePicture;
     private boolean check=false;
@@ -215,7 +215,6 @@ public class DashboardDrawerActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
 //        if(!check){
 //            Snackbar.make( findViewById(R.id.nav_host_fragment),"Press one more time to exit",Snackbar.LENGTH_SHORT).show();
 //            // Toast.makeText(this,"Press one more time to exit",Toast.LENGTH_SHORT).show();
@@ -226,11 +225,11 @@ public class DashboardDrawerActivity extends AppCompatActivity {
 //            a.addCategory(Intent.CATEGORY_HOME);
 //            a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //            startActivity(a);
-
         if (!check) {
             Toast.makeText(this, "Please click Back again to exit", Toast.LENGTH_SHORT).show();
             check = true;
         }else{
+
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -241,6 +240,17 @@ public class DashboardDrawerActivity extends AppCompatActivity {
                 }
             }, 400);
             check = false;
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent a = new Intent(Intent.ACTION_MAIN);
+                a.addCategory(Intent.CATEGORY_HOME);
+                a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(a);
+                finish();
+            }
+        }, 400);
+        check = false;
         }
     }
 }
