@@ -9,13 +9,19 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -84,6 +90,38 @@ private TextView pickUp;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match_route_detail);
 
+        findViewById(R.id.message).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+                sendIntent.setData(Uri.parse("sms:+923408377547"));
+               startActivity(sendIntent);
+            }
+        });
+        findViewById(R.id.whatsapp).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String contact = "+923408377547"; // use country code with your phone number
+                String url = "https://api.whatsapp.com/send?phone=" + contact;
+                try {
+                    PackageManager pm = MatchRouteDetailActivity.this.getPackageManager();
+                    pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+                } catch (PackageManager.NameNotFoundException e) {
+                    Toast.makeText(MatchRouteDetailActivity.this, "Whatsapp app not installed in your phone", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        });
+        findViewById(R.id.call).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                callPhoneNumber();
+            }
+        });
 
         CardView cardView=findViewById(R.id.cardViewMd2);
 
@@ -313,6 +351,9 @@ private TextView pickUp;
                                 if(dataSnapshot.hasChild(Pnumber)) {
                                     current_request="commute";
                                     request.setText("Remove");
+                                    request.setVisibility(View.GONE);
+                                    LinearLayout linearLayout=findViewById(R.id.ll);
+                                    linearLayout.setVisibility(View.VISIBLE);
                                 }
 
 
@@ -564,6 +605,44 @@ finish();            }
         }
 
     }
+
+
+
+
+
+    public void callPhoneNumber()
+    {
+        try
+        {
+            if(Build.VERSION.SDK_INT > 22)
+            {
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+
+                    ActivityCompat.requestPermissions(MatchRouteDetailActivity.this, new String[]{Manifest.permission.CALL_PHONE}, 101);
+
+                    return;
+                }
+
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:" + "03408377547"));
+                startActivity(callIntent);
+
+            }
+            else {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:" + "03408377547"));
+                startActivity(callIntent);
+            }
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+    }
+
+
+
 }
 
 
