@@ -75,8 +75,6 @@ public class Home_Passenger extends Fragment {
                     dots[i].setImageDrawable(ContextCompat.getDrawable(getContext(),R.drawable.not_active_dots));
                 }
 
-                Timer timer = new Timer();
-                timer.scheduleAtFixedRate(new MyTaskTimer(),2000,4000);
 
                 dots[position].setImageDrawable(ContextCompat.getDrawable(getContext(),R.drawable.active_dots));
 
@@ -87,6 +85,9 @@ public class Home_Passenger extends Fragment {
 
             }
         });
+
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new MyTaskTimer(),2000,4000);
 
 
         myView.findViewById(R.id.card1p).setOnClickListener(new View.OnClickListener() {

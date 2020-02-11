@@ -41,13 +41,14 @@ public class HomeFragment extends Fragment {
     private int dotscount;
     private ImageView[] dots;
     static FragmentManager fragmentManager;
+    private Handler handler = new Handler();
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.home_fragment,container,false);
+        myView = inflater.inflate(R.layout.home_fragment, container, false);
 
         viewPager = myView.findViewById(R.id.pager);
         sliderDotspanel = myView.findViewById(R.id.layout_dots);
@@ -59,10 +60,10 @@ public class HomeFragment extends Fragment {
         dotscount = viewPagerAdapter.getCount();
         dots = new ImageView[dotscount];
 
-        for(int i = 0; i < dotscount; i++){
+        for (int i = 0; i < dotscount; i++) {
 
             dots[i] = new ImageView(getContext());
-            dots[i].setImageDrawable(ContextCompat.getDrawable(getContext(),R.drawable.not_active_dots));
+            dots[i].setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.not_active_dots));
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
                     (LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -73,7 +74,7 @@ public class HomeFragment extends Fragment {
 
         }
 
-        dots[0].setImageDrawable(ContextCompat.getDrawable(getContext(),R.drawable.active_dots));
+        dots[0].setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.active_dots));
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -88,12 +89,7 @@ public class HomeFragment extends Fragment {
                     dots[i].setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.not_active_dots));
 
                 }
-
-                Timer timer = new Timer();
-                timer.scheduleAtFixedRate(new MyTaskTimer(), 2000,4000);
-
                 dots[position].setImageDrawable(ContextCompat.getDrawable(getContext(),R.drawable.active_dots));
-
 //                autoSlider(viewPager);
 //                final Handler handler = new Handler();
 //
@@ -133,8 +129,6 @@ public class HomeFragment extends Fragment {
 //                    }
 //                }, 300, 5000);
             }
-
-
 //                final Handler handler = new Handler();
 //                final Runnable update = new Runnable() {
 //                    public void run() {
@@ -154,12 +148,15 @@ public class HomeFragment extends Fragment {
 //                }, 3000, 4000);
 //
 //            }
-
             @Override
             public void onPageScrollStateChanged(int state) {
 
             }
         });
+
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new MyTaskTimer(), 3000, 4000);
+
 
         myView.findViewById(R.id.card1).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,34 +195,10 @@ public class HomeFragment extends Fragment {
 //                }
             }
         });
-
         return myView;
     }
 
-    public void autoSlider(final ViewPager viewPager) {
-
-        Handler handler = new Handler();
-        Runnable rr = new Runnable() {
-            public void run() {
-                int pos = viewPager.getCurrentItem();
-                if(pos > dotscount && pos != dots.length - 1){
-                    dotscount = pos;
-                    dotscount++;
-                }
-                else if(pos < (dotscount-1)){
-                    dotscount = pos;
-                    dotscount++;
-                }
-                viewPager.setCurrentItem(dotscount, true);
-                dotscount++;
-                if (dotscount >= dots.length)
-                    dotscount = 0;
-                autoSlider(viewPager);
-            }};
-        handler.postDelayed(rr, 3000);
-    }
-
-    public class MyTaskTimer extends TimerTask{
+    public class MyTaskTimer extends TimerTask {
         @Override
         public void run() {
             getActivity().runOnUiThread(new Runnable() {
@@ -242,4 +215,5 @@ public class HomeFragment extends Fragment {
             });
         }
     }
+
 }

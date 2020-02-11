@@ -60,6 +60,10 @@ public class Splash extends AppCompatActivity {
 
         }
 
+//        sessionManager.imagesList("https://firebasestorage.googleapis.com/v0/b/commuter-family.appspot.com/o/Home%2Fcover1.jpg?alt=media&token=a5e77cd6-fcf7-4ab3-a76a-4fa51af90eae",
+//        "https://firebasestorage.googleapis.com/v0/b/commuter-family.appspot.com/o/Home%2Fcover2.jpg?alt=media&token=103a996b-ed93-429d-8339-d0b5918ec3f8",
+//                "https://firebasestorage.googleapis.com/v0/b/commuter-family.appspot.com/o/Home%2Fcover3.jpg?alt=media&token=33f115d2-9895-461c-8e4f-8dc4f8766092");
+
 
     }
 }
