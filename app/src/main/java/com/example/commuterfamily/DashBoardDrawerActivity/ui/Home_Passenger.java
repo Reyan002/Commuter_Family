@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.commuterfamily.Activities.AddCarActivity;
@@ -27,7 +28,7 @@ public class Home_Passenger extends Fragment {
 
     View myView;
     private ViewPager viewPager;
-    private LinearLayout sliderDotspanel;
+    private RelativeLayout sliderDotspanel;
     private int dotscount;
     private ImageView[] dots;
 
