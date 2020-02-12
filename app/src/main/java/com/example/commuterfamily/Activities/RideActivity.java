@@ -76,9 +76,9 @@ public class RideActivity extends AppCompatActivity  {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!txtDay.equals("")&&!txtShift.equals("")&&
-                ((!txtMTimeFrom.equals("")&&!txtMTimeTo.equals(""))||
-                         (!txtETimeFrom.equals("")&&!txtEtimeTo.equals("")||!pickup.getText().equals("") ) )
+                if((!txtDay.equals("")&&!txtShift.equals("")&&
+                        ((!txtMTimeFrom.equals("")&&!txtMTimeTo.equals("") )||
+                          (!txtETimeFrom.equals("")&&!txtEtimeTo.equals("")))&&!pickup.getText().equals("") )
         &&!DemoClass.latLongFrom.equals("")&&!DemoClass.latLongTo.equals("") )  {
             addRiderIntoDataBase();
         }

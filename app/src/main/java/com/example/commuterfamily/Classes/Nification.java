@@ -6,11 +6,19 @@ public class Nification {
     private String Date;
     private String Time;
     private String NotiId;
+    private String WantTo;
 
 
     public Nification() {
     }
 
+    public String getWantTo() {
+        return WantTo;
+    }
+
+    public void setWantTo(String wantTo) {
+        WantTo = wantTo;
+    }
 
     public String getNotiId() {
         return NotiId;

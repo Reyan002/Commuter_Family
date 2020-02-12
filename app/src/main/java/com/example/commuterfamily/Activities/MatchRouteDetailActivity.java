@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -197,7 +198,24 @@ private TextView pickUp;
                 public void onClick(View v) {
                     if(current_request.equals ("new")){
 
-                        sendRequestOfRide();
+                        AlertDialog.Builder builder=new AlertDialog.Builder(MatchRouteDetailActivity.this);
+                        builder.setTitle("Alert!");
+                        builder.setTitle("This Will Charge 10 pkr From your Account Balance, Are You Agree ?");
+                        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                sendRequestOfRide();
+                            }
+                        });
+                        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                               dialog.dismiss();
+                            }
+                        });
+
+                        builder.show();
+
                     }
                     if(current_request.equals ("request_sent")){
                         cancle.setVisibility(View.GONE);
@@ -415,6 +433,7 @@ finish();            }
                                 chatNotifi.put("Date", saveCurrentDate);
                                 chatNotifi.put("Time",saveCurrentime);
                                 chatNotifi.put("NotiId",getIntent().getStringExtra("rid"));
+                                chatNotifi.put("WantTo",DemoClass.commuterMatch);
 
 
                                 notify_ref.child(Pnumber).child(getIntent().getStringExtra("rid")).setValue(chatNotifi).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -425,6 +444,39 @@ finish();            }
                                             FirebaseMessaging.getInstance().subscribeToTopic("sendNotification");
                                             request.setText("Cancle Request");
                                             current_request="request_sent";
+
+                                            if (ContextCompat.checkSelfPermission(MatchRouteDetailActivity.this, Manifest.permission.SEND_SMS)
+                                                    != PackageManager.PERMISSION_GRANTED) {
+                                                // Permission is not granted
+                                                // Ask for permision
+                                                ActivityCompat.requestPermissions(MatchRouteDetailActivity.this,new String[] { Manifest.permission.SEND_SMS}, 1);
+                                            }
+                                            else {
+
+                                                try {
+                                                    SmsManager sms = SmsManager.getDefault();
+                                                    PendingIntent sentPI;
+                                                    String SENT = "SMS_SENT";
+
+                                                    sentPI = PendingIntent.getBroadcast(MatchRouteDetailActivity.this, 0,new Intent(SENT), 0);
+
+                                                    sms.sendTextMessage("+923408377547", null, "Hello G", sentPI, null);
+                                                    Toast.makeText(getApplicationContext(), "SMS Sent!",
+                                                            Toast.LENGTH_LONG).show();
+                                                } catch (Exception e) {
+                                                    Toast.makeText(getApplicationContext(),
+                                                            "SMS faild, please try again later!",
+                                                            Toast.LENGTH_LONG).show();
+                                                    e.printStackTrace();
+                                                }
+// Permission has already been granted
+                                            }
+
+
+//                                            Uri uri = Uri.parse("smsto:" + "+923408377547");
+//                                            Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
+//                                            intent.putExtra("sms_body", "Hello Its Me");
+//                                            startActivity(intent);
                                         }
                                     }
                                 });
@@ -501,7 +553,7 @@ finish();            }
 
 
     private void getRouteDetails(String productId) {
-        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("Drivers");
+        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child(DemoClass.commuterMatch);
         reference.child(productId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

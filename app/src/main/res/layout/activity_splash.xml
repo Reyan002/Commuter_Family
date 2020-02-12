@@ -6,6 +6,7 @@
     android:background="#307A76"
     android:layout_height="match_parent"
     tools:context=".Activities.Splash">
+
     <ImageView
         android:layout_centerInParent="true"
         android:id="@+id/whitelogo"
