@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.example.commuterfamily.Adapters.NotificationAdapter;
@@ -76,6 +77,8 @@ public class Notification extends AppCompatActivity {
 
         FirebaseRecyclerAdapter<Nification,NotificationAdapter> adapter=
                 new FirebaseRecyclerAdapter<Nification, NotificationAdapter>(options) {
+
+
                     @Override
                     protected void onBindViewHolder(@NonNull final NotificationAdapter notificationAdapter, int i, @NonNull final Nification nification) {
 
@@ -86,6 +89,7 @@ public class Notification extends AppCompatActivity {
                                 Intent intent=new Intent(Notification.this,MatchRouteDetailActivity.class);
                                 intent.putExtra("rid",nification.getNotiId());
                                 intent.putExtra("number",nification.getFrom());
+                                DemoClass.commuterMatch =nification.getWantTo();
                                 startActivity(intent);
                             }
                         });

@@ -70,6 +70,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
                     public void onClick(DialogInterface dialog , int which) {
 
                         if(which==0){
+
                            Intent intent=new Intent(context, MatchRouteDetailActivity.class);
                            intent.putExtra("number",cars.getNumber());
                            intent.putExtra("shift",cars.getShift());

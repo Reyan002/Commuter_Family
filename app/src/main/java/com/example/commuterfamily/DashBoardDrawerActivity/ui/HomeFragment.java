@@ -19,6 +19,7 @@ import com.example.commuterfamily.Activities.IntroActivity;
 import com.example.commuterfamily.Activities.MapsActivity;
 import com.example.commuterfamily.Activities.RideActivity;
 import com.example.commuterfamily.Activities.RiderRouteActivity;
+import com.example.commuterfamily.Classes.DemoClass;
 import com.example.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity;
 import com.example.commuterfamily.R;
 
@@ -169,6 +170,7 @@ public class HomeFragment extends Fragment {
         myView.findViewById(R.id.card2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DemoClass.RouteFor="Driver";
                 startActivity(new Intent(getContext(), MapsActivity.class));
 
             }
