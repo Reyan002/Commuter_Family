@@ -1,6 +1,7 @@
 package com.example.commuterfamily.DashBoardDrawerActivity.ui;
 
 import android.content.Context;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.commuterfamily.R;
+import com.example.commuterfamily.SessionManager.SessionManager;
 import com.squareup.picasso.Picasso;
 
 import androidx.viewpager.widget.PagerAdapter;
@@ -17,12 +19,14 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     private Context context;
     private LayoutInflater layoutInflater;
-    private String [] images = {"https://firebasestorage.googleapis.com/v0/b/commuter-family.appspot.com/o/Home%2Fcover1.jpg?alt=media&token=a5e77cd6-fcf7-4ab3-a76a-4fa51af90eae",
-            "https://firebasestorage.googleapis.com/v0/b/commuter-family.appspot.com/o/Home%2Fcover2.jpg?alt=media&token=103a996b-ed93-429d-8339-d0b5918ec3f8",
-            "https://firebasestorage.googleapis.com/v0/b/commuter-family.appspot.com/o/Home%2Fcover3.jpg?alt=media&token=33f115d2-9895-461c-8e4f-8dc4f8766092"};
+
+    //    private SessionManager sessionManager = new SessionManager(context);
+    private Integer [] images = {R.drawable.cover1,R.drawable.cover2,R.drawable.cover3};
+//            sessionManager.getImage1() ,sessionManager.getImage2(),sessionManager.getImage3()
 
     public ViewPagerAdapter(Context context) {
         this.context = context;
+
     }
 
     @Override
@@ -41,13 +45,13 @@ public class ViewPagerAdapter extends PagerAdapter {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.images_view, null);
         ImageView imageView = view.findViewById(R.id.imagesView);
-        Picasso.get().load(images[position]).into(imageView);
+//        Picasso.get().load(images[position]).into(imageView);
+        imageView.setImageResource(images[position]);
 
 
         ViewPager vp = (ViewPager) container;
         vp.addView(view, 0);
         return view;
-
     }
 
     @Override
@@ -56,6 +60,6 @@ public class ViewPagerAdapter extends PagerAdapter {
         ViewPager vp = (ViewPager) container;
         View view = (View) object;
         vp.removeView(view);
-
     }
+
 }

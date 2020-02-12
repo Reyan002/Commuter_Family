@@ -15,6 +15,9 @@ import com.example.commuterfamily.Activities.RiderRouteActivity;
 import com.example.commuterfamily.Classes.DemoClass;
 import com.example.commuterfamily.R;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -73,6 +76,7 @@ public class Home_Passenger extends Fragment {
                     dots[i].setImageDrawable(ContextCompat.getDrawable(getContext(),R.drawable.not_active_dots));
                 }
 
+
                 dots[position].setImageDrawable(ContextCompat.getDrawable(getContext(),R.drawable.active_dots));
 
             }
@@ -82,6 +86,9 @@ public class Home_Passenger extends Fragment {
 
             }
         });
+
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new MyTaskTimer(),2000,4000);
 
 
         myView.findViewById(R.id.card1p).setOnClickListener(new View.OnClickListener() {
@@ -114,5 +121,23 @@ public class Home_Passenger extends Fragment {
         });
 
         return myView;
+    }
+
+    public class MyTaskTimer extends TimerTask {
+        @Override
+        public void run() {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (viewPager.getCurrentItem() == 0){
+                        viewPager.setCurrentItem(1);
+                    } else if (viewPager.getCurrentItem() == 1){
+                        viewPager.setCurrentItem(2);
+                    } else {
+                        viewPager.setCurrentItem(0);
+                    }
+                }
+            });
+        }
     }
 }

@@ -1,6 +1,5 @@
 package com.example.commuterfamily.SessionManager;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +8,7 @@ import android.content.SharedPreferences.Editor;
 import com.example.commuterfamily.Activities.Splash;
 import com.example.commuterfamily.Activities.SplashScreenActivity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SessionManager {
@@ -31,8 +31,11 @@ public class SessionManager {
     private static final String IS_LOGIN = "IsLoggedIn";
     private static final String IS_KEY = "IsKey";
 
-    // User name (make variable public to access from outside)
+     // User name (make variable public to access from outside)
     public static final String KEY_NAME = "name";
+//    public static final String image1 = "name1";
+//    public static final String image2 = "name2";
+//    public static final String image3 = "name3";
 
     // Email address (make variable public to access from outside)
     public static final String KEY_PHONE = "phone";
@@ -44,6 +47,15 @@ public class SessionManager {
         pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
     }
+
+//    public void imagesList(String image1,String image2, String image3){
+//
+//        editor.putString(this.image1,image1);
+//        editor.putString(this.image2,image2);
+//        editor.putString(this.image3,image3);
+//        editor.commit();
+//    }
+
 
     /**
      * Create login session
@@ -90,6 +102,18 @@ public class SessionManager {
 //    }
 
 
+//    public String getImage1(){
+//        String imag1 = pref.getString(image1,null);
+//        return imag1;
+//    }
+//    public String getImage2(){
+//        String imag1 = pref.getString(image2,null);
+//        return imag1;
+//    }
+//    public String getImage3(){
+//        String imag1 = pref.getString(image3,null);
+//        return imag1;
+//    }
 
     /**
      * Get stored session data
@@ -98,7 +122,6 @@ public class SessionManager {
 //        HashMap<String, String> user = new HashMap<String, String>();
         // user name
 //        user.put(KEY_NAME, pref.getString(KEY_NAME, null));
-
         String user=pref.getString(KEY_NAME, null) ;;
         // user email id
 
