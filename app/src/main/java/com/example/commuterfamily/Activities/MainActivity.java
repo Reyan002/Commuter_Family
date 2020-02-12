@@ -95,4 +95,5 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show();
     }
 
+
 }
