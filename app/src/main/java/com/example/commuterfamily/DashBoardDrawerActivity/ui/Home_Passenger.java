@@ -9,15 +9,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
-import com.example.commuterfamily.Activities.AddCarActivity;
 import com.example.commuterfamily.Activities.MapsActivity;
 import com.example.commuterfamily.Activities.RiderRouteActivity;
 import com.example.commuterfamily.R;
-
 import java.util.Timer;
 import java.util.TimerTask;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
