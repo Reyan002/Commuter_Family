@@ -102,7 +102,7 @@ private TextView pickUp;
         findViewById(R.id.whatsapp).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String contact = "+923408377547"; // use country code with your phone number
+                String contact = Pnumber; // use country code with your phone number
                 String url = "https://api.whatsapp.com/send?phone=" + contact;
                 try {
                     PackageManager pm = MatchRouteDetailActivity.this.getPackageManager();
@@ -460,7 +460,7 @@ finish();            }
 
                                                     sentPI = PendingIntent.getBroadcast(MatchRouteDetailActivity.this, 0,new Intent(SENT), 0);
 
-                                                    sms.sendTextMessage("+923408377547", null, "Hello G", sentPI, null);
+                                                    sms.sendTextMessage(Pnumber, null, "Hello G", sentPI, null);
                                                     Toast.makeText(getApplicationContext(), "SMS Sent!",
                                                             Toast.LENGTH_LONG).show();
                                                 } catch (Exception e) {
@@ -677,7 +677,7 @@ finish();            }
                 }
 
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:" + "03408377547"));
+                callIntent.setData(Uri.parse("tel:" +Pnumber));
                 startActivity(callIntent);
 
             }

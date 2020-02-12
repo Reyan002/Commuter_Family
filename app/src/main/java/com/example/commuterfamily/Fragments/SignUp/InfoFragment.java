@@ -38,6 +38,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.HashMap;
 
@@ -174,7 +175,10 @@ public class InfoFragment extends Fragment {
     }
     private void ValidatePhoneNumber(final String name , final String phone ,final String email , final String pass, final String gender, final String cnic) {
         final DatabaseReference RootRef;
+
+        final DatabaseReference RootRef1;
         RootRef= FirebaseDatabase.getInstance().getReference();
+        RootRef1= FirebaseDatabase.getInstance().getReference();
         RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -193,11 +197,23 @@ public class InfoFragment extends Fragment {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
 
-                                        Toast.makeText(getContext(),"Congratulations! your Account has Created succesfully",Toast.LENGTH_SHORT).show();
-                                        loadingBar.dismiss();
-                                        sessionManager.createLoginSession(phone,pass);
-                                        Prevalent.currentOnlineUser.setPhone(phone) ;
-                                        startActivity(new Intent(getContext(), MainActivity.class));
+                                        String DeviceToken= FirebaseInstanceId.getInstance().getToken();
+                                        RootRef1.child("Users").child(phone).child("DeviceToken").setValue(DeviceToken).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                              if(task.isSuccessful()) {
+                                                  Toast.makeText(getContext(), "Congratulations! your Account has Created succesfully", Toast.LENGTH_SHORT).show();
+                                                  loadingBar.dismiss();
+                                                  sessionManager.createLoginSession(phone, pass);
+                                                  Prevalent.currentOnlineUser.setPhone(phone);
+                                                  startActivity(new Intent(getContext(), MainActivity.class));
+                                              }
+                                              else {
+                                                  Toast.makeText(getContext(), "Error in Code", Toast.LENGTH_SHORT).show();
+                                              }
+                                            }
+                                        });
+
                                     }
                                     else {
                                         loadingBar.dismiss();
