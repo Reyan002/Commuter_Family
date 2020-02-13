@@ -25,7 +25,7 @@ public class Home_Passenger extends Fragment {
 
     View myView;
     private ViewPager viewPager;
-    private RelativeLayout sliderDotspanel;
+    private LinearLayout sliderDotspanel;
     private int dotscount;
     private ImageView[] dots;
 

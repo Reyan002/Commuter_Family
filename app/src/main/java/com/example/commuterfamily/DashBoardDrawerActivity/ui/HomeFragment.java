@@ -39,7 +39,7 @@ public class HomeFragment extends Fragment {
 
     private View myView;
     private ViewPager viewPager;
-    private RelativeLayout sliderDotspanel;
+    private LinearLayout sliderDotspanel;
     private int dotscount;
     private ImageView[] dots;
     static FragmentManager fragmentManager;
