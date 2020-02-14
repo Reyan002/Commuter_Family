@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.commuterfamily.Activities.LoginActivity;
+import com.example.commuterfamily.Activities.MainActivity;
 import com.example.commuterfamily.Activities.SplashScreenActivity;
 import com.example.commuterfamily.Classes.DemoClass;
 import com.example.commuterfamily.Classes.User;
@@ -61,7 +62,6 @@ public class Paswoord extends Fragment {
             public void onClick(View view) {
                 String pass = numberr.getText().toString().trim();
 
-
                 if(pass.isEmpty() ){
                     numberr.setError("Enter Password");
                     numberr.requestFocus();
@@ -72,7 +72,6 @@ public class Paswoord extends Fragment {
                     loadingBar.setMessage("Please wait ...");
                     loadingBar.setCanceledOnTouchOutside(false);
                     loadingBar.show();
-
                     AllowAccessToAccount(DemoClass.number,pass);
                 }
 //                startActivity(new Intent(getContext(), MainActivity.class));
@@ -123,13 +122,12 @@ public class Paswoord extends Fragment {
                             RootRef.child(parentDB).child(number).child("DeviceToken").setValue(DeviceToken).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-
                                     Toast.makeText(getContext(),"Logged In Successfully....",Toast.LENGTH_SHORT).show();
                                     Prevalent.currentOnlineUser=userData;
                                     Prevalent.UserPhoneKey=userData.getPhone();
                                     sessionManager.createLoginSession(number,pass);
                                     loadingBar.dismiss();
-                                    startActivity(new Intent(getContext(), DashboardDrawerActivity.class));
+                                    startActivity(new Intent(getContext(), MainActivity.class));
                                 }
                             });
 

@@ -1,6 +1,4 @@
 package com.example.commuterfamily.Fragments.SignUp;
-
-
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -25,15 +23,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
-
 public class ResetPassword extends Fragment {
- private EditText pass,cpass;
- private Button next;
+    private EditText pass,cpass;
+    private Button next;
+
     public ResetPassword() {
         // Required empty public constructor
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,11 +48,10 @@ public class ResetPassword extends Fragment {
                  nextToReset(DemoClass.P_number);
              }
             else{
-                 Toast.makeText(getContext(), "Eror", Toast.LENGTH_SHORT).show();
+                 Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
              }
          }
      });
-
 
      return view;
     }
@@ -68,9 +63,6 @@ public class ResetPassword extends Fragment {
 
         ref.child(Number).updateChildren(userMap);
         LoginActivity.fragmentManagerLogin.beginTransaction()
-                .replace(R.id.fragment_container_login, new Paswoord(), null)
-                .commit();
+                .replace(R.id.fragment_container_login, new Paswoord(), null);
     }
-
-
 }

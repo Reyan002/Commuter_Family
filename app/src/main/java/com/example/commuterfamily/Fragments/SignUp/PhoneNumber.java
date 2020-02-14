@@ -52,11 +52,7 @@ public class PhoneNumber extends Fragment {
                 LoginActivity.fragmentManagerLogin.beginTransaction()
                         .replace(R.id.fragment_container_login, new Code_login(), null)
                         .commit();
-
-
                 DemoClass.number=mobile;
-
-
 
             }
         });

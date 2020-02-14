@@ -32,15 +32,15 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.ride).setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                 startActivity(new Intent(MainActivity.this,RiderRouteActivity.class));
+                 startActivity(new Intent(MainActivity.this,DashboardDrawerActivity.class));
                  overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
-
              }
          });
+
         findViewById(R.id.drive).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,DriveActivity.class));
+                startActivity(new Intent(MainActivity.this,DashboardDrawerActivity.class));
                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
 
 
