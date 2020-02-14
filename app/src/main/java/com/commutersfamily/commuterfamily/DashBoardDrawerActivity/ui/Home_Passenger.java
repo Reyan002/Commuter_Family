@@ -125,6 +125,7 @@ public class Home_Passenger extends Fragment {
     public class MyTaskTimer extends TimerTask {
         @Override
         public void run() {
+            if (getActivity() != null){
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -137,6 +138,6 @@ public class Home_Passenger extends Fragment {
                     }
                 }
             });
-        }
+         }
     }
 }

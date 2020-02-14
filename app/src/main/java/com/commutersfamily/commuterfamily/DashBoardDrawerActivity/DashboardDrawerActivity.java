@@ -73,7 +73,7 @@ public class DashboardDrawerActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         navigationView.bringToFront();
-         
+
        NavGraph navGraph = navController.getGraph();
         navGraph.setStartDestination(R.id.nav_passenger);
         navController.setGraph(navGraph);

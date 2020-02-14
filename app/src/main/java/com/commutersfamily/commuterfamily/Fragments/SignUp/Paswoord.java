@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.commutersfamily.commuterfamily.Activities.LoginActivity;
+import com.commutersfamily.commuterfamily.Activities.MainActivity;
 import com.commutersfamily.commuterfamily.Activities.SplashScreenActivity;
 import com.commutersfamily.commuterfamily.Classes.DemoClass;
 import com.commutersfamily.commuterfamily.Classes.User;
@@ -129,7 +130,7 @@ public class Paswoord extends Fragment {
                                     Prevalent.UserPhoneKey=userData.getPhone();
                                     sessionManager.createLoginSession(number,pass);
                                     loadingBar.dismiss();
-                                    startActivity(new Intent(getContext(), DashboardDrawerActivity.class));
+                                    startActivity(new Intent(getContext(), MainActivity.class));
                                 }
                             });
 
