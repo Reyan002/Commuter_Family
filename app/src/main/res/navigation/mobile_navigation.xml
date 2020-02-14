@@ -7,26 +7,26 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.commuterfamily.DashBoardDrawerActivity.ui.HomeFragment"
+        android:name="com.commutersfamily.commuterfamily.DashBoardDrawerActivity.ui.HomeFragment"
         android:label="I am Driver"
         tools:layout="@layout/home_fragment" />
 
     <fragment
         android:id="@+id/nav_passenger"
-        android:name="com.example.commuterfamily.DashBoardDrawerActivity.ui.Home_Passenger"
+        android:name="com.commutersfamily.commuterfamily.DashBoardDrawerActivity.ui.Home_Passenger"
         android:label="I am Passenger"
         tools:layout="@layout/home_passenger"/>
 
 
     <fragment
         android:id="@+id/nav_about"
-        android:name="com.example.commuterfamily.DashBoardDrawerActivity.ui.AboutUs"
+        android:name="com.commutersfamily.commuterfamily.DashBoardDrawerActivity.ui.AboutUs"
         android:label="@string/menu_gallery"
         tools:layout="@layout/about_us_fragment" />
 
     <fragment
         android:id="@+id/nav_logout"
-        android:name="com.example.commuterfamily.DashBoardDrawerActivity.ui.Setting"
+        android:name="com.commutersfamily.commuterfamily.DashBoardDrawerActivity.ui.Setting"
         android:label="Setting"
         tools:layout="@layout/fragment_setting"/>
 

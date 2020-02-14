@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.commuterfamily">
+    package="com.commutersfamily.commuterfamily"
+    android:versionCode="2"
+    android:versionName="2.0.0"
+    >
 
     <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
-    <uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
-    <!--
+     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality.
@@ -39,23 +41,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".DashBoardDrawerActivity.DashboardDrawerActivity"
+            android:name="com.commutersfamily.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity"
             android:label="@string/title_activity_dashboard_drawer"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity
-            android:name=".Activities.IntroActivity"
+            android:name="com.commutersfamily.commuterfamily.Activities.IntroActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.MatchRouteDetailActivity">
+        <activity android:name="com.commutersfamily.commuterfamily.Activities.MatchRouteDetailActivity">
             <intent-filter>
                 <action android:name=".Activities.MatchRouteDetailActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.AddCarActivity" />
-        <activity android:name=".Activities.MatchActivity" />
-        <activity android:name=".Activities.Notification" />
+        <activity android:name="com.commutersfamily.commuterfamily.Activities.AddCarActivity" />
+        <activity android:name="com.commutersfamily.commuterfamily.Activities.MatchActivity" />
+        <activity android:name="com.commutersfamily.commuterfamily.Activities.Notification" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -69,13 +71,13 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".Activities.RiderRouteMapActivity"
+            android:name="com.commutersfamily.commuterfamily.Activities.RiderRouteMapActivity"
             android:label="@string/title_activity_rider_route_map" />
         <activity
-            android:name=".Activities.RiderRouteActivity"
-            android:parentActivityName=".DashBoardDrawerActivity.DashboardDrawerActivity" />
+            android:name="com.commutersfamily.commuterfamily.Activities.RiderRouteActivity"
+            android:parentActivityName="com.commutersfamily.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity" />
         <activity
-            android:name=".Activities.MapsActivity"
+            android:name="com.commutersfamily.commuterfamily.Activities.MapsActivity"
             android:label="@string/title_activity_maps" />
 
         <meta-data
@@ -90,21 +92,21 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <activity
-            android:name=".Activities.DriveActivity"
-            android:parentActivityName=".DashBoardDrawerActivity.DashboardDrawerActivity"
+            android:name="com.commutersfamily.commuterfamily.Activities.DriveActivity"
+            android:parentActivityName="com.commutersfamily.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
-            android:name=".Activities.RideActivity"
+            android:name="com.commutersfamily.commuterfamily.Activities.RideActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
-            android:name=".Activities.MainActivity"
+            android:name="com.commutersfamily.commuterfamily.Activities.MainActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity android:name=".Activities.TutotrialActivity" />
+        <activity android:name="com.commutersfamily.commuterfamily.Activities.TutotrialActivity" />
         <activity
-            android:name=".Activities.UpdateProfile"
+            android:name="com.commutersfamily.commuterfamily.Activities.UpdateProfile"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
         <activity
-            android:name=".Activities.Splash"
+            android:name="com.commutersfamily.commuterfamily.Activities.Splash"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -112,15 +114,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.LoginActivity" />
-        <activity android:name=".Activities.SplashScreenActivity" />
-        <activity android:name=".Activities.SignUpActivity" />
+        <activity android:name="com.commutersfamily.commuterfamily.Activities.LoginActivity" />
+        <activity android:name="com.commutersfamily.commuterfamily.Activities.SplashScreenActivity" />
+        <activity android:name="com.commutersfamily.commuterfamily.Activities.SignUpActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <service android:name=".Classes.MyFirebaseMessagingService">
+        <service android:name="com.commutersfamily.commuterfamily.Classes.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

@@ -8,6 +8,43 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:14752304409:android:ab51d1ede8972d682cc988",
+        "android_client_info": {
+          "package_name": "com.commutersfamily.commuterfamily"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "14752304409-kaiskrevqv1q6g0kfrfoi0f7a718al2m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.commutersfamily.commuterfamily",
+            "certificate_hash": "d94bf7f8740fd9dd5142ef803da33b751d52c5a2"
+          }
+        },
+        {
+          "client_id": "14752304409-lg9239c91q8rl9je4iil2metf43ct6v1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANSLUBXJPHO93LWGxUVUu-41ut-YW_lS0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "14752304409-lg9239c91q8rl9je4iil2metf43ct6v1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:14752304409:android:7f4f3fc36d04fbbf2cc988",
         "android_client_info": {
           "package_name": "com.example.commuterfamily"
@@ -15,19 +52,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "14752304409-appg221oiurreaqt755io56aqikva0o5.apps.googleusercontent.com",
+          "client_id": "14752304409-41uts8lcsqpiaaln0b4s5q90fv5hkdro.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.commuterfamily",
             "certificate_hash": "d94bf7f8740fd9dd5142ef803da33b751d52c5a2"
-          }
-        },
-        {
-          "client_id": "14752304409-ejfvejg64iv98v6b5o0unr2f3angjd6r.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.commuterfamily",
-            "certificate_hash": "8726c60862d02e7fa9627400532a468e0c4aaeca"
           }
         },
         {
