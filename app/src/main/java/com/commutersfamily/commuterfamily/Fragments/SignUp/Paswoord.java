@@ -1,4 +1,4 @@
-package com.example.commuterfamily.Fragments.SignUp;
+package com.commutersfamily.commuterfamily.Fragments.SignUp;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -15,14 +15,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.commuterfamily.Activities.LoginActivity;
-import com.example.commuterfamily.Activities.SplashScreenActivity;
-import com.example.commuterfamily.Classes.DemoClass;
-import com.example.commuterfamily.Classes.User;
-import com.example.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity;
-import com.example.commuterfamily.Prevalent.Prevalent;
-import com.example.commuterfamily.R;
-import com.example.commuterfamily.SessionManager.SessionManager;
+import com.commutersfamily.commuterfamily.Activities.LoginActivity;
+import com.commutersfamily.commuterfamily.Activities.MainActivity;
+import com.commutersfamily.commuterfamily.Activities.SplashScreenActivity;
+import com.commutersfamily.commuterfamily.Classes.DemoClass;
+import com.commutersfamily.commuterfamily.Classes.User;
+import com.commutersfamily.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity;
+import com.commutersfamily.commuterfamily.Fragments.SignUp.ResetNumberFragment;
+import com.commutersfamily.commuterfamily.Prevalent.Prevalent;
+import com.commutersfamily.commuterfamily.R;
+import com.commutersfamily.commuterfamily.SessionManager.SessionManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -129,7 +131,7 @@ public class Paswoord extends Fragment {
                                     Prevalent.UserPhoneKey=userData.getPhone();
                                     sessionManager.createLoginSession(number,pass);
                                     loadingBar.dismiss();
-                                    startActivity(new Intent(getContext(), DashboardDrawerActivity.class));
+                                    startActivity(new Intent(getContext(), MainActivity.class));
                                 }
                             });
 

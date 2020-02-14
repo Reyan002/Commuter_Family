@@ -14,7 +14,6 @@ public class DemoClass {
     public static String vnum;
     public static String Dlicence;
     public static String commuterMatch;
-
     public static ArrayList<String> date=new ArrayList<>();
     public static ArrayList<String> time=new ArrayList<>();
     public static User user=new User();

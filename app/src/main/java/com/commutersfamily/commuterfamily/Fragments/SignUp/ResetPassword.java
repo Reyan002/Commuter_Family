@@ -1,4 +1,4 @@
-package com.example.commuterfamily.Fragments.SignUp;
+package com.commutersfamily.commuterfamily.Fragments.SignUp;
 
 
 import android.os.Bundle;
@@ -13,12 +13,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.commuterfamily.Activities.LoginActivity;
-import com.example.commuterfamily.Classes.DemoClass;
-import com.example.commuterfamily.Prevalent.Prevalent;
-import com.example.commuterfamily.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.commutersfamily.commuterfamily.Activities.LoginActivity;
+import com.commutersfamily.commuterfamily.Classes.DemoClass;
+import com.commutersfamily.commuterfamily.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;

@@ -48,13 +48,7 @@
         <activity
             android:name="com.commutersfamily.commuterfamily.Activities.IntroActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.commutersfamily.commuterfamily.Activities.MatchRouteDetailActivity">
-            <intent-filter>
-                <action android:name=".Activities.MatchRouteDetailActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+        <activity android:name="com.commutersfamily.commuterfamily.Activities.MatchRouteDetailActivity"/>
         <activity android:name="com.commutersfamily.commuterfamily.Activities.AddCarActivity" />
         <activity android:name="com.commutersfamily.commuterfamily.Activities.MatchActivity" />
         <activity android:name="com.commutersfamily.commuterfamily.Activities.Notification" />

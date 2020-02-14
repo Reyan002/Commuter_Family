@@ -1,4 +1,4 @@
-package com.example.commuterfamily.DashBoardDrawerActivity.ui;
+package com.commutersfamily.commuterfamily.DashBoardDrawerActivity.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,11 +9,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.commuterfamily.Activities.AddCarActivity;
-import com.example.commuterfamily.Activities.MapsActivity;
-import com.example.commuterfamily.Activities.RiderRouteActivity;
-import com.example.commuterfamily.Classes.DemoClass;
-import com.example.commuterfamily.R;
+import com.commutersfamily.commuterfamily.Activities.MapsActivity;
+import com.commutersfamily.commuterfamily.Activities.RiderRouteActivity;
+import com.commutersfamily.commuterfamily.Classes.DemoClass;
+import com.commutersfamily.commuterfamily.DashBoardDrawerActivity.ui.ViewPagerAdapter;
+import com.commutersfamily.commuterfamily.R;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -91,10 +91,11 @@ public class Home_Passenger extends Fragment {
         timer.scheduleAtFixedRate(new MyTaskTimer(),2000,4000);
 
 
-        myView.findViewById(R.id.card1p).setOnClickListener(new View.OnClickListener() {
+        myView.findViewById(R.id.card1p);
+        myView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DemoClass.RouteFor="Rider";
+                DemoClass.RouteFor = "Rider";
                 startActivity(new Intent(getContext(), MapsActivity.class));
             }
         });
