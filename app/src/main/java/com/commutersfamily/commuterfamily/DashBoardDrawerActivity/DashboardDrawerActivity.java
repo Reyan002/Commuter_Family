@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import com.commutersfamily.commuterfamily.Activities.Notification;
 import com.commutersfamily.commuterfamily.Activities.UpdateProfile;
-import com.commutersfamily.commuterfamily.Classes.DemoClass;
 import com.commutersfamily.commuterfamily.Classes.User;
 import com.commutersfamily.commuterfamily.Prevalent.Prevalent;
 import com.commutersfamily.commuterfamily.R;
@@ -74,23 +73,16 @@ public class DashboardDrawerActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         navigationView.bringToFront();
-
-
-        if (DemoClass.RouteFor == "passenger"){
-            NavGraph navGraph = navController.getGraph();
-            navGraph.setStartDestination(R.id.nav_passenger);
-            navController.setGraph(navGraph);
-        }else {
-            NavGraph navGraph = navController.getGraph();
-            navGraph.setStartDestination(R.id.nav_home);
-            navController.setGraph(navGraph);
-        }
+         
+       NavGraph navGraph = navController.getGraph();
+        navGraph.setStartDestination(R.id.nav_passenger);
+        navController.setGraph(navGraph);
 
         View header = navigationView.getHeaderView(0);
         header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(DashboardDrawerActivity.this, UpdateProfile.class));}
+                startActivity(new Intent(DashboardDrawerActivity.this, UpdateProfile.class));            }
         });
 
         userName=header.findViewById(R.id.nameU);
