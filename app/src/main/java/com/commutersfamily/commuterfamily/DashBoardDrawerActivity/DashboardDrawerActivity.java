@@ -24,6 +24,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.commutersfamily.commuterfamily.SessionManager.SessionManager;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -212,21 +213,12 @@ public class DashboardDrawerActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-//        if(!check){
-//            Snackbar.make( findViewById(R.id.nav_host_fragment),"Press one more time to exit",Snackbar.LENGTH_SHORT).show();
-//            // Toast.makeText(this,"Press one more time to exit",Toast.LENGTH_SHORT).show();
-//            check=true;
-//        }
-//        else {
-//            Intent a = new Intent(Intent.ACTION_MAIN);
-//            a.addCategory(Intent.CATEGORY_HOME);
-//            a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            startActivity(a);
+
         if (!check) {
-            Toast.makeText(this, "Please click Back again to exit", Toast.LENGTH_SHORT).show();
+            Snackbar.make( findViewById(R.id.nav_host_fragment),"Press one more time to exit",Snackbar.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Please click Back again to exit", Toast.LENGTH_SHORT).show();
             check = true;
         }else{
-
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {

@@ -67,13 +67,14 @@
         <activity
             android:name="com.commutersfamily.commuterfamily.Activities.RiderRouteMapActivity"
             android:label="@string/title_activity_rider_route_map" />
+
         <activity
             android:name="com.commutersfamily.commuterfamily.Activities.RiderRouteActivity"
             android:parentActivityName="com.commutersfamily.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity" />
         <activity
             android:name="com.commutersfamily.commuterfamily.Activities.MapsActivity"
-            android:label="@string/title_activity_maps" />
-
+            android:label="@string/title_activity_maps"
+            android:parentActivityName=".DashBoardDrawerActivity.DashboardDrawerActivity"/>
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
