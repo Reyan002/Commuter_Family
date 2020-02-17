@@ -81,14 +81,14 @@ private TextView pickUp;
             @Override
             public void onClick(View v) {
                 Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-                sendIntent.setData(Uri.parse("sms:+923408377547"));
+                sendIntent.setData(Uri.parse("sms:"+Pnumber));
                startActivity(sendIntent);
             }
         });
         findViewById(R.id.whatsapp).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String contact = Pnumber; // use country code with your phone number
+                String contact = "+92"+Pnumber; // use country code with your phone number
                 String url = "https://api.whatsapp.com/send?phone=" + contact;
                 try {
                     PackageManager pm = MatchRouteDetailActivity.this.getPackageManager();
