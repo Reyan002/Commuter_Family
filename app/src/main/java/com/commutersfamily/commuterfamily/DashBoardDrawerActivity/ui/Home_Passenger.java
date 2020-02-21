@@ -34,7 +34,7 @@ public class Home_Passenger extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.home_passenger,container,false);
+        myView = inflater.inflate(R.layout.home_passenger, container, false);
 
         viewPager = myView.findViewById(R.id.pagerP);
         sliderDotspanel = myView.findViewById(R.id.layout_dotsP);
@@ -46,10 +46,10 @@ public class Home_Passenger extends Fragment {
         dotscount = viewPagerAdapter.getCount();
         dots = new ImageView[dotscount];
 
-        for(int i = 0; i < dotscount; i++){
+        for (int i = 0; i < dotscount; i++) {
 
             dots[i] = new ImageView(getContext());
-            dots[i].setImageDrawable(ContextCompat.getDrawable(getContext(),R.drawable.not_active_dots));
+            dots[i].setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.not_active_dots));
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
                     (LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -60,7 +60,7 @@ public class Home_Passenger extends Fragment {
 
         }
 
-        dots[0].setImageDrawable(ContextCompat.getDrawable(getContext(),R.drawable.active_dots));
+        dots[0].setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.active_dots));
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -71,12 +71,12 @@ public class Home_Passenger extends Fragment {
             @Override
             public void onPageSelected(int position) {
 
-                for(int i = 0; i< dotscount; i++){
-                    dots[i].setImageDrawable(ContextCompat.getDrawable(getContext(),R.drawable.not_active_dots));
+                for (int i = 0; i < dotscount; i++) {
+                    dots[i].setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.not_active_dots));
                 }
 
 
-                dots[position].setImageDrawable(ContextCompat.getDrawable(getContext(),R.drawable.active_dots));
+                dots[position].setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.active_dots));
 
             }
 
@@ -87,13 +87,13 @@ public class Home_Passenger extends Fragment {
         });
 
         Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new MyTaskTimer(),2000,4000);
+        timer.scheduleAtFixedRate(new MyTaskTimer(), 2000, 4000);
 
 
         myView.findViewById(R.id.card1p).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DemoClass.RouteFor="Rider";
+                DemoClass.RouteFor = "Rider";
                 startActivity(new Intent(getContext(), MapsActivity.class));
             }
         });
@@ -125,19 +125,20 @@ public class Home_Passenger extends Fragment {
     public class MyTaskTimer extends TimerTask {
         @Override
         public void run() {
-            if (getActivity() != null){
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (viewPager.getCurrentItem() == 0){
-                        viewPager.setCurrentItem(1);
-                    } else if (viewPager.getCurrentItem() == 1){
-                        viewPager.setCurrentItem(2);
-                    } else {
-                        viewPager.setCurrentItem(0);
+            if (getActivity() != null) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (viewPager.getCurrentItem() == 0) {
+                            viewPager.setCurrentItem(1);
+                        } else if (viewPager.getCurrentItem() == 1) {
+                            viewPager.setCurrentItem(2);
+                        } else {
+                            viewPager.setCurrentItem(0);
+                        }
                     }
-                }
-            });
-         }
+                });
+            }
+        }
     }
-}}
+}

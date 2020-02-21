@@ -430,50 +430,53 @@
             android:textStyle="bold"/>
 
         <LinearLayout
-
             android:id="@+id/ll"
             android:visibility="gone"
-
             android:layout_below="@+id/cardViewmap"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <Button
                 android:textColor="@android:color/white"
-
                 android:id="@+id/message"
                 android:text="Messege "
-                android:paddingLeft="20dp"
-               android:drawableLeft="@drawable/ic_insert_comment_black_24dp"
+                android:background="@drawable/round_all_corners"
+                android:drawableLeft="@drawable/ic_insert_comment_black_24dp"
                 android:layout_margin="5dp"
-                android:background="@color/colorPrimary"
+                android:maxLines="1"
                 style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
                 android:layout_weight="1"
+                android:paddingLeft="10dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
+
             <Button
                 android:id="@+id/call"
                 android:textColor="@android:color/white"
                 android:text="Call"
-                android:paddingLeft="20dp"
+                android:background="@drawable/round_all_corners"
                 android:drawableLeft="@drawable/ic_phone_black_24dp"
                 android:layout_margin="5dp"
-                android:background="@color/colorPrimary"
+                android:maxLines="1"
                 style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
                 android:layout_weight="1"
+                android:paddingLeft="10dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
+
             <Button
                 android:id="@+id/whatsapp"
                 android:textColor="@android:color/white"
                 android:text="WhatsApp"
-                android:paddingLeft="20dp"
+                android:background="@drawable/round_all_corners"
                 android:drawableLeft="@drawable/ic_phone_black_24dp"
                 android:layout_margin="5dp"
-                android:background="@color/colorPrimary"
+                android:maxLines="1"
                 style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
                 android:layout_weight="1"
+                android:paddingLeft="10dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
         </LinearLayout>

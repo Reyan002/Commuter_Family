@@ -21,6 +21,7 @@ import com.commutersfamily.commuterfamily.Activities.SplashScreenActivity;
 import com.commutersfamily.commuterfamily.Classes.DemoClass;
 import com.commutersfamily.commuterfamily.Classes.User;
 import com.commutersfamily.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity;
+import com.commutersfamily.commuterfamily.Fragments.SignUp.ResetNumberFragment;
 import com.commutersfamily.commuterfamily.Prevalent.Prevalent;
 import com.commutersfamily.commuterfamily.R;
 import com.commutersfamily.commuterfamily.SessionManager.SessionManager;

@@ -8,13 +8,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.commutersfamily.commuterfamily.Activities.AddCarActivity;
 import com.commutersfamily.commuterfamily.Activities.DriveActivity;
 import com.commutersfamily.commuterfamily.Activities.MapsActivity;
 import com.commutersfamily.commuterfamily.Classes.DemoClass;
+import com.commutersfamily.commuterfamily.Prevalent.Prevalent;
 import com.commutersfamily.commuterfamily.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -161,9 +168,10 @@ public class HomeFragment extends Fragment {
         myView.findViewById(R.id.card2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DemoClass.RouteFor="Driver";
-                startActivity(new Intent(getContext(), MapsActivity.class));
+//                DemoClass.RouteFor="Driver";
+////                startActivity(new Intent(getContext(), MapsActivity.class));
 
+                isKeyGet();
             }
         });
 
@@ -211,5 +219,29 @@ public class HomeFragment extends Fragment {
         }
         }
     }
+    public void isKeyGet(){
 
+        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("Commuters");
+        reference .child("Driver")
+                .child(Prevalent.currentOnlineUser.getPhone()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(!dataSnapshot.child("Car").exists()){
+                    Toast.makeText(getContext(), "Add Car First", Toast.LENGTH_SHORT).show();
+
+                }
+                else{
+                    startActivity(new Intent(getContext() ,MapsActivity.class));
+
+
+                    DemoClass.RouteFor="Driver";
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 }

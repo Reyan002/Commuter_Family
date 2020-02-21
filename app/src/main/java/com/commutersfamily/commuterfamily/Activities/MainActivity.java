@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.commutersfamily.commuterfamily.Classes.DemoClass;
+import com.commutersfamily.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity;
 import com.commutersfamily.commuterfamily.R;
 import com.commutersfamily.commuterfamily.SessionManager.SessionManager;
 import com.google.android.material.snackbar.Snackbar;
@@ -31,17 +33,20 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.ride).setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                 startActivity(new Intent(MainActivity.this,RiderRouteActivity.class));
+                 startActivity(new Intent(MainActivity.this, DashboardDrawerActivity.class));
                  overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
 
+                 DemoClass.RouteFor = "passenger";
              }
          });
+
         findViewById(R.id.drive).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,DriveActivity.class));
+                startActivity(new Intent(MainActivity.this,DashboardDrawerActivity.class));
                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
 
+                DemoClass.RouteFor = "driver";
 
             }
         });

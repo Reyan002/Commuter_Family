@@ -47,6 +47,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
 
+
         latLongFrom=new LatLongClass();
         latLongTo=new LatLongClass();
 

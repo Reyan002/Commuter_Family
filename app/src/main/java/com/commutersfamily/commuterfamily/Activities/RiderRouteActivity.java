@@ -175,5 +175,6 @@ public class RiderRouteActivity extends AppCompatActivity {
   @Override
   public void onBackPressed() {
     startActivity(new Intent(this, DashboardDrawerActivity.class));
+    finish();
   }
 }
