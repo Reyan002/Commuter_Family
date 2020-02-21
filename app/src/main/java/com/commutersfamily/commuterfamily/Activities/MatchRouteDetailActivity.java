@@ -406,11 +406,11 @@ public class MatchRouteDetailActivity extends AppCompatActivity implements OnMap
     }
 
     public void sendRequestOfRide() {
-        request_ref.child(sender).child(Pnumber).child("request_type").setValue("sent").addOnCompleteListener(new OnCompleteListener<Void>() {
+        request_ref.child(sender).child(ProductId).child("request_type").setValue("sent").addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    request_ref.child(Pnumber).child(sender).child("request_type").setValue("recieved").addOnCompleteListener(new OnCompleteListener<Void>() {
+                    request_ref.child(Pnumber).child(ProductId).child("request_type").setValue("recieved").addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
 
