@@ -101,6 +101,7 @@ public class Home_Passenger extends Fragment {
         myView.findViewById(R.id.card2p).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 startActivity(new Intent(getContext(), RiderRouteActivity.class));
             }
         });
@@ -108,7 +109,8 @@ public class Home_Passenger extends Fragment {
         myView.findViewById(R.id.card3p).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Distance Calculator not worked", Toast.LENGTH_SHORT).show();
+                DemoClass.distance="distance";
+                startActivity(new Intent(getContext(), MapsActivity.class));
             }
         });
 

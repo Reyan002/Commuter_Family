@@ -4,6 +4,7 @@ package com.commutersfamily.commuterfamily.Classes;
 import java.util.ArrayList;
 
 public class DemoClass {
+    public static String distance;
     public static String number;
     public static String P_number;
     public static String AdressFrom;
