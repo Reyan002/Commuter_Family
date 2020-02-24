@@ -9,45 +9,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.commutersfamily.commuterfamily.Classes.Nification;
+import com.commutersfamily.commuterfamily.Interfaces.itemClickListener;
 import com.commutersfamily.commuterfamily.R;
 
-public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
+public class HistoryAdapter extends  RecyclerView.ViewHolder{
 
-    Context context;
+    public TextView product_name,product_desc,product_price;
 
-    public HistoryAdapter(Context context) {
-        this.context = context;
-    }
 
-    @NonNull
-    @Override
-    public HistoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.history_item,
-                parent, false);
-        return new ViewHolder(view);
-    }
 
-    @Override
-    public void onBindViewHolder(@NonNull HistoryAdapter.ViewHolder holder, int position) {
-
-    }
-
-    @Override
-    public int getItemCount() {
-        return 0;
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-
-        TextView personName, dateText, timeText;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            personName = itemView.findViewById(R.id.personName_history);
-            dateText = itemView.findViewById(R.id.history_date);
-            timeText = itemView.findViewById(R.id.history_time);
-
-        }
+    public HistoryAdapter(@NonNull View itemView) {
+        super(itemView);
+        product_name= itemView.findViewById(R.id.personName_history);
+        product_desc= itemView.findViewById(R.id.history_date);
+        product_price= itemView.findViewById(R.id.history_time);
     }
 }
