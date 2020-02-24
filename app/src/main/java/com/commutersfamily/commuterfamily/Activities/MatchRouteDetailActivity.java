@@ -1,6 +1,14 @@
 package com.commutersfamily.commuterfamily.Activities;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import android.Manifest;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -15,19 +23,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import com.commutersfamily.commuterfamily.Classes.DemoClass;
 import com.commutersfamily.commuterfamily.Classes.Routes;
 import com.commutersfamily.commuterfamily.Classes.User;
 import com.commutersfamily.commuterfamily.Classes.Vehicle;
 import com.commutersfamily.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity;
 import com.commutersfamily.commuterfamily.Prevalent.Prevalent;
+
 import com.commutersfamily.commuterfamily.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -53,7 +55,6 @@ import java.util.HashMap;
 
 public class MatchRouteDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 0;
     private String ProductId, Pnumber;
     private TextView shift, day, time, start, end;
     private Button request, cancle;
@@ -63,12 +64,14 @@ public class MatchRouteDetailActivity extends AppCompatActivity implements OnMap
     private String sender;
     private String current_request;
     private String firebaseInstanceId;
+    private TextView name, view;
 //private MapView mapView;
 
     private GoogleMap gMap;
-    private TextView name, view;
     private MapFragment mapFragment;
     private TextView pickUp;
+    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,7 +136,7 @@ public class MatchRouteDetailActivity extends AppCompatActivity implements OnMap
 
         //        Pnumber=getIntent().getStringExtra("number");
         retriev();
-        Toast.makeText(this, current_request, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, sender, Toast.LENGTH_SHORT).show();
 
 
 //        DatabaseReference details=FirebaseDatabase.getInstance().getReference().child("Riders");
@@ -324,69 +327,78 @@ public class MatchRouteDetailActivity extends AppCompatActivity implements OnMap
         });
     }
 
+
     public void manageRequestInfo() {
+
         request_ref.child(sender).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.hasChild(Pnumber)) {
-                    String request_type = dataSnapshot.child(Pnumber).child("request_type").getValue().toString();
+               
+                if(dataSnapshot.exists()){
 
-                    if (request_type.equals("sent")) {
-                        current_request = "request_sent";
-                        request.setText("Cancle Request");
-                        cancle.setVisibility(View.GONE);
+                    if (dataSnapshot.hasChild(ProductId)) {
+                        String request_type = dataSnapshot.child(ProductId).child("request_type").getValue().toString();
+
+                        if (request_type.equals("sent")) {
+                            current_request = "request_sent";
+                            request.setText("Cancle Request");
+                            cancle.setVisibility(View.GONE);
 //                        Toast.makeText(MatchRouteDetailActivity.this, request_type, Toast.LENGTH_SHORT).show();
-                    } else if (request_type.equals("recieved")) {
-                        current_request = "request_recieved";
-                        request.setText("Accept Request");
-                        cancle.setVisibility(View.VISIBLE);
-                        cancle.setText("Decline Request");
-                        Toast.makeText(MatchRouteDetailActivity.this, request_type, Toast.LENGTH_SHORT).show();
+                        } else if (request_type.equals("recieved")) {
+                            current_request = "request_recieved";
+                            request.setText("Accept Request");
+                            cancle.setVisibility(View.VISIBLE);
+                            cancle.setText("Decline Request");
+//                        Toast.makeText(MatchRouteDetailActivity.this, request_type, Toast.LENGTH_SHORT).show();
 
-                        cancle.setEnabled(true);
-                        cancle.setOnClickListener(new View.OnClickListener() {
+                            cancle.setEnabled(true);
+                            cancle.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    cancleRequest();
+                                    cancle.setVisibility(View.GONE);
+                                    cancle.setEnabled(false);
+                                }
+                            });
+                        }
+
+                    } else {
+
+                        connect_ref.child(sender).addValueEventListener(new ValueEventListener() {
                             @Override
-                            public void onClick(View v) {
-                                cancleRequest();
-                                cancle.setVisibility(View.GONE);
-                                cancle.setEnabled(false);
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.hasChild(ProductId)) {
+                                    current_request = "commute";
+                                    request.setText("Remove");
+                                    request.setVisibility(View.GONE);
+                                    LinearLayout linearLayout = findViewById(R.id.ll);
+                                    linearLayout.setVisibility(View.VISIBLE);
+                                }
+
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
                             }
                         });
+
+
                     }
 
-                } else {
-
-                    connect_ref.child(sender).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if (dataSnapshot.hasChild(Pnumber)) {
-                                current_request = "commute";
-                                request.setText("Remove");
-                                request.setVisibility(View.GONE);
-                                LinearLayout linearLayout = findViewById(R.id.ll);
-                                linearLayout.setVisibility(View.VISIBLE);
-                            }
-
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-
-
                 }
-            }
+                           }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+                Toast.makeText(MatchRouteDetailActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-    }
 
+
+    }
     public void showAlert() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 // Add the buttons

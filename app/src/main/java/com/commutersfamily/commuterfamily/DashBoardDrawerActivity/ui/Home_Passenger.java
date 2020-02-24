@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.commutersfamily.commuterfamily.Activities.HistoryActivity;
 import com.commutersfamily.commuterfamily.Activities.MapsActivity;
 import com.commutersfamily.commuterfamily.Activities.RiderRouteActivity;
 import com.commutersfamily.commuterfamily.Classes.DemoClass;
@@ -117,7 +118,7 @@ public class Home_Passenger extends Fragment {
         myView.findViewById(R.id.card4p).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "History not worked", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getContext(), HistoryActivity.class));
             }
         });
 
