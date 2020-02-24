@@ -5,21 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".Activities.HistoryActivity">
 
-    <TextView
-        android:id="@+id/textHistory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="History"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
-        android:textSize="20dp"
-        android:textStyle="bold"/>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerHistory"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/textHistory"/>
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>

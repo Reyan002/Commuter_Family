@@ -26,7 +26,8 @@
                     android:textSize="18dp"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true" />
                 <TextView
                     android:layout_alignParentEnd="true"
                     android:id="@+id/setting_update"
@@ -36,7 +37,8 @@
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"/>
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp" />
 
             </RelativeLayout>
 
@@ -47,7 +49,7 @@
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_below="@+id/app_bar_settings"
-        android:src="@drawable/ic_person_black_24dp"
+        app:srcCompat="@drawable/ic_person_black_24dp"
         android:tint="@color/colorPrimary"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"/>
@@ -62,16 +64,18 @@
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-<!--    <TextView-->
-<!--        android:padding="10dp"-->
-<!--        android:layout_marginTop="15dp"-->
-<!--        android:id="@+id/setting_phone_number"-->
-<!--        android:hint="Phone Number..."-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:maxLines="1"-->
-<!--        android:textSize="16dp"-->
-<!--        android:layout_below="@+id/setting_profile_image_change_btn"/>-->
+    <TextView
+        android:id="@+id/setting_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/setting_profile_image_change_btn"
+        android:layout_marginTop="15dp"
+        android:hint="Phone Number..."
+        android:maxLines="1"
+        android:padding="10dp"
+        android:text="03*********"
+        android:textSize="16dp"
+        android:textStyle="bold"/>
     <EditText
         android:padding="10dp"
         android:layout_marginTop="15dp"
@@ -82,7 +86,7 @@
         android:textSize="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/setting_profile_image_change_btn"/>
+        android:layout_below="@+id/setting_phone_number"/>
     <EditText
         android:padding="10dp"
         android:layout_marginTop="15dp"
