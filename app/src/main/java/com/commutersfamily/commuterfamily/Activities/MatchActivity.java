@@ -81,9 +81,11 @@ public class MatchActivity extends AppCompatActivity {
                     )
                     {
 //                        Toast.makeText(MatchActivity.this, dataSnapshot1.child("Number").getValue().toString(), Toast.LENGTH_SHORT).show();
-                        if(calculateDistance(locLatFrom,locLongFrom,Double.valueOf(dataSnapshot1.child("LocFrom").child("lat").getValue().toString()),
+                        if((calculateDistance(locLatFrom,locLongFrom,Double.valueOf(dataSnapshot1.child("LocFrom").child("lat").getValue().toString()),
                                 Double.valueOf(dataSnapshot1.child("LocFrom").child("long").getValue().toString())
-                               )<1.0f){
+                               )<1.0f)&&(calculateDistance(locLatTo,locLngTo,Double.valueOf(dataSnapshot1.child("LocTo").child("lat").getValue().toString()),
+                                Double.valueOf(dataSnapshot1.child("LocTo").child("long").getValue().toString())
+                        )<1.0f)){
 //                      if      Toast.makeText(MatchActivity.this, DemoClass.commuterMatch, Toast.LENGTH_SHORT).show();
 
                             routes.add(dataSnapshot1.getValue(Routes.class));

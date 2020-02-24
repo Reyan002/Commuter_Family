@@ -435,14 +435,21 @@ public class MatchRouteDetailActivity extends AppCompatActivity implements OnMap
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
 
-                                            DatabaseReference connectedCommuter = FirebaseDatabase.getInstance().getReference().child("Connected Commuter");
-                                            connectedCommuter.child(Pnumber).child(getIntent().getStringExtra("rid")).setValue(chatNotifi).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            final DatabaseReference connectedCommuter = FirebaseDatabase.getInstance().getReference().child("Connected Commuter");
+                                            connectedCommuter.child(Pnumber).child(ProductId).setValue(chatNotifi).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
-                                                    request.setEnabled(false);
-                                                    FirebaseMessaging.getInstance().subscribeToTopic("sendNotification");
-                                                    request.setText("Cancle Request");
-                                                    current_request = "request_sent";
+                                                   if(task.isSuccessful()){
+                                                       connectedCommuter.child(sender).child(ProductId).setValue(chatNotifi).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                           @Override
+                                                           public void onComplete(@NonNull Task<Void> task) {
+                                                               request.setEnabled(false);
+                                                               FirebaseMessaging.getInstance().subscribeToTopic("sendNotification");
+                                                               request.setText("Cancle Request");
+                                                               current_request = "request_sent";
+                                                           }
+                                                       });
+                                                   }
                                                 }
                                             });
 
