@@ -133,6 +133,7 @@ public class MatchRouteDetailActivity extends AppCompatActivity implements OnMap
 
         //        Pnumber=getIntent().getStringExtra("number");
         retriev();
+        Toast.makeText(this, current_request, Toast.LENGTH_SHORT).show();
 
 
 //        DatabaseReference details=FirebaseDatabase.getInstance().getReference().child("Riders");
@@ -340,7 +341,7 @@ public class MatchRouteDetailActivity extends AppCompatActivity implements OnMap
                         request.setText("Accept Request");
                         cancle.setVisibility(View.VISIBLE);
                         cancle.setText("Decline Request");
-//                        Toast.makeText(MatchRouteDetailActivity.this, request_type, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MatchRouteDetailActivity.this, request_type, Toast.LENGTH_SHORT).show();
 
                         cancle.setEnabled(true);
                         cancle.setOnClickListener(new View.OnClickListener() {

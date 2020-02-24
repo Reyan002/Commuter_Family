@@ -54,7 +54,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         findViewById(R.id.goBack).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if( !DemoClass.latLongTo.equals(null)&&! DemoClass.latLongFrom.equals(null)){
+
+                if(DemoClass.distance=="distance")
+                {
+
+                    Intent intent = new Intent(MapsActivity.this,DistanceActivity.class);
+                     intent.putExtra("fromMap",DemoClass.AdressFrom);
+                    intent.putExtra("toMap",DemoClass.AdressTo);
+                    startActivity(intent);
+                    DemoClass.distance="";
+                }
+                else if( !DemoClass.latLongTo.equals(null)&&! DemoClass.latLongFrom.equals(null)){
 
                     startActivity(new Intent(MapsActivity.this,RideActivity.class));
                     Intent intent = new Intent(MapsActivity.this,RideActivity.class);
