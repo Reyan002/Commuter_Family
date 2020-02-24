@@ -1,14 +1,6 @@
 package com.commutersfamily.commuterfamily.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
-import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -23,13 +15,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.commutersfamily.commuterfamily.Classes.DemoClass;
 import com.commutersfamily.commuterfamily.Classes.Routes;
 import com.commutersfamily.commuterfamily.Classes.User;
 import com.commutersfamily.commuterfamily.Classes.Vehicle;
 import com.commutersfamily.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity;
 import com.commutersfamily.commuterfamily.Prevalent.Prevalent;
-
 import com.commutersfamily.commuterfamily.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -55,6 +53,7 @@ import java.util.HashMap;
 
 public class MatchRouteDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
 
+    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 0;
     private String ProductId, Pnumber;
     private TextView shift, day, time, start, end;
     private Button request, cancle;
@@ -64,14 +63,12 @@ public class MatchRouteDetailActivity extends AppCompatActivity implements OnMap
     private String sender;
     private String current_request;
     private String firebaseInstanceId;
-    private TextView name, view;
 //private MapView mapView;
 
     private GoogleMap gMap;
+    private TextView name, view;
     private MapFragment mapFragment;
     private TextView pickUp;
-    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

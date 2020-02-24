@@ -70,7 +70,7 @@
                 android:id="@+id/kebabCard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/kebab_white"
+                app:srcCompat="@drawable/kebab_white"
                 android:backgroundTint="@color/quantum_white_text"
                 android:tint="@color/quantum_black_100"
                 android:layout_alignParentTop="true"
