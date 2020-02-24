@@ -72,8 +72,18 @@
                 android:maxLines="3"
                 android:text="Ending point"
                 android:textSize="16dp"/>
+            
+            <TextView
+                android:id="@+id/distanceText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:maxLines="3"
+                android:text="Ending point"
+                android:textSize="16dp"/>
 
         </LinearLayout>
+
         </LinearLayout>
 
 
@@ -116,33 +126,69 @@
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/av_km"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="Average KM per litre"
                     android:textSize="16dp"/>
+                <TextView
+                    android:id="@+id/av_km_car"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="000"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16dp"/>
 
                 <TextView
-                    android:id="@+id/fuel_pDay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:text="Fuel per day"
                     android:textSize="16dp"/>
+
                 <TextView
-                    android:id="@+id/fuel_cost_pDay"
+                    android:id="@+id/fuel_pDay_car"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="000"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16dp"/>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:text="Fuel Cost per day"
                     android:textSize="16dp"/>
                 <TextView
-                    android:id="@+id/fuel_pMonth"
+                    android:id="@+id/fuel_cost_pDay_car"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="000"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16dp"/>
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="Fuel per Month"
+                    android:textSize="16dp"/>
+                <TextView
+                    android:id="@+id/fuel_pMonth_car"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="000"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="16dp"/>
 
             </LinearLayout>
@@ -169,25 +215,64 @@
                     android:layout_marginTop="10dp"
                     android:text="Average KM per litre"
                     android:textSize="16dp"/>
+                <TextView
+                    android:id="@+id/av_km_bike"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="000"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16dp"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:text="Fuel per day"
                     android:textSize="16dp"/>
                 <TextView
+                    android:id="@+id/fuel_pDay_bike"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="Fuel Cost per day"
+                    android:gravity="center"
+                    android:text="000"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="16dp"/>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Fuel Cost per day"
+                    android:textSize="16dp"/>
+                <TextView
+                    android:id="@+id/fuel_cost_pDay_bike"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="000"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:text="Fuel per Month"
                     android:textSize="16dp"/>
+                <TextView
+                    android:id="@+id/fuel_pMonth_bike"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="000"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16dp"/>
+
             </LinearLayout>
 
         </LinearLayout>
