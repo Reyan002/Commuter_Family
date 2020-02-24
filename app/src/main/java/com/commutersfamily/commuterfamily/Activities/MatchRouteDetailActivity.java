@@ -136,7 +136,7 @@ public class MatchRouteDetailActivity extends AppCompatActivity implements OnMap
 
         //        Pnumber=getIntent().getStringExtra("number");
         retriev();
-        Toast.makeText(this, current_request, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, sender, Toast.LENGTH_SHORT).show();
 
 
 //        DatabaseReference details=FirebaseDatabase.getInstance().getReference().child("Riders");
@@ -327,6 +327,7 @@ public class MatchRouteDetailActivity extends AppCompatActivity implements OnMap
         });
     }
 
+
     public void manageRequestInfo() {
         request_ref.child(sender).addValueEventListener(new ValueEventListener() {
             @Override
@@ -344,7 +345,7 @@ public class MatchRouteDetailActivity extends AppCompatActivity implements OnMap
                         request.setText("Accept Request");
                         cancle.setVisibility(View.VISIBLE);
                         cancle.setText("Decline Request");
-                        Toast.makeText(MatchRouteDetailActivity.this, request_type, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MatchRouteDetailActivity.this, request_type, Toast.LENGTH_SHORT).show();
 
                         cancle.setEnabled(true);
                         cancle.setOnClickListener(new View.OnClickListener() {
@@ -389,7 +390,6 @@ public class MatchRouteDetailActivity extends AppCompatActivity implements OnMap
             }
         });
     }
-
     public void showAlert() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 // Add the buttons
