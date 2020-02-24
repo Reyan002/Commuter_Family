@@ -1,14 +1,6 @@
 package com.commutersfamily.commuterfamily.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
-import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -23,12 +15,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.commutersfamily.commuterfamily.Classes.DemoClass;
 import com.commutersfamily.commuterfamily.Classes.Routes;
 import com.commutersfamily.commuterfamily.Classes.User;
 import com.commutersfamily.commuterfamily.Classes.Vehicle;
+import com.commutersfamily.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity;
 import com.commutersfamily.commuterfamily.Prevalent.Prevalent;
-
 import com.commutersfamily.commuterfamily.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -54,23 +53,22 @@ import java.util.HashMap;
 
 public class MatchRouteDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-private String  ProductId,Pnumber;
-private TextView shift,day,time,start,end;
-private Button request,cancle;
-private TextView type,number;
-private DatabaseReference request_ref,connect_ref,notify_ref;
-private FirebaseAuth mAuth;
-private String sender;
-private String current_request ;
-private String firebaseInstanceId;
-private TextView name,view;
+    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 0;
+    private String ProductId, Pnumber;
+    private TextView shift, day, time, start, end;
+    private Button request, cancle;
+    private TextView type, number;
+    private DatabaseReference request_ref, connect_ref, notify_ref;
+    private FirebaseAuth mAuth;
+    private String sender;
+    private String current_request;
+    private String firebaseInstanceId;
 //private MapView mapView;
 
     private GoogleMap gMap;
-private MapFragment mapFragment;
-private TextView pickUp;
-    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS =0 ;
-
+    private TextView name, view;
+    private MapFragment mapFragment;
+    private TextView pickUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,14 +79,14 @@ private TextView pickUp;
             @Override
             public void onClick(View v) {
                 Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-                sendIntent.setData(Uri.parse("sms:+923408377547"));
-               startActivity(sendIntent);
+                sendIntent.setData(Uri.parse("sms:" + Pnumber));
+                startActivity(sendIntent);
             }
         });
         findViewById(R.id.whatsapp).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String contact = Pnumber; // use country code with your phone number
+                String contact = "+92" + Pnumber; // use country code with your phone number
                 String url = "https://api.whatsapp.com/send?phone=" + contact;
                 try {
                     PackageManager pm = MatchRouteDetailActivity.this.getPackageManager();
@@ -110,16 +108,16 @@ private TextView pickUp;
             }
         });
 
-        CardView cardView=findViewById(R.id.cardViewMd2);
+        CardView cardView = findViewById(R.id.cardViewMd2);
 
-        if(DemoClass.commuterMatch=="Drivers"){
+        if (DemoClass.commuterMatch == "Drivers") {
             cardView.setVisibility(View.VISIBLE);
         }
-                firebaseInstanceId=FirebaseInstanceId.getInstance().getToken();
+        firebaseInstanceId = FirebaseInstanceId.getInstance().getToken();
         Initilize();
 
 
-        current_request="new";
+        current_request = "new";
 
 //        pickUp.setText(getIntent().getStringExtra("pick"));
 //
@@ -129,11 +127,11 @@ private TextView pickUp;
 //        start.setText(getIntent().getStringExtra("from"));
 //        end.setText(getIntent().getStringExtra("to"));
         sender = Prevalent.currentOnlineUser.getPhone();
-        request_ref=FirebaseDatabase.getInstance().getReference().child("Request");
-        connect_ref=FirebaseDatabase.getInstance().getReference().child("PeopleConnected");
-        notify_ref=FirebaseDatabase.getInstance().getReference().child("Notification");
+        request_ref = FirebaseDatabase.getInstance().getReference().child("Request");
+        connect_ref = FirebaseDatabase.getInstance().getReference().child("PeopleConnected");
+        notify_ref = FirebaseDatabase.getInstance().getReference().child("Notification");
 
- //        Pnumber=getIntent().getStringExtra("number");
+        //        Pnumber=getIntent().getStringExtra("number");
         retriev();
 
 
@@ -165,24 +163,25 @@ private TextView pickUp;
 
     }
 
-    public void retriev(){
-        ProductId=getIntent().getStringExtra("rid");
-        Pnumber=getIntent().getStringExtra("number");
-        getVehiclesDetail( );
+    public void retriev() {
+        ProductId = getIntent().getStringExtra("rid");
+        Pnumber = getIntent().getStringExtra("number");
+        getVehiclesDetail();
 
         Initilize();
 
         getRouteDetails(ProductId);
-          getUserDetails(Pnumber);
+        getUserDetails(Pnumber);
         manageDetails();
         manageRequestInfo();
     }
-    public void manageDetails(){
-        if(!sender.equals(Pnumber) ){
+
+    public void manageDetails() {
+        if (!sender.equals(Pnumber)) {
             request.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(current_request.equals ("new")){
+                    if (current_request.equals("new")) {
 
 //                        AlertDialog.Builder builder=new AlertDialog.Builder(MatchRouteDetailActivity.this);
 //                        builder.setTitle("Alert!");
@@ -190,7 +189,7 @@ private TextView pickUp;
 //                        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 //                            @Override
 //                            public void onClick(DialogInterface dialog, int which) {
-                                sendRequestOfRide();
+                        sendRequestOfRide();
 //                            }
 //                        });
 //                        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
@@ -203,15 +202,16 @@ private TextView pickUp;
 //                        builder.show();
 
                     }
-                    if(current_request.equals ("request_sent")){
+                    if (current_request.equals("request_sent")) {
                         cancle.setVisibility(View.GONE);
                         cancle.setEnabled(false);
                         cancleRequest();
                     }
-                    if(current_request.equals("request_recieved")){
+                    if (current_request.equals("request_recieved")) {
 
                         acceptRequest();
-                    }if(current_request.equals("commute")){
+                    }
+                    if (current_request.equals("commute")) {
 //                        Toast.makeText(MatchRouteDetailActivity.this, current_request, Toast.LENGTH_SHORT).show();
 
                         removeRequest();
@@ -226,35 +226,42 @@ private TextView pickUp;
 //                    Toast.makeText(MatchRouteDetailActivity.this, current_request, Toast.LENGTH_SHORT).show();
                 }
             });
-        }else
-        {
+        } else {
             request.setEnabled(false);
             request.setVisibility(View.GONE);
         }
     }
+
     private void acceptRequest() {
         connect_ref.child(sender).child(Pnumber).child("Contact").setValue("Saved").addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     connect_ref.child(Pnumber).child(sender).child("Contact").setValue("Saved").addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()){
+                            if (task.isSuccessful()) {
 
                                 request_ref.child(sender).child(Pnumber).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        if(task.isSuccessful()){
+                                        if (task.isSuccessful()) {
                                             request_ref.child(Pnumber).child(sender).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
-                                                    if(task.isSuccessful()){
+                                                    if (task.isSuccessful()) {
+                                                        notify_ref.child(sender).child(ProductId).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                current_request = "commute";
+                                                                request.setText("Remove");
+                                                                cancle.setVisibility(View.GONE);
+                                                                cancle.setEnabled(false);
+                                                                startActivity(new Intent(MatchRouteDetailActivity.this, DashboardDrawerActivity.class));
+                                                            }
+                                                        });
 
-                                                        current_request="commute";
-                                                        request.setText("Remove");
-                                                         cancle.setVisibility(View.GONE);
-                                                         cancle.setEnabled(false);
+
                                                     }
                                                 }
                                             });
@@ -273,15 +280,15 @@ private TextView pickUp;
         request_ref.child(sender).child(Pnumber).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     request_ref.child(Pnumber).child(sender).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
 
-                            if(task.isSuccessful()){
+                            if (task.isSuccessful()) {
                                 request.setEnabled(true);
                                 request.setText("Send Request");
-                                current_request="new";
+                                current_request = "new";
 
                             }
                         }
@@ -290,16 +297,17 @@ private TextView pickUp;
             }
         });
     }
+
     private void getVehiclesDetail() {
-        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("Commuters").child("Driver")  ;
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Commuters").child("Driver");
         reference.child(Pnumber).child("Car").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                    Vehicle v=dataSnapshot.getValue(Vehicle.class);
+                if (dataSnapshot.exists()) {
+                    Vehicle v = dataSnapshot.getValue(Vehicle.class);
 
-                    type.setText("Type: "+v.getVehicleType());
-                    number.setText("Number: "+v.getVehicleNumber());
+                    type.setText("Type: " + v.getVehicleType());
+                    number.setText("Number: " + v.getVehicleNumber());
 //                    PDname.setText(products.getName());
 //                    PDprice.setText(products.getPrice());
 //                    PDdescription.setText(products.getDescription());
@@ -314,22 +322,21 @@ private TextView pickUp;
             }
         });
     }
-     public void manageRequestInfo(){
+
+    public void manageRequestInfo() {
         request_ref.child(sender).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.hasChild(Pnumber))
-                {
-                    String request_type=dataSnapshot.child(Pnumber).child("request_type").getValue() .toString();
+                if (dataSnapshot.hasChild(Pnumber)) {
+                    String request_type = dataSnapshot.child(Pnumber).child("request_type").getValue().toString();
 
-                    if(request_type.equals("sent")){
-                        current_request="request_sent";
+                    if (request_type.equals("sent")) {
+                        current_request = "request_sent";
                         request.setText("Cancle Request");
                         cancle.setVisibility(View.GONE);
 //                        Toast.makeText(MatchRouteDetailActivity.this, request_type, Toast.LENGTH_SHORT).show();
-                    }
-                    else if(request_type.equals("recieved")){
-                        current_request="request_recieved";
+                    } else if (request_type.equals("recieved")) {
+                        current_request = "request_recieved";
                         request.setText("Accept Request");
                         cancle.setVisibility(View.VISIBLE);
                         cancle.setText("Decline Request");
@@ -346,30 +353,28 @@ private TextView pickUp;
                         });
                     }
 
-                }
-                else{
+                } else {
 
-                        connect_ref.child(sender).addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                if(dataSnapshot.hasChild(Pnumber)) {
-                                    current_request="commute";
-                                    request.setText("Remove");
-                                    request.setVisibility(View.GONE);
-                                    LinearLayout linearLayout=findViewById(R.id.ll);
-                                    linearLayout.setVisibility(View.VISIBLE);
-                                }
-
-
-
+                    connect_ref.child(sender).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.hasChild(Pnumber)) {
+                                current_request = "commute";
+                                request.setText("Remove");
+                                request.setVisibility(View.GONE);
+                                LinearLayout linearLayout = findViewById(R.id.ll);
+                                linearLayout.setVisibility(View.VISIBLE);
                             }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                            }
-                        });
-                   
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
 
                 }
             }
@@ -380,58 +385,66 @@ private TextView pickUp;
             }
         });
     }
-    public void showAlert(){
+
+    public void showAlert() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 // Add the buttons
-         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 sendSMSMessage();
-             }
+            }
         });
         builder.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-finish();            }
+                finish();
+            }
         });
         builder.show();
     }
-    public void sendRequestOfRide(){
-        request_ref.child(sender).child(Pnumber).child("request_type").setValue("sent").addOnCompleteListener(new OnCompleteListener<Void>() {
+
+    public void sendRequestOfRide() {
+        request_ref.child(sender).child(ProductId).child("request_type").setValue("sent").addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    request_ref.child(Pnumber).child(sender).child("request_type").setValue("recieved").addOnCompleteListener(new OnCompleteListener<Void>() {
+                if (task.isSuccessful()) {
+                    request_ref.child(Pnumber).child(ProductId).child("request_type").setValue("recieved").addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
 
-                            if(task.isSuccessful()){
+                            if (task.isSuccessful()) {
 
-                                final String saveCurrentDate,saveCurrentime;
+                                final String saveCurrentDate, saveCurrentime;
 
-                                Calendar calForDate= Calendar.getInstance();
-                                SimpleDateFormat currentDate=new SimpleDateFormat("MMM dd,YYY");
-                                saveCurrentDate=currentDate.format(calForDate.getTime());
+                                Calendar calForDate = Calendar.getInstance();
+                                SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd,YYY");
+                                saveCurrentDate = currentDate.format(calForDate.getTime());
 
-                                SimpleDateFormat currentTime=new SimpleDateFormat("HH:mm:ss a");
-                                saveCurrentime=currentTime.format(calForDate.getTime());
-                                HashMap<String ,String > chatNotifi=new HashMap<>();
-                                chatNotifi.put("from",sender);
-                                chatNotifi.put("type","request");
+                                SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
+                                saveCurrentime = currentTime.format(calForDate.getTime());
+                                final HashMap<String, String> chatNotifi = new HashMap<>();
+                                chatNotifi.put("from", sender);
+                                chatNotifi.put("type", "request");
                                 chatNotifi.put("Date", saveCurrentDate);
-                                chatNotifi.put("Time",saveCurrentime);
-                                chatNotifi.put("NotiId",getIntent().getStringExtra("rid"));
-                                chatNotifi.put("WantTo",DemoClass.commuterMatch);
+                                chatNotifi.put("Time", saveCurrentime);
+                                chatNotifi.put("NotiId", getIntent().getStringExtra("rid"));
+                                chatNotifi.put("WantTo", DemoClass.commuterMatch);
 
 
                                 notify_ref.child(Pnumber).child(getIntent().getStringExtra("rid")).setValue(chatNotifi).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        if(task.isSuccessful()){
-                                            request.setEnabled(false);
-                                            FirebaseMessaging.getInstance().subscribeToTopic("sendNotification");
-                                            request.setText("Cancle Request");
-                                            current_request="request_sent";
+                                        if (task.isSuccessful()) {
 
-
+                                            DatabaseReference connectedCommuter = FirebaseDatabase.getInstance().getReference().child("Connected Commuter");
+                                            connectedCommuter.child(Pnumber).child(getIntent().getStringExtra("rid")).setValue(chatNotifi).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    request.setEnabled(false);
+                                                    FirebaseMessaging.getInstance().subscribeToTopic("sendNotification");
+                                                    request.setText("Cancle Request");
+                                                    current_request = "request_sent";
+                                                }
+                                            });
 
 
 //
@@ -446,31 +459,33 @@ finish();            }
             }
         });
     }
-    public void Initilize(){
-        pickUp=findViewById(R.id.pick_text);
-        cancle=findViewById(R.id.cancle_request);
-        request=findViewById(R.id.button_request);
-        shift=findViewById(R.id.textViewMR_SD1);
-        day=findViewById(R.id.textViewMR_SD2);
-        time=findViewById(R.id.textViewMR_SD3);
-        start=findViewById(R.id.textViewMR_SD4);
-        end=findViewById(R.id.textViewMR_SD5);
-        type=findViewById(R.id.textViewMR_VD1);
-        number=findViewById(R.id.textViewMR_VD2);
-        name=findViewById(R.id.textViewMR_CD1);
-        view=findViewById(R.id.textViewMR_CD2);
+
+    public void Initilize() {
+        pickUp = findViewById(R.id.pick_text);
+        cancle = findViewById(R.id.cancle_request);
+        request = findViewById(R.id.button_request);
+        shift = findViewById(R.id.textViewMR_SD1);
+        day = findViewById(R.id.textViewMR_SD2);
+        time = findViewById(R.id.textViewMR_SD3);
+        start = findViewById(R.id.textViewMR_SD4);
+        end = findViewById(R.id.textViewMR_SD5);
+        type = findViewById(R.id.textViewMR_VD1);
+        number = findViewById(R.id.textViewMR_VD2);
+        name = findViewById(R.id.textViewMR_CD1);
+        view = findViewById(R.id.textViewMR_CD2);
 //        mapView = findViewById(R.id.mapViewMatchRoute);
         mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.mapViewMatchRoute);
         mapFragment.getMapAsync(this);
 
-   }
+    }
+
     private void getUserDetails(String productId) {
-        DatabaseReference reference= FirebaseDatabase.getInstance().getReference() .child("Users") ;
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users");
         reference.child(productId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                    User v=dataSnapshot.getValue(User.class);
+                if (dataSnapshot.exists()) {
+                    User v = dataSnapshot.getValue(User.class);
 
                     name.setText(v.getName());
 
@@ -487,19 +502,20 @@ finish();            }
             }
         });
     }
+
     private void removeRequest() {
 
         connect_ref.child(sender).child(Pnumber).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     connect_ref.child(Pnumber).child(sender).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
 
-                            if(task.isSuccessful()){
+                            if (task.isSuccessful()) {
                                 request.setText("Send Request");
-                                current_request="new";
+                                current_request = "new";
                             }
                         }
                     });
@@ -511,35 +527,36 @@ finish();            }
 
 
     private void getRouteDetails(String productId) {
-        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child(DemoClass.commuterMatch);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(DemoClass.commuterMatch);
         reference.child(productId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                    Routes routes=dataSnapshot.getValue(Routes.class);
-                    shift.setText("Shift: "+routes.getShift());
-                    day.setText("Day: "+routes.getDay());
-                    time.setText("Time: "+routes.getETimeFrom()+"-"+routes.getETimeTo()+routes.getMTimeFrom()+"-"+routes.getMTimeTo());
-                    start.setText("Start From: "+routes.getAdressFrom());
-                    end.setText("End On: "+routes.getAdressTo());
-                    pickUp.setText("Pick up Point: "+routes.getPickUp());
+                if (dataSnapshot.exists()) {
+                    Routes routes = dataSnapshot.getValue(Routes.class);
+                    shift.setText("Shift: " + routes.getShift());
+                    day.setText("Day: " + routes.getDay());
+                    time.setText("Time: " + routes.getETimeFrom() + "-" + routes.getETimeTo() + routes.getMTimeFrom() + "-" + routes.getMTimeTo());
+                    start.setText("Start From: " + routes.getAdressFrom());
+                    end.setText("End On: " + routes.getAdressTo());
+                    pickUp.setText("Pick up Point: " + routes.getPickUp());
 
 
 //            @Override
- //                    PDname.setText(products.getName());
+                    //                    PDname.setText(products.getName());
 //                    PDprice.setText(products.getPrice());
 //                    PDdescription.setText(products.getDescription());
 //                    PDdescription.setText(products.getDescription());
 //                    PDdescription.setText(products.getDescription());
-                 }
+                }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
-            }}  );
+            }
+        });
 
-        }
+    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -548,7 +565,6 @@ finish();            }
         double lng = 119.978;//Double.parseDouble(getIntent().getStringExtra("longFrom"));
 
         LatLng latlng = new LatLng(lat, lng);
-
 
 
         gMap = googleMap;
@@ -566,7 +582,7 @@ finish();            }
         gMap.getUiSettings().setZoomControlsEnabled(true);
 
         CircleOptions circleOptions = new CircleOptions();
-        circleOptions.center(new LatLng(lat,lng));
+        circleOptions.center(new LatLng(lat, lng));
         circleOptions.radius(300);
         circleOptions.strokeColor(Color.parseColor("#000000"));
         circleOptions.fillColor(Color.parseColor("#E4B0E7FF"));
@@ -574,7 +590,7 @@ finish();            }
 
         gMap.addCircle(circleOptions);
         gMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));
-        gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng,14.0f));
+        gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, 14.0f));
 
 
     }
@@ -617,15 +633,9 @@ finish();            }
     }
 
 
-
-
-
-    public void callPhoneNumber()
-    {
-        try
-        {
-            if(Build.VERSION.SDK_INT > 22)
-            {
+    public void callPhoneNumber() {
+        try {
+            if (Build.VERSION.SDK_INT > 22) {
                 if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
 
@@ -635,22 +645,18 @@ finish();            }
                 }
 
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:" +Pnumber));
+                callIntent.setData(Uri.parse("tel:" + Pnumber));
                 startActivity(callIntent);
 
-            }
-            else {
+            } else {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
                 callIntent.setData(Uri.parse("tel:" + "03408377547"));
                 startActivity(callIntent);
             }
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-
 
 
 }

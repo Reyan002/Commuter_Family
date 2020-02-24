@@ -1,14 +1,14 @@
 package com.commutersfamily.commuterfamily.Activities;
 
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.FragmentActivity;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentActivity;
 
 import com.commutersfamily.commuterfamily.Classes.DemoClass;
 import com.commutersfamily.commuterfamily.Classes.LatLongClass;
@@ -45,6 +45,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if(!Places.isInitialized()){
             Places.initialize(this,apiKey);
         }
+
 
 
         latLongFrom=new LatLongClass();

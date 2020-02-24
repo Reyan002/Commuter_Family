@@ -9,20 +9,19 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.commutersfamily.commuterfamily.Activities.MapsActivity;
-import com.commutersfamily.commuterfamily.Activities.RiderRouteActivity;
-import com.commutersfamily.commuterfamily.Classes.DemoClass;
-import com.commutersfamily.commuterfamily.DashBoardDrawerActivity.ui.ViewPagerAdapter;
-import com.commutersfamily.commuterfamily.R;
-
-import java.util.Timer;
-import java.util.TimerTask;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
+
+import com.commutersfamily.commuterfamily.Activities.MapsActivity;
+import com.commutersfamily.commuterfamily.Activities.RiderRouteActivity;
+import com.commutersfamily.commuterfamily.Classes.DemoClass;
+import com.commutersfamily.commuterfamily.R;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Home_Passenger extends Fragment {
 
@@ -91,8 +90,7 @@ public class Home_Passenger extends Fragment {
         timer.scheduleAtFixedRate(new MyTaskTimer(), 2000, 4000);
 
 
-        myView.findViewById(R.id.card1p);
-        myView.setOnClickListener(new View.OnClickListener() {
+        myView.findViewById(R.id.card1p).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DemoClass.RouteFor = "Rider";

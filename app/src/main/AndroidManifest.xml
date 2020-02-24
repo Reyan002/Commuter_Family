@@ -2,12 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.commutersfamily.commuterfamily"
-    android:versionCode="2"
-    android:versionName="2.0.0"
-    >
+    android:versionCode="3"
+    android:versionName="3.0.0">
 
-    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
-     <!--
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality.
@@ -27,7 +26,7 @@
         android:name="android.hardware.camera.autofocus"
         android:required="false" />
 
-     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -40,18 +39,18 @@
         android:roundIcon="@mipmap/icon_image_new"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Activities.MyCommutersActivity"></activity>
         <activity
-            android:name="com.commutersfamily.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity"
+            android:name=".DashBoardDrawerActivity.DashboardDrawerActivity"
             android:label="@string/title_activity_dashboard_drawer"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
-        <activity
-            android:name="com.commutersfamily.commuterfamily.Activities.IntroActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.commutersfamily.commuterfamily.Activities.MatchRouteDetailActivity"/>
-        <activity android:name="com.commutersfamily.commuterfamily.Activities.AddCarActivity" />
-        <activity android:name="com.commutersfamily.commuterfamily.Activities.MatchActivity" />
-        <activity android:name="com.commutersfamily.commuterfamily.Activities.Notification" />
+        <activity
+            android:name=".Activities.IntroActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activities.MatchRouteDetailActivity" />
+        <activity android:name=".Activities.AddCarActivity" />
+        <activity android:name=".Activities.MatchActivity" />
+        <activity android:name=".Activities.Notification" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -65,16 +64,16 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name="com.commutersfamily.commuterfamily.Activities.RiderRouteMapActivity"
+            android:name=".Activities.RiderRouteMapActivity"
             android:label="@string/title_activity_rider_route_map" />
-
         <activity
-            android:name="com.commutersfamily.commuterfamily.Activities.RiderRouteActivity"
-            android:parentActivityName="com.commutersfamily.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity" />
+            android:name=".Activities.RiderRouteActivity"
+            android:parentActivityName=".DashBoardDrawerActivity.DashboardDrawerActivity" />
         <activity
-            android:name="com.commutersfamily.commuterfamily.Activities.MapsActivity"
+            android:name=".Activities.MapsActivity"
             android:label="@string/title_activity_maps"
-            android:parentActivityName=".DashBoardDrawerActivity.DashboardDrawerActivity"/>
+            android:parentActivityName=".DashBoardDrawerActivity.DashboardDrawerActivity" />
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -87,21 +86,21 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <activity
-            android:name="com.commutersfamily.commuterfamily.Activities.DriveActivity"
-            android:parentActivityName="com.commutersfamily.commuterfamily.DashBoardDrawerActivity.DashboardDrawerActivity"
+            android:name=".Activities.DriveActivity"
+            android:parentActivityName=".DashBoardDrawerActivity.DashboardDrawerActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
-            android:name="com.commutersfamily.commuterfamily.Activities.RideActivity"
+            android:name=".Activities.RideActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
-            android:name="com.commutersfamily.commuterfamily.Activities.MainActivity"
+            android:name=".Activities.MainActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity android:name="com.commutersfamily.commuterfamily.Activities.TutotrialActivity" />
+        <activity android:name=".Activities.TutotrialActivity" />
         <activity
-            android:name="com.commutersfamily.commuterfamily.Activities.UpdateProfile"
+            android:name=".Activities.UpdateProfile"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
         <activity
-            android:name="com.commutersfamily.commuterfamily.Activities.Splash"
+            android:name=".Activities.Splash"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -109,20 +108,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.commutersfamily.commuterfamily.Activities.LoginActivity" />
-        <activity android:name="com.commutersfamily.commuterfamily.Activities.SplashScreenActivity" />
-        <activity android:name="com.commutersfamily.commuterfamily.Activities.SignUpActivity" />
+        <activity android:name=".Activities.LoginActivity" />
+        <activity android:name=".Activities.SplashScreenActivity" />
+        <activity android:name=".Activities.SignUpActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <service android:name="com.commutersfamily.commuterfamily.Classes.MyFirebaseMessagingService">
+        <service android:name=".Classes.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>
